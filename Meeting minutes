@@ -1,0 +1,13 @@
+12th March, first team meeting.
+Subjects: 
+1.Demonstrate reading of data from file 
+2.outline of main program, including major classes, sketch of screens
+
+Reading data:
+- Processing provides both loadBytes and loadStrings commands. The split method should also be helpful.
+- A simple(although not particularly efficient)solution would be to define a DataPoint class which represents a single flight. 
+  There would be one instance of the class for each entry in the input file.
+- You may wish to store the data in a format which is more efficient to access.
+
+Question:
+1. how to pull data from the .csv file by Oliver
