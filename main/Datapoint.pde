@@ -1,4 +1,4 @@
-// Zicheng, 12th March, 18:00: created the class;
+// Zicheng, 12th March, 18:00: created the Datapoint class;
 class Datapoint{
   
   // Zicheng, 12th March, 18:00: fields added according to the .csv files;
