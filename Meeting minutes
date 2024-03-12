@@ -1,4 +1,4 @@
-12th March, first team meeting.
+Week 1, 12th March, 1st team meeting.
 Subjects: 
 1.Demonstrate reading of data from file 
 2.outline of main program, including major classes, sketch of screens
@@ -11,6 +11,8 @@ Reading data:
 
 Reposibility:
 - Neil & Aryan: data reading, the function should read in the csv file.
+- Daniel & Muireann & Oliver & Zicheng: the Datapoint class;
 
 Question:
 1. how to pull data from the .csv file by Oliver
+- solved by Aryan.
