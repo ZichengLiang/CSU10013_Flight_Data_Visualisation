@@ -5,21 +5,16 @@ class Datapoint{
   int  flightDate, flightNumber, originWac, destWac, distance;
   int  CRSDepTime, depTime, CRSArrTime, arrTime;
   String carrierCode, origin, originCityName, originState, dest, destCityName, destState;
-  boolean cancelled, diverted;
+  int cancelled, diverted;
   
-  // Zicheng, 12th March, 18:00: a constructor with all parameters;
-  Datapoint(int flightDate, String carrierCode, int flightNumber, 
-            String origin, String originCityName, String originState, int originWac,
-            String dest, String destCityName, String destState, int destWac,
-            int CRSDepTime, int depTime, int CRSArrTime, int arrTime, 
-            boolean cancelled, boolean diverted, 
-            int distance)
-            {
-              this.flightDate = flightDate; this.carrierCode = carrierCode; this.flightNumber = flightNumber;
-              this.origin = origin; this.originCityName = originCityName; this.originState = originState; this.originWac = originWac;
-              this.dest = dest; this.destCityName = destCityName; this.destState = destState; this.destWac = destWac;
-              this.CRSDepTime = CRSDepTime; this.depTime = depTime; this.CRSArrTime = CRSArrTime; this.arrTime = arrTime;
-              this.cancelled = cancelled; this.diverted = diverted;
-              this.distance = distance;
-            }
+  // Zicheng, 12th March, 21:00: a constructor with all parameters;
+  public Datapoint(String[] pieces){
+    flightDate = int (pieces[0]);
+    carrierCode = pieces[1]; flightNumber = int (pieces[2]);
+    origin = pieces[3]; originCityName = pieces[4]; originState = pieces[5]; originWac = int (pieces[6]);
+    dest = pieces[7]; destCityName = pieces[8]; destState = pieces[9]; destWac = int (pieces[10]);
+    CRSDepTime = int (pieces[11]); depTime = int (pieces[12]); CRSArrTime = int (pieces[13]); arrTime = int (pieces[14]); 
+    cancelled = int (pieces[15]); diverted = int (pieces[16]); 
+    distance = int (pieces[17]);
+  }
 }
