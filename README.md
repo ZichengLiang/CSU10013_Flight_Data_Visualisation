@@ -1,7 +1,7 @@
 # CSU11013-GroupB-Team9
 This is the repository for CSU11013 Programming Project, team 9 of the 4pm lab!
 
-Team Members + Student Number:
+Team Members:
 Aryan Kapoor  22300775
 Daniel  Pop   23377400
 Muireann O'Neill 23373727
