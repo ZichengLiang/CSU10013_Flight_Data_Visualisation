@@ -6,7 +6,7 @@ PFont body;
 int displayNum = 10; // Display this many entries on each screen;
 int startingEntry = 0; // Display from this entry number;
 
-//M: As far as i understand it, draw function won't work properly if size is in setup.
+//M: As far as I understand it, draw function won't work properly if size is in setup.
 void settings(){
   size(600, 600);
 }
@@ -15,7 +15,7 @@ void setup(){
   noLoop();
   body = loadFont("myFont-12.vlw"); 
   textFont(body);
-  textSize(20);
+  textSize(12);
   
 //<<<<<<< HEAD
   //lines = loadStrings("flights2k.csv");                   //loading strings into array 'lines'
@@ -30,8 +30,7 @@ void setup(){
   datapoints = new Datapoint[lines.length];
   println(lines.length);
   for(int i2 = 0; i2 < lines.length; i2++){
-    String[] pieces = split(lines[i2], ',');
-    // Got rid of integer and replaced it with constant variable
+    String[] pieces = split(lines[i2], ','); // Got rid of integer and replaced it with constant variable
     
 // Oliver, 13th March, 1:05: Commented out if statement to add more to dataponts array
 //    if (pieces.length == DATAPOINTVARIABLECOUNT){ // checks if all the variables are there
@@ -55,7 +54,9 @@ void setup(){
     //~M: seems to be confusing the system, prints 10 times once replaced
     if (thisEntry < datapointCount){
       //M: there seems to be somthing going wrong with calling on data here, i need more info on exactly how data is being called before i can fix this
-      text(thisEntry + " > " + datapoints[thisEntry].carrierCode, 20, 20 + i3*20);
+      text(thisEntry + " > " + datapoints[thisEntry].carrierCode + datapoints[thisEntry].flightNumber + "----" 
+                     + datapoints[thisEntry].origin + " -> " + datapoints[thisEntry].originState
+                     , 20, 20 + i3*20);
     }
   
   }
