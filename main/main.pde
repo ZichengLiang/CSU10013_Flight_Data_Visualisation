@@ -45,10 +45,10 @@ void draw(){
   }
 }
 
-//void mousePressed(){
-//  startingEntry += displayNum;
-//  if (startingEntry > datapoints.length){
-//    startingEntry = 0; // go back to the begining;
-//  }
-//  redraw();
-//}
+void mousePressed(){
+  startingEntry += displayNum;
+  if (startingEntry > datapoints.length){
+    startingEntry = 0; // go back to the begining;
+  }
+  redraw();
+}
