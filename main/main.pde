@@ -20,10 +20,10 @@ void setup(){
   println(lines.length);
   for(int i = 0; i < lines.length; i++){
     String[] pieces = split(lines[i], ',');
-    if (pieces.length == 18){
+//    if (pieces.length == 18){
       datapoints[datapointCount] = new Datapoint(pieces);
       datapointCount++;
-    }
+//    }
   }
   if (datapointCount != datapoints.length){
     datapoints = (Datapoint[]) subset(datapoints, 0, datapointCount);
