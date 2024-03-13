@@ -6,22 +6,24 @@ PFont body;
 int displayNum = 10; // Display this many entries on each screen;
 int startingEntry = 0; // Display from this entry number;
 
-void setup(){
+//M: As far as i understand it, draw function won't work properly if size is in setup.
+void settings(){
   size(600, 600);
+}
+void setup(){
   fill(255);
   noLoop();
-  
-  body = loadFont("myFont-12.vlw");
+  body = loadFont("myFont-12.vlw"); 
   textFont(body);
   textSize(20);
   
-  lines = loadStrings("flights2k.csv");
-  datapoints = new Datapoint[lines.length];
-  println(lines.length);
-  for(int i = 0; i < lines.length; i++){
-    String[] pieces = split(lines[i], ',');
-    if (pieces.length == 18){
-      datapoints[datapointCount] = new Datapoint(pieces);
+  lines = loadStrings("flights2k.csv");                   //loading strings into array 'lines'
+  datapoints = new Datapoint[lines.length];               //setting a new object Datapoint as length of Array'lines'
+  println(lines.length);                    
+  for(int i = 0; i < lines.length; i++){    
+    String[] pieces = split(lines[i], ',');              // new string splitting lines by ','  Note: try usedelimiter if it does not work that's fine but it would be a cleaner solution
+    if (pieces.length == 18){                            //?? if the length of 'pieces' is == 18;
+      datapoints[datapointCount] = new Datapoint(pieces);//new datapoint is created with the length of pieces datapoint count increases by 1;
       datapointCount++;
     }
   }
@@ -29,15 +31,18 @@ void setup(){
     datapoints = (Datapoint[]) subset(datapoints, 0, datapointCount);
   }
 }
-
+//displaynum = 10
 void draw(){
   background(0);
   for(int i = 0; i < displayNum; i++){
-    int thisEntry = startingEntry + i;
-    //seems to be confusing the system = prints 4 times once replaced
+    int thisEntry = 0;
+    thisEntry = startingEntry + i;
+    //seems to be confusing the system, prints 10 times once replaced
     if (thisEntry < datapointCount){
+      //there seems to be somthing going wrong with calling on data here, ii need more info on exactly how data is being called before i can fix this
       text(thisEntry + " > " + datapoints[thisEntry].carrierCode, 20, 20 + i*20);
     }
+  
   }
 }
 
@@ -48,3 +53,5 @@ void draw(){
 //  }
 //  redraw();
 //}
+
+// input.useDelimiter("[\\p{javaWhitespace}\\/]");
