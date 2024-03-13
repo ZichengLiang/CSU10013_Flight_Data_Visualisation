@@ -15,16 +15,20 @@ void setup(){
   textFont(body);
   textSize(20);
   
-  lines = loadStrings("flights2k.csv");
+  lines = loadStrings("flights2k.csv"); // Loads in csv file (each line is an element in array)
   datapoints = new Datapoint[lines.length];
   println(lines.length);
   for(int i = 0; i < lines.length; i++){
     String[] pieces = split(lines[i], ',');
-    if (pieces.length == 18){
+    // Got rid of integer and replaced it with constant variable
+    
+// Oliver, 13th March, 1:05: Commented out if statement to add more to dataponts array
+//    if (pieces.length == DATAPOINTVARIABLECOUNT){ // checks if all the variables are there
       datapoints[datapointCount] = new Datapoint(pieces);
       datapointCount++;
-    }
+//    }
   }
+  // if there are spare elements in datapoints array, remove them.
   if (datapointCount != datapoints.length){
     datapoints = (Datapoint[]) subset(datapoints, 0, datapointCount);
   }
@@ -34,6 +38,7 @@ void draw(){
   background(0);
   for(int i = 0; i < displayNum; i++){
     int thisEntry = startingEntry + i;
+    //seems to be confusing the system = prints 4 times once replaced
     if (thisEntry < datapointCount){
       text(thisEntry + " > " + datapoints[thisEntry].carrierCode, 20, 20 + i*20);
     }
