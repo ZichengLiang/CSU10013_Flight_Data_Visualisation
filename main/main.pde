@@ -17,50 +17,52 @@ void setup(){
   textFont(body);
   textSize(20);
   
-<<<<<<< HEAD
-  lines = loadStrings("flights2k.csv");                   //loading strings into array 'lines'
-  datapoints = new Datapoint[lines.length];               //setting a new object Datapoint as length of Array'lines'
-  println(lines.length);                    
-  for(int i = 0; i < lines.length; i++){    
-    String[] pieces = split(lines[i], ',');              // new string splitting lines by ','  Note: try usedelimiter if it does not work that's fine but it would be a cleaner solution
-    if (pieces.length == 18){                            //?? if the length of 'pieces' is == 18;
-      datapoints[datapointCount] = new Datapoint(pieces);//new datapoint is created with the length of pieces datapoint count increases by 1;
-=======
+//<<<<<<< HEAD
+  //lines = loadStrings("flights2k.csv");                   //loading strings into array 'lines'
+  //datapoints = new Datapoint[lines.length];               //setting a new object Datapoint as length of Array'lines'
+  //println(lines.length);                    
+  //for(int i = 0; i < lines.length; i++){    
+  //  String[] pieces = split(lines[i], ',');              // new string splitting lines by ','  Note: try usedelimiter if it does not work that's fine but it would be a cleaner solution
+  //  if (pieces.length == 18){                            //?? if the length of 'pieces' is == 18;
+  //    datapoints[datapointCount] = new Datapoint(pieces);//new datapoint is created with the length of pieces datapoint count increases by 1;
+//=======
   lines = loadStrings("flights2k.csv"); // Loads in csv file (each line is an element in array)
   datapoints = new Datapoint[lines.length];
   println(lines.length);
-  for(int i = 0; i < lines.length; i++){
-    String[] pieces = split(lines[i], ',');
+  for(int i2 = 0; i2 < lines.length; i2++){
+    String[] pieces = split(lines[i2], ',');
     // Got rid of integer and replaced it with constant variable
     
 // Oliver, 13th March, 1:05: Commented out if statement to add more to dataponts array
 //    if (pieces.length == DATAPOINTVARIABLECOUNT){ // checks if all the variables are there
       datapoints[datapointCount] = new Datapoint(pieces);
->>>>>>> main
+//>>>>>>> main
       datapointCount++;
-//    }
-  }
+   }
+  
   // if there are spare elements in datapoints array, remove them.
   if (datapointCount != datapoints.length){
     datapoints = (Datapoint[]) subset(datapoints, 0, datapointCount);
   }
-}
+ }
+
 //displaynum = 10
-void draw(){
+  void draw(){
   background(0);
-  for(int i = 0; i < displayNum; i++){
+  for(int i3 = 0; i3 < displayNum; i3++){
     int thisEntry = 0;
-    thisEntry = startingEntry + i;
-    //seems to be confusing the system, prints 10 times once replaced
+    thisEntry = startingEntry + i3;
+    //~M: seems to be confusing the system, prints 10 times once replaced
     if (thisEntry < datapointCount){
-      //there seems to be somthing going wrong with calling on data here, ii need more info on exactly how data is being called before i can fix this
-      text(thisEntry + " > " + datapoints[thisEntry].carrierCode, 20, 20 + i*20);
+      //M: there seems to be somthing going wrong with calling on data here, i need more info on exactly how data is being called before i can fix this
+      text(thisEntry + " > " + datapoints[thisEntry].carrierCode, 20, 20 + i3*20);
     }
   
   }
 }
 
-<<<<<<< HEAD
+
+//<<<<<<< HEAD
 //void mousePressed(){
 //  startingEntry += displayNum;
 //  if (startingEntry > datapoints.length){
@@ -70,7 +72,7 @@ void draw(){
 //}
 
 // input.useDelimiter("[\\p{javaWhitespace}\\/]");
-=======
+//=======
 void mousePressed(){
   startingEntry += displayNum;
   if (startingEntry > datapoints.length){
@@ -78,4 +80,4 @@ void mousePressed(){
   }
   redraw();
 }
->>>>>>> main
+//>>>>>>> main
