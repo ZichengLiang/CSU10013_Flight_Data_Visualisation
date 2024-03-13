@@ -38,16 +38,17 @@ void draw(){
   background(0);
   for(int i = 0; i < displayNum; i++){
     int thisEntry = startingEntry + i;
+    //seems to be confusing the system = prints 4 times once replaced
     if (thisEntry < datapointCount){
       text(thisEntry + " > " + datapoints[thisEntry].carrierCode, 20, 20 + i*20);
     }
   }
 }
 
-void mousePressed(){
-  startingEntry += displayNum;
-  if (startingEntry > datapoints.length){
-    startingEntry = 0; // go back to the begining;
-  }
-  redraw();
-}
+//void mousePressed(){
+//  startingEntry += displayNum;
+//  if (startingEntry > datapoints.length){
+//    startingEntry = 0; // go back to the begining;
+//  }
+//  redraw();
+//}
