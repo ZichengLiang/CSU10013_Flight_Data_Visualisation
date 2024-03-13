@@ -1,0 +1,1 @@
+final int DATAPOINTVARIABLECOUNT = 18;
