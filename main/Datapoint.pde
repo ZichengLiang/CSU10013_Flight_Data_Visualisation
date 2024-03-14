@@ -13,8 +13,8 @@ class Datapoint{
       carrierCode = pieces[1]; 
       flightNumber = int (pieces[2]);
       origin = pieces[3];  
-      originState = pieces[5];
       originCityName = pieces[4];
+      originState = pieces[5];
       originWac = int (pieces[6]);
       dest = pieces[7]; destCityName = pieces[8];
       destState = pieces[9]; destWac = int (pieces[10]);
