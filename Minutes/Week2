@@ -1,0 +1,13 @@
+In-the-lab meeting: 14th March Thursday
+  - aims for the next week:
+    - from the lecturer: Initial rendering of data, we need to show graph and text output of data.
+    - Classes: user interface (Widget class and Screen class), subset, text output, graph output
+    - lowest aim: swtich between three pages: 1.default page, 2. one text output page, 3. one graph output page, with preset data
+    - extra aim: 1. user can choose what to display (core: subset), 2. multiple text outputs,  3. multiple graph outputs
+  - task assigment:
+    - Aryan: buttons as subclasses of Widgets
+    - Daniel: bar charts and graphs
+    - Muireann: the pie chart
+    - Neil: the tables
+    - Oliver: the default screen and switching between screens
+    - Zicheng: the subsets
