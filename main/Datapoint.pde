@@ -6,6 +6,7 @@ class Datapoint{
     int  CRSDepTime, depTime, CRSArrTime, arrTime;
     String carrierCode, origin, originCityName, originState, dest, destCityName, destState;
     int cancelled, diverted;
+    String combinedOriginCityName;
     
     // Zicheng, 12th March, 21:00: a constructor with all parameters;
     public Datapoint(String[] pieces){
@@ -13,8 +14,9 @@ class Datapoint{
       carrierCode = pieces[1]; 
       flightNumber = int (pieces[2]);
       origin = pieces[3];  
-      originState = pieces[5];
       originCityName = pieces[4];
+      originState = pieces[5];
+      combinedOriginCityName = originCityName + originState;
       originWac = int (pieces[6]);
       dest = pieces[7]; destCityName = pieces[8];
       destState = pieces[9]; destWac = int (pieces[10]);

@@ -55,7 +55,7 @@ void setup(){
     if (thisEntry < datapointCount){
       //M: there seems to be somthing going wrong with calling on data here, i need more info on exactly how data is being called before i can fix this
       text(thisEntry + " > " + datapoints[thisEntry].carrierCode + datapoints[thisEntry].flightNumber + "----" 
-                     + datapoints[thisEntry].origin + " -> " + datapoints[thisEntry].originState
+                     + datapoints[thisEntry].origin + " -> " + datapoints[thisEntry].combinedOriginCityName
                      , 20, 20 + i3*20);
     }
   
