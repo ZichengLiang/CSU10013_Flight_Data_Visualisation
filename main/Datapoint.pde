@@ -4,8 +4,8 @@ class Datapoint{
     // Zicheng, 12th March, 18:00: fields added according to the .csv files;
     int  flightDate, flightNumber, originWac, destWac, distance;
     int  CRSDepTime, depTime, CRSArrTime, arrTime;
-    String carrierCode, origin, originCityName, originState, dest, destCityName, destState;
-    int cancelled, diverted;
+    String carrierCode, flightCode, origin, originCityName, originState, dest, destCityName, destState;
+    int cancelled, diverted, lateDepMinutes, lateArrMinutes;
     
     // Zicheng, 12th March, 21:00: a constructor with all parameters;
     public Datapoint(String[] pieces){
@@ -25,5 +25,10 @@ class Datapoint{
       cancelled = int (pieces[15]);
       diverted = int (pieces[16]); 
       distance = int (pieces[17]);
+      
+      //Oliver 14th March, 16:15: Fixing raised issue
+      flightCode = carrierCode + flightNumber;
+      lateDepMinutes = depTime - CRSDepTime;
+      lateArrMinutes = arrTime - CRSArrTime;
     }
   }
