@@ -1,1 +1,1 @@
-final int DATAPOINTVARIABLECOUNT = 18;
+final int EVENT_NULL = 0;
