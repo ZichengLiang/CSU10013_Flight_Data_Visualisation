@@ -1,17 +1,28 @@
-
-//PImage //we could use an arrow key or button 
-class Widgets{
-  int xpos, ypos, width, height;
-  String label; int mouseOnWidget;
+class Widget {
+  int x, y, width, height;
+  String label; int event;
   color widgetColor, labelColor;
   PFont widgetFont;
-  Widgets(int xposi,int yposi, int width, int height, String label, color widgetColor, PFont widgetFont, int event){//if using add PImage instead
-    this.xpos = xposi; this.ypos = yposi;
-    this.width = width; this.height= height;
-    this.label=label; this.mouseOnWidget=event;
+
+
+  Widget(int x,int y, int width, int height, String label,
+  color widgetColor, PFont widgetFont, int event){
+    this.x=x; this.y=y; this.width = width; this.height= height;
+    this.label=label; this.event=event; 
     this.widgetColor=widgetColor; this.widgetFont=widgetFont;
-    labelColor= color(0); 
+    labelColor= color(0);
+   }
+  void draw(){
+    fill(widgetColor);
+    rect(x,y,width,height);
+    fill(labelColor);
+    textAlign(RIGHT);
+    text(label, x, y);
   }
-  
-  
+  int getEvent(int mX, int mY){
+     if(mX>x-(width/2) && mX < x+(width/2) && mY >y-(height/2) && mY <y+(height/2)){
+        return event;
+     }
+     return EVENT_NULL;
+  }
 }

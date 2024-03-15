@@ -6,9 +6,13 @@ PFont body;
 int displayNum = 10; // Display this many entries on each screen;
 int startingEntry = 0; // Display from this entry number;
 
+// Oliver, 15th March: creation of widgets to swicth between screens
+Screen Screens;
+Widget[] buttons;
+
 //M: As far as I understand it, draw function won't work properly if size is in setup.
 void settings(){
-  size(600, 600);
+  size(SCREENX, SCREENY);
 }
 void setup(){
   fill(255);
@@ -16,6 +20,7 @@ void setup(){
   body = loadFont("myFont-12.vlw"); 
   textFont(body);
   textSize(12);
+  rectMode(CENTER);
   
 //<<<<<<< HEAD
   //lines = loadStrings("flights2k.csv");                   //loading strings into array 'lines'
@@ -43,24 +48,25 @@ void setup(){
   if (datapointCount != datapoints.length){
     datapoints = (Datapoint[]) subset(datapoints, 0, datapointCount);
   }
+  
+  Screens = new Screen();
+  buttons = new Widget[5];
+  for(int i =0; i<buttons.length; i++)
+  {
+    buttons[i] = new Widget(60, (SCREENY/buttons.length)*i+60, 100, 60, "button "+i,
+  255, body, i);
+  }
  }
 
 //displaynum = 10
   void draw(){
   background(0);
-  for(int i3 = 0; i3 < displayNum; i3++){
-    int thisEntry = 0;
-    thisEntry = startingEntry + i3;
-    //~M: seems to be confusing the system, prints 10 times once replaced
-    if (thisEntry < datapointCount){
-      //M: there seems to be somthing going wrong with calling on data here, i need more info on exactly how data is being called before i can fix this
-      text(thisEntry + " > " + datapoints[thisEntry].carrierCode + datapoints[thisEntry].flightNumber + "----" 
-                     + datapoints[thisEntry].origin + " -> " + datapoints[thisEntry].originState
-                     , 20, 20 + i3*20);
+    Screens.draw();
+    for(int i=0; i<buttons.length; i++)
+    {
+      buttons[i].draw();
     }
-  
   }
-}
 
 
 //<<<<<<< HEAD
@@ -78,6 +84,15 @@ void mousePressed(){
   startingEntry += displayNum;
   if (startingEntry > datapoints.length){
     startingEntry = 0; // go back to the begining;
+  }
+  int event;
+  for(int i =0; i<buttons.length;i++)
+  {
+    event=buttons[i].getEvent(mouseX, mouseY);
+    if(event>=0)
+    {
+      Screens.screenType=event;
+    }
   }
   redraw();
 }
