@@ -51,12 +51,14 @@ void setup(){
 //displaynum = 10
   void draw(){
   background(0);
+
     Screens.draw();
     for(int i=0; i<buttons.length; i++)
     {
       buttons[i].draw();
     }
   }
+
 
 void mousePressed(){
   startingEntry += displayNum;
