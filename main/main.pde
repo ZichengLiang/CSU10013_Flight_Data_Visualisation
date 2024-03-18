@@ -49,10 +49,6 @@ void setup(){
      datapoints[datapointCount] = new Datapoint(adjustedPieces);
      datapointCount++; 
     } 
-  // if there are spare elements in datapoints array, remove them.
-  //if (datapointCount != datapoints.length){
-  //  datapoints = (Datapoint[]) subset(datapoints, 0, datapointCount);
-  //  }
  }
  println(datapoints.length + " datapoints all loaded!");
   Screens = new Screen();
