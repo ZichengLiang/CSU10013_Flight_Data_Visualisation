@@ -1,4 +1,4 @@
-final int DATAPOINTVARIABLECOUNT = 18;
+final int DATAPOINTVARIABLECOUNT = 20;
 
 final int SCREENX = 600;
 final int SCREENY = 600;
