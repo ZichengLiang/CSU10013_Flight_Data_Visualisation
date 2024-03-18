@@ -49,7 +49,8 @@ class Screen
       if (thisEntry < datapointCount){
       //M: there seems to be somthing going wrong with calling on data here, i need more info on exactly how data is being called before i can fix this
         text(thisEntry + " > " + datapoints[thisEntry].carrierCode + datapoints[thisEntry].flightNumber + "----" 
-                     + datapoints[thisEntry].origin + " -> " + datapoints[thisEntry].originState
+                     + datapoints[thisEntry].origin + " -> " + datapoints[thisEntry].dest
+                     + " the departure time is " + datapoints[thisEntry].depTime + " the arrival time is " + datapoints[thisEntry].arrTime
                      , startX-(screenX/2)+borders, startY-(screenY/2)+borders + i3*20);
       }
       }

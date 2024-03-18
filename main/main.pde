@@ -1,7 +1,7 @@
 // Zicheng, 12th March, 21:00: I modified the sample program on https://processing.org/examples/loadfile2.html to fit our dataset;
 Datapoint[] datapoints;
 String[] lines;
-int datapointCount;
+int datapointCount = 0;
 PFont body;
 int displayNum = 10; // Display this many entries on each screen;
 int startingEntry = 0; // Display from this entry number;
@@ -22,31 +22,47 @@ void setup(){
   textSize(12);
   rectMode(CENTER);
   
-  lines = loadStrings("flights2k.csv"); // Loads in csv file (each line is an element in array)
-  datapoints = new Datapoint[lines.length];
-  println(lines.length);
-  for(int i2 = 0; i2 < lines.length; i2++){
-    String[] pieces = split(lines[i2], ','); // Got rid of integer and replaced it with constant variable
+  lines = loadStrings("flights2k.csv"); // Loads in csv file in String array "lines" (each line is an element in array)
+  datapoints = new Datapoint[lines.length];  // Datapoint array datapoints is given the length of lines
+  for(int i = 0; i < lines.length; i++){
+    String[] pieces = split(lines[i], ','); // Got rid of integer and replaced it with constant variable
     
 // Oliver, 13th March, 1:05: Commented out if statement to add more to dataponts array
-//    if (pieces.length == DATAPOINTVARIABLECOUNT){ // checks if all the variables are there
+    if (pieces.length == DATAPOINTVARIABLECOUNT){ // checks if all the variables are there, if so, load it
       datapoints[datapointCount] = new Datapoint(pieces);
       datapointCount++;
-   }
-  
+    }
+    else{
+      String[] adjustedPieces = new String[DATAPOINTVARIABLECOUNT];
+      if (pieces.length == DATAPOINTVARIABLECOUNT - 1 ){ //in the given dataset, cancelled flights have no dep_time and arr_time
+      arrayCopy(pieces, 0, adjustedPieces, 0, 16); //copy from first element to CRSArrTime
+      adjustedPieces[16] = " "; // the actual arrive time is set to " ";
+      arrayCopy(pieces, 16, adjustedPieces, 17, 3); //copy the last three elements
+     }
+     else if (pieces.length == DATAPOINTVARIABLECOUNT - 2 ){ //in the given dataset, cancelled flights have no dep_time and arr_time
+      arrayCopy(pieces, 0, adjustedPieces, 0, 14); //copy from first element to CRSDeptTime
+      adjustedPieces[14] = " "; // the actual dept time is set to " ";
+      adjustedPieces[15] = pieces[14];
+      adjustedPieces[16] = " "; // the actual arr time is set to " ";
+      arrayCopy(pieces, 15, adjustedPieces, 17, 3); //copy the last three elements
+     }
+     datapoints[datapointCount] = new Datapoint(adjustedPieces);
+     datapointCount++; 
+    } 
   // if there are spare elements in datapoints array, remove them.
-  if (datapointCount != datapoints.length){
-    datapoints = (Datapoint[]) subset(datapoints, 0, datapointCount);
-  }
-  
+  //if (datapointCount != datapoints.length){
+  //  datapoints = (Datapoint[]) subset(datapoints, 0, datapointCount);
+  //  }
+ }
+ println(datapoints.length + " datapoints all loaded!");
   Screens = new Screen();
   buttons = new Widget[5];
-  for(int i =0; i<buttons.length; i++)
+  for(int j = 0; j < buttons.length; j++)
   {
-    buttons[i] = new Widget(60, (SCREENY/buttons.length)*i+60, 100, 60, "button "+i,
-  255, body, i);
+    buttons[j] = new Widget(60, (SCREENY/buttons.length)*j+60, 100, 60, "button " + j,
+  255, body, j);
   }
- }
+}
 
 //displaynum = 10
   void draw(){
