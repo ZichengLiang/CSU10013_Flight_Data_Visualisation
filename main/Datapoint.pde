@@ -2,13 +2,19 @@
 class Datapoint{
     
     // Zicheng, 12th March, 18:00: fields added according to the .csv files;
+    
+    // flight date infos
     String flightDate, flightDay, flightMonth;
-    int  flightNumber, originWac, destWac, distance;
+    // flight code infos
+    String carrierCode; int  flightNumber; String flightCode;
+    // flight origin & destination infos
+    String origin, originCityNamePart1, originCityNamePart2, originState; int originWac;
+    String dest, destCityNamePart1, destCityNamePart2, destState; int destWac;
+    // flight delay and duration infos
     int  CRSDepTime, depTime, CRSArrTime, arrTime;
-    String carrierCode, flightCode;
-    String origin, originCityNamePart1, originCityNamePart2, originState; 
-    String dest, destCityNamePart1, destCityNamePart2, destState;
     int cancelled, diverted;
+    // flight distance;
+    int distance;
     
     String combinedOriginCityName, combinedDestCityName;
     int lateDepMinutes, lateArrMinutes, plannedFlightDuration, actualFlightDuration;
@@ -21,8 +27,10 @@ class Datapoint{
       flightDateEdit = shorten(flightDateEdit);
       }
       flightDate = new String(flightDateEdit);
-      println(flightDate);
       //TODO: get out flightDay and flightMonth
+      // flightDay = new String(flightDateEdit, 0, 1); // String(data, offset, length), it doesn't work when length == 2, why??
+      // flightMonth = new String(flightDateEdit, 4, 1); // this doesn't work either! ArrayIndexOutOfBound exception
+      
       
       carrierCode = pieces[1]; 
       flightNumber = int (pieces[2]);
@@ -32,13 +40,15 @@ class Datapoint{
       originCityNamePart1 = pieces[4];
       originCityNamePart2 = pieces[5];
       originState = pieces[6];
-      combinedOriginCityName = originCityNamePart1 + originCityNamePart2;
+      combinedOriginCityName = originCityNamePart1 + "," + originCityNamePart2;
+      combinedOriginCityName = removeQuotationMarks(combinedOriginCityName);
       originWac = int(pieces[7]);
       
       dest = pieces[8];
       destCityNamePart1 = pieces[9];
       destCityNamePart2 = pieces[10];
-      combinedDestCityName = destCityNamePart1 + destCityNamePart2;
+      combinedDestCityName = destCityNamePart1 + "," + destCityNamePart2;
+      combinedDestCityName = removeQuotationMarks(combinedDestCityName);
       destState = pieces[11]; 
       destWac = int (pieces[12]);
       
@@ -115,7 +125,7 @@ class Datapoint{
     }
     
     boolean isLate(){
-      return (lateDepMinutes >= 0 || lateArrMinutes >= 0);
+      return (lateDepMinutes >= 0 || lateArrMinutes >= 0) && (cancelled == 0);
     }
     
     int getMinutes(int time){
@@ -138,7 +148,14 @@ class Datapoint{
    void printDuration(int duration){
      int hours = duration / 60;
      int minutes = duration % 60;
-     println("the duration is " + hours + " hours and " + minutes + " minutes.");
+     println(hours + " hours and " + minutes + " minutes.");
+   }
+   
+   String removeQuotationMarks(String input){
+     char[] process = input.toCharArray();
+     shorten(process);
+     String output = new String(process, 1, process.length-2);
+     return output;
    }
    
   }
