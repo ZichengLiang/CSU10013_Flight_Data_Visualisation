@@ -48,7 +48,7 @@ class Screen
       //~M: seems to be confusing the system, prints 10 times once replaced
       if (thisEntry < datapointCount){
       //M: there seems to be somthing going wrong with calling on data here, i need more info on exactly how data is being called before i can fix this
-        text(thisEntry + " > " + datapoints[thisEntry].carrierCode + datapoints[thisEntry].flightNumber + "----" 
+        text(thisEntry + " > " + datapoints[thisEntry].carrierCode + datapoints[thisEntry].flightNumber + " ---- " 
                      + datapoints[thisEntry].origin + " -> " + datapoints[thisEntry].dest
                      , startX-(screenX/2)+borders, startY-(screenY/2)+borders + i3*20);
         }
