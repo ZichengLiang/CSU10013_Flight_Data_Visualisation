@@ -24,6 +24,7 @@ void setup(){
   
   lines = loadStrings("flights2k.csv"); // Loads in csv file in String array "lines" (each line is an element in array)
   datapoints = new Datapoint[lines.length];  // Datapoint array datapoints is given the length of lines
+  
   for(int i = 0; i < lines.length; i++){
     String[] pieces = split(lines[i], ','); // Got rid of integer and replaced it with constant variable
     
@@ -46,18 +47,35 @@ void setup(){
       adjustedPieces[16] = " "; // the actual arr time is set to " ";
       arrayCopy(pieces, 15, adjustedPieces, 17, 3); //copy the last three elements
      }
-     datapoints[datapointCount] = new Datapoint(adjustedPieces);
-     datapointCount++; 
-    } 
+       datapoints[datapointCount] = new Datapoint(adjustedPieces);
+       datapointCount++; 
+   } 
  }
+ 
  println(datapoints.length + " datapoints all loaded!");
-  Screens = new Screen();
-  buttons = new Widget[5];
-  for(int j = 0; j < buttons.length; j++)
-  {
-    buttons[j] = new Widget(60, (SCREENY/buttons.length)*j+60, 100, 60, "button " + j,
+ 
+ // queries function: print all the flights going to JFK 
+ println("these flights goes to JFK");
+ for(int i = 0; i < datapoints.length; i++){
+   if (datapoints[i].destIs("JFK")){
+     println(datapoints[i].flightCode);
+   }
+ }
+ 
+ // queries function: print all the late flights
+ //println("these flights are late");
+ for(int i = 0; i < datapoints.length; i++){
+   if (datapoints[i].isLate()){
+     println(datapoints[i].flightDate + " at " + datapoints[i].flightCode);
+   }
+ }
+ 
+ Screens = new Screen();
+ buttons = new Widget[5];
+ for(int j = 0; j < buttons.length; j++){
+  buttons[j] = new Widget(60, (SCREENY/buttons.length)*j+60, 100, 60, "button " + j,
   255, body, j);
-  }
+ }
 }
 
 //displaynum = 10
@@ -87,4 +105,36 @@ void mousePressed(){
     }
   }
   redraw();
+}
+
+Datapoint[] loadDatapoints(String[] lines){
+  datapoints = new Datapoint[lines.length];  // Datapoint array datapoints is given the length of lines
+  
+  for(int i = 0; i < lines.length; i++){
+    String[] pieces = split(lines[i], ','); // Got rid of integer and replaced it with constant variable
+    
+// Oliver, 13th March, 1:05: Commented out if statement to add more to dataponts array
+    if (pieces.length == DATAPOINTVARIABLECOUNT){ // checks if all the variables are there, if so, load it
+      datapoints[datapointCount] = new Datapoint(pieces);
+      datapointCount++;
+    }
+    else{
+      String[] adjustedPieces = new String[DATAPOINTVARIABLECOUNT];
+      if (pieces.length == DATAPOINTVARIABLECOUNT - 1 ){ //in the given dataset, cancelled flights have no dep_time and arr_time
+      arrayCopy(pieces, 0, adjustedPieces, 0, 16); //copy from first element to CRSArrTime
+      adjustedPieces[16] = " "; // the actual arrive time is set to " ";
+      arrayCopy(pieces, 16, adjustedPieces, 17, 3); //copy the last three elements
+     }
+     else if (pieces.length == DATAPOINTVARIABLECOUNT - 2 ){ //in the given dataset, cancelled flights have no dep_time and arr_time
+      arrayCopy(pieces, 0, adjustedPieces, 0, 14); //copy from first element to CRSDeptTime
+      adjustedPieces[14] = " "; // the actual dept time is set to " ";
+      adjustedPieces[15] = pieces[14];
+      adjustedPieces[16] = " "; // the actual arr time is set to " ";
+      arrayCopy(pieces, 15, adjustedPieces, 17, 3); //copy the last three elements
+     }
+       datapoints[datapointCount] = new Datapoint(adjustedPieces);
+       datapointCount++; 
+   } 
+ }
+  return datapoints;
 }
