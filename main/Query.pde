@@ -24,7 +24,7 @@ class Query {
     // note: it doesn't count a flight late if the late time is less than 10 minutes
     println("these flights are late");
     //int count = 0;
-    ArrayList lateFlightsList = new ArrayList<Datapoint>();
+    ArrayList lateFlightsList = new ArrayList<Datapoint>(); //create an empty array list for return
     Datapoint[] lastQuery = lastQueryList.toArray(Datapoint[]::new); //toArray function returns Objects[]
     
     for (int i = 0; i < lastQuery.length; i++) {
@@ -89,6 +89,20 @@ class Query {
     }
     return flightsToList;
   }
+   ArrayList<Datapoint> divertedFlights() {
+        ArrayList<Datapoint> divertedFlightsList = new ArrayList<Datapoint>();
+        Datapoint[] lastQuery = lastQueryList.toArray(new Datapoint[0]);
+
+        println("These flights are diverted:");
+        for (int i = 0; i < lastQuery.length; i++) {
+            if (lastQuery[i].isDiverted()) {
+                divertedFlightsList.add(lastQuery[i]);
+                println(divertedFlightsList.size() + "> " + lastQuery[i].flightCode + " on " + lastQuery[i].flightDate + " is diverted.");
+            }
+        }
+        println("There are " + divertedFlightsList.size() + " diverted flights out of " + lastQuery.length + " flights.");
+        return divertedFlightsList;
+    }
 }
 
  /*

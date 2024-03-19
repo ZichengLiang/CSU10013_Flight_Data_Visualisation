@@ -33,6 +33,15 @@ void setup(){
    ArrayList<Datapoint> fromJFK = airport.flightsFrom("JFK");
    Query nothing = new Query(fromJFK);
    nothing.flightsTo("JFK");
+   
+   
+    // Create an instance of the Query class
+  Query query = new Query();
+
+  // Call the divertedFlights() method to get diverted flights
+  ArrayList<Datapoint> divertedFlights = query.divertedFlights();
+
+ 
  
  
  Screens = new Screen();
