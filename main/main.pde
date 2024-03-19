@@ -5,12 +5,23 @@ int datapointCount;
 PFont body;
 int displayNum = 10; // Display this many entries on each screen;
 int startingEntry = 0; // Display from this entry number;
-
-//M: As far as I understand it, draw function won't work properly if size is in setup.
-void settings(){
-  size(600, 600);
-}
+boolean PieDisplayed = false; //Muireann O'Neill 17/03/2024 activates/deactivates PieChart
+int current_screen = 0;
+//Muireann O'Neill 13/03/24 19:30: As far as I understand it, draw function won't work properly if size is in setup.
+//void settings(){
+//  size(600, 600);
+//}
+  //Muireann O'Neill 15/03/24 11:12 declaring Charts here;
+  //===== 
+  PieChart thePieChart;
+  
+  //=====
 void setup(){
+  size(600, 600);
+  //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
+  //====
+  thePieChart = new PieChart();
+  //====
   fill(255);
   noLoop();
   body = loadFont("myFont-12.vlw"); 
@@ -44,23 +55,48 @@ void setup(){
     datapoints = (Datapoint[]) subset(datapoints, 0, datapointCount);
   }
  }
-
+  
 //displaynum = 10
   void draw(){
   background(0);
+  if (current_screen == 0){
   for(int i3 = 0; i3 < displayNum; i3++){
     int thisEntry = 0;
     thisEntry = startingEntry + i3;
-    //~M: seems to be confusing the system, prints 10 times once replaced
     if (thisEntry < datapointCount){
-      //M: there seems to be somthing going wrong with calling on data here, i need more info on exactly how data is being called before i can fix this
       text(thisEntry + " > " + datapoints[thisEntry].carrierCode + datapoints[thisEntry].flightNumber + "----" 
-                     + datapoints[thisEntry].origin + " -> " + datapoints[thisEntry].combinedOriginCityName
-                     , 20, 20 + i3*20);
+           + datapoints[thisEntry].origin + " -> " + datapoints[thisEntry].combinedOriginCityName
+           , 20, 20 + i3*20);
+      
+     
     }
-  
   }
+  }
+   else if (current_screen == PIECHARTSCREEN){
+     thePieChart.draw();
+   }
+    
+  
 }
+// Muireann O'Neill started 16/3/24 20:25 finished 19/3/24 12:54 
+void keyPressed(){
+   if (key == 'b'){
+     PieDisplayed = true; 
+     current_screen = PIECHARTSCREEN;  //display piechart screen
+     println("b pressed");             //print to test for error
+     redraw();                         //redraw screen
+   }
+   else{
+     current_screen = 0;              //set currentscreen as main
+     redraw();                        //redraw screen
+     //PieDisplayed = false;
+   }
+   
+ }
+
+     
+    
+    
 
 
 //<<<<<<< HEAD
@@ -81,4 +117,6 @@ void mousePressed(){
   }
   redraw();
 }
+
+
 //>>>>>>> main

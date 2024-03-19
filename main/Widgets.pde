@@ -1,5 +1,6 @@
 
 //PImage //we could use an arrow key or button 
+//Muireann O'Neill 14/03/24 10:23: i rewrote the basic widget class into the progect
 class Widgets{
   int xpos, ypos, width, height;
   String label; int mouseOnWidget;
