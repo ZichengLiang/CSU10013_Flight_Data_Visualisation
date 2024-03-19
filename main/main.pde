@@ -49,9 +49,32 @@ void setup(){
     {
       buttons[i].draw();
     }
-  }
+  // Draw button 1
+  fill(200);
+  rect(280, 510, 120, 40); // Adjusted position and size for bottom row
+  fill(0);
+  textAlign(CENTER, CENTER);
+  textSize(16);
+  text("Button 1", 280, 500); // Adjusted position for button label
+  
+  // Draw button 2
+  fill(200);
+  rect(430, 510, 120, 40); // Adjusted position and size for bottom row
+  fill(0);
+  textAlign(CENTER, CENTER);
+  textSize(16);
+  text("Button 2", 430, 500); // Adjusted position for button label
+  
+  // Draw button 3
+  fill(200);
+  rect(580, 510, 120, 40); // Adjusted position and size for bottom row
+  fill(0);
+  textAlign(CENTER, CENTER);
+  textSize(16);
+  text("Button 3", 580, 500); // Adjusted position for button label
+}
 
-
+  
 void mousePressed(){
   startingEntry += displayNum;
   if (startingEntry > datapoints.length){
