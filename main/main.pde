@@ -28,27 +28,16 @@ void setup(){
   textFont(body);
   textSize(12);
   
-//<<<<<<< HEAD
-  //lines = loadStrings("flights2k.csv");                   //loading strings into array 'lines'
-  //datapoints = new Datapoint[lines.length];               //setting a new object Datapoint as length of Array'lines'
-  //println(lines.length);                    
-  //for(int i = 0; i < lines.length; i++){    
-  //  String[] pieces = split(lines[i], ',');              // new string splitting lines by ','  Note: try usedelimiter if it does not work that's fine but it would be a cleaner solution
-  //  if (pieces.length == 18){                            //?? if the length of 'pieces' is == 18;
-  //    datapoints[datapointCount] = new Datapoint(pieces);//new datapoint is created with the length of pieces datapoint count increases by 1;
-//=======
   lines = loadStrings("flights2k.csv"); // Loads in csv file (each line is an element in array)
   datapoints = new Datapoint[lines.length];
   println(lines.length);
   for(int i2 = 0; i2 < lines.length; i2++){
     String[] pieces = split(lines[i2], ','); // Got rid of integer and replaced it with constant variable
-//========
   
  
 // Oliver, 13th March, 1:05: Commented out if statement to add more to dataponts array
 //    if (pieces.length == DATAPOINTVARIABLECOUNT){ // checks if all the variables are there
       datapoints[datapointCount] = new Datapoint(pieces);
-//>>>>>>> main
       datapointCount++;
    }
   
@@ -96,22 +85,6 @@ void keyPressed(){
    
  }
 
-     
-    
-    
-
-
-//<<<<<<< HEAD
-//void mousePressed(){
-//  startingEntry += displayNum;
-//  if (startingEntry > datapoints.length){
-//    startingEntry = 0; // go back to the begining;
-//  }
-//  redraw();
-//}
-
-// input.useDelimiter("[\\p{javaWhitespace}\\/]");
-//=======
 void mousePressed(){
   startingEntry += displayNum;
   if (startingEntry > datapoints.length){
@@ -119,6 +92,3 @@ void mousePressed(){
   }
   redraw();
 }
-
-
-//>>>>>>> main
