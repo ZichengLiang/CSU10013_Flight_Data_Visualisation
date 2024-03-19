@@ -42,7 +42,9 @@ void setup(){
   println(lines.length);
   for(int i2 = 0; i2 < lines.length; i2++){
     String[] pieces = split(lines[i2], ','); // Got rid of integer and replaced it with constant variable
-    
+//========
+  
+ 
 // Oliver, 13th March, 1:05: Commented out if statement to add more to dataponts array
 //    if (pieces.length == DATAPOINTVARIABLECOUNT){ // checks if all the variables are there
       datapoints[datapointCount] = new Datapoint(pieces);
