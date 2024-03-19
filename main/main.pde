@@ -24,12 +24,16 @@ void setup(){
   rectMode(CENTER);
   
   datapoints = loadDatapoints("flights2k.csv");
- 
+  //datapoints = loadDatapoints("flights10k.csv");
+  
   // Query functions test cases: 
-  Query late = new Query();
-   late.lateFlights();
-   //flightsFrom("JFK");
-   //flightsTo("JFK");
+  
+  // Query late = new Query(); // start a query from the whole dataset;
+  // late.lateFlights();
+   Query airport = new Query();
+   ArrayList<Datapoint> fromJFK = airport.flightsFrom("JFK");
+   Query nothing = new Query(fromJFK);
+   nothing.flightsTo("JFK");
  
  
  Screens = new Screen();
@@ -69,6 +73,7 @@ void mousePressed(){
   redraw();
 }
 
+//this function loads csv entries given the file name, it converts all lines into a Datapoint array;
 Datapoint[] loadDatapoints(String fileName){
   lines = loadStrings(fileName); // Loads in csv file in String array "lines" (each line is an element in array)
   datapoints = new Datapoint[lines.length];  // Datapoint array datapoints is given the length of lines
@@ -82,12 +87,12 @@ Datapoint[] loadDatapoints(String fileName){
     }
     else{
       String[] adjustedPieces = new String[DATAPOINTVARIABLECOUNT];
-      if (pieces.length == DATAPOINTVARIABLECOUNT - 1 ){ //in the given dataset, cancelled flights have no dep_time and arr_time
+      if (pieces.length == DATAPOINTVARIABLECOUNT - 1 ){ //in the given dataset, some cancelled flights have no arr_time (but they have dep_time
       arrayCopy(pieces, 0, adjustedPieces, 0, 16); //copy from first element to CRSArrTime
       adjustedPieces[16] = " "; // the actual arrive time is set to " ";
       arrayCopy(pieces, 16, adjustedPieces, 17, 3); //copy the last three elements
      }
-     else if (pieces.length == DATAPOINTVARIABLECOUNT - 2 ){ //in the given dataset, cancelled flights have no dep_time and arr_time
+     else if (pieces.length == DATAPOINTVARIABLECOUNT - 2 ){ //in the given dataset, some cancelled flights have no dep_time and arr_time
       arrayCopy(pieces, 0, adjustedPieces, 0, 14); //copy from first element to CRSDeptTime
       adjustedPieces[14] = " "; // the actual dept time is set to " ";
       adjustedPieces[15] = pieces[14];
@@ -96,8 +101,8 @@ Datapoint[] loadDatapoints(String fileName){
      }
        datapoints[datapointCount] = new Datapoint(adjustedPieces);
        datapointCount++; 
+       println(datapointCount + "lines loaded!");
    } 
  } // for loop ends here
- 
-  return datapoints; // this is an array of Datapoint instances
+  return datapoints; // returns an array of Datapoint instances
 }

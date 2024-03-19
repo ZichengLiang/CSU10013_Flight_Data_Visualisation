@@ -2,9 +2,11 @@
 class Datapoint{
     
     // Zicheng, 12th March, 18:00: fields added according to the .csv files;
+    // TODO: Wrap all flight time information into Time class
     
     // flight date infos
     String flightDate, flightDay, flightMonth;
+    Time flightTime;
     // flight code infos
     String carrierCode; int  flightNumber; String flightCode;
     // flight origin & destination infos
@@ -22,6 +24,7 @@ class Datapoint{
     // Zicheng, 12th March, 21:00: a constructor with all parameters;
      public Datapoint(String[] pieces){
       flightDate = pieces[0];
+      //println("flight data loaded");
       char[] flightDateEdit = flightDate.toCharArray();
       for(int i = 0; i < 6; i++){
       flightDateEdit = shorten(flightDateEdit);
@@ -30,6 +33,7 @@ class Datapoint{
       //TODO: get out flightDay and flightMonth
       // flightDay = new String(flightDateEdit, 0, 1); // String(data, offset, length), it doesn't work when length == 2, why??
       // flightMonth = new String(flightDateEdit, 4, 1); // this doesn't work either! ArrayIndexOutOfBound exception
+      //flightTime = new Time(flightDate);
       
       
       carrierCode = pieces[1]; 
@@ -62,10 +66,11 @@ class Datapoint{
       
       distance = int (pieces[19]);
       
-      lateDepMinutes = getDuration(CRSDepTime, depTime);
-      lateArrMinutes = getDuration(CRSArrTime, arrTime);
-      plannedFlightDuration = getDuration(CRSDepTime, CRSArrTime);
-      actualFlightDuration = getDuration(depTime, arrTime);
+      //TODO: wrap all flight time info into Time class and refactor these infos
+      //lateDepMinutes = getDuration(CRSDepTime, depTime);
+      //lateArrMinutes = getDuration(CRSArrTime, arrTime);
+      //plannedFlightDuration = getDuration(CRSDepTime, CRSArrTime);
+      //actualFlightDuration = getDuration(depTime, arrTime);
     }
     
     boolean carrierCodeIs(String input){
@@ -126,23 +131,6 @@ class Datapoint{
     
     boolean isLate(){
       return (lateDepMinutes >= 0 || lateArrMinutes >= 0) && (cancelled == 0);
-    }
-    
-    int getMinutes(int time){
-      int hours = time / 100;
-      int minutes = time - 100 * hours;
-      return hours * 60 + minutes;
-    }
-    
-    int getDuration (int start, int end){
-      int duration;
-      if(start < end){
-        duration = getMinutes(end) - getMinutes(start);
-      }
-      else{
-        duration = (getMinutes(end) + 24 * 60) - getMinutes(start);
-      }
-      return duration;
     }
     
    void printDuration(int duration){
