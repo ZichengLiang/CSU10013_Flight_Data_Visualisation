@@ -7,11 +7,11 @@ class Query {
   ArrayList<Datapoint> lastQueryList; //not sure about the name??
 
   Query() {
-    List<Datapoint> tempList = Arrays.asList(datapoints); 
+    List<Datapoint> tempList = Arrays.asList(datapoints);
     this.lastQueryList = new ArrayList<Datapoint>(tempList);
   }
-  
-  Query(ArrayList<Datapoint> lastQueryList){
+
+  Query(ArrayList<Datapoint> lastQueryList) {
     this.lastQueryList = lastQueryList;
   }
 
@@ -24,7 +24,7 @@ class Query {
     int count = 0;
     ArrayList lateFlightsList = new ArrayList<Datapoint>();
     Datapoint[] lastQuery = lastQueryList.toArray(Datapoint[]::new); //toArray function returns Objects[]
-    
+
     for (int i = 0; i < lastQuery.length; i++) {
       if (lastQuery[i].isLate() && lastQuery[i].lateArrMinutes >= 10) {
         count++;
@@ -44,7 +44,7 @@ class Query {
     // <flight code> + <flight date> + <late arrival minutes> + total number of late flights
     // note: it doesn't count a flight late if the late time is less than 10 minutes
     ArrayList<Datapoint> lateFlightsList = new ArrayList<Datapoint>();
-    Datapoint[] lastQuery = lastQueryList.toArray(Datapoint[]::new); 
+    Datapoint[] lastQuery = lastQueryList.toArray(Datapoint[]::new);
 
     println("these flights are late");
     int count = 0;
