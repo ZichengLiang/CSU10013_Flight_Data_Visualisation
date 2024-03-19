@@ -27,7 +27,6 @@ void setup(){
   //datapoints = loadDatapoints("flights10k.csv");
   
   // Query functions test cases: 
-  
   // Query late = new Query(); // start a query from the whole dataset;
   // late.lateFlights();
    Query airport = new Query();
