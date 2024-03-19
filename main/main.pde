@@ -10,12 +10,20 @@ int startingEntry = 0; // Display from this entry number;
 // Oliver, 15th March: creation of widgets to swicth between screens
 Screen Screens;
 Widget[] buttons;
-
+ //Muireann O'Neill 15/03/24 11:12 declaring Charts here;
+  //===== 
+  PieChart thePieChart;
+  
+  //=====
 //M: As far as I understand it, draw function won't work properly if size is in setup.
 void settings(){
   size(SCREENX, SCREENY);
 }
 void setup(){
+  //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
+  //====
+  thePieChart = new PieChart();
+  //====
   fill(255);
   noLoop();
   body = loadFont("myFont-12.vlw"); 
@@ -124,3 +132,6 @@ Datapoint[] loadDatapoints(String fileName){
  
   return datapoints; // this is an array of Datapoint instances
 }
+
+   
+ 

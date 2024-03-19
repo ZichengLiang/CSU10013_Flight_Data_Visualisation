@@ -55,9 +55,9 @@ class Screen
       }
       break;
       
-      case 1:
-      fill(255,255,0);
-      rect(startX, startY, screenX, screenY);
+      case 1: //reserved for PI
+      fill(0);
+      thePieChart.draw();
       break;
       
       case 2:
