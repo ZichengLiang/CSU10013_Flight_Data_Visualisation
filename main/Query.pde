@@ -1,14 +1,13 @@
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
+// Aryan, please leave your contributions here;
+// Zicheng, 17th March, 15:00: created the Query class, defined how it works, added flightsFrom, flightsTo, lateFlights methods;
 class Query {
-  // TODO: flightsFrom and flightsTo are still interacting directly with datapoints[2000], upgrade them
   // TODO: write more query functions
-  // TODO: consider more about the attributes inside this class
-  // TODO: some queries can generate new information
-  // TODO: 
+  // TODO: some queries can generate new information, like average, median, variance...
   ArrayList<Datapoint> lastQueryList;
+  Datapoint[] queryArray;
 
   Query() {
     List<Datapoint> tempList = Arrays.asList(datapoints); 
@@ -22,34 +21,34 @@ class Query {
   
   // methods:
   ArrayList<Datapoint> flightsFrom(int originWac){
-    // a new way to get the sorted ArrayList:
-    /* 
-    ArrayList<Datapoint> newList = new ArrayList<Datapoint>(lastQueryList.stream()
+    //Zicheng, 20th March, 22:00: a new way to get the sorted ArrayList:
+    // you can copy & paste codes in /*...*/, but remember to change the name of new^List and conditionFunction() 
+    // (an "auto-reminder" is implemented ^w^~)
+    // when naming the returned ArrayList, please name it as <functionNameList>, it is easier to explore the class
+    /*  
+    ArrayList<Datapoint> functionName^List = new ArrayList<Datapoint>(lastQueryList.stream()
     .filter(datapoint -> datapoint.conditionFunction())
     .collect(Collectors.toList()));
     */
+    
     ArrayList<Datapoint> flightsFromList = new ArrayList<Datapoint>(lastQueryList.stream()
     .filter(datapoint -> datapoint.originWacIs(originWac))
     .collect(Collectors.toList()));
     
-    // We use a StringBuilder to contain the report
     println(getReport(flightsFromList, FLIGHTS_FROM));
     return flightsFromList;
   }
 
   ArrayList<Datapoint> flightsFrom(String airportCode) {
-    // queries function: print all the flights going to passed airport code
     ArrayList<Datapoint> flightsFromList = new ArrayList<Datapoint>(lastQueryList.stream()
     .filter(datapoint -> datapoint.originIs(airportCode))
     .collect(Collectors.toList()));
     
     println(getReport(flightsFromList, FLIGHTS_FROM));
-  
     return flightsFromList;
   }
 
   ArrayList<Datapoint> flightsTo(String airportCode) {
-    // queries function: print all the flights going to passed airport code
     ArrayList<Datapoint> flightsToList = new ArrayList<Datapoint>(lastQueryList.stream()
     .filter(datapoint -> datapoint.destIs(airportCode))
     .collect(Collectors.toList()));
@@ -75,6 +74,7 @@ class Query {
     }
     
     // This is for flights by particular carrier
+    // when you're copying and pasting codes, please be careful with the indentation
     ArrayList<Datapoint> flightsByCarrier(String carrierCode) {
       ArrayList<Datapoint> flightsList = new ArrayList<Datapoint>();
     for (Datapoint datapoint : lastQueryList) {
@@ -122,7 +122,6 @@ class Query {
  ArrayList<Datapoint> lateFlights() {
     // Zicheng: 18th March, 21:00
     // lateFlights query function: print all the late flights in the form:
-    // note: it doesn't count a flight late if the late time is less than 10 minutes
     ArrayList<Datapoint> lateFlightsList = new ArrayList<Datapoint>(lastQueryList.stream()
     .filter(datapoint -> datapoint.isLate())
     .collect(Collectors.toList()));
@@ -135,6 +134,9 @@ class Query {
 String getReport(ArrayList<Datapoint> inputList, int type){
   if(inputList.isEmpty()){
       return ("Sorry, there is no such flight!");
+    }
+    else if (type < 0 || type > 5){ // 5 is the last number of supported query function
+      return ("Sorry, we cannot make such query now!");
     }
     else{
       StringBuilder report = new StringBuilder();
@@ -155,9 +157,11 @@ String getReport(ArrayList<Datapoint> inputList, int type){
       
       switch(type){
         case FLIGHTS_FROM:
+        // the report header
         report.insert(0, ":\n")
         .insert(0, inputList.get(0).originWac).insert(0, " where the WAC is ")
         .insert(0, inputList.get(0).origin).insert(0, "These flights fly from ");
+        // the report tail
         report.append(inputList.size())
         .append(" flights depart from ").append(inputList.get(0).origin);
         break;
@@ -195,9 +199,11 @@ String getReport(ArrayList<Datapoint> inputList, int type){
       
       return report.toString();
     }
-    
-  
-}
+} // getReport ends
+
+void updateArray(ArrayList<Datapoint> inputList){
+      this.queryArray = inputList.toArray(new Datapoint[inputList.size()]);
+    }
 
 
 }

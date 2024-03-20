@@ -1,8 +1,8 @@
 // Zicheng, 12th March, 21:00: I modified the sample program on https://processing.org/examples/loadfile2.html to fit our dataset;
 
 Datapoint[] datapoints;
+Query currentQuery;
 String[] lines;
-int datapointCount = 0;
 PFont body;
 int displayNum = 10; // Display this many entries on each screen;
 int startingEntry = 0; // Display from this entry number;
@@ -26,27 +26,20 @@ void setup(){
   datapoints = loadDatapoints("flights2k.csv");
   //datapoints = loadDatapoints("flights10k.csv");
   
-  // Query functions test cases: 
-  // Query late = new Query(); // start a query from the whole dataset;
-  // late.lateFlights();
-   Query airport = new Query();
-   //ArrayList<Datapoint> fromJFK = airport.flightsFrom("JFK");
-   
-   //Query for DIverted flights from and to a particular airport
-   //Query ORD = new Query();
-   ArrayList<Datapoint> fromWAC22 = airport.flightsFrom(22);
-   
+  // Query functions test cases:
+  currentQuery = new Query(); // start a query from the whole dataset;
+  
+  //Query for DIverted flights from and to a particular airport
+  //Query ORD = new Query();
+  //ArrayList<Datapoint> fromWAC22 = airport.flightsFrom(22);
    
   // Query for flights by a specific carrier (e.g., American Airlines with carrier code "AA")
   //Query carrierQuery = new Query();
   //ArrayList<Datapoint> bySpecificCarrier = carrierQuery.flightsByCarrier("AA");
   
-  
   // Query for flights on a specific date
   //  Query onDate = new Query();
   //  ArrayList<Datapoint> onSpecificDate = onDate.flightsOnDate("20220101"); // Example: "20240101" for January 1, 2024
-    
-  
  
  Screens = new Screen();
  buttons = new Widget[5];
@@ -92,7 +85,7 @@ Datapoint[] loadDatapoints(String fileName){
   
   for(int i = 0; i < lines.length; i++){
     String[] pieces = split(lines[i], ','); // Got rid of integer and replaced it with constant variable
-    
+    int datapointCount = 0;
     if (pieces.length == DATAPOINTVARIABLECOUNT){ // checks if all the variables are there, if so, load it
       datapoints[datapointCount] = new Datapoint(pieces);
       datapointCount++;
@@ -117,4 +110,4 @@ Datapoint[] loadDatapoints(String fileName){
    } 
  } // for loop ends here
   return datapoints; // returns an array of Datapoint instances
-}
+} // loadDatapoints function ends here
