@@ -83,6 +83,40 @@ class Query {
     }
     return flightsFromList;
   }
+  
+  // This is for displaying diverted flights
+   ArrayList<Datapoint> divertedFlights() {
+        ArrayList<Datapoint> divertedFlightsList = new ArrayList<Datapoint>();
+        Datapoint[] lastQuery = lastQueryList.toArray(new Datapoint[0]);
+
+        println("These flights are diverted:");
+        for (int i = 0; i < lastQuery.length; i++) {
+            if (lastQuery[i].isDiverted()) {
+                divertedFlightsList.add(lastQuery[i]);
+                println(divertedFlightsList.size() + "> " + lastQuery[i].flightCode + " on " + lastQuery[i].flightDate + " is diverted.");
+            }
+        }
+        println("There are " + divertedFlightsList.size() + " diverted flights out of " + lastQuery.length + " flights.");
+        return divertedFlightsList;
+    }
+    
+    // This is for displaying cancelled flights
+   ArrayList<Datapoint> cancelledFlights() {
+        ArrayList<Datapoint> cancelledFlightsList = new ArrayList<Datapoint>();
+        Datapoint[] lastQuery = lastQueryList.toArray(new Datapoint[0]);
+
+        println("These flights are diverted:");
+        for (int i = 0; i < lastQuery.length; i++) {
+            if (lastQuery[i].isCancelled()) {
+                cancelledFlightsList.add(lastQuery[i]);
+                println(cancelledFlightsList.size() + "> " + lastQuery[i].flightCode + " on " + lastQuery[i].flightDate + " is cancelled.");
+            }
+        }
+        println("There are " + cancelledFlightsList.size() + " diverted flights out of " + lastQuery.length + " flights.");
+        return cancelledFlightsList;
+    }
+    
+    
 
   ArrayList<Datapoint> flightsTo(String airportCode) {
     // queries function: print all the flights going to passed airport code

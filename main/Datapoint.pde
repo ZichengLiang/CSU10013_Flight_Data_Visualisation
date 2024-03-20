@@ -100,11 +100,11 @@ class Datapoint{
       return input == destWac;
     }
     
-    boolean cancelled(){
+    boolean isCancelled(){
       return cancelled == 1;
     }
     
-    boolean diverted(){
+    boolean isDiverted(){
       return diverted == 1;
     }
     
