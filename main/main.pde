@@ -11,6 +11,7 @@ boolean drawBarChart = false; // Used to check if bar chart is used
 // Oliver, 15th March: creation of widgets to swicth between screens
 Screen Screens;
 Widget[] buttons;
+WidgetType2 showCase;
 //Muireann O'Neill 15/03/24 11:12 declaring Charts here;
 //=====
 PieChart thePieChart;
@@ -53,17 +54,21 @@ void setup() {
     buttons[j] = new Widget(60, (SCREENY/buttons.length)*j+60, 100, 60, "button " + j,
       255, body, j);
   }
+  showCase = new WidgetType2(SCREENX/1.5, SCREENY/6, SCREENX/1.5, SCREENY/3,
+    255, body, datapoints);
 }
 
 //displaynum = 10
 void draw() {
   background(0);
-
+  
+  textSize(12);
   Screens.draw();
   for (int i=0; i<buttons.length; i++)
   {
     buttons[i].draw();
   }
+  showCase.draw();
   // Draw button 1
   fill(200);
   rect(280, 610, 120, 40); // Adjusted position and size for bottom row
@@ -91,11 +96,15 @@ void draw() {
 
 
 void mousePressed() {
-  startingEntry += displayNum;
-  if (startingEntry > datapoints.length) {
-    startingEntry = 0; // go back to the begining;
-  }
   int event;
+  event = showCase.pressed(mouseX, mouseY);
+  if (event>-1)
+  {
+    startingEntry += displayNum;
+    if (startingEntry > datapoints.length) {
+      startingEntry = 0; // go back to the begining;
+    }
+  }
   for (int i =0; i<buttons.length; i++)
   {
     event=buttons[i].getEvent(mouseX, mouseY);
