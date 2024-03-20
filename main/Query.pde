@@ -89,6 +89,8 @@ class Query {
     }
     return flightsToList;
   }
+  
+  // This is for displaying diverted flights
    ArrayList<Datapoint> divertedFlights() {
         ArrayList<Datapoint> divertedFlightsList = new ArrayList<Datapoint>();
         Datapoint[] lastQuery = lastQueryList.toArray(new Datapoint[0]);
@@ -104,6 +106,7 @@ class Query {
         return divertedFlightsList;
     }
     
+    // This is for flights by particular carrier
     ArrayList<Datapoint> flightsByCarrier(String carrierCode) {
     ArrayList<Datapoint> flightsList = new ArrayList<Datapoint>();
     for (Datapoint datapoint : lastQueryList) {
