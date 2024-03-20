@@ -40,27 +40,27 @@ class Screen
     switch(screenType)
     {
     case 0:
-      fill(colourR, colourG, colourB);
+      fill(SCREEN1);
       rect(startX, startY, screenX, screenY);
       break;
 
     case 1: //Reserved for Pie Chart
-      fill(0);
+      fill(SCREEN2);
       thePieChart.draw();
       break;
 
     case 2:
-      fill(255);
+      fill(SCREEN3);
       rect(startX, startY, screenX, screenY);
       break;
 
     case 3:
-      fill(255, 0, 0);
+      fill(SCREEN4);
       rect(startX, startY, screenX, screenY);
       break;
 
     case 4: //Reserved for Bar chart
-      fill(0, 255, 0);
+      fill(SCREEN5);
       theBarChart.draw();
       break;
     }
