@@ -31,10 +31,13 @@ void setup(){
   // late.lateFlights();
    Query airport = new Query();
    ArrayList<Datapoint> fromJFK = airport.flightsFrom("JFK");
+   
+   //Query for DIverted flights from and to a particular airport
    Query ORD = new Query();
    ArrayList<Datapoint> fromORD = airport.flightsFrom("ORD");
    Query nothing = new Query(fromJFK);
    nothing.flightsTo("JFK");
+   
    
    
     // Create an instance of the Query class
