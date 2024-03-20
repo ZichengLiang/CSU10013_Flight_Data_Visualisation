@@ -50,7 +50,13 @@ void setup(){
  
   // Query for flights by a specific carrier (e.g., American Airlines with carrier code "AA")
   Query carrierQuery = new Query();
-  ArrayList<Datapoint> americanAirlinesFlights = carrierQuery.flightsByCarrier("AA");
+  ArrayList<Datapoint> bySpecificCarrier = carrierQuery.flightsByCarrier("AA");
+  
+  
+  // Query for flights on a specific date
+    Query onDate = new Query();
+    ArrayList<Datapoint> onSpecificDate = onDate.flightsOnDate("20220101"); // Example: "20240101" for January 1, 2024
+    
   
  
  Screens = new Screen();

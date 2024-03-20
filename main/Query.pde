@@ -128,6 +128,29 @@ class Query {
     
     return flightsList;
 }
+
+ArrayList<Datapoint> flightsOnDate(String date) {
+    ArrayList<Datapoint> flightsList = new ArrayList<Datapoint>();
+    for (Datapoint datapoint : lastQueryList) {
+        if (datapoint.flightDate.trim().equals(date.trim())) {
+            flightsList.add(datapoint);
+        }
+    }
+    
+    if (flightsList.isEmpty()) {
+        println("No flights found on date: " + date);
+    } else {
+        println("Flights found on date: " + date + ", Total: " + flightsList.size());
+        // Print additional details if needed
+        for (Datapoint datapoint : flightsList) {
+            println(datapoint.flightCode + " from " + datapoint.origin + " to " + datapoint.dest);
+        }
+    }
+    
+    return flightsList;
+}
+
+
 }
 
  /*
