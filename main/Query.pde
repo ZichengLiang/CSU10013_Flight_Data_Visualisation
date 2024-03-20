@@ -103,6 +103,28 @@ class Query {
         println("There are " + divertedFlightsList.size() + " diverted flights out of " + lastQuery.length + " flights.");
         return divertedFlightsList;
     }
+    
+    ArrayList<Datapoint> flightsByCarrier(String carrierCode) {
+    ArrayList<Datapoint> flightsList = new ArrayList<Datapoint>();
+    for (Datapoint datapoint : lastQueryList) {
+        if (datapoint.carrierCodeIs(carrierCode)) {
+            flightsList.add(datapoint);
+        }
+    }
+
+    // Print flights from the specific carrier
+    println("Flights operated by carrier " + carrierCode + ":");
+    int count = 0;
+    for (Datapoint flight : flightsList) {
+        count++;
+        println(count + "> " + flight.flightCode + " on " + flight.flightDate + " from " + flight.origin + " to " + flight.dest);
+    }
+
+    // Print summary
+    println("Total number of flights operated by carrier " + carrierCode + ": " + flightsList.size());
+    
+    return flightsList;
+}
 }
 
  /*

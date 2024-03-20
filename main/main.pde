@@ -40,6 +40,7 @@ void setup(){
    
    
    
+   
     // Create an instance of the Query class
   Query query = new Query(fromORD);
 
@@ -47,7 +48,10 @@ void setup(){
   ArrayList<Datapoint> divertedFlights = query.divertedFlights();
 
  
- 
+  // Query for flights by a specific carrier (e.g., American Airlines with carrier code "AA")
+  Query carrierQuery = new Query();
+  ArrayList<Datapoint> americanAirlinesFlights = carrierQuery.flightsByCarrier("AA");
+  
  
  Screens = new Screen();
  buttons = new Widget[5];
