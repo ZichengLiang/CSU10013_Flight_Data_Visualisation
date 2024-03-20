@@ -30,32 +30,21 @@ void setup(){
   // Query late = new Query(); // start a query from the whole dataset;
   // late.lateFlights();
    Query airport = new Query();
-   ArrayList<Datapoint> fromJFK = airport.flightsFrom("JFK");
+   //ArrayList<Datapoint> fromJFK = airport.flightsFrom("JFK");
    
    //Query for DIverted flights from and to a particular airport
-   Query ORD = new Query();
-   ArrayList<Datapoint> fromORD = airport.flightsFrom("ORD");
-   Query nothing = new Query(fromJFK);
-   nothing.flightsTo("JFK");
+   //Query ORD = new Query();
+   ArrayList<Datapoint> fromWAC22 = airport.flightsFrom(22);
    
    
-   
-   
-    // Create an instance of the Query class
-  Query query = new Query(fromORD);
-
-  // Call the divertedFlights() method to get diverted flights
-  ArrayList<Datapoint> divertedFlights = query.divertedFlights();
-
- 
   // Query for flights by a specific carrier (e.g., American Airlines with carrier code "AA")
-  Query carrierQuery = new Query();
-  ArrayList<Datapoint> bySpecificCarrier = carrierQuery.flightsByCarrier("AA");
+  //Query carrierQuery = new Query();
+  //ArrayList<Datapoint> bySpecificCarrier = carrierQuery.flightsByCarrier("AA");
   
   
   // Query for flights on a specific date
-    Query onDate = new Query();
-    ArrayList<Datapoint> onSpecificDate = onDate.flightsOnDate("20220101"); // Example: "20240101" for January 1, 2024
+  //  Query onDate = new Query();
+  //  ArrayList<Datapoint> onSpecificDate = onDate.flightsOnDate("20220101"); // Example: "20240101" for January 1, 2024
     
   
  
