@@ -13,7 +13,6 @@ Screen Screens;
 Widget[] buttons;
 WidgetType2 showCase;
 //Muireann O'Neill 15/03/24 11:12 declaring Charts here;
-//=====
 PieChart thePieChart;
 
 //Daniel 15/03/24 initialized BarCharts here
@@ -24,15 +23,7 @@ void settings() {
   size(SCREENX, SCREENY);
 }
 void setup() {
-  //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
-  //====
-  thePieChart = new PieChart();
-  //====
-  //Daniel 15/03/24 initialized BarCharts here
-  BarChart barChart = new BarChart(this); // Create a new BarChart instance
-  theBarChart = new TheBarChart(barChart); // Initialize TheBarChart with the BarChart instance
-  //====
-  fill(255);
+  fill(BACKGROUND_COLOUR);
   noLoop();
   body = loadFont("myFont-12.vlw");
   textFont(body);
@@ -46,9 +37,16 @@ void setup() {
   late.lateFlights();
   //flightsFrom("JFK");
   //flightsTo("JFK");
-
+  
+  //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
+  thePieChart = new PieChart();
+  
+  //Daniel 15/03/24 initialized BarCharts here
+  BarChart barChart = new BarChart(this); // Create a new BarChart instance
+  theBarChart = new TheBarChart(barChart); // Initialize TheBarChart with the BarChart instance
 
   Screens = new Screen();
+  //the side bar buttons here:
   buttons = new Widget[5];
   for (int j = 0; j < buttons.length; j++) {
     buttons[j] = new Widget(60, (SCREENY/buttons.length)*j+60, 100, 60, "button " + j,
@@ -60,7 +58,7 @@ void setup() {
 
 //displaynum = 10
 void draw() {
-  background(0);
+  background(BACKGROUND_COLOUR);
   
   textSize(12);
   Screens.draw();
