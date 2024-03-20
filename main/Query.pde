@@ -105,7 +105,7 @@ class Query {
         ArrayList<Datapoint> cancelledFlightsList = new ArrayList<Datapoint>();
         Datapoint[] lastQuery = lastQueryList.toArray(new Datapoint[0]);
 
-        println("These flights are diverted:");
+        println("These flights are calcelled:");
         for (int i = 0; i < lastQuery.length; i++) {
             if (lastQuery[i].isCancelled()) {
                 cancelledFlightsList.add(lastQuery[i]);
