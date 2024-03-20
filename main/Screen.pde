@@ -64,5 +64,6 @@ class Screen
       theBarChart.draw();
       break;
     }
+    textSize(12);
   }
 }
