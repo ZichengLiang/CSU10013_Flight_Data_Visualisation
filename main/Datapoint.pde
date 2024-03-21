@@ -78,6 +78,107 @@ class Datapoint{
       //actualFlightDuration = getDuration(depTime, arrTime);
     }
     
+    
+    public String getFlightDate() {
+        return flightDate;
+    }
+
+    public String getFlightDay() {
+        return flightDay;
+    }
+
+    public String getFlightMonth() {
+        return flightMonth;
+    }
+
+    public String getCarrierCode() {
+        return carrierCode;
+    }
+
+    public int getFlightNumber() {
+        return flightNumber;
+    }
+
+    public String getFlightCode() {
+        return flightCode;
+    }
+
+    public String getOrigin() {
+        return origin;
+    }
+
+    public String getOriginState() {
+        return originState;
+    }
+
+    public int getOriginWac() {
+        return originWac;
+    }
+
+    public String getDest() {
+        return dest;
+    }
+
+    public String getDestState() {
+        return destState;
+    }
+
+    public int getDestWac() {
+        return destWac;
+    }
+
+    public int getCRSDepTime() {
+        return CRSDepTime;
+    }
+
+    public int getDepTime() {
+        return depTime;
+    }
+
+    public int getCRSArrTime() {
+        return CRSArrTime;
+    }
+
+    public int getArrTime() {
+        return arrTime;
+    }
+
+    public int getCancelled() {
+        return cancelled;
+    }
+
+    public int getDiverted() {
+        return diverted;
+    }
+
+    public int getDistance() {
+        return distance;
+    }
+
+    public String getCombinedOriginCityName() {
+        return combinedOriginCityName;
+    }
+
+    public String getCombinedDestCityName() {
+        return combinedDestCityName;
+    }
+
+    public int getLateDepMinutes() {
+        return lateDepMinutes;
+    }
+
+    public int getLateArrMinutes() {
+        return lateArrMinutes;
+    }
+
+    public int getPlannedFlightDuration() {
+        return plannedFlightDuration;
+    }
+
+    public int getActualFlightDuration() {
+        return actualFlightDuration;
+    }
+    
     boolean carrierCodeIs(String input){
       return input.equalsIgnoreCase(carrierCode);
     }
