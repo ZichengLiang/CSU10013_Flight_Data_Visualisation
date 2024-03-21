@@ -68,6 +68,10 @@ class Datapoint{
       actualFlightDuration = getDuration(depTime, arrTime);
     }
     
+    int getDistance(){
+      return distance;
+    }
+    
     boolean carrierCodeIs(String input){
       return input.equalsIgnoreCase(carrierCode);
     }

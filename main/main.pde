@@ -1,6 +1,5 @@
 // Zicheng, 12th March, 21:00: I modified the sample program on https://processing.org/examples/loadfile2.html to fit our dataset;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 Datapoint[] datapoints;
 String[] lines;
@@ -27,9 +26,7 @@ void settings() {
 }
 void setup() {
   //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
-  //====
   thePieChart = new PieChart();
-  //====
   //Daniel 15/03/24 initialized BarCharts here
   BarChart barChart = new BarChart(this); // Create a new BarChart instance
 
@@ -50,6 +47,9 @@ void setup() {
   // Zicheng  20/03/24 Initialised flight distances to bar chart
   Query test = new Query();
   ArrayList<Datapoint> testFlights = test.flightsFrom("JFK");
+  
+  ArrayList<Datapoint> sortedFlights = sortByDistance(testFlights);
+  
   Datapoint[] flights = testFlights.toArray(Datapoint[]::new);
 
   float[] flightDistance = new float[flights.length];
@@ -186,4 +186,10 @@ boolean inTopDestinations(String airport, String[] topDestinations) {
     }
   }
   return false;
+}
+
+ArrayList<Datapoint> sortByDistance(ArrayList<Datapoint> input){
+  ArrayList<Datapoint> sortedList = new ArrayList<>(input);
+  Collections.sort(sortedList, (item1, item2) -> Integer.compare(item1.getDistance(), item2.getDistance()));
+  return sortedList;
 }

@@ -8,7 +8,6 @@ class TheBarChart {
   String[] labelDisplay;
 
   TheBarChart(BarChart chart, float[]inputData, String[]inputLabels) {
-
     barChart = chart;
     barChart.setData(inputData);
 
