@@ -21,7 +21,7 @@ class TheBarChart {
     //barChart.setCategoryAxisLabel("Airports");
 
     //Colour
-    barChart.setBarColour(color(#26B6E0)); // Light Blue
+    barChart.setBarColour(#26B6E0); // Light Blue
     barChart.setAxisLabelColour(color(#26B6E0));
     barChart.setAxisValuesColour(color(#26B6E0));
   }
