@@ -23,10 +23,7 @@ void settings() {
   size(SCREENX, SCREENY);
 }
 void setup() {
-  //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
-  //====
-  thePieChart = new PieChart();
-  //====
+
   //Daniel 15/03/24 initialized BarCharts here
   BarChart barChart = new BarChart(this); // Create a new BarChart instance
   theBarChart = new TheBarChart(barChart); // Initialize TheBarChart with the BarChart instance
@@ -41,8 +38,21 @@ void setup() {
   datapoints = loadDatapoints("flights2k.csv");
 
   // Query functions test cases:
-  Query late = new Query();
-  late.lateFlights();
+  Query fromWholeDataSet = new Query();
+  int totalFlights = fromWholeDataSet.lastQueryList.size();
+  int cancelledNumber = fromWholeDataSet.cancelledFlights().size();
+  //int cancelledNumberPercent = cancelledNumber/totalFlights;
+  int divertedNumber = fromWholeDataSet.divertedFlights().size();
+  //int divertedNumberPercent = divertedNumber/totalFlights;
+  
+  //int totalUnaffected = totalFlights - (divertedNumberPercent + cancelledNumberPercent);
+  //int flightsUnaffected = totalFlights - (cancelledNumber + divertedNumber);
+  int[] AFlights = {divertedNumber,cancelledNumber};
+  //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
+  //====
+  thePieChart = new PieChart(AFlights);
+  //====
+  //late.lateFlights();
   //flightsFrom("JFK");
   //flightsTo("JFK");
 

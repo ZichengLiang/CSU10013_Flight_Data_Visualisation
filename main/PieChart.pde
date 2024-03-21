@@ -1,14 +1,37 @@
+import org.gicentre.utils.stat.*;
 class PieChart {
-
-  int[] angles = { 30, 10, 45, 35, 60, 38, 75, 67 };
-
-  void  draw() {
-
-    background(0);
-    pieChart(300, angles);
+  
+  int[] data;
+  
+  PieChart(int[] data){
+    this.data = data;
   }
+  //look up map processing
+  
+  int[] angles = {90,90,90,90}; //represents degrees
+  //Query fromWholeDataSet = new Query();
+  //int[] flights = {divertedNumber,cancelledNumber,23};
+   // 360  == 100%
+  int N;
+  int i = 0;
+  
+  
+  //int[] Cancelled = new int[Datapoint.cancelled];
+  //  int Cancelled = (Datapoint.cancelled);
+  //int i = Datapoint.length;
+  //int i = 0;
+ // while (i != 0){
+ //int[] AFlights = main.AFlights;
 
-  void pieChart(float diameter, int[] data) {
+ // }
+  
+  void  draw() {
+     
+    background(49,34,200);
+    pieChart(300);
+  }
+  
+  void pieChart(float diameter) {
     float lastAngle = 0;
     for (int i = 0; i < data.length; i++) {
       float blue = map(i, 0, data.length, 0, 255);

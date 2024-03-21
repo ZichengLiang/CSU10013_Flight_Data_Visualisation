@@ -4,7 +4,7 @@ class Query {
   // TODO: flightsFrom and flightsTo are still interacting directly with datapoints[2000], upgrade them
   // TODO: write more query functions
   // TODO: consider more about the attributes inside this class
-  ArrayList<Datapoint> lastQueryList; //not sure about the name??
+  ArrayList<Datapoint> lastQueryList; // is the particular array list used to search within Query,  if we use default constructor == whole dataset;
 
   Query() {
     List<Datapoint> tempList = Arrays.asList(datapoints);
