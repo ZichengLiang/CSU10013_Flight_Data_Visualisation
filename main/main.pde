@@ -88,6 +88,22 @@ void setup() {
   }
   showCase = new WidgetType2(SCREENX/1.5, SCREENY/6, SCREENX/1.5, SCREENY/3,
     255, body, datapoints);
+    Query currentQuery = new Query();
+
+     // Query functions test cases:
+  currentQuery = new Query(); // start a query from the whole dataset;
+  
+  //Query for DIverted flights from and to a particular airport
+  Query airport = new Query();
+  ArrayList<Datapoint> fromWAC22 = airport.flightsFrom("22");
+   
+   //Query for flights by a specific carrier (e.g., American Airlines with carrier code "AA")
+  Query carrierQuery = new Query();
+  ArrayList<Datapoint> bySpecificCarrier = carrierQuery.flightsByCarrier("AA");
+  
+   //Query for flights on a specific date
+    Query onDate = new Query();
+    ArrayList<Datapoint> onSpecificDate = onDate.flightsOnDate("20220101"); // Example: "20240101" for January 1, 2024
 }
 
 //displaynum = 10
