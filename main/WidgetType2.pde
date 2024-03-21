@@ -7,7 +7,7 @@ class WidgetType2
   Datapoint[] data;
 
   WidgetType2(float x, float y, float width, float height,
-    color widgetColor, PFont widgetFont, Datapoint[] data)
+    color widgetColor, PFont widgetFont)
   {
     this.x=x;
     this.y=y;
@@ -15,11 +15,10 @@ class WidgetType2
     this.height= height;
     this.widgetColor=widgetColor;
     this.widgetFont=widgetFont;
-    this.data = data;
     labelColor= color(0);
   }
 
-  void draw()
+  void draw(Datapoint[] data)
   {
     fill(widgetColor);
     rect(x, y, width, height);
@@ -30,8 +29,8 @@ class WidgetType2
       //~M: seems to be confusing the system, prints 10 times once replaced
       if (thisEntry < datapointCount) {
         //M: there seems to be somthing going wrong with calling on data here, i need more info on exactly how data is being called before i can fix this
-        text(thisEntry + " > " + datapoints[thisEntry].carrierCode + datapoints[thisEntry].flightNumber + " ---- "
-          + datapoints[thisEntry].origin + " -> " + datapoints[thisEntry].dest
+        text(thisEntry + " > " + data[thisEntry].carrierCode + data[thisEntry].flightNumber + " ---- "
+          + data[thisEntry].origin + " -> " + data[thisEntry].dest
           , x+x/4, y-y/1.3 + i3*20);
       }
     }

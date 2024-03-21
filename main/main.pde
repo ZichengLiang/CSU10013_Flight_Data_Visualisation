@@ -55,7 +55,7 @@ void setup() {
       255, body, j);
   }
   showCase = new WidgetType2(SCREENX/1.5, SCREENY/6, SCREENX/1.5, SCREENY/3,
-    255, body, datapoints);
+    255, body);
 }
 
 //displaynum = 10
@@ -68,7 +68,7 @@ void draw() {
   {
     buttons[i].draw();
   }
-  showCase.draw();
+  showCase.draw(datapoints);
   // Draw button 1
   fill(200);
   rect(280, 610, 120, 40); // Adjusted position and size for bottom row
