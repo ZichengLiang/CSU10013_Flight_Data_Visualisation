@@ -108,7 +108,7 @@ class Datapoint{
       return cancelled == 1;
     }
     
-    boolean diverted(){
+    boolean isDiverted(){
       return diverted == 1;
     }
     
