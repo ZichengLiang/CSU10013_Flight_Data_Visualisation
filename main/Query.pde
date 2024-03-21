@@ -1,3 +1,8 @@
+//Aryan: 20th March
+// Added 3 more queries namely divertedFlights, flightsByCarrier and flightsOnDate
+// divertedFlights help show the number of diverted flights from a particular airport
+// flightsByCarrier help show the details of flights from a particular carrier including the summary
+// flightsOnDate help show the number of flights on a particular date
 import java.util.Arrays;
 import java.util.List;
 class Query {
