@@ -1,0 +1,19 @@
+22nd March, Friday: next-week's plan:
+
+The aim for next week:
+- Data Selection and rendering: apply user queries to dataset and present result on the screen
+
+Aryan: handle the time, using Java APIs for date and time
+  - build a time zone system based on actual US time zones
+  - read in the date and time format
+  - write functions in Datapoint Class and Query Class to get the actual flight time, planned flight time
+Muireann: Pie Chart
+  - Add labels for the pie chart
+  - change the colour scheme
+Oliver: Screen & Widgets, Map
+  - Keep the side bars on while we load different charts
+  - Make use of bottom buttons to switch between graph display and textual display
+
+  - Introduce maps
+Zicheng:
+  - 
