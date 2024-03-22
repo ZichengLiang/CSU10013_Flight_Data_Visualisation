@@ -1,11 +1,11 @@
 class Widget {
-  int x, y, width, height;
+  float x, y, width, height;
   String label; int event;
   color widgetColor, labelColor;
   PFont widgetFont;
 
 
-  Widget(int x,int y, int width, int height, String label,
+  Widget(float x,float y, int width, int height, String label,
   color widgetColor, PFont widgetFont, int event){
     this.x=x; this.y=y; this.width = width; this.height= height;
     this.label=label; this.event=event; 
@@ -17,7 +17,7 @@ class Widget {
     rect(x,y,width,height);
     fill(labelColor);
     textAlign(RIGHT);
-    text(label, x, y);
+    text(label, x+width/4, y);
   }
   int getEvent(int mX, int mY){
      if(mX>x-(width/2) && mX < x+(width/2) && mY >y-(height/2) && mY <y+(height/2)){

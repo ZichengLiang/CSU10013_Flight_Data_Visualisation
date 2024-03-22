@@ -11,6 +11,7 @@ boolean drawBarChart = false; // Used to check if bar chart is used
 // Oliver, 15th March: creation of widgets to swicth between screens
 Screen Screens;
 Widget[] buttons;
+Widget[] buttonsHorizontal;
 WidgetType2 showCase;
 //Muireann O'Neill 15/03/24 11:12 declaring Charts here;
 //=====
@@ -50,48 +51,55 @@ void setup() {
 
   Screens = new Screen();
   buttons = new Widget[5];
+  buttonsHorizontal = new Widget[3];
   for (int j = 0; j < buttons.length; j++) {
-    buttons[j] = new Widget(60, (SCREENY/buttons.length)*j+60, 100, 60, "button " + j,
-      255, body, j);
+    if (j==1)
+    {
+      buttons[j] = new Widget(60, (SCREENY/buttons.length)*j+60, 100, 60, "Pie Chart",
+        255, body, j);
+    } else if (j==4)
+    {
+      buttons[j] = new Widget(60, (SCREENY/buttons.length)*j+60, 100, 60, "Bar Chart",
+        255, body, j);
+    } else
+    {
+      buttons[j] = new Widget(60, (SCREENY/buttons.length)*j+60, 100, 60, "button " + j,
+        255, body, j);
+    }
   }
-  showCase = new WidgetType2(SCREENX/1.5, SCREENY/6, SCREENX/1.5, SCREENY/3,
+  for (int j = 0; j<buttonsHorizontal.length; j++)
+  {
+    if (j==0)
+    {
+      buttonsHorizontal[j] = new Widget( ((SCREENX-SCREENX/1.99)/buttonsHorizontal.length)*j+SCREENX/4, SCREENY-65, 100, 60, "Toggle data",
+        255, body, j);
+    } else
+    {
+      buttonsHorizontal[j] = new Widget( ((SCREENX-SCREENX/1.99)/buttonsHorizontal.length)*j+SCREENX/4, SCREENY-65, 100, 60, "button"+j,
+        255, body, j);
+    }
+  }
+  // Oliver, 22nd March: Working on horix=zontal buttons
+
+  showCase = new WidgetType2(SCREENX/1.5, SCREENY/6, SCREENX/1.01, SCREENY/3,
     255, body);
 }
 
 //displaynum = 10
 void draw() {
   background(0);
-  
+
   textSize(12);
   Screens.draw();
   for (int i=0; i<buttons.length; i++)
   {
     buttons[i].draw();
   }
+  for (int i=0; i<buttonsHorizontal.length; i++)
+  {
+    buttonsHorizontal[i].draw();
+  }
   showCase.draw(datapoints);
-  // Draw button 1
-  fill(200);
-  rect(280, 610, 120, 40); // Adjusted position and size for bottom row
-  fill(0);
-  textAlign(CENTER, CENTER);
-  textSize(16);
-  text("Button 1", 280, 600); // Adjusted position for button label
-
-  // Draw button 2
-  fill(200);
-  rect(430, 610, 120, 40); // Adjusted position and size for bottom row
-  fill(0);
-  textAlign(CENTER, CENTER);
-  textSize(16);
-  text("Button 2", 430, 600); // Adjusted position for button label
-
-  // Draw button 3
-  fill(200);
-  rect(580, 610, 120, 40); // Adjusted position and size for bottom row
-  fill(0);
-  textAlign(CENTER, CENTER);
-  textSize(16);
-  text("Button 3", 580, 600); // Adjusted position for button label
 }
 
 
@@ -103,6 +111,17 @@ void mousePressed() {
     startingEntry += displayNum;
     if (startingEntry > datapoints.length) {
       startingEntry = 0; // go back to the begining;
+    }
+  }
+  for (int i =0; i<buttonsHorizontal.length; i++)
+  {
+    event=buttonsHorizontal[i].getEvent(mouseX, mouseY);
+    if (event>=0)
+    {
+      if (event==0)
+      {
+        showCase.show=-showCase.show;
+      }
     }
   }
   for (int i =0; i<buttons.length; i++)
