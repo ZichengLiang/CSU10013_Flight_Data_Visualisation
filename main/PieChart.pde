@@ -4,7 +4,7 @@ class PieChart {
 
   void  draw() {
 
-    background(0);
+    background(SCREEN2);
     pieChart(300, angles);
   }
 
