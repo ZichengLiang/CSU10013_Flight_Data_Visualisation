@@ -17,7 +17,7 @@ class Screen
   Screen()
   {
     //Screen area
-    screenX = (SCREENX/1.5)-(2*borders);
+    screenX = (SCREENX/1.01)-(2*borders);
     screenY = SCREENY-(2*borders);
     //Screen location
     startX = (4*SCREENX/6);//-(borders+screenX/2);
@@ -46,6 +46,7 @@ class Screen
 
     case 1: //Reserved for Pie Chart
       fill(SCREEN2);
+      rect(startX, startY, screenX, screenY);
       thePieChart.draw();
       break;
 
