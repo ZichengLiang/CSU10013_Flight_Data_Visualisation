@@ -1,4 +1,5 @@
 // Zicheng, 12th March, 21:00: I modified the sample program on https://processing.org/examples/loadfile2.html to fit our dataset;
+import java.util.*;
 
 Datapoint[] datapoints;
 String[] lines;
@@ -14,11 +15,11 @@ Widget[] buttons;
 Widget[] buttonsHorizontal;
 WidgetType2 showCase;
 //Muireann O'Neill 15/03/24 11:12 declaring Charts here;
-//=====
 PieChart thePieChart;
 
 //Daniel 15/03/24 initialized BarCharts here
 TheBarChart theBarChart;
+//BarChart barChart;
 
 //M: As far as I understand it, draw function won't work properly if size is in setup.
 void settings() {
@@ -26,14 +27,11 @@ void settings() {
 }
 void setup() {
   //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
-  //====
   thePieChart = new PieChart();
-  //====
   //Daniel 15/03/24 initialized BarCharts here
   BarChart barChart = new BarChart(this); // Create a new BarChart instance
-  theBarChart = new TheBarChart(barChart); // Initialize TheBarChart with the BarChart instance
-  //====
-  fill(255);
+
+  fill(BACKGROUND_COLOUR);
   noLoop();
   body = loadFont("myFont-12.vlw");
   textFont(body);
@@ -42,14 +40,48 @@ void setup() {
 
   datapoints = loadDatapoints("flights2k.csv");
 
-  // Query functions test cases:
-  Query late = new Query();
-  late.lateFlights();
-  //flightsFrom("JFK");
-  //flightsTo("JFK");
+  // Query functions test cases;
+  // Query late = new Query();
+  // late.lateFlights();
+  // flightsTo("JFK");
+
+  // Zicheng  20/03/24 Initialised flight distances to bar chart
+  Query test = new Query();
+  ArrayList<Datapoint> testFlights = test.flightsFrom("JFK");
+  
+  ArrayList<Datapoint> sortedFlights = sortByDistance(testFlights);
+  
+  Datapoint[] flights = testFlights.toArray(Datapoint[]::new);
+
+  float[] flightDistance = new float[flights.length];
+  for (int i = 0; i < flights.length; i++) {
+    flightDistance[i] = flights[i].distance;
+  }
+  String[] flightDestination = new String[flights.length];
+  for (int i = 0; i < flights.length; i++) {
+    flightDestination[i] = flights[i].dest;
+  }
+
+  // BarChart (Checks flight distance)
+  float[] topDistances = new float[datapoints.length];
+  String[] topDestinations = new String[datapoints.length];
+  int airportCounter = 0; //Counts airports passed through
+
+  for (int i = 0; i < flightDistance.length && airportCounter < 5; i++) {
+    if (! inTopDestinations(flightDestination[i], topDestinations)) {
+      topDistances[airportCounter] = flightDistance[i];
+      topDestinations[airportCounter] = flightDestination[i];
+      airportCounter++;
+    }
+  }
+  topDistances = Arrays.copyOf(topDistances, airportCounter);
+  topDestinations = Arrays.copyOf(topDestinations, airportCounter);
+  theBarChart = new TheBarChart(barChart, topDistances, topDestinations);
 
 
+  // Buttons
   Screens = new Screen();
+  //the side bar buttons here:
   buttons = new Widget[5];
   buttonsHorizontal = new Widget[3];
   for (int j = 0; j < buttons.length; j++) {
@@ -79,16 +111,18 @@ void setup() {
         255, body, j);
     }
   }
+
   // Oliver, 22nd March: Working on horix=zontal buttons
 
   showCase = new WidgetType2(SCREENX/1.5, SCREENY/6, SCREENX/1.01, SCREENY/3,
-    255, body);
+   255, body);
 }
 
 //displaynum = 10
 void draw() {
-  background(0);
 
+  background(BACKGROUND_COLOUR);
+  
   textSize(12);
   Screens.draw();
   for (int i=0; i<buttons.length; i++)
@@ -164,4 +198,19 @@ Datapoint[] loadDatapoints(String fileName) {
   } // for loop ends here
 
   return datapoints; // this is an array of Datapoint instances
+}
+
+boolean inTopDestinations(String airport, String[] topDestinations) {
+  for (String destination : topDestinations) {
+    if (airport.equals(destination)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+ArrayList<Datapoint> sortByDistance(ArrayList<Datapoint> input){
+  ArrayList<Datapoint> sortedList = new ArrayList<>(input);
+  Collections.sort(sortedList, (item1, item2) -> Integer.compare(item1.getDistance(), item2.getDistance()));
+  return sortedList;
 }

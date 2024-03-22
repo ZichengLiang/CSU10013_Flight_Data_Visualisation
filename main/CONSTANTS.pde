@@ -6,10 +6,14 @@ final int SCREENY = 640;
 final int EVENT_BUTTON1=1;
 final int EVENT_BUTTON2=2;
 final int EVENT_NULL=-1;
+// colours
+final color BACKGROUND_COLOUR = #909018; // olive-green
+final color SCREEN1 = #D77186; // pink
+final color SCREEN2 = #6CB7DA; // light-blue
+final color SCREEN3 = #61A2DA; // blue
+final color SCREEN4 = #E9A621; // yellow
+final color SCREEN5 = #ED03FA; // pink
+final color SCREEN6 = #D75725; // orange-dark
 
-final color SCREEN1 = color(232, 21, 21);
-final color SCREEN2 = #2215E8;
-final color SCREEN3 = #35C123;
-final color SCREEN4 = #42DBCF;
-final color SCREEN5 = #ED03FA;
-final color SCREEN6 = #FACFFC;
+//barchart color
+final color BAR_COLOUR = #FFB310; // yellow

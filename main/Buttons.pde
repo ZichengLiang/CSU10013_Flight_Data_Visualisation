@@ -1,3 +1,6 @@
+//Aryan: 19th March
+// added three buttons which when clicked do something (can be linked to displaying charts or anything
+
 boolean button1Clicked = false;
 boolean button2Clicked = false;
 boolean button3Clicked = false;
