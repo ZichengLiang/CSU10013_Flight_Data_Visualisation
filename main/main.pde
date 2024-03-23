@@ -39,15 +39,18 @@ void setup() {
 
   // Query functions test cases:
   Query fromWholeDataSet = new Query();
-  int totalFlights = fromWholeDataSet.lastQueryList.size();
+  int totalFlights    = fromWholeDataSet.lastQueryList.size();
   int cancelledNumber = fromWholeDataSet.cancelledFlights().size();
   //int cancelledNumberPercent = cancelledNumber/totalFlights;
-  int divertedNumber = fromWholeDataSet.divertedFlights().size();
+  int divertedNumber  = fromWholeDataSet.divertedFlights().size();
   //int divertedNumberPercent = divertedNumber/totalFlights;
   
-  //int totalUnaffected = totalFlights - (divertedNumberPercent + cancelledNumberPercent);
+  int totalUnaffected = totalFlights-(divertedNumber + cancelledNumber);
   //int flightsUnaffected = totalFlights - (cancelledNumber + divertedNumber);
-  int[] AFlights = {divertedNumber,cancelledNumber};
+  
+  int[] AFlights = {divertedNumber,cancelledNumber,totalUnaffected};
+  println(divertedNumber);
+  println(cancelledNumber);
   //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
   //====
   thePieChart = new PieChart(AFlights);
