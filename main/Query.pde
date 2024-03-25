@@ -1,39 +1,36 @@
-//Aryan: 20th March
-// Added 3 more queries namely divertedFlights, flightsByCarrier and flightsOnDate
-// divertedFlights help show the number of diverted flights from a particular airport
-// flightsByCarrier help show the details of flights from a particular carrier including the summary
-// flightsOnDate help show the number of flights on a particular date
+/*
+ Aryan: 20th March
+ added 3 more queries namely divertedFlights, flightsByCarrier and flightsOnDate
+ divertedFlights help show the number of diverted flights from a particular airport
+ flightsByCarrier help show the details of flights from a particular carrier including the summary
+ flightsOnDate help show the number of flights on a particular date
+*/ 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 class Query {
-  // TODO: flightsFrom and flightsTo are still interacting directly with datapoints[2000], upgrade them
   // TODO: write more query functions
-  // TODO: consider more about the attributes inside this class
-  ArrayList<Datapoint> lastQueryList; //not sure about the name??
-
+  ArrayList<Datapoint> lastQueryList; 
+  
+  // Constructors: default constructor search within the whole set
   Query() {
     List<Datapoint> tempList = Arrays.asList(datapoints);
     this.lastQueryList = new ArrayList<Datapoint>(tempList);
   }
-
+  // this constructor takes in one ArrayList and search within the given set
   Query(ArrayList<Datapoint> lastQueryList) {
     this.lastQueryList = lastQueryList;
   }
-
-  ArrayList<Datapoint> lateFlights() {
-    // Zicheng: 18th March, 21:00
-    // lateFlights query function: print all the late flights in the form:
-    // <flight code> + <flight date> + <late arrival minutes> + total number of late flights
-    // note: it doesn't count a flight late if the late time is less than 10 minutes
-    ArrayList<Datapoint> lateFlightsList = new ArrayList<Datapoint>(lastQueryList.stream()
-    .filter(datapoint -> datapoint.isLate())
-    .collect(Collectors.toList()));
-    
-    println(getReport(lateFlightsList, LATE_FLIGHTS));
-    return lateFlightsList;
-  }
-
+  /* 
+  methods list:
+     ArrayList<Datapoint> flightsFrom(String airportCode); ArrayList<Datapoint> flightsFrom(int originWac);
+     ArrayList<Datapoint> flightsTo(String airportCode); ArrayList<Datapoint> flightsTo(int destWac);
+     ArrayList<Datapoint> flightRoute(String origin, String dest);
+     ArrayList<Datapoint> lateFlights();
+     ArrayList<Datapoint> divertedFlights();
+     ArrayList<Datapoint> flightsByCarrier(String carrierCode);
+     ArrayList<Datapoint> flightsOnDate(String date);
+  */
   ArrayList<Datapoint> flightsFrom(String airportCode) {
     // queries function: print all the flights going to passed airport code
     ArrayList<Datapoint> flightsFromList = new ArrayList<Datapoint>(lastQueryList.stream()
@@ -73,46 +70,61 @@ class Query {
     return flightsToList;
   }
   
+  ArrayList<Datapoint> flightsTo(int destWac) {
+    // queries function: print all the flights going to passed airport code
+   ArrayList<Datapoint> flightsToList = new ArrayList<Datapoint>(lastQueryList.stream()
+    .filter(datapoint -> datapoint.destWacIs(destWac))
+    .collect(Collectors.toList()));
+    
+    println(getReport(flightsToList, FLIGHTS_TO));
+    return flightsToList;
+  }
+  
+  ArrayList<Datapoint> flightRoute(String origin, String dest){
+    ArrayList<Datapoint> flightRoute = new ArrayList<Datapoint> (lastQueryList.stream()
+    .filter(datapoint -> datapoint.originIs(origin)).filter(datapoint -> datapoint.destIs(dest))
+    .collect(Collectors.toList()));
+    
+    println(getReport(flightRoute, FLIGHT_ROUTE));
+    
+    return flightRoute;
+  }
+  
+  ArrayList<Datapoint> lateFlights() {
+    // Zicheng: 18th March, 21:00
+    // lateFlights query function: print all the late flights in the form:
+    // <flight code> + <flight date> + <late arrival minutes> + total number of late flights
+    // note: it doesn't count a flight late if the late time is less than 10 minutes
+    ArrayList<Datapoint> lateFlightsList = new ArrayList<Datapoint>(lastQueryList.stream()
+    .filter(datapoint -> datapoint.isLate())
+    .collect(Collectors.toList()));
+    
+    println(getReport(lateFlightsList, LATE_FLIGHTS));
+    return lateFlightsList;
+  }
+
+  
   // This is for displaying diverted flights
    ArrayList<Datapoint> divertedFlights() {
-        ArrayList<Datapoint> divertedFlightsList = new ArrayList<Datapoint>();
-        Datapoint[] lastQuery = lastQueryList.toArray(new Datapoint[0]);
+        ArrayList<Datapoint> divertedFlightsList = new ArrayList<Datapoint>(lastQueryList.stream()
+        .filter(datapoint -> datapoint.isDiverted())
+        .collect(Collectors.toList()));
 
-        println("These flights are diverted:");
-        for (int i = 0; i < lastQuery.length; i++) {
-            if (lastQuery[i].isDiverted()) {
-                divertedFlightsList.add(lastQuery[i]);
-                println(divertedFlightsList.size() + "> " + lastQuery[i].flightCode + " on " + lastQuery[i].flightDate + " is diverted.");
-            }
-        }
-        println("There are " + divertedFlightsList.size() + " diverted flights out of " + lastQuery.length + " flights.");
+        println(getReport(divertedFlightsList, DIVERTED_FLIGHTS));
         return divertedFlightsList;
     }
 
 
 // This is for flights by particular carrier
-    // when you're copying and pasting codes, please be careful with the indentation
     ArrayList<Datapoint> flightsByCarrier(String carrierCode) {
-      ArrayList<Datapoint> flightsList = new ArrayList<Datapoint>();
-    for (Datapoint datapoint : lastQueryList) {
-        if (datapoint.carrierCodeIs(carrierCode)) {
-            flightsList.add(datapoint);
-        }
-    }
-
-    // Print flights from the specific carrier
-    println("Flights operated by carrier " + carrierCode + ":");
-    int count = 0;
-    for (Datapoint flight : flightsList) {
-        count++;
-        println(count + "> " + flight.flightCode + " on " + flight.flightDate + " from " + flight.origin + " to " + flight.dest);
-    }
-
-    // Print summary
-    println("Total number of flights operated by carrier " + carrierCode + ": " + flightsList.size());
+      ArrayList<Datapoint> flightsByCarrierList = new ArrayList<Datapoint>(lastQueryList.stream()
+      .filter(datapoint -> datapoint.carrierCodeIs(carrierCode))
+      .collect(Collectors.toList()));
+      
+      println(getReport(flightsByCarrierList, FLIGHTS_BY_CARRIER));
     
-    return flightsList;
-}
+      return flightsByCarrierList;
+  }
 ArrayList<Datapoint> flightsOnDate(String date) {
     ArrayList<Datapoint> flightsList = new ArrayList<Datapoint>();
     for (Datapoint datapoint : lastQueryList) {
@@ -121,16 +133,7 @@ ArrayList<Datapoint> flightsOnDate(String date) {
         }
     }
     
-    if (flightsList.isEmpty()) {
-        println("No flights found on date: " + date);
-    } else {
-        println("Flights found on date: " + date + ", Total: " + flightsList.size());
-        // Print additional details if needed
-        for (Datapoint datapoint : flightsList) {
-            println(datapoint.flightCode + " from " + datapoint.origin + " to " + datapoint.dest);
-        }
-    }
-    
+    println(getReport(flightsList, FLIGHTS_ON_DATE));
     return flightsList;
   }
   
@@ -138,7 +141,7 @@ ArrayList<Datapoint> flightsOnDate(String date) {
   if(inputList.isEmpty()){
       return ("Sorry, there is no such flight!");
     }
-    else if (type < 0 || type > 5){ // 5 is the last number of supported query function
+    else if (type < 0 || type > 6){ // 6 is the last number of supported query function
       return ("Sorry, we cannot make such query now!");
     }
     else{
@@ -184,19 +187,27 @@ ArrayList<Datapoint> flightsOnDate(String date) {
         
         case FLIGHTS_BY_CARRIER:
         report.insert(0,":\n")
-        .insert(0,inputList.get(0).carrierCode).insert(0, "These flights are by carrier");
-        report.append(inputList.size())
-        .append(" flights are carried by carrier ").append(inputList.get(0).carrierCode);
+        .insert(0,inputList.get(0).getCarrierCode()).insert(0, "These flights are operated by carrier");
+        report.append("Totally, there are ").append(inputList.size())
+        .append(" flights operated by carrier ").append(inputList.get(0).carrierCode);
         break;
         
         case FLIGHTS_ON_DATE:
-        report.insert(0,":\n").insert(0, "These flights are on date");
-        report.append(inputList.size()).append(" flights are on date.");
+        report.insert(0,":\n")
+        .insert(0, inputList.get(0).getFlightDate()).insert(0, "These flights are found on date");
+        report.append(inputList.size()).append(" flights are on date").append(inputList.get(0).getFlightDate());
         break;
         
         case LATE_FLIGHTS:
         report.insert(0,":\n").insert(0, "These flights are late (more than 10 minutes)");
         report.append(inputList.size()).append(" flights are late (more than 10 minutes).");
+        break;
+        
+        case FLIGHT_ROUTE:
+        report.insert(0, ":\n");
+        report.append("Totally, there are ").append(inputList.size())
+        .append(" flights fly from ").append(inputList.get(0).getOrigin())
+        .append(" to ").append(inputList.get(0).getDest());
         break;
       }//switch ends
       

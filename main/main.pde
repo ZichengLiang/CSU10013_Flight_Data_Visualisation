@@ -40,15 +40,10 @@ void setup() {
 
   datapoints = loadDatapoints("flights2k.csv");
 
-  // Query functions test cases;
-  // Query late = new Query();
-  // late.lateFlights();
-  // flightsTo("JFK");
-
   // Zicheng  20/03/24 Initialised flight distances to bar chart
-  Query test = new Query();
-  ArrayList<Datapoint> testFlights = test.flightsFrom("JFK");
-  
+  Query fromWholeDataset = new Query();
+  ArrayList<Datapoint> flightRoute = fromWholeDataset.flightRoute("JFK", "LAX");
+  ArrayList<Datapoint> testFlights = fromWholeDataset.flightsFrom("JFK");
   ArrayList<Datapoint> sortedFlights = sortByDistance(testFlights);
   
   Datapoint[] flights = testFlights.toArray(Datapoint[]::new);
@@ -210,7 +205,7 @@ boolean inTopDestinations(String airport, String[] topDestinations) {
 }
 
 ArrayList<Datapoint> sortByDistance(ArrayList<Datapoint> input){
-  ArrayList<Datapoint> sortedList = new ArrayList<>(input);
+  ArrayList<Datapoint> sortedList = new ArrayList<Datapoint>(input);
   Collections.sort(sortedList, (item1, item2) -> Integer.compare(item1.getDistance(), item2.getDistance()));
   return sortedList;
 }
