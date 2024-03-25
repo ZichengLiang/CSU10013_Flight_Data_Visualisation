@@ -34,29 +34,6 @@ class Query {
     return lateFlightsList;
   }
 
-  ArrayList<Datapoint> lateFlights(ArrayList<Datapoint> lastQueryList) {
-    // Zicheng: 18th March, 19:00
-    // overload method for cross-query, pass in an arraylist and it will search through the passed array
-    // lateFlights query function: print all the late flights in the form:
-    // <flight code> + <flight date> + <late arrival minutes> + total number of late flights
-    // note: it doesn't count a flight late if the late time is less than 10 minutes
-    ArrayList<Datapoint> lateFlightsList = new ArrayList<Datapoint>();
-    Datapoint[] lastQuery = lastQueryList.toArray(Datapoint[]::new);
-
-    println("these flights are late");
-    int count = 0;
-    for (int i = 0; i < lastQuery.length; i++) {
-      if (lastQuery[i].isLate() && lastQuery[i].lateArrMinutes >= 10) {
-        count++;
-        lateFlightsList.add(lastQuery[i]);
-        print( count + "> " + lastQuery[i].flightCode + " at " + lastQuery[i].flightDate + " is late by " );
-        lastQuery[i].printDuration(lastQuery[i].lateArrMinutes);
-      }
-    }
-    println("There are " + count + " late flights out of " + lastQuery.length + " flights, the delay rate is " +  100 * (double) count/lastQuery.length + "%" );
-    return lateFlightsList;
-  }
-
   ArrayList<Datapoint> flightsFrom(String airportCode) {
     // queries function: print all the flights going to passed airport code
     ArrayList<Datapoint> flightsFromList = new ArrayList<Datapoint>(lastQueryList.stream()
