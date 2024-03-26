@@ -6,6 +6,8 @@ int datapointCount = 0;
 PFont body;
 int displayNum = 10; // Display this many entries on each screen;
 int startingEntry = 0; // Display from this entry number;
+Table table;
+int fontSize = 5; // Font size for the table
 
 // Oliver, 15th March: creation of widgets to swicth between screens
 Screen Screens;
@@ -22,7 +24,7 @@ void setup(){
   textFont(body);
   textSize(12);
   rectMode(CENTER);
-  
+  table = loadTable("flights2k.csv", "header");
   datapoints = loadDatapoints("flights2k.csv");
  
   // Query functions test cases: 
@@ -42,8 +44,7 @@ void setup(){
 
 //displaynum = 10
   void draw(){
-  background(0);
-
+  background(155);
     Screens.draw();
     for(int i=0; i<buttons.length; i++)
     {
@@ -53,6 +54,7 @@ void setup(){
   fill(200);
   rect(280, 510, 120, 40); // Adjusted position and size for bottom row
   fill(0);
+  displayTableData();
   textAlign(CENTER, CENTER);
   textSize(16);
   text("Button 1", 280, 500); // Adjusted position for button label
@@ -73,6 +75,45 @@ void setup(){
   textSize(16);
   text("Button 3", 580, 500); // Adjusted position for button label
 }
+void displayTableData() {
+  textAlign(LEFT, CENTER); // Align text to the left
+  textSize(fontSize);
+  // Calculate the maximum width for each column
+  float[] columnWidths = new float[table.getColumnCount()];
+  for (int colIndex = 0; colIndex < table.getColumnCount(); colIndex++) {
+    float maxColumnWidth = textWidth(table.getColumnTitle(colIndex)); // Start with column header width
+    for (TableRow row : table.rows()) {
+      float cellWidth = textWidth(row.getString(colIndex));
+      if (cellWidth > maxColumnWidth) {
+        maxColumnWidth = cellWidth;
+      }
+    }
+    columnWidths[colIndex] = maxColumnWidth;
+  }
+  
+  float x = 20;
+  float y = 40; // Starting y position, increased to leave space for column headings
+  
+  fill(0);
+  for (int i = 0; i < table.getColumnCount(); i++) {
+    String columnName = table.getColumnTitle(i);
+    text(columnName, x, 20);
+    x += columnWidths[i] + 30; // Move to the next column
+  }
+  
+  y += 20; // Move down below the headings
+  for (TableRow row : table.rows()) {
+    x = 20; // Reset x position for each row
+    for (int colIndex = 0; colIndex < table.getColumnCount(); colIndex++) {
+      String cellData = row.getString(colIndex);
+      text(cellData, x, y);
+      x += columnWidths[colIndex] + 30; // Move to the next column
+    }
+    y += textAscent() + 5; // Move down for the next row
+  }
+}
+
+
 
   
 void mousePressed(){
