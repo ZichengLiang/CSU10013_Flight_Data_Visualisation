@@ -26,8 +26,6 @@ void settings() {
   size(SCREENX, SCREENY);
 }
 void setup() {
-  //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
-  thePieChart = new PieChart();
   //Daniel 15/03/24 initialized BarCharts here
   BarChart barChart = new BarChart(this); // Create a new BarChart instance
 
@@ -40,11 +38,21 @@ void setup() {
 
   datapoints = loadDatapoints("flights2k.csv");
 
-  // Query functions test cases;
-  // Query late = new Query();
-  // late.lateFlights();
-  // flightsTo("JFK");
 
+  // Query functions test cases:
+  Query fromWholeDataSet = new Query();
+  int totalFlights    = fromWholeDataSet.lastQueryList.size();
+  int cancelledNumber = fromWholeDataSet.cancelledFlights().size();
+  //int cancelledNumberPercent = cancelledNumber/totalFlights;
+  int divertedNumber  = fromWholeDataSet.divertedFlights().size();
+  //int divertedNumberPercent = divertedNumber/totalFlights;
+  
+  int totalUnaffected = totalFlights-(divertedNumber + cancelledNumber);
+  //int flightsUnaffected = totalFlights - (cancelledNumber + divertedNumber);
+  
+  int[] AFlights = {divertedNumber,cancelledNumber,totalUnaffected};
+  //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
+  thePieChart = new PieChart(AFlights);
   // Zicheng  20/03/24 Initialised flight distances to bar chart
   Query test = new Query();
   ArrayList<Datapoint> testFlights = test.flightsFrom("JFK");
@@ -77,6 +85,7 @@ void setup() {
   topDistances = Arrays.copyOf(topDistances, airportCounter);
   topDestinations = Arrays.copyOf(topDestinations, airportCounter);
   theBarChart = new TheBarChart(barChart, topDistances, topDestinations);
+
 
 
   // Buttons

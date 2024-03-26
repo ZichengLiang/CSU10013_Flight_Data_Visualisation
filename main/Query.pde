@@ -10,7 +10,7 @@ class Query {
   // TODO: flightsFrom and flightsTo are still interacting directly with datapoints[2000], upgrade them
   // TODO: write more query functions
   // TODO: consider more about the attributes inside this class
-  ArrayList<Datapoint> lastQueryList; //not sure about the name??
+  ArrayList<Datapoint> lastQueryList; // is the particular array list used to search within Query,  if we use default constructor == whole dataset;
 
   Query() {
     List<Datapoint> tempList = Arrays.asList(datapoints);
@@ -62,6 +62,40 @@ class Query {
     println(getReport(flightsFromList, FLIGHTS_FROM));
     return flightsFromList;
   }
+  
+  // This is for displaying diverted flights
+   ArrayList<Datapoint> divertedFlights() {
+        ArrayList<Datapoint> divertedFlightsList = new ArrayList<Datapoint>();
+        Datapoint[] lastQuery = lastQueryList.toArray(new Datapoint[0]);
+
+        println("These flights are diverted:");
+        for (int i = 0; i < lastQuery.length; i++) {
+            if (lastQuery[i].isDiverted()) {
+                divertedFlightsList.add(lastQuery[i]);
+                println(divertedFlightsList.size() + "> " + lastQuery[i].flightCode + " on " + lastQuery[i].flightDate + " is diverted.");
+            }
+        }
+        println("There are " + divertedFlightsList.size() + " diverted flights out of " + lastQuery.length + " flights.");
+        return divertedFlightsList;
+    }
+    
+    // This is for displaying cancelled flights
+   ArrayList<Datapoint> cancelledFlights() {
+        ArrayList<Datapoint> cancelledFlightsList = new ArrayList<Datapoint>();
+        Datapoint[] lastQuery = lastQueryList.toArray(new Datapoint[0]);
+
+        println("These flights are calcelled:");
+        for (int i = 0; i < lastQuery.length; i++) {
+            if (lastQuery[i].isCancelled()) {
+                cancelledFlightsList.add(lastQuery[i]);
+                println(cancelledFlightsList.size() + "> " + lastQuery[i].flightCode + " on " + lastQuery[i].flightDate + " is cancelled.");
+            }
+        }
+        println("There are " + cancelledFlightsList.size() + " diverted flights out of " + lastQuery.length + " flights.");
+        return cancelledFlightsList;
+    }
+    
+    
 
   ArrayList<Datapoint> flightsTo(String airportCode) {
     // queries function: print all the flights going to passed airport code
