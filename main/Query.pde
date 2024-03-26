@@ -11,15 +11,18 @@ import java.util.stream.Collectors;
 class Query {
   // TODO: write more query functions
   ArrayList<Datapoint> lastQueryList; 
+  String name;
   
   // Constructors: default constructor search within the whole set
   Query() {
     List<Datapoint> tempList = Arrays.asList(datapoints);
     this.lastQueryList = new ArrayList<Datapoint>(tempList);
+    name = "whole data set";
   }
   // this constructor takes in one ArrayList and search within the given set
-  Query(ArrayList<Datapoint> lastQueryList) {
+  Query(ArrayList<Datapoint> lastQueryList, String name) {
     this.lastQueryList = lastQueryList;
+    this.name = name;
   }
   /* 
   methods list:
@@ -30,6 +33,8 @@ class Query {
      ArrayList<Datapoint> divertedFlights();
      ArrayList<Datapoint> flightsByCarrier(String carrierCode);
      ArrayList<Datapoint> flightsOnDate(String date);
+     
+     String GetReport(ArrayList<Datapoint> inputList, int TYPE);
   */
   ArrayList<Datapoint> flightsFrom(String airportCode) {
     // queries function: print all the flights going to passed airport code

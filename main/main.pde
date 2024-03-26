@@ -7,9 +7,11 @@ int datapointCount = 0;
 PFont body;
 int displayNum = 10; // Display this many entries on each screen;
 int startingEntry = 0; // Display from this entry number;
+int sideBarButtonsNum = 5;
+int horizontalButtonsNum = 3;
 boolean drawBarChart = false; // Used to check if bar chart is used
 
-// Oliver, 15th March: creation of widgets to swicth between screens
+// Oliver, 15th March: creation of widgets to switch between screens
 Screen Screens;
 Widget[] buttons;
 Widget[] buttonsHorizontal;
@@ -77,38 +79,9 @@ void setup() {
   // Buttons
   Screens = new Screen();
   //the side bar buttons here:
-  buttons = new Widget[5];
-  buttonsHorizontal = new Widget[3];
-  for (int j = 0; j < buttons.length; j++) {
-    if (j==1)
-    {
-      buttons[j] = new Widget(60, (SCREENY/buttons.length)*j+60, 100, 60, "Pie Chart",
-        255, body, j);
-    } else if (j==4)
-    {
-      buttons[j] = new Widget(60, (SCREENY/buttons.length)*j+60, 100, 60, "Bar Chart",
-        255, body, j);
-    } else
-    {
-      buttons[j] = new Widget(60, (SCREENY/buttons.length)*j+60, 100, 60, "button " + j,
-        255, body, j);
-    }
-  }
-  for (int j = 0; j<buttonsHorizontal.length; j++)
-  {
-    if (j==0)
-    {
-      buttonsHorizontal[j] = new Widget( ((SCREENX-SCREENX/1.99)/buttonsHorizontal.length)*j+SCREENX/4, SCREENY-65, 100, 60, "Toggle data",
-        255, body, j);
-    } else
-    {
-      buttonsHorizontal[j] = new Widget( ((SCREENX-SCREENX/1.99)/buttonsHorizontal.length)*j+SCREENX/4, SCREENY-65, 100, 60, "button"+j,
-        255, body, j);
-    }
-  }
-
+  initializeSidebarButtons();
+  initializeHorizontalButtons();
   // Oliver, 22nd March: Working on horix=zontal buttons
-
   showCase = new WidgetType2(SCREENX/1.5, SCREENY/6, SCREENX/1.01, SCREENY/3,
    255, body);
 }
@@ -193,6 +166,30 @@ Datapoint[] loadDatapoints(String fileName) {
   } // for loop ends here
 
   return datapoints; // this is an array of Datapoint instances
+}
+
+void initializeSidebarButtons() {
+  buttons = new Widget[sideBarButtonsNum];
+  for (int j = 0; j < buttons.length; j++) {
+    if (j == 1) {
+      buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, "Pie Chart", 255, body, j);
+    } else if (j == 4) {
+      buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, "Bar Chart", 255, body, j);
+    } else {
+      buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, "button " + j, 255, body, j);
+    }
+  }
+}
+
+void initializeHorizontalButtons() {
+  buttonsHorizontal = new Widget[horizontalButtonsNum];
+  for (int j = 0; j < buttonsHorizontal.length; j++) {
+    if (j == 0) {
+      buttonsHorizontal[j] = new Widget(((SCREENX - SCREENX / 1.99) / buttonsHorizontal.length) * j + SCREENX / 4, SCREENY - 65, 100, 60, "Toggle data", 255, body, j);
+    } else {
+      buttonsHorizontal[j] = new Widget(((SCREENX - SCREENX / 1.99) / buttonsHorizontal.length) * j + SCREENX / 4, SCREENY - 65, 100, 60, "button" + j, 255, body, j);
+    }
+  }
 }
 
 boolean inTopDestinations(String airport, String[] topDestinations) {
