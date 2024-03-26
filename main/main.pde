@@ -59,7 +59,7 @@ void setup() {
   
   ArrayList<Datapoint> sortedFlights = sortByDistance(testFlights);
   
-  Datapoint[] flights = testFlights.toArray(Datapoint[]::new);
+  Datapoint[] flights = sortedFlights.toArray(Datapoint[]::new);
 
   float[] flightDistance = new float[flights.length];
   for (int i = 0; i < flights.length; i++) {
