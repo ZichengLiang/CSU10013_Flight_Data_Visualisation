@@ -42,17 +42,7 @@ class Screen
       rect(startX, startY, screenX, screenY);
       
       fill(255);
-      for(int i3 = 0; i3 < displayNum; i3++){
-      int thisEntry = 0;
-      thisEntry = startingEntry + i3;
-      //~M: seems to be confusing the system, prints 10 times once replaced
-      if (thisEntry < datapointCount){
-      //M: there seems to be somthing going wrong with calling on data here, i need more info on exactly how data is being called before i can fix this
-        text(thisEntry + " > " + datapoints[thisEntry].carrierCode + datapoints[thisEntry].flightNumber + " ---- " 
-                     + datapoints[thisEntry].origin + " -> " + datapoints[thisEntry].dest
-                     , startX-(screenX/2)+borders, startY-(screenY/2)+borders + i3*20);
-        }
-      }
+      displayTableData(tableX, tableY, tableWidth, tableHeight);
       break;
       
       case 1:
