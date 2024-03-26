@@ -59,7 +59,7 @@ void setup() {
   
   ArrayList<Datapoint> sortedFlights = sortByDistance(testFlights);
   
-  Datapoint[] flights = testFlights.toArray(Datapoint[]::new);
+  Datapoint[] flights = sortedFlights.toArray(Datapoint[]::new);
 
   float[] flightDistance = new float[flights.length];
   for (int i = 0; i < flights.length; i++) {
@@ -220,6 +220,6 @@ boolean inTopDestinations(String airport, String[] topDestinations) {
 
 ArrayList<Datapoint> sortByDistance(ArrayList<Datapoint> input){
   ArrayList<Datapoint> sortedList = new ArrayList<>(input);
-  Collections.sort(sortedList, (item1, item2) -> Integer.compare(item1.getDistance(), item2.getDistance()));
+  Collections.sort(sortedList, (item2, item1) -> Integer.compare(item1.getDistance(), item2.getDistance()));
   return sortedList;
 }
