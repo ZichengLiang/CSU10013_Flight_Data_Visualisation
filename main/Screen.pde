@@ -15,7 +15,7 @@ class Screen
   Screen()
   {
     //Screen area
-    screenX = (SCREENX/1.5)-(2*borders);
+    screenX = (SCREENX)-(2*borders);
     screenY = SCREENY-(2*borders);
     //Screen location
     startX = (4*SCREENX/6);//-(borders+screenX/2);
