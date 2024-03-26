@@ -64,7 +64,7 @@ class Query {
   }
   
   // This is for displaying diverted flights
-   ArrayList<Datapoint> divertedFlights() {
+   ArrayList<Datapoint> diverteFlights() {
         ArrayList<Datapoint> divertedFlightsList = new ArrayList<Datapoint>();
         Datapoint[] lastQuery = lastQueryList.toArray(new Datapoint[0]);
 

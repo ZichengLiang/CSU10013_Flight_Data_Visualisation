@@ -38,6 +38,8 @@ class PieChart {
  // }
   
   void  draw() {
+    fill(255);
+    rect(550,40,160,60*data.length);
     pieChart(300);
   }
   

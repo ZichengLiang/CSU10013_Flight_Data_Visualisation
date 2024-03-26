@@ -129,7 +129,7 @@ void setup() {
 
 //displaynum = 10
 void draw() {
-
+  noStroke();
   background(BACKGROUND_COLOUR);
   
   textSize(12);
