@@ -48,10 +48,10 @@ void setup() {
   // Zicheng  20/03/24 Initialised flight distances to bar chart
   Query test = new Query();
   ArrayList<Datapoint> testFlights = test.flightsFrom("JFK");
-  
+
   ArrayList<Datapoint> sortedFlights = sortByDistance(testFlights);
-  
-  Datapoint[] flights = testFlights.toArray(Datapoint[]::new);
+
+  Datapoint[] flights = sortedFlights.toArray(Datapoint[]::new);
 
   float[] flightDistance = new float[flights.length];
   for (int i = 0; i < flights.length; i++) {
@@ -115,14 +115,14 @@ void setup() {
   // Oliver, 22nd March: Working on horix=zontal buttons
 
   showCase = new WidgetType2(SCREENX/1.5, SCREENY/6, SCREENX/1.01, SCREENY/3,
-   255, body);
+    255, body);
 }
 
 //displaynum = 10
 void draw() {
 
   background(BACKGROUND_COLOUR);
-  
+
   textSize(12);
   Screens.draw();
   for (int i=0; i<buttons.length; i++)
@@ -209,7 +209,7 @@ boolean inTopDestinations(String airport, String[] topDestinations) {
   return false;
 }
 
-ArrayList<Datapoint> sortByDistance(ArrayList<Datapoint> input){
+ArrayList<Datapoint> sortByDistance(ArrayList<Datapoint> input) {
   ArrayList<Datapoint> sortedList = new ArrayList<>(input);
   Collections.sort(sortedList, (item1, item2) -> Integer.compare(item1.getDistance(), item2.getDistance()));
   return sortedList;

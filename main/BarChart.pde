@@ -23,6 +23,7 @@ class TheBarChart {
     barChart.setBarColour(#26B6E0); // Light Blue
     barChart.setAxisLabelColour(color(#26B6E0));
     barChart.setAxisValuesColour(color(#26B6E0));
+    barChart.setBarGap(10); // Distance between each bar
   }
   void setData(float[] dataDisplay) {
     this.dataDisplay = dataDisplay;
