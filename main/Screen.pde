@@ -17,7 +17,7 @@ class Screen
   Screen()
   {
     //Screen area
-    screenX = (SCREENX/1.5)-(2*borders);
+    screenX = (SCREENX/1.01)-(2*borders);
     screenY = SCREENY-(2*borders);
     //Screen location
     startX = (4*SCREENX/6);//-(borders+screenX/2);
@@ -40,42 +40,31 @@ class Screen
     switch(screenType)
     {
     case 0:
-      fill(colourR, colourG, colourB);
+      fill(SCREEN1);
       rect(startX, startY, screenX, screenY);
-
-      fill(255);
-      for (int i3 = 0; i3 < displayNum; i3++) {
-        int thisEntry = 0;
-        thisEntry = startingEntry + i3;
-        //~M: seems to be confusing the system, prints 10 times once replaced
-        if (thisEntry < datapointCount) {
-          //M: there seems to be somthing going wrong with calling on data here, i need more info on exactly how data is being called before i can fix this
-          text(thisEntry + " > " + datapoints[thisEntry].carrierCode + datapoints[thisEntry].flightNumber + " ---- "
-            + datapoints[thisEntry].origin + " -> " + datapoints[thisEntry].dest
-            , startX-(screenX/2)+borders, startY-(screenY/2)+borders + i3*20);
-        }
-      }
       break;
 
     case 1: //Reserved for Pie Chart
-      fill(0);
+      fill(SCREEN2);
+      rect(startX, startY, screenX, screenY);
       thePieChart.draw();
       break;
 
     case 2:
-      fill(255);
+      fill(SCREEN3);
       rect(startX, startY, screenX, screenY);
       break;
 
     case 3:
-      fill(255, 0, 0);
+      fill(SCREEN4);
       rect(startX, startY, screenX, screenY);
       break;
 
     case 4: //Reserved for Bar chart
-      fill(0, 255, 0);
+      fill(SCREEN5);
       theBarChart.draw();
       break;
     }
+    textSize(12);
   }
 }
