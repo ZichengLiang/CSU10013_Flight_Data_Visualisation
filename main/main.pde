@@ -18,12 +18,9 @@ Widget[] buttonsHorizontal;
 WidgetType2 showCase;
 //Muireann O'Neill 15/03/24 11:12 declaring Charts here;
 PieChart thePieChart;
-
 //Daniel 15/03/24 initialized BarCharts here
 TheBarChart theBarChart;
-//BarChart barChart;
 
-//M: As far as I understand it, draw function won't work properly if size is in setup.
 void settings() {
   size(SCREENX, SCREENY);
 }
