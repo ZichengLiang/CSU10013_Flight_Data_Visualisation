@@ -200,7 +200,7 @@ class Datapoint{
       return input == destWac;
     }
     
-    boolean cancelled(){
+    boolean isCancelled(){
       return cancelled == 1;
     }
     

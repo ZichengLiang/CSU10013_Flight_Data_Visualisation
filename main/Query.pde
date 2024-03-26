@@ -64,16 +64,6 @@ class Query {
     println(getReport(flightsFromList, FLIGHTS_FROM));
     return flightsFromList;
   }
-
-  ArrayList<Datapoint> flightsTo(String airportCode) {
-    // queries function: print all the flights going to passed airport code
-   ArrayList<Datapoint> flightsToList = new ArrayList<Datapoint>(lastQueryList.stream()
-    .filter(datapoint -> datapoint.destIs(airportCode))
-    .collect(Collectors.toList()));
-    
-    println(getReport(flightsToList, FLIGHTS_TO));
-    return flightsToList;
-  }
   
   ArrayList<Datapoint> flightsTo(int destWac) {
     // queries function: print all the flights going to passed airport code
@@ -118,8 +108,35 @@ class Query {
         println(getReport(divertedFlightsList, DIVERTED_FLIGHTS));
         return divertedFlightsList;
     }
+    
+    // This is for displaying cancelled flights
+   ArrayList<Datapoint> cancelledFlights() {
+        ArrayList<Datapoint> cancelledFlightsList = new ArrayList<Datapoint>();
+        Datapoint[] lastQuery = lastQueryList.toArray(new Datapoint[0]);
 
+        println("These flights are calcelled:");
+        for (int i = 0; i < lastQuery.length; i++) {
+            if (lastQuery[i].isCancelled()) {
+                cancelledFlightsList.add(lastQuery[i]);
+                println(cancelledFlightsList.size() + "> " + lastQuery[i].flightCode + " on " + lastQuery[i].flightDate + " is cancelled.");
+            }
+        }
+        println("There are " + cancelledFlightsList.size() + " diverted flights out of " + lastQuery.length + " flights.");
+        return cancelledFlightsList;
+    }
+    
+    
 
+  ArrayList<Datapoint> flightsTo(String airportCode) {
+    // queries function: print all the flights going to passed airport code
+   ArrayList<Datapoint> flightsToList = new ArrayList<Datapoint>(lastQueryList.stream()
+    .filter(datapoint -> datapoint.destIs(airportCode))
+    .collect(Collectors.toList()));
+    
+    println(getReport(flightsToList, FLIGHTS_TO));
+    return flightsToList;
+  }
+  
 // This is for flights by particular carrier
     ArrayList<Datapoint> flightsByCarrier(String carrierCode) {
       ArrayList<Datapoint> flightsByCarrierList = new ArrayList<Datapoint>(lastQueryList.stream()

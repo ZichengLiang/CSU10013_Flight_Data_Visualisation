@@ -25,8 +25,6 @@ void settings() {
   size(SCREENX, SCREENY);
 }
 void setup() {
-  //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
-  thePieChart = new PieChart();
   //Daniel 15/03/24 initialized BarCharts here
   BarChart barChart = new BarChart(this); // Create a new BarChart instance
 
@@ -39,13 +37,27 @@ void setup() {
 
   datapoints = loadDatapoints("flights2k.csv");
 
+  // Query functions test cases:
+  Query fromWholeDataSet = new Query();
+  int totalFlights    = fromWholeDataSet.lastQueryList.size();
+  int cancelledNumber = fromWholeDataSet.cancelledFlights().size();
+  //int cancelledNumberPercent = cancelledNumber/totalFlights;
+  int divertedNumber  = fromWholeDataSet.divertedFlights().size();
+  //int divertedNumberPercent = divertedNumber/totalFlights;
+  
+  int totalUnaffected = totalFlights-(divertedNumber + cancelledNumber);
+  //int flightsUnaffected = totalFlights - (cancelledNumber + divertedNumber);
+  
+  int[] AFlights = {divertedNumber,cancelledNumber,totalUnaffected};
+  //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
+  thePieChart = new PieChart(AFlights);
   // Zicheng  20/03/24 Initialised flight distances to bar chart
   Query fromWholeDataset = new Query();
   ArrayList<Datapoint> flightRoute = fromWholeDataset.flightRoute("JFK", "LAX");
   ArrayList<Datapoint> testFlights = fromWholeDataset.flightsFrom("JFK");
   ArrayList<Datapoint> sortedFlights = sortByDistance(testFlights);
   
-  Datapoint[] flights = testFlights.toArray(Datapoint[]::new);
+  Datapoint[] flights = sortedFlights.toArray(Datapoint[]::new);
 
   float[] flightDistance = new float[flights.length];
   for (int i = 0; i < flights.length; i++) {
@@ -73,6 +85,7 @@ void setup() {
   theBarChart = new TheBarChart(barChart, topDistances, topDestinations);
 
 
+
   // Buttons
   Screens = new Screen();
   //the side bar buttons here:
@@ -85,7 +98,7 @@ void setup() {
 
 //displaynum = 10
 void draw() {
-
+  noStroke();
   background(BACKGROUND_COLOUR);
   
   textSize(12);
@@ -200,6 +213,7 @@ boolean inTopDestinations(String airport, String[] topDestinations) {
 
 ArrayList<Datapoint> sortByDistance(ArrayList<Datapoint> input){
   ArrayList<Datapoint> sortedList = new ArrayList<Datapoint>(input);
-  Collections.sort(sortedList, (item1, item2) -> Integer.compare(item1.getDistance(), item2.getDistance()));
+
+  Collections.sort(input, (item2, item1) -> Integer.compare(item1.getDistance(), item2.getDistance()));
   return sortedList;
 }
