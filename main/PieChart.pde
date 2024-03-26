@@ -38,10 +38,7 @@ class PieChart {
  // }
   
   void  draw() {
-     
-    background(49,34,200);
     pieChart(300);
-
   }
   
   void pieChart(float diameter) {
