@@ -7,7 +7,14 @@ PFont body;
 int displayNum = 10; // Display this many entries on each screen;
 int startingEntry = 0; // Display from this entry number;
 Table table;
-int fontSize = 5; // Font size for the table
+int fontSize = 5; 
+int tableX = 250; 
+int tableY = 10; 
+int tableWidth = 200; 
+int tableHeight = 200; 
+int rowHeight = 20; 
+int columnWidth = 100; 
+
 
 // Oliver, 15th March: creation of widgets to swicth between screens
 Screen Screens;
@@ -54,7 +61,6 @@ void setup(){
   fill(200);
   rect(280, 510, 120, 40); // Adjusted position and size for bottom row
   fill(0);
-  displayTableData();
   textAlign(CENTER, CENTER);
   textSize(16);
   text("Button 1", 280, 500); // Adjusted position for button label
@@ -75,9 +81,10 @@ void setup(){
   textSize(16);
   text("Button 3", 580, 500); // Adjusted position for button label
 }
-void displayTableData() {
+void displayTableData(int xcoordinate, int ycoordinate, int width, int height) {
   textAlign(LEFT, CENTER); // Align text to the left
   textSize(fontSize);
+  
   // Calculate the maximum width for each column
   float[] columnWidths = new float[table.getColumnCount()];
   for (int colIndex = 0; colIndex < table.getColumnCount(); colIndex++) {
@@ -91,28 +98,30 @@ void displayTableData() {
     columnWidths[colIndex] = maxColumnWidth;
   }
   
-  float x = 20;
-  float y = 40; // Starting y position, increased to leave space for column headings
+  float x = xcoordinate; // Start at the x coordinate specified
+  float y = ycoordinate; // Starting y position, set by ycoordinate parameter
   
   fill(0);
+  // Display column headers
   for (int i = 0; i < table.getColumnCount(); i++) {
     String columnName = table.getColumnTitle(i);
-    text(columnName, x, 20);
+    text(columnName, x, y);
     x += columnWidths[i] + 30; // Move to the next column
   }
   
-  y += 20; // Move down below the headings
+  y += 20; // Move down below the headings to start displaying rows
+  
+  // Display row data
   for (TableRow row : table.rows()) {
-    x = 20; // Reset x position for each row
+    x = xcoordinate; // Reset x position to start for each row, adhering to the left alignment requirement
     for (int colIndex = 0; colIndex < table.getColumnCount(); colIndex++) {
       String cellData = row.getString(colIndex);
       text(cellData, x, y);
       x += columnWidths[colIndex] + 30; // Move to the next column
     }
-    y += textAscent() + 5; // Move down for the next row
+    y += textAscent() + 5; // Move down for the next row, ensuring rows are spaced out properly
   }
 }
-
 
 
   

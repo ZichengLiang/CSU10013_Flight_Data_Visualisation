@@ -58,6 +58,8 @@ class Screen
       case 1:
       fill(255,255,0);
       rect(startX, startY, screenX, screenY);
+      displayTableData(tableX, tableY, tableWidth, tableHeight);
+
       break;
       
       case 2:
