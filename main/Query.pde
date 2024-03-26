@@ -107,23 +107,6 @@ class Query {
     return flightsToList;
   }
   
-  // This is for displaying diverted flights
-   ArrayList<Datapoint> divertedFlights() {
-        ArrayList<Datapoint> divertedFlightsList = new ArrayList<Datapoint>();
-        Datapoint[] lastQuery = lastQueryList.toArray(new Datapoint[0]);
-
-        println("These flights are diverted:");
-        for (int i = 0; i < lastQuery.length; i++) {
-            if (lastQuery[i].isDiverted()) {
-                divertedFlightsList.add(lastQuery[i]);
-                println(divertedFlightsList.size() + "> " + lastQuery[i].flightCode + " on " + lastQuery[i].flightDate + " is diverted.");
-            }
-        }
-        println("There are " + divertedFlightsList.size() + " diverted flights out of " + lastQuery.length + " flights.");
-        return divertedFlightsList;
-    }
-
-
 // This is for flights by particular carrier
     // when you're copying and pasting codes, please be careful with the indentation
     ArrayList<Datapoint> flightsByCarrier(String carrierCode) {
