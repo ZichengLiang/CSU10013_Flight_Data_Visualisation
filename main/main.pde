@@ -8,16 +8,6 @@ PFont body;
 int displayNum = 10; // Display this many entries on each screen;
 int startingEntry = 0; // Display from this entry number;
 boolean drawBarChart = false; // Used to check if bar chart is used
-Table table;
-int fontSize = 6; 
-int tableX = 280; 
-int tableY = 10; 
-int tableWidth = 200; 
-int tableHeight = 200; 
-int rowHeight = 20; 
-int columnWidth = 100; 
-float scrollY = 0;
-
 
 // Oliver, 15th March: creation of widgets to swicth between screens
 Screen Screens;
