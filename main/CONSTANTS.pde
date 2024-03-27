@@ -22,7 +22,6 @@ final int DIVERTED_FLIGHTS = 2;
 final int FLIGHTS_BY_CARRIER = 3;
 final int FLIGHTS_ON_DATE = 4;
 final int LATE_FLIGHTS = 5;
-final int FLIGHT_ROUTE = 6;
 
 //barchart color
 final color BAR_COLOUR = #FFB310; // yellow
