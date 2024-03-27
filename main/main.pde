@@ -14,6 +14,8 @@ Screen Screens;
 Widget[] buttons;
 Widget[] buttonsHorizontal;
 WidgetType2 showCase;
+
+Map map;
 //Muireann O'Neill 15/03/24 11:12 declaring Charts here;
 PieChart thePieChart;
 
@@ -116,6 +118,9 @@ void setup() {
 
   showCase = new WidgetType2(SCREENX/1.5, SCREENY/6, SCREENX/1.01, SCREENY/3,
    255, body);
+   
+  // Oliver 26th March: Map work
+  map = new Map(SCREENX/1.5, 3*SCREENY/4);
 }
 
 //displaynum = 10
