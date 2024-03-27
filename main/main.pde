@@ -14,7 +14,7 @@ int tableWidth = 200;
 int tableHeight = 200; 
 int rowHeight = 20; 
 int columnWidth = 100; 
-
+float scrollY = 0;
 
 // Oliver, 15th March: creation of widgets to swicth between screens
 Screen Screens;
@@ -98,8 +98,8 @@ void displayTableData(int xcoordinate, int ycoordinate, int width, int height) {
     columnWidths[colIndex] = maxColumnWidth;
   }
   
-  float x = xcoordinate; // Start at the x coordinate specified
-  float y = ycoordinate; // Starting y position, set by ycoordinate parameter
+  float x = xcoordinate;
+  float y = ycoordinate + scrollY;
   
   fill(0);
   // Display column headers
@@ -124,8 +124,21 @@ void displayTableData(int xcoordinate, int ycoordinate, int width, int height) {
 }
 
 
+void keyPressed() {
+  if (keyCode == UP) {
+    scrollY += 20; // Consider reversing direction if needed
+  } else if (keyCode == DOWN) {
+    scrollY -= 20; // Consider reversing direction if needed
+  }
+  
+  // Update the constrain logic if necessary
+  scrollY = constrain(scrollY, -(table.getRowCount() * (textAscent() + 5) + 100 - height), 0);
+}
+
+
   
 void mousePressed(){
+  scrollY -= 20;
   startingEntry += displayNum;
   if (startingEntry > datapoints.length){
     startingEntry = 0; // go back to the begining;
