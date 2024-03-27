@@ -10,6 +10,16 @@ int startingEntry = 0; // Display from this entry number;
 int sideBarButtonsNum = 5;
 int horizontalButtonsNum = 3;
 boolean drawBarChart = false; // Used to check if bar chart is used
+Table table;
+int fontSize = 6; 
+int tableX = 280; 
+int tableY = 10; 
+int tableWidth = 200; 
+int tableHeight = 200; 
+int rowHeight = 20; 
+int columnWidth = 100; 
+float scrollY = 0;
+
 
 // Oliver, 15th March: creation of widgets to switch between screens
 Screen Screens;
