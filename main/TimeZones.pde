@@ -12,6 +12,8 @@
     }
     
 
+
+
 void getFlightSummary(String airlineCode, int flightNumber) {
     // Iterate through the datapoints and find the matching flight
     for (Datapoint flight : datapoints) {
@@ -49,8 +51,6 @@ void getFlightSummary(String airlineCode, int flightNumber) {
     // Print a message if the flight is not found
     System.out.println("Flight not found for airline: " + airlineCode + ", flight number: " + flightNumber);
 }
-
-
 String getTimeString(int minutes) {
     int hours = minutes / 60;
     int mins = minutes % 60;
