@@ -9,9 +9,9 @@ int displayNum = 10; // Display this many entries on each screen;
 int startingEntry = 0; // Display from this entry number;
 boolean drawBarChart = false; // Used to check if bar chart is used
 Table table;
-int fontSize = 8; 
-int tableX = 340; 
-int tableY = 50; 
+int fontSize = 6; 
+int tableX = 280; 
+int tableY = 10; 
 int tableWidth = 200; 
 int tableHeight = 200; 
 int rowHeight = 20; 
@@ -45,8 +45,6 @@ void setup() {
   textFont(body);
   textSize(12);
   rectMode(CENTER);
-  table = loadTable("flights2k.csv", "header");
-
 
   datapoints = loadDatapoints("flights2k.csv");
 
@@ -159,7 +157,6 @@ void draw() {
 
 
 void mousePressed() {
-  scrollY-=20;
   int event;
   event = showCase.pressed(mouseX, mouseY);
   if (event>-1)

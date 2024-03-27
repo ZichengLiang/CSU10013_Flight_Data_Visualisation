@@ -51,7 +51,6 @@ class Screen
       break;
 
     case 2:
-    //  displayTableData(tableX, tableY, tableWidth, tableHeight);
       fill(SCREEN3);
       rect(startX, startY, screenX, screenY);
       break;
@@ -59,8 +58,6 @@ class Screen
     case 3:
       fill(SCREEN4);
       rect(startX, startY, screenX, screenY);
-      displayTableData(tableX, tableY, tableWidth, tableHeight);
-
       break;
 
     case 4: //Reserved for Bar chart
