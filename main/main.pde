@@ -120,7 +120,7 @@ void setup() {
    255, body);
    
   // Oliver 26th March: Map work
-  map = new Map(SCREENX/1.5, 3*SCREENY/4);
+  map = new Map(SCREENX/10, SCREENY/3, 500, 300, datapoints);
 }
 
 //displaynum = 10
