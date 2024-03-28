@@ -98,6 +98,19 @@ void setup() {
   showCase = new WidgetType2(SCREENX/1.5, SCREENY/6, SCREENX/1.01, SCREENY/3,
    255, body);
    
+
+   //Query for flights by a specific carrier (e.g., American Airlines with carrier code "AA")
+  Query carrierQuery = new Query();
+  ArrayList<Datapoint> bySpecificCarrier = carrierQuery.flightsByCarrier("AA");
+  
+   //Query for flights on a specific date
+    Query onDate = new Query();
+    ArrayList<Datapoint> onSpecificDate = onDate.flightsOnDate("20220101"); // Example: "20240101" for January 1, 2024
+
+// Aryan, 27th March
+    // Get the summary for a specific flight number (replace "XX" with the actual flight number)
+    getFlightSummary("AA", 1); // First enter the airline code within quotes and then enter the flt num
+
   // Oliver 26th March: Map work
   map = new Map(SCREENX/10, SCREENY/3, 500, 300, datapoints);
 }
@@ -121,7 +134,6 @@ void draw() {
   showCase.draw(datapoints);
 }
 
-
 void mousePressed() {
   int event;
   event = showCase.pressed(mouseX, mouseY);
@@ -130,7 +142,7 @@ void mousePressed() {
   {
     startingEntry += displayNum;
     if (startingEntry > datapoints.length) {
-      startingEntry = 0; // go back to the begining;
+      startingEntry = 0; // go back to the beginning;
     }
   }
   for (int i =0; i<buttonsHorizontal.length; i++)
@@ -157,9 +169,9 @@ void mousePressed() {
 
 Datapoint[] loadDatapoints(String fileName) {
   lines = loadStrings(fileName); // Loads in csv file in String array "lines" (each line is an element in array)
-  datapoints = new Datapoint[lines.length];  // Datapoint array datapoints is given the length of lines
+  datapoints = new Datapoint[lines.length - 1];  // Adjusted the size of datapoints array
 
-  for (int i = 0; i < lines.length; i++) {
+  for (int i = 1; i < lines.length; i++) {  // Start reading from the second line
     String[] pieces = split(lines[i], ','); // Got rid of integer and replaced it with constant variable
 
     if (pieces.length == DATAPOINTVARIABLECOUNT) { // checks if all the variables are there, if so, load it
@@ -169,13 +181,13 @@ Datapoint[] loadDatapoints(String fileName) {
       String[] adjustedPieces = new String[DATAPOINTVARIABLECOUNT];
       if (pieces.length == DATAPOINTVARIABLECOUNT - 1 ) { //in the given dataset, cancelled flights have no dep_time and arr_time
         arrayCopy(pieces, 0, adjustedPieces, 0, 16); //copy from first element to CRSArrTime
-        adjustedPieces[16] = " "; // the actual arrive time is set to " ";
+        adjustedPieces[16] = "9999"; // the actual arrive time is set to " ";
         arrayCopy(pieces, 16, adjustedPieces, 17, 3); //copy the last three elements
       } else if (pieces.length == DATAPOINTVARIABLECOUNT - 2 ) { //in the given dataset, cancelled flights have no dep_time and arr_time
         arrayCopy(pieces, 0, adjustedPieces, 0, 14); //copy from first element to CRSDeptTime
-        adjustedPieces[14] = " "; // the actual dept time is set to " ";
+        adjustedPieces[14] = "9999"; // the actual dept time is set to " ";
         adjustedPieces[15] = pieces[14];
-        adjustedPieces[16] = " "; // the actual arr time is set to " ";
+        adjustedPieces[16] = "9999"; // the actual arr time is set to " ";
         arrayCopy(pieces, 15, adjustedPieces, 17, 3); //copy the last three elements
       }
       datapoints[datapointCount] = new Datapoint(adjustedPieces);
