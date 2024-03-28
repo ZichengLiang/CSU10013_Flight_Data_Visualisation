@@ -136,7 +136,6 @@ class Map
 int findColour(Datapoint[] data, String state)
 {
   int point =0;
-  System.out.println(state);
   for(int x=1; x<data.length; x++)
   {
     System.out.print(data[x].originState);

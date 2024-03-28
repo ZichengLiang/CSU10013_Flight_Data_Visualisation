@@ -70,8 +70,9 @@ class Screen
      fill(WELCOMESCREEN);
      rect(startX, startY, screenX, screenY);
      fill(0);
-     textSize(25);
-     text("Welcome to our program. \nPlease press one of the side buttons to begin", startX-screenX/2, startY);
+     textSize(20);
+     textAlign(CENTER);
+     text("Welcome to our program. \nPlease press one of the side buttons to begin", startX, 50);
     }
     textSize(12);
   }

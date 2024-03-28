@@ -95,7 +95,13 @@ void setup() {
     {
       buttons[j] = new Widget(60, (SCREENY/buttons.length)*j+60, 100, 60, "Bar Chart",
         255, body, j);
-    } else
+    }
+    else if(j==2)
+    {
+      buttons[j] = new Widget(60, (SCREENY/buttons.length)*j+60,100, 60, "Map",
+      255, body, j);
+    }
+    else
     {
       buttons[j] = new Widget(60, (SCREENY/buttons.length)*j+60, 100, 60, "button " + j,
         255, body, j);

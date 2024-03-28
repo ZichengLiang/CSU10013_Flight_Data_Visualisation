@@ -18,7 +18,7 @@ class WidgetType2
     this.widgetFont=widgetFont;
     labelColor= color(0);
 
-    show =1;
+    show =-1;
   }
 
   void draw(Datapoint[] data)
