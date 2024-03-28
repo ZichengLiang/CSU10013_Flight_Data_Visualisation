@@ -7,26 +7,27 @@ int datapointCount = 0;
 PFont body;
 int displayNum = 10; // Display this many entries on each screen;
 int startingEntry = 0; // Display from this entry number;
+int sideBarButtonsNum = 5;
+int horizontalButtonsNum = 3;
 boolean drawBarChart = false; // Used to check if bar chart is used
 
 // Oliver, 15th March: creation of widgets to switch between screens
+
 Screen Screens;
 Widget[] buttons;
+Widget[] buttonsHorizontal;
 WidgetType2 showCase;
+
+Map map;
 //Muireann O'Neill 15/03/24 11:12 declaring Charts here;
 PieChart thePieChart;
-
 //Daniel 15/03/24 initialized BarCharts here
 TheBarChart theBarChart;
-//BarChart barChart;
 
-//M: As far as I understand it, draw function won't work properly if size is in setup.
 void settings() {
   size(SCREENX, SCREENY);
 }
 void setup() {
-  //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
-  thePieChart = new PieChart();
   //Daniel 15/03/24 initialized BarCharts here
   BarChart barChart = new BarChart(this); // Create a new BarChart instance
 
@@ -36,21 +37,30 @@ void setup() {
   textFont(body);
   textSize(12);
   rectMode(CENTER);
-
-  datapoints = loadDatapoints("flights2k.csv");
-
-  // Query functions test cases;
-  // Query late = new Query();
-  // late.lateFlights();
-  // flightsTo("JFK");
-
-  // Zicheng  20/03/24 Initialised flight distances to bar chart
-  Query test = new Query();
-  ArrayList<Datapoint> testFlights = test.flightsFrom("JFK");
   
+  datapoints = loadDatapoints("flights2k.csv");
+  table = loadTable("flights2k.csv" , "header");
+  // Query functions test cases:
+  Query fromWholeDataSet = new Query();
+  int totalFlights    = fromWholeDataSet.lastQueryList.size();
+  int cancelledNumber = fromWholeDataSet.cancelledFlights().size();
+  //int cancelledNumberPercent = cancelledNumber/totalFlights;
+  int divertedNumber  = fromWholeDataSet.divertedFlights().size();
+  //int divertedNumberPercent = divertedNumber/totalFlights;
+  
+  int totalUnaffected = totalFlights-(divertedNumber + cancelledNumber);
+  //int flightsUnaffected = totalFlights - (cancelledNumber + divertedNumber);
+  
+  int[] AFlights = {divertedNumber,cancelledNumber,totalUnaffected};
+  //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
+  thePieChart = new PieChart(AFlights);
+  // Zicheng  20/03/24 Initialised flight distances to bar chart
+  Query fromWholeDataset = new Query();
+  ArrayList<Datapoint> flightRoute = fromWholeDataset.flightRoute("JFK", "LAX");
+  ArrayList<Datapoint> testFlights = fromWholeDataset.flightsFrom("JFK");
   ArrayList<Datapoint> sortedFlights = sortByDistance(testFlights);
   
-  Datapoint[] flights = testFlights.toArray(Datapoint[]::new);
+  Datapoint[] flights = sortedFlights.toArray(Datapoint[]::new);
 
   float[] flightDistance = new float[flights.length];
   for (int i = 0; i < flights.length; i++) {
@@ -78,25 +88,17 @@ void setup() {
   theBarChart = new TheBarChart(barChart, topDistances, topDestinations);
 
 
+
   // Buttons
   Screens = new Screen();
   //the side bar buttons here:
-  buttons = new Widget[5];
-  for (int j = 0; j < buttons.length; j++) {
-    buttons[j] = new Widget(60, (SCREENY/buttons.length)*j+60, 100, 60, "button " + j,
-      255, body, j);
-  }
-  showCase = new WidgetType2(SCREENX/1.5, SCREENY/6, SCREENX/1.5, SCREENY/3,
-    255, body, datapoints);
-    Query currentQuery = new Query();
-
-     // Query functions test cases:
-  currentQuery = new Query(); // start a query from the whole dataset;
-  
-  //Query for DIverted flights from and to a particular airport
-  Query airport = new Query();
-  ArrayList<Datapoint> fromWAC22 = airport.flightsFrom("22");
+  initializeSidebarButtons();
+  initializeHorizontalButtons();
+  // Oliver, 22nd March: Working on horix=zontal buttons
+  showCase = new WidgetType2(SCREENX/1.5, SCREENY/6, SCREENX/1.01, SCREENY/3,
+   255, body);
    
+
    //Query for flights by a specific carrier (e.g., American Airlines with carrier code "AA")
   Query carrierQuery = new Query();
   ArrayList<Datapoint> bySpecificCarrier = carrierQuery.flightsByCarrier("AA");
@@ -109,12 +111,14 @@ void setup() {
     // Get the summary for a specific flight number (replace "XX" with the actual flight number)
     getFlightSummary("AA", 1); // First enter the airline code within quotes and then enter the flt num
 
-
-
+  // Oliver 26th March: Map work
+  map = new Map(SCREENX/10, SCREENY/3, 500, 300, datapoints);
 }
+
 
 //displaynum = 10
 void draw() {
+  noStroke();
   background(BACKGROUND_COLOUR);
   
   textSize(12);
@@ -123,40 +127,33 @@ void draw() {
   {
     buttons[i].draw();
   }
-  showCase.draw();
-  // Draw button 1
-  fill(200);
-  rect(280, 610, 120, 40); // Adjusted position and size for bottom row
-  fill(0);
-  textAlign(CENTER, CENTER);
-  textSize(16);
-  text("Button 1", 280, 600); // Adjusted position for button label
-
-  // Draw button 2
-  fill(200);
-  rect(430, 610, 120, 40); // Adjusted position and size for bottom row
-  fill(0);
-  textAlign(CENTER, CENTER);
-  textSize(16);
-  text("Button 2", 430, 600); // Adjusted position for button label
-
-  // Draw button 3
-  fill(200);
-  rect(580, 610, 120, 40); // Adjusted position and size for bottom row
-  fill(0);
-  textAlign(CENTER, CENTER);
-  textSize(16);
-  text("Button 3", 580, 600); // Adjusted position for button label
+  for (int i=0; i<buttonsHorizontal.length; i++)
+  {
+    buttonsHorizontal[i].draw();
+  }
+  showCase.draw(datapoints);
 }
 
 void mousePressed() {
   int event;
   event = showCase.pressed(mouseX, mouseY);
+  scrollY -= 20;
   if (event>-1)
   {
     startingEntry += displayNum;
     if (startingEntry > datapoints.length) {
       startingEntry = 0; // go back to the beginning;
+    }
+  }
+  for (int i =0; i<buttonsHorizontal.length; i++)
+  {
+    event=buttonsHorizontal[i].getEvent(mouseX, mouseY);
+    if (event>=0)
+    {
+      if (event==0)
+      {
+        showCase.show=-showCase.show;
+      }
     }
   }
   for (int i =0; i<buttons.length; i++)
@@ -201,6 +198,30 @@ Datapoint[] loadDatapoints(String fileName) {
   return datapoints; // this is an array of Datapoint instances
 }
 
+void initializeSidebarButtons() {
+  buttons = new Widget[sideBarButtonsNum];
+  for (int j = 0; j < buttons.length; j++) {
+    if (j == 1) {
+      buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, "Pie Chart", 255, body, j);
+    } else if (j == 4) {
+      buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, "Bar Chart", 255, body, j);
+    } else {
+      buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, "button " + j, 255, body, j);
+    }
+  }
+}
+
+void initializeHorizontalButtons() {
+  buttonsHorizontal = new Widget[horizontalButtonsNum];
+  for (int j = 0; j < buttonsHorizontal.length; j++) {
+    if (j == 0) {
+      buttonsHorizontal[j] = new Widget(((SCREENX - SCREENX / 1.99) / buttonsHorizontal.length) * j + SCREENX / 4, SCREENY - 65, 100, 60, "Toggle data", 255, body, j);
+    } else {
+      buttonsHorizontal[j] = new Widget(((SCREENX - SCREENX / 1.99) / buttonsHorizontal.length) * j + SCREENX / 4, SCREENY - 65, 100, 60, "button" + j, 255, body, j);
+    }
+  }
+}
+
 boolean inTopDestinations(String airport, String[] topDestinations) {
   for (String destination : topDestinations) {
     if (airport.equals(destination)) {
@@ -211,7 +232,8 @@ boolean inTopDestinations(String airport, String[] topDestinations) {
 }
 
 ArrayList<Datapoint> sortByDistance(ArrayList<Datapoint> input){
-  ArrayList<Datapoint> sortedList = new ArrayList<>(input);
-  Collections.sort(sortedList, (item1, item2) -> Integer.compare(item1.getDistance(), item2.getDistance()));
+  ArrayList<Datapoint> sortedList = new ArrayList<Datapoint>(input);
+
+  Collections.sort(input, (item2, item1) -> Integer.compare(item1.getDistance(), item2.getDistance()));
   return sortedList;
 }
