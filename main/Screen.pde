@@ -71,7 +71,7 @@ class Screen
       break;
       
      default:
-     fill(WELCOMESCREEN);
+ //    fill(WELCOMESCREEN);
      rect(startX, startY, screenX, screenY);
      fill(0);
      textSize(25);
