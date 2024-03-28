@@ -37,7 +37,7 @@ void setup() {
   rectMode(CENTER);
   
   datapoints = loadDatapoints("flights2k.csv");
-  table = loadTable("flights2k.csv", "header");
+  table = loadTable("flights2k.csv" , "header");
   // Query functions test cases:
   Query fromWholeDataSet = new Query();
   int totalFlights    = fromWholeDataSet.lastQueryList.size();

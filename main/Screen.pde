@@ -57,7 +57,7 @@ class Screen
       fill(SCREEN3);
       rect(startX, startY, screenX, screenY);
       
-      displayTableData(tableX, tableY, tableWidth, tableheight);
+      displayTableData(tableX, tableY, tableWidth, tableHeight);
       break;
 
     case 3:
