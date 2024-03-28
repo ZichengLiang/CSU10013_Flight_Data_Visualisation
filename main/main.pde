@@ -6,15 +6,7 @@ int datapointCount = 0;
 PFont body;
 int displayNum = 10; // Display this many entries on each screen;
 int startingEntry = 0; // Display from this entry number;
-Table table;
-int fontSize = 6; 
-int tableX = 280; 
-int tableY = 10; 
-int tableWidth = 200; 
-int tableHeight = 200; 
-int rowHeight = 20; 
-int columnWidth = 100; 
-float scrollY = 0;
+
 
 // Oliver, 15th March: creation of widgets to swicth between screens
 Screen Screens;
@@ -80,47 +72,6 @@ void setup(){
   textAlign(CENTER, CENTER);
   textSize(16);
   text("Button 3", 580, 500); // Adjusted position for button label
-}
-void displayTableData(int xcoordinate, int ycoordinate, int width, int height) {
-  textAlign(LEFT, CENTER); // Align text to the left
-  textSize(fontSize);
-  
-  // Calculate the maximum width for each column
-  float[] columnWidths = new float[table.getColumnCount()];
-  for (int colIndex = 0; colIndex < table.getColumnCount(); colIndex++) {
-    float maxColumnWidth = textWidth(table.getColumnTitle(colIndex)); // Start with column header width
-    for (TableRow row : table.rows()) {
-      float cellWidth = textWidth(row.getString(colIndex));
-      if (cellWidth > maxColumnWidth) {
-        maxColumnWidth = cellWidth;
-      }
-    }
-    columnWidths[colIndex] = maxColumnWidth;
-  }
-  
-  float x = xcoordinate;
-  float y = ycoordinate + scrollY;
-  
-  fill(0);
-  // Display column headers
-  for (int i = 0; i < table.getColumnCount(); i++) {
-    String columnName = table.getColumnTitle(i);
-    text(columnName, x, y);
-    x += columnWidths[i] + 30; // Move to the next column
-  }
-  
-  y += 20; // Move down below the headings to start displaying rows
-  
-  // Display row data
-  for (TableRow row : table.rows()) {
-    x = xcoordinate; // Reset x position to start for each row, adhering to the left alignment requirement
-    for (int colIndex = 0; colIndex < table.getColumnCount(); colIndex++) {
-      String cellData = row.getString(colIndex);
-      text(cellData, x, y);
-      x += columnWidths[colIndex] + 30; // Move to the next column
-    }
-    y += textAscent() + 5; // Move down for the next row, ensuring rows are spaced out properly
-  }
 }
 
 
