@@ -7,21 +7,23 @@ int datapointCount = 0;
 PFont body;
 int displayNum = 10; // Display this many entries on each screen;
 int startingEntry = 0; // Display from this entry number;
+int sideBarButtonsNum = 5;
+int horizontalButtonsNum = 3;
 boolean drawBarChart = false; // Used to check if bar chart is used
 
-// Oliver, 15th March: creation of widgets to swicth between screens
+// Oliver, 15th March: creation of widgets to switch between screens
+
 Screen Screens;
 Widget[] buttons;
 Widget[] buttonsHorizontal;
 WidgetType2 showCase;
+
+Map map;
 //Muireann O'Neill 15/03/24 11:12 declaring Charts here;
 PieChart thePieChart;
-
 //Daniel 15/03/24 initialized BarCharts here
 TheBarChart theBarChart;
-//BarChart barChart;
 
-//M: As far as I understand it, draw function won't work properly if size is in setup.
 void settings() {
   size(SCREENX, SCREENY);
 }
@@ -35,10 +37,9 @@ void setup() {
   textFont(body);
   textSize(12);
   rectMode(CENTER);
-
+  
   datapoints = loadDatapoints("flights2k.csv");
-
-
+  table = loadTable("flights2k.csv" , "header");
   // Query functions test cases:
   Query fromWholeDataSet = new Query();
   int totalFlights    = fromWholeDataSet.lastQueryList.size();
@@ -54,12 +55,12 @@ void setup() {
   //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
   thePieChart = new PieChart(AFlights);
   // Zicheng  20/03/24 Initialised flight distances to bar chart
-  Query test = new Query();
-  ArrayList<Datapoint> testFlights = test.flightsFrom("JFK");
-  
+  Query fromWholeDataset = new Query();
+  ArrayList<Datapoint> flightRoute = fromWholeDataset.flightRoute("JFK", "LAX");
+  ArrayList<Datapoint> testFlights = fromWholeDataset.flightsFrom("JFK");
   ArrayList<Datapoint> sortedFlights = sortByDistance(testFlights);
   
-  Datapoint[] flights = testFlights.toArray(Datapoint[]::new);
+  Datapoint[] flights = sortedFlights.toArray(Datapoint[]::new);
 
   float[] flightDistance = new float[flights.length];
   for (int i = 0; i < flights.length; i++) {
@@ -91,41 +92,30 @@ void setup() {
   // Buttons
   Screens = new Screen();
   //the side bar buttons here:
-  buttons = new Widget[5];
-  buttonsHorizontal = new Widget[3];
-  for (int j = 0; j < buttons.length; j++) {
-    if (j==1)
-    {
-      buttons[j] = new Widget(60, (SCREENY/buttons.length)*j+60, 100, 60,20, "Pie Chart",
-        255, body, j);
-    } else if (j==4)
-    {
-      buttons[j] = new Widget(60, (SCREENY/buttons.length)*j+60, 100, 60,20, "Bar Chart",
-        255, body, j);
-    } else
-    {
-      buttons[j] = new Widget(60, (SCREENY/buttons.length)*j+60, 100, 60,20, "button " + j,
-        255, body, j);
-    }
-  }
-  for (int j = 0; j<buttonsHorizontal.length; j++)
-  {
-    if (j==0)
-    {
-      buttonsHorizontal[j] = new Widget( ((SCREENX-SCREENX/1.99)/buttonsHorizontal.length)*j+SCREENX/4, SCREENY-65, 100, 60, 20, "Toggle data",
-        255, body, j);
-    } else
-    {
-      buttonsHorizontal[j] = new Widget( ((SCREENX-SCREENX/1.99)/buttonsHorizontal.length)*j+SCREENX/4, SCREENY-65, 100, 60, 20, "button"+j,
-        255, body, j);
-    }
-  }
 
+  initializeSidebarButtons();
+  initializeHorizontalButtons();
   // Oliver, 22nd March: Working on horix=zontal buttons
-
   showCase = new WidgetType2(SCREENX/1.5, SCREENY/6, SCREENX/1.01, SCREENY/3,
    255, body);
+   
+
+   //Query for flights by a specific carrier (e.g., American Airlines with carrier code "AA")
+  Query carrierQuery = new Query();
+  ArrayList<Datapoint> bySpecificCarrier = carrierQuery.flightsByCarrier("AA");
+  
+   //Query for flights on a specific date
+    Query onDate = new Query();
+    ArrayList<Datapoint> onSpecificDate = onDate.flightsOnDate("20220101"); // Example: "20240101" for January 1, 2024
+
+// Aryan, 27th March
+    // Get the summary for a specific flight number (replace "XX" with the actual flight number)
+    getFlightSummary("AA", 1); // First enter the airline code within quotes and then enter the flt num
+
+  // Oliver 26th March: Map work
+  map = new Map(SCREENX/10, SCREENY/3, 500, 300, datapoints);
 }
+
 
 //displaynum = 10
 void draw() {
@@ -145,15 +135,15 @@ void draw() {
   showCase.draw(datapoints);
 }
 
-
 void mousePressed() {
   int event;
   event = showCase.pressed(mouseX, mouseY);
+  scrollY -= 20;
   if (event>-1)
   {
     startingEntry += displayNum;
     if (startingEntry > datapoints.length) {
-      startingEntry = 0; // go back to the begining;
+      startingEntry = 0; // go back to the beginning;
     }
   }
   for (int i =0; i<buttonsHorizontal.length; i++)
@@ -180,9 +170,9 @@ void mousePressed() {
 
 Datapoint[] loadDatapoints(String fileName) {
   lines = loadStrings(fileName); // Loads in csv file in String array "lines" (each line is an element in array)
-  datapoints = new Datapoint[lines.length];  // Datapoint array datapoints is given the length of lines
+  datapoints = new Datapoint[lines.length - 1];  // Adjusted the size of datapoints array
 
-  for (int i = 0; i < lines.length; i++) {
+  for (int i = 1; i < lines.length; i++) {  // Start reading from the second line
     String[] pieces = split(lines[i], ','); // Got rid of integer and replaced it with constant variable
 
     if (pieces.length == DATAPOINTVARIABLECOUNT) { // checks if all the variables are there, if so, load it
@@ -192,13 +182,13 @@ Datapoint[] loadDatapoints(String fileName) {
       String[] adjustedPieces = new String[DATAPOINTVARIABLECOUNT];
       if (pieces.length == DATAPOINTVARIABLECOUNT - 1 ) { //in the given dataset, cancelled flights have no dep_time and arr_time
         arrayCopy(pieces, 0, adjustedPieces, 0, 16); //copy from first element to CRSArrTime
-        adjustedPieces[16] = " "; // the actual arrive time is set to " ";
+        adjustedPieces[16] = "9999"; // the actual arrive time is set to " ";
         arrayCopy(pieces, 16, adjustedPieces, 17, 3); //copy the last three elements
       } else if (pieces.length == DATAPOINTVARIABLECOUNT - 2 ) { //in the given dataset, cancelled flights have no dep_time and arr_time
         arrayCopy(pieces, 0, adjustedPieces, 0, 14); //copy from first element to CRSDeptTime
-        adjustedPieces[14] = " "; // the actual dept time is set to " ";
+        adjustedPieces[14] = "9999"; // the actual dept time is set to " ";
         adjustedPieces[15] = pieces[14];
-        adjustedPieces[16] = " "; // the actual arr time is set to " ";
+        adjustedPieces[16] = "9999"; // the actual arr time is set to " ";
         arrayCopy(pieces, 15, adjustedPieces, 17, 3); //copy the last three elements
       }
       datapoints[datapointCount] = new Datapoint(adjustedPieces);
@@ -207,6 +197,30 @@ Datapoint[] loadDatapoints(String fileName) {
   } // for loop ends here
 
   return datapoints; // this is an array of Datapoint instances
+}
+
+void initializeSidebarButtons() {
+  buttons = new Widget[sideBarButtonsNum];
+  for (int j = 0; j < buttons.length; j++) {
+    if (j == 1) {
+      buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, "Pie Chart", 255, body, j);
+    } else if (j == 4) {
+      buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, "Bar Chart", 255, body, j);
+    } else {
+      buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, "button " + j, 255, body, j);
+    }
+  }
+}
+
+void initializeHorizontalButtons() {
+  buttonsHorizontal = new Widget[horizontalButtonsNum];
+  for (int j = 0; j < buttonsHorizontal.length; j++) {
+    if (j == 0) {
+      buttonsHorizontal[j] = new Widget(((SCREENX - SCREENX / 1.99) / buttonsHorizontal.length) * j + SCREENX / 4, SCREENY - 65, 100, 60, "Toggle data", 255, body, j);
+    } else {
+      buttonsHorizontal[j] = new Widget(((SCREENX - SCREENX / 1.99) / buttonsHorizontal.length) * j + SCREENX / 4, SCREENY - 65, 100, 60, "button" + j, 255, body, j);
+    }
+  }
 }
 
 boolean inTopDestinations(String airport, String[] topDestinations) {
@@ -219,7 +233,8 @@ boolean inTopDestinations(String airport, String[] topDestinations) {
 }
 
 ArrayList<Datapoint> sortByDistance(ArrayList<Datapoint> input){
-  ArrayList<Datapoint> sortedList = new ArrayList<>(input);
-  Collections.sort(sortedList, (item1, item2) -> Integer.compare(item1.getDistance(), item2.getDistance()));
+  ArrayList<Datapoint> sortedList = new ArrayList<Datapoint>(input);
+
+  Collections.sort(input, (item2, item1) -> Integer.compare(item1.getDistance(), item2.getDistance()));
   return sortedList;
 }

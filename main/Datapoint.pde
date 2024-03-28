@@ -1,24 +1,35 @@
+// Aryan, Friday 22nd March: imported the following java.time package
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Locale;
+import java.time.ZoneId;
+import java.util.HashMap;
+
 // Zicheng, 12th March, 18:00: created the Datapoint class;
-class Datapoint{
-    
+class Datapoint {
     // Zicheng, 12th March, 18:00: fields added according to the .csv files;
-    
+
     // flight date infos
     String flightDate, flightDay, flightMonth;
     // flight code infos
-    String carrierCode; int  flightNumber; String flightCode;
+    String carrierCode;
+    int flightNumber;
+    String flightCode;
     // flight origin & destination infos
-    String origin, originCityNamePart1, originCityNamePart2, originState; int originWac;
-    String dest, destCityNamePart1, destCityNamePart2, destState; int destWac;
+    String origin, originCityNamePart1, originCityNamePart2, originState;
+    int originWac;
+    String dest, destCityNamePart1, destCityNamePart2, destState;
+    int destWac;
     // flight delay and duration infos
-    int  CRSDepTime, depTime, CRSArrTime, arrTime;
+    int CRSDepTime, depTime, CRSArrTime, arrTime;
     int cancelled, diverted;
     // flight distance;
     int distance;
-    
+
     String combinedOriginCityName, combinedDestCityName;
     int lateDepMinutes, lateArrMinutes, plannedFlightDuration, actualFlightDuration;
-    
+
     // Zicheng, 12th March, 21:00: a constructor with all parameters;
      public Datapoint(String[] pieces){
       flightDate = pieces[0];
@@ -257,5 +268,28 @@ class Datapoint{
      String output = new String(process, 1, process.length-2);
      return output;
    }
+   
+   private final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("MM/dd/yyyy HHmm", Locale.US);
+
+    public String getOriginTimezone() {
+        if (AirportTimezones.airportTimezones.containsKey(origin)) {
+            return AirportTimezones.airportTimezones.get(origin);
+        } else {
+            return "UTC";
+        }
+    }
+
+    public String getDestinationTimezone() {
+        if (AirportTimezones.airportTimezones.containsKey(dest)) {
+            return AirportTimezones.airportTimezones.get(dest);
+        } else {
+            return "UTC";
+        }
+    }
+    
+    private char[] shorten(char[] array) {
+        return array;
+    }
+
    
   }
