@@ -8,6 +8,8 @@ final int EVENT_BUTTON2=2;
 final int EVENT_NULL=-1;
 // colours
 final color BACKGROUND_COLOUR = #909018; // olive-green
+
+final color WELCOMESCREEN = #D77186;
 final color SCREEN1 = #D77186; // pink
 final color SCREEN2 = #6CB7DA; // light-blue
 final color SCREEN3 = #61A2DA; // blue
