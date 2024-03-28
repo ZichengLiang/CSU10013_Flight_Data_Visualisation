@@ -141,7 +141,7 @@ int findColour(Datapoint[] data, String state)
     System.out.print(data[x].originState);
     if(data[x].originState.equals(state))
     {
-      point+=5;
+      point+=3;
     }
   }
   System.out.println(point);
