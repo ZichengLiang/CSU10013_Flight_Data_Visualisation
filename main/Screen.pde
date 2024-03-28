@@ -17,6 +17,7 @@ class Screen
   Screen()
   {
     //Screen area
+
     screenX = (SCREENX/1.01)-(2*borders);
     screenY = SCREENY-(2*borders);
     //Screen location
@@ -39,20 +40,24 @@ class Screen
   {
     switch(screenType)
     {
-    case 0:
+    case 0: 
       fill(SCREEN1);
       rect(startX, startY, screenX, screenY);
+
       break;
 
     case 1: //Reserved for Pie Chart
       fill(SCREEN2);
       rect(startX, startY, screenX, screenY);
+
       thePieChart.draw();
       break;
 
-    case 2:
+    case 2: // reserved for table
       fill(SCREEN3);
       rect(startX, startY, screenX, screenY);
+      
+      displayTableData(tableX, tableY, tableWidth, tableHeight);
       break;
 
     case 3:

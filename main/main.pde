@@ -12,6 +12,7 @@ int horizontalButtonsNum = 3;
 boolean drawBarChart = false; // Used to check if bar chart is used
 
 // Oliver, 15th March: creation of widgets to switch between screens
+
 Screen Screens;
 Widget[] buttons;
 Widget[] buttonsHorizontal;
@@ -34,9 +35,9 @@ void setup() {
   textFont(body);
   textSize(12);
   rectMode(CENTER);
-
+  
   datapoints = loadDatapoints("flights2k.csv");
-
+  table = loadTable("flights2k.csv" , "header");
   // Query functions test cases:
   Query fromWholeDataSet = new Query();
   int totalFlights    = fromWholeDataSet.lastQueryList.size();
@@ -96,6 +97,7 @@ void setup() {
    255, body);
 }
 
+
 //displaynum = 10
 void draw() {
   noStroke();
@@ -118,6 +120,7 @@ void draw() {
 void mousePressed() {
   int event;
   event = showCase.pressed(mouseX, mouseY);
+  scrollY -= 20;
   if (event>-1)
   {
     startingEntry += displayNum;
