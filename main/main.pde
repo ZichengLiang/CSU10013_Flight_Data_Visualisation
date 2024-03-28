@@ -37,9 +37,9 @@ void setup() {
   textFont(body);
   textSize(12);
   rectMode(CENTER);
-  
+
   datapoints = loadDatapoints("flights2k.csv");
-  table = loadTable("flights2k.csv" , "header");
+  table = loadTable("flights2k.csv", "header");
   // Query functions test cases:
   Query fromWholeDataSet = new Query();
   int totalFlights    = fromWholeDataSet.lastQueryList.size();
@@ -47,11 +47,11 @@ void setup() {
   //int cancelledNumberPercent = cancelledNumber/totalFlights;
   int divertedNumber  = fromWholeDataSet.divertedFlights().size();
   //int divertedNumberPercent = divertedNumber/totalFlights;
-  
+
   int totalUnaffected = totalFlights-(divertedNumber + cancelledNumber);
   //int flightsUnaffected = totalFlights - (cancelledNumber + divertedNumber);
-  
-  int[] AFlights = {divertedNumber,cancelledNumber,totalUnaffected};
+
+  int[] AFlights = {divertedNumber, cancelledNumber, totalUnaffected};
   //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
   thePieChart = new PieChart(AFlights);
   // Zicheng  20/03/24 Initialised flight distances to bar chart
@@ -59,7 +59,7 @@ void setup() {
   ArrayList<Datapoint> flightRoute = fromWholeDataset.flightRoute("JFK", "LAX");
   ArrayList<Datapoint> testFlights = fromWholeDataset.flightsFrom("JFK");
   ArrayList<Datapoint> sortedFlights = sortByDistance(testFlights);
-  
+
   Datapoint[] flights = sortedFlights.toArray(Datapoint[]::new);
 
   float[] flightDistance = new float[flights.length];
@@ -92,11 +92,12 @@ void setup() {
   // Buttons
   Screens = new Screen();
   //the side bar buttons here:
-
   initializeSidebarButtons();
   initializeHorizontalButtons();
+  //>>>>>>> c36bb64bd30e5d0925805a00234b1a2e182fee62
   // Oliver, 22nd March: Working on horix=zontal buttons
   showCase = new WidgetType2(SCREENX/1.5, SCREENY/6, SCREENX/1.01, SCREENY/3,
+
    255, body);
    
 
@@ -113,7 +114,7 @@ void setup() {
     getFlightSummary("AA", 1); // First enter the airline code within quotes and then enter the flt num
 
   // Oliver 26th March: Map work
-  map = new Map(SCREENX/10, SCREENY/3, 500, 300, datapoints);
+  map = new Map(SCREENX/2.5, SCREENY/3, 700, 450, datapoints);
 }
 
 
@@ -121,7 +122,7 @@ void setup() {
 void draw() {
   noStroke();
   background(BACKGROUND_COLOUR);
-  
+
   textSize(12);
   Screens.draw();
   for (int i=0; i<buttons.length; i++)
@@ -232,7 +233,7 @@ boolean inTopDestinations(String airport, String[] topDestinations) {
   return false;
 }
 
-ArrayList<Datapoint> sortByDistance(ArrayList<Datapoint> input){
+ArrayList<Datapoint> sortByDistance(ArrayList<Datapoint> input) {
   ArrayList<Datapoint> sortedList = new ArrayList<Datapoint>(input);
 
   Collections.sort(input, (item2, item1) -> Integer.compare(item1.getDistance(), item2.getDistance()));
