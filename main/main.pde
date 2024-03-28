@@ -102,7 +102,6 @@ void setup() {
 void draw() {
   noStroke();
   background(BACKGROUND_COLOUR);
-  
   textSize(12);
   Screens.draw();
   for (int i=0; i<buttons.length; i++)

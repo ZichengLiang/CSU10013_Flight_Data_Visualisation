@@ -49,15 +49,14 @@ class Screen
     case 1: //Reserved for Pie Chart
       fill(SCREEN2);
       rect(startX, startY, screenX, screenY);
-
       thePieChart.draw();
       break;
 
     case 2: // reserved for table
       fill(SCREEN3);
       rect(startX, startY, screenX, screenY);
-      
       displayTableData(tableX, tableY, tableWidth, tableHeight);
+      drawScroll(1900, mouseY, 100, 50, color(200));
       break;
 
     case 3:
