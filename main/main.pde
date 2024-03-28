@@ -203,11 +203,11 @@ void initializeSidebarButtons() {
   buttons = new Widget[sideBarButtonsNum];
   for (int j = 0; j < buttons.length; j++) {
     if (j == 1) {
-      buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, "Pie Chart", 255, body, j);
+      buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "Pie Chart", 255, body, j);
     } else if (j == 4) {
-      buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, "Bar Chart", 255, body, j);
+      buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "Bar Chart", 255, body, j);
     } else {
-      buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, "button " + j, 255, body, j);
+      buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "button " + j, 255, body, j);
     }
   }
 }
@@ -216,9 +216,9 @@ void initializeHorizontalButtons() {
   buttonsHorizontal = new Widget[horizontalButtonsNum];
   for (int j = 0; j < buttonsHorizontal.length; j++) {
     if (j == 0) {
-      buttonsHorizontal[j] = new Widget(((SCREENX - SCREENX / 1.99) / buttonsHorizontal.length) * j + SCREENX / 4, SCREENY - 65, 100, 60, "Toggle data", 255, body, j);
+      buttonsHorizontal[j] = new Widget(((SCREENX - SCREENX / 1.99) / buttonsHorizontal.length) * j + SCREENX / 4, SCREENY - 65, 100, 60,20, "Toggle data", 255, body, j);
     } else {
-      buttonsHorizontal[j] = new Widget(((SCREENX - SCREENX / 1.99) / buttonsHorizontal.length) * j + SCREENX / 4, SCREENY - 65, 100, 60, "button" + j, 255, body, j);
+      buttonsHorizontal[j] = new Widget(((SCREENX - SCREENX / 1.99) / buttonsHorizontal.length) * j + SCREENX / 4, SCREENY - 65, 100, 60,20, "button" + j, 255, body, j);
     }
   }
 }
