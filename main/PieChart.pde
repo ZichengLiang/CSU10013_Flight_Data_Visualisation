@@ -5,17 +5,13 @@ class PieChart {
   int[] data;
   int[] originalData;
   int Conversion; //determaines what kind of conversion is done in piConverter - radians or percentage
-  Query fromWholeDataSet = new Query();
-  int totalFlights = fromWholeDataSet.lastQueryList.size();
+  int totalFlights = fromWholeDataset.getLastQueryList().size();
    
   PieChart(int[] data){
     originalData = data;
     Conversion = 360;
     this.data = piConverter(data);
     int[] PercentageData = piConverter(data);
-    //[]int PiConverted =  convertedData;    
-    //360 x ax
-    //      sum
   }
   //look up map processing
   
@@ -27,15 +23,6 @@ class PieChart {
   int N;
   int i = 0;
   
-  
-  //int[] Cancelled = new int[Datapoint.cancelled];
-  //  int Cancelled = (Datapoint.cancelled);
-  //int i = Datapoint.length;
- //int i = 0;
- // while (i != 0){
- //int[] AFlights = main.AFlights;
-
- // }
   
   void  draw() {
     fill(255);
@@ -59,12 +46,6 @@ class PieChart {
     }
   }
 
-//int sumData = 0;
-//int DataDivBy360 = 0;
-// double data = 3452.345
-//int value = (int)data;
-//
-
 int[] piConverter(int[] data){
     int[]convertedData = new int[data.length];
     float dataPointDecValue;
@@ -81,13 +62,7 @@ int[] piConverter(int[] data){
     return(convertedData);
   }
   
+  
+  
 }
   
-  //    for (int i = 0;  i < data.length; i++){
-//      sumData += data[i];
-//   }
-   
-//       for (int i = 0;  i < data.length; i++){
-//      convertedData[i] = data[i]*360;
-//    }
-//    DataDivBy360 = 360/sumData;

@@ -31,13 +31,9 @@ class WidgetType2
       for (int i3 = 0; i3 < displayNum; i3++) {
         int thisEntry = 0;
         thisEntry = startingEntry + i3;
-        //~M: seems to be confusing the system, prints 10 times once replaced
-        if (thisEntry < datapointCount) {
-          //M: there seems to be somthing going wrong with calling on data here, i need more info on exactly how data is being called before i can fix this
-          text(thisEntry + " > " + data[thisEntry].carrierCode + data[thisEntry].flightNumber + " ---- "
-            + data[thisEntry].origin + " -> " + data[thisEntry].dest
-            , x+x/4, y-y/1.3 + i3*20);
-        }
+        text(thisEntry + " > " + data[thisEntry].carrierCode + data[thisEntry].flightNumber + " ---- "
+          + data[thisEntry].origin + " -> " + data[thisEntry].dest
+          , x+x/4, y-y/1.3 );
       }
     }
   }

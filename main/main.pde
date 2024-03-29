@@ -1,9 +1,10 @@
 // Zicheng, 12th March, 21:00: I modified the sample program on https://processing.org/examples/loadfile2.html to fit our dataset;
 import java.util.*;
 
-Datapoint[] datapoints;
-String[] lines;
-int datapointCount = 0;
+//Datapoint[] datapoints;
+//String[] lines;
+ArrayList<Datapoint> datapoints;
+//int datapointCount = 0;
 PFont body;
 int displayNum = 10; // Display this many entries on each screen;
 int startingEntry = 0; // Display from this entry number;
@@ -17,6 +18,8 @@ Screen Screens;
 Widget[] buttons;
 Widget[] buttonsHorizontal;
 WidgetType2 showCase;
+
+Query fromWholeDataset;
 
 Map map;
 //Muireann O'Neill 15/03/24 11:12 declaring Charts here;
@@ -37,15 +40,17 @@ void setup() {
   textFont(body);
   textSize(12);
   rectMode(CENTER);
-
+  
+  // initialise the ArrayList of datapoints
+  datapoints = new ArrayList<>();
   datapoints = loadDatapoints("flights2k.csv");
   table = loadTable("flights2k.csv", "header");
   // Query functions test cases:
-  Query fromWholeDataSet = new Query();
-  int totalFlights    = fromWholeDataSet.lastQueryList.size();
-  int cancelledNumber = fromWholeDataSet.cancelledFlights().size();
+  fromWholeDataset = new Query();
+  int totalFlights    = fromWholeDataset.lastQueryList.size();
+  int cancelledNumber = fromWholeDataset.cancelledFlights().size();
   //int cancelledNumberPercent = cancelledNumber/totalFlights;
-  int divertedNumber  = fromWholeDataSet.divertedFlights().size();
+  int divertedNumber  = fromWholeDataset.divertedFlights().size();
   //int divertedNumberPercent = divertedNumber/totalFlights;
 
   int totalUnaffected = totalFlights-(divertedNumber + cancelledNumber);
@@ -55,10 +60,7 @@ void setup() {
   //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
   thePieChart = new PieChart(AFlights);
   // Zicheng  20/03/24 Initialised flight distances to bar chart
-  Query fromWholeDataset = new Query();
-  ArrayList<Datapoint> flightRoute = fromWholeDataset.flightRoute("JFK", "LAX");
-  ArrayList<Datapoint> testFlights = fromWholeDataset.flightsFrom("JFK");
-  ArrayList<Datapoint> sortedFlights = sortByDistance(testFlights);
+  ArrayList<Datapoint> sortedFlights = sortByDistance(fromWholeDataset.flightsFrom("JFK"));
 
   Datapoint[] flights = sortedFlights.toArray(Datapoint[]::new);
 
@@ -72,8 +74,8 @@ void setup() {
   }
 
   // BarChart (Checks flight distance)
-  float[] topDistances = new float[datapoints.length];
-  String[] topDestinations = new String[datapoints.length];
+  float[] topDistances = new float[datapoints.size()];
+  String[] topDestinations = new String[datapoints.size()];
   int airportCounter = 0; //Counts airports passed through
 
   for (int i = 0; i < flightDistance.length && airportCounter < 5; i++) {
@@ -94,7 +96,6 @@ void setup() {
   //the side bar buttons here:
   initializeSidebarButtons();
   initializeHorizontalButtons();
-  //>>>>>>> c36bb64bd30e5d0925805a00234b1a2e182fee62
   // Oliver, 22nd March: Working on horix=zontal buttons
   showCase = new WidgetType2(SCREENX/1.5, SCREENY/6, SCREENX/1.01, SCREENY/3,
 
@@ -114,7 +115,7 @@ void setup() {
     getFlightSummary("AA", 1); // First enter the airline code within quotes and then enter the flt num
 
   // Oliver 26th March: Map work
-  map = new Map(SCREENX/2.5, SCREENY/3, 700, 450, datapoints);
+  map = new Map(SCREENX/2.5, SCREENY/3, 700, 450, datapoints.toArray(new Datapoint[0]) );
 }
 
 
@@ -133,7 +134,7 @@ void draw() {
   {
     buttonsHorizontal[i].draw();
   }
-  showCase.draw(datapoints);
+  showCase.draw(datapoints.toArray(new Datapoint[0]));
 }
 
 void mousePressed() {
@@ -143,7 +144,7 @@ void mousePressed() {
   if (event>-1)
   {
     startingEntry += displayNum;
-    if (startingEntry > datapoints.length) {
+    if (startingEntry > datapoints.size()) {
       startingEntry = 0; // go back to the beginning;
     }
   }
@@ -168,32 +169,34 @@ void mousePressed() {
   }
   redraw();
 }
+// TODO: Change the data structure of loaded data entries. Now we implement an array of Datapoints to store the whole set of data
+// work flow here: convert each String entry to an instance of Datapoint, store it into the array, then next entry;
+ArrayList<Datapoint> loadDatapoints(String fileName) {
+  String[] lines = loadStrings(fileName); // Loads in csv file in String array "lines" (each line is an element in array)
+  //datapoints = new Datapoint[lines.length - 1];  // Adjusted the size of datapoints array
+  
 
-Datapoint[] loadDatapoints(String fileName) {
-  lines = loadStrings(fileName); // Loads in csv file in String array "lines" (each line is an element in array)
-  datapoints = new Datapoint[lines.length - 1];  // Adjusted the size of datapoints array
-
-  for (int i = 1; i < lines.length; i++) {  // Start reading from the second line
+  for (int i = 1; i < lines.length; i++) {  // Start reading from the second line, skipping the header
     String[] pieces = split(lines[i], ','); // Got rid of integer and replaced it with constant variable
 
-    if (pieces.length == DATAPOINTVARIABLECOUNT) { // checks if all the variables are there, if so, load it
-      datapoints[datapointCount] = new Datapoint(pieces);
-      datapointCount++;
+    if (pieces.length == STANDARDENTRYLENGTH) { // checks if all the variables are there, if so, load it
+      Datapoint thisDatapoint = new Datapoint(pieces);
+      datapoints.add(thisDatapoint);
     } else {
-      String[] adjustedPieces = new String[DATAPOINTVARIABLECOUNT];
-      if (pieces.length == DATAPOINTVARIABLECOUNT - 1 ) { //in the given dataset, cancelled flights have no dep_time and arr_time
+      String[] adjustedPieces = new String[STANDARDENTRYLENGTH];
+      if (pieces.length == STANDARDENTRYLENGTH - 1 ) { //in the given dataset, cancelled flights have no dep_time and arr_time
         arrayCopy(pieces, 0, adjustedPieces, 0, 16); //copy from first element to CRSArrTime
         adjustedPieces[16] = "9999"; // the actual arrive time is set to " ";
         arrayCopy(pieces, 16, adjustedPieces, 17, 3); //copy the last three elements
-      } else if (pieces.length == DATAPOINTVARIABLECOUNT - 2 ) { //in the given dataset, cancelled flights have no dep_time and arr_time
+      } else if (pieces.length == STANDARDENTRYLENGTH - 2 ) { //in the given dataset, cancelled flights have no dep_time and arr_time
         arrayCopy(pieces, 0, adjustedPieces, 0, 14); //copy from first element to CRSDeptTime
         adjustedPieces[14] = "9999"; // the actual dept time is set to " ";
         adjustedPieces[15] = pieces[14];
         adjustedPieces[16] = "9999"; // the actual arr time is set to " ";
         arrayCopy(pieces, 15, adjustedPieces, 17, 3); //copy the last three elements
       }
-      datapoints[datapointCount] = new Datapoint(adjustedPieces);
-      datapointCount++;
+      Datapoint thisDatapoint = new Datapoint(pieces);
+      datapoints.add(thisDatapoint);
     }
   } // for loop ends here
 
@@ -236,6 +239,6 @@ boolean inTopDestinations(String airport, String[] topDestinations) {
 ArrayList<Datapoint> sortByDistance(ArrayList<Datapoint> input) {
   ArrayList<Datapoint> sortedList = new ArrayList<Datapoint>(input);
 
-  Collections.sort(input, (item2, item1) -> Integer.compare(item1.getDistance(), item2.getDistance()));
+  Collections.sort(sortedList, (item2, item1) -> Integer.compare(item1.getDistance(), item2.getDistance()));
   return sortedList;
 }

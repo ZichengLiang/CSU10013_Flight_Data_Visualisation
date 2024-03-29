@@ -5,25 +5,31 @@
  flightsByCarrier help show the details of flights from a particular carrier including the summary
  flightsOnDate help show the number of flights on a particular date
 */ 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.List;
 import java.util.stream.Collectors;
 class Query {
-  // TODO: write more query functions
   ArrayList<Datapoint> lastQueryList; 
+  HashMap<String, List<Datapoint>> flightsByOrigin;
+  HashMap<String, List<Datapoint>> flightsByDestination;
+  HashMap<String, List<Datapoint>> flightsByCarrier;
+  
   String name;
   
   // Constructors: default constructor search within the whole set
   Query() {
-    List<Datapoint> tempList = Arrays.asList(datapoints);
-    this.lastQueryList = new ArrayList<Datapoint>(tempList);
+    this.lastQueryList = datapoints;
+    indexData();
     name = "whole data set";
   }
   // this constructor takes in one ArrayList and search within the given set
   Query(ArrayList<Datapoint> lastQueryList, String name) {
     this.lastQueryList = lastQueryList;
+    indexData();
     this.name = name;
   }
+  
   /* 
   methods list:
      ArrayList<Datapoint> flightsFrom(String airportCode); ArrayList<Datapoint> flightsFrom(int originWac);
@@ -36,6 +42,14 @@ class Query {
      
      String GetReport(ArrayList<Datapoint> inputList, int TYPE);
   */
+  
+  HashMap<String, List<Datapoint>> getFlightsByOrigin(){
+    return flightsByOrigin;
+  }
+  HashMap<String, List<Datapoint>> flightsByDestination(){
+    return flightsByDestination;
+  }
+  
   ArrayList<Datapoint> flightsFrom(String airportCode) {
     // queries function: print all the flights going to passed airport code
     ArrayList<Datapoint> flightsFromList = new ArrayList<Datapoint>(lastQueryList.stream()
@@ -137,6 +151,10 @@ class Query {
     return flightsToList;
   }
   
+  HashMap<String, List<Datapoint>> getFlightsByCarrier(){
+    return flightsByCarrier;
+  }
+  
 // This is for flights by particular carrier
     ArrayList<Datapoint> flightsByCarrier(String carrierCode) {
       ArrayList<Datapoint> flightsByCarrierList = new ArrayList<Datapoint>(lastQueryList.stream()
@@ -235,10 +253,30 @@ ArrayList<Datapoint> flightsOnDate(String date) {
       
       return report.toString();
     }
-} // getReport ends
-
-
+  } // getReport ends
   
+  private void indexData() {
+        flightsByOrigin = new HashMap<>();
+        flightsByDestination = new HashMap<>();
+        flightsByCarrier = new HashMap<>();
+
+        for (Datapoint datapoint : lastQueryList) { // enhanced for loop
+            // the computeIfAbsent method checks if this origin already exists as a key in the flightsByOrigin map
+            flightsByOrigin.computeIfAbsent( datapoint.getOrigin(), k -> new ArrayList<>() ).add(datapoint);
+            // For each unique origin airport, there will be an ArrayList of Datapoint objects in the flightsByOrigin map
+            // and you can easily perform various operations on this list, including getting its size. 
+            flightsByDestination.computeIfAbsent( datapoint.getDest(), k -> new ArrayList<>() ).add(datapoint);
+            // k represents the key being checked in the map. Here, it corresponds to the destination obtained by calling datapoint.getDest().
+            flightsByCarrier.computeIfAbsent( datapoint.getCarrierCode(), k -> new ArrayList<>() ).add(datapoint);
+        }
+    }
+
+  String getName(){
+    return name;
+  }
   
+  ArrayList<Datapoint> getLastQueryList(){
+    return lastQueryList;
+  }
   
 }

@@ -29,19 +29,17 @@ class Datapoint {
 
     String combinedOriginCityName, combinedDestCityName;
     int lateDepMinutes, lateArrMinutes, plannedFlightDuration, actualFlightDuration;
+    
+    private final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("MM/dd/yyyy HHmm", Locale.US);
 
     // Zicheng, 12th March, 21:00: a constructor with all parameters;
-     public Datapoint(String[] pieces){
+      Datapoint(String[] pieces){
       flightDate = pieces[0];
       char[] flightDateEdit = flightDate.toCharArray();
       for(int i = 0; i < 6; i++){
       flightDateEdit = shorten(flightDateEdit);
       }
       flightDate = new String(flightDateEdit);
-      //TODO: get out flightDay and flightMonth
-      // flightDay = new String(flightDateEdit, 0, 1); // String(data, offset, length), it doesn't work when length == 2, why??
-      // flightMonth = new String(flightDateEdit, 4, 1); // this doesn't work either! ArrayIndexOutOfBound exception
-      
       
       carrierCode = pieces[1]; 
       flightNumber = int (pieces[2]);
@@ -268,8 +266,6 @@ class Datapoint {
      String output = new String(process, 1, process.length-2);
      return output;
    }
-   
-   private final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("MM/dd/yyyy HHmm", Locale.US);
 
     public String getOriginTimezone() {
         if (AirportTimezones.airportTimezones.containsKey(origin)) {
