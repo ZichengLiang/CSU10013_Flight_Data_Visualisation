@@ -1,5 +1,5 @@
 import org.gicentre.utils.stat.*;
-
+Widget[] DataToggle;
 class PieChart {
   
   int[] data;
@@ -7,42 +7,28 @@ class PieChart {
   int Conversion; //determaines what kind of conversion is done in piConverter - radians or percentage
   Query fromWholeDataSet = new Query();
   int totalFlights = fromWholeDataSet.lastQueryList.size();
-   
+  int[] angles = {90,90,90,90}; //represents degrees
+  String[] dataLables ={"Diverted","cancelled","Unchanged"};
+  
   PieChart(int[] data){
     originalData = data;
     Conversion = 360;
     this.data = piConverter(data);
-    int[] PercentageData = piConverter(data);
-    //[]int PiConverted =  convertedData;    
-    //360 x ax
-    //      sum
   }
-  //look up map processing
-  
-  int[] angles = {90,90,90,90}; //represents degrees
-  String[] dataLables ={"Diverted","cancelled","Unchanged"};
-  //Query fromWholeDataSet = new Query();
-  //int[] flights = {divertedNumber,cancelledNumber,23};
-   // 360  == 100%
-  int N;
-  int i = 0;
-  
-  
-  //int[] Cancelled = new int[Datapoint.cancelled];
-  //  int Cancelled = (Datapoint.cancelled);
-  //int i = Datapoint.length;
- //int i = 0;
- // while (i != 0){
- //int[] AFlights = main.AFlights;
 
- // }
-  
   void  draw() {
     fill(255);
-    rect(550,40,160,60*data.length);
+    rect(650,40,160,60*data.length,20);
     pieChart(300);
+  //   for (int j = 0; j < DataToggle.length; j++) {
+  //  if (j == 1) {
+  //    DataToggle[j] = new Widget( (SCREENX / buttons.length) * j + 60,60, 100, 60, 20, "Pie Chart", 255, body, j);
+  //  } else if (j == 4) {
+  //    DataToggle[j] = new Widget( (SCREENX / buttons.length) * j + 60,60, 100, 60, 20, "Bar Chart", 255, body, j);
+  //  }
+  //}
   }
-  
+
   void pieChart(float diameter) {
     float lastAngle = 0;
     for (int i = 0; i < data.length; i++) {
@@ -50,20 +36,16 @@ class PieChart {
       float c = map(i, 0, data.length, 8, 200);  // Muireann O'Neill 23/3/24 11:48
       float e = map(i, 0, data.length, 50, 400); //to change pi Chart color
       fill(blue,c,e);
-      arc(width/2, height/2, diameter, diameter, lastAngle, lastAngle+radians(data[i]));
+      arc(width/2, height/2, diameter, diameter, lastAngle, lastAngle+radians(data[i]));//creates an arc in the piechart using data
      if (i < dataLables.length){ 
      textSize(15);
-     text( dataLables[i] +" = "+ originalData[i] , 600, 40+30*i);
+     text( dataLables[i] +" = "+ originalData[i] , 700, 40+30*i);
      }
       lastAngle += radians(data[i]);
     }
   }
 
-//int sumData = 0;
-//int DataDivBy360 = 0;
-// double data = 3452.345
-//int value = (int)data;
-//
+
 
 int[] piConverter(int[] data){
     int[]convertedData = new int[data.length];
@@ -83,11 +65,3 @@ int[] piConverter(int[] data){
   
 }
   
-  //    for (int i = 0;  i < data.length; i++){
-//      sumData += data[i];
-//   }
-   
-//       for (int i = 0;  i < data.length; i++){
-//      convertedData[i] = data[i]*360;
-//    }
-//    DataDivBy360 = 360/sumData;
