@@ -29,8 +29,6 @@ class Datapoint {
 
     String combinedOriginCityName, combinedDestCityName;
     int lateDepMinutes, lateArrMinutes, plannedFlightDuration, actualFlightDuration;
-    
-    private final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("MM/dd/yyyy HHmm", Locale.US);
 
     // Zicheng, 12th March, 21:00: a constructor with all parameters;
       Datapoint(String[] pieces){
@@ -267,7 +265,7 @@ class Datapoint {
      return output;
    }
 
-    public String getOriginTimezone() {
+   String getOriginTimezone() {
         if (AirportTimezones.airportTimezones.containsKey(origin)) {
             return AirportTimezones.airportTimezones.get(origin);
         } else {
@@ -275,7 +273,7 @@ class Datapoint {
         }
     }
 
-    public String getDestinationTimezone() {
+   String getDestinationTimezone() {
         if (AirportTimezones.airportTimezones.containsKey(dest)) {
             return AirportTimezones.airportTimezones.get(dest);
         } else {

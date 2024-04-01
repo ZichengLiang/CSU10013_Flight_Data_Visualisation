@@ -3,6 +3,8 @@ final int STANDARDENTRYLENGTH = 20;
 final int SCREENX = 1080;
 final int SCREENY = 720;
 
+final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("MM/dd/yyyy HHmm", Locale.US);
+
 final int EVENT_BUTTON1=1;
 final int EVENT_BUTTON2=2;
 final int EVENT_NULL=-1;

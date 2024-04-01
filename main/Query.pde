@@ -50,6 +50,8 @@ class Query {
     return flightsByDestination;
   }
   
+  
+  
   ArrayList<Datapoint> flightsFrom(String airportCode) {
     // queries function: print all the flights going to passed airport code
     ArrayList<Datapoint> flightsFromList = new ArrayList<Datapoint>(lastQueryList.stream()
@@ -270,6 +272,20 @@ ArrayList<Datapoint> flightsOnDate(String date) {
             flightsByCarrier.computeIfAbsent( datapoint.getCarrierCode(), k -> new ArrayList<>() ).add(datapoint);
         }
     }
+  // functions for PieChart: AbnormalFlights; PieChart needs more updates: it should take in another String array to set labels
+ int[] getAbnormalFlights(){
+    int cancelledNumber = cancelledFlights().size();
+    int divertedNumber  = divertedFlights().size();
+    int unaffectedFlights = lastQueryList.size() - cancelledNumber - divertedNumber;
+    int[] abnormalFlights = {divertedNumber, cancelledNumber, unaffectedFlights};
+    return abnormalFlights;
+  }
+  
+  // functions for BarChart: LongestDistance
+  
+  void getBusiestAirport(){
+    
+  }
 
   String getName(){
     return name;

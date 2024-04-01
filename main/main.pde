@@ -19,7 +19,7 @@ Widget[] buttons;
 Widget[] buttonsHorizontal;
 WidgetType2 showCase;
 
-Query fromWholeDataset;
+Query currentQuery;
 
 Map map;
 //Muireann O'Neill 15/03/24 11:12 declaring Charts here;
@@ -45,20 +45,11 @@ void setup() {
   datapoints = new ArrayList<>();
   datapoints = loadDatapoints("flights2k.csv");
   table = loadTable("flights2k.csv", "header");
-  // Query functions test cases:
-  fromWholeDataset = new Query();
-  int totalFlights    = fromWholeDataset.lastQueryList.size();
-  int cancelledNumber = fromWholeDataset.cancelledFlights().size();
-  //int cancelledNumberPercent = cancelledNumber/totalFlights;
-  int divertedNumber  = fromWholeDataset.divertedFlights().size();
-  //int divertedNumberPercent = divertedNumber/totalFlights;
-
-  int totalUnaffected = totalFlights-(divertedNumber + cancelledNumber);
-  //int flightsUnaffected = totalFlights - (cancelledNumber + divertedNumber);
-
-  int[] AFlights = {divertedNumber, cancelledNumber, totalUnaffected};
+  // set default query as currentQuery
+  Query fromWholeDataset = new Query();
+  currentQuery = fromWholeDataset;
   //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
-  thePieChart = new PieChart(AFlights);
+  thePieChart = new PieChart(currentQuery.getAbnormalFlights());
   // Zicheng  20/03/24 Initialised flight distances to bar chart
   ArrayList<Datapoint> sortedFlights = sortByDistance(fromWholeDataset.flightsFrom("JFK"));
 
@@ -227,6 +218,7 @@ void initializeHorizontalButtons() {
   }
 }
 
+
 boolean inTopDestinations(String airport, String[] topDestinations) {
   for (String destination : topDestinations) {
     if (airport.equals(destination)) {
@@ -240,5 +232,6 @@ ArrayList<Datapoint> sortByDistance(ArrayList<Datapoint> input) {
   ArrayList<Datapoint> sortedList = new ArrayList<Datapoint>(input);
 
   Collections.sort(sortedList, (item2, item1) -> Integer.compare(item1.getDistance(), item2.getDistance()));
+  // sort the sortedList to descending order
   return sortedList;
 }
