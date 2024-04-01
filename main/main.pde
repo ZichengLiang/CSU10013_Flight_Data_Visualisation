@@ -46,7 +46,9 @@ void setup() {
   Query fromWholeDataset = new Query();
   currentQuery = fromWholeDataset;
   //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
+
   thePieChart = new PieChart(currentQuery.getAbnormalFlights());
+
   // Zicheng  20/03/24 Initialised flight distances to bar chart
   ArrayList<Datapoint> sortedFlights = sortByDistance(fromWholeDataset.flightsFrom("JFK"));
 
