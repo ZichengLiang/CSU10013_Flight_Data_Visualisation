@@ -53,6 +53,7 @@ void setup() {
 
   int[] AFlights = {divertedNumber, cancelledNumber, totalUnaffected};
   //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
+  
   thePieChart = new PieChart(AFlights);
   // Zicheng  20/03/24 Initialised flight distances to bar chart
   Query fromWholeDataset = new Query();
