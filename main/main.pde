@@ -1,10 +1,7 @@
 // Zicheng, 12th March, 21:00: I modified the sample program on https://processing.org/examples/loadfile2.html to fit our dataset;
 import java.util.*;
 
-//Datapoint[] datapoints;
-//String[] lines;
 ArrayList<Datapoint> datapoints;
-//int datapointCount = 0;
 PFont body;
 int displayNum = 10; // Display this many entries on each screen;
 int startingEntry = 0; // Display from this entry number;
