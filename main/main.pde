@@ -16,7 +16,7 @@ boolean drawBarChart = false; // Used to check if bar chart is used
 Screen Screens;
 Widget[] buttons;
 Widget[] buttonsHorizontal;
-WidgetType2 showCase;
+Text showCase;
 
 Map map;
 //Muireann O'Neill 15/03/24 11:12 declaring Charts here;
@@ -97,9 +97,8 @@ void setup() {
   initializeHorizontalButtons();
   //>>>>>>> c36bb64bd30e5d0925805a00234b1a2e182fee62
   // Oliver, 22nd March: Working on horix=zontal buttons
-  showCase = new WidgetType2(SCREENX/1.5, SCREENY/6, SCREENX/1.01, SCREENY/3,
-
-   255, body);
+     showCase = new Text(SCREENX-100, SCREENY-100, 200, 200,
+  255, body);
    
 
    //Query for flights by a specific carrier (e.g., American Airlines with carrier code "AA")
@@ -115,7 +114,7 @@ void setup() {
     getFlightSummary("AA", 1); // First enter the airline code within quotes and then enter the flt num
 
   // Oliver 26th March: Map work
-  map = new Map(SCREENX/2.5, SCREENY/3, 700, 450, datapoints);
+  map = new Map(SCREENX/5, SCREENY/3, 700, 450, datapoints);
 }
 
 
@@ -139,6 +138,7 @@ void draw() {
 
 void mousePressed() {
   int event;
+  scrollY -= 20;
   event = showCase.pressed(mouseX, mouseY);
   scrollY -= 20;
   if (event>-1)
@@ -151,13 +151,6 @@ void mousePressed() {
   for (int i =0; i<buttonsHorizontal.length; i++)
   {
     event=buttonsHorizontal[i].getEvent(mouseX, mouseY);
-    if (event>=0)
-    {
-      if (event==0)
-      {
-        showCase.show=-showCase.show;
-      }
-    }
   }
   for (int i =0; i<buttons.length; i++)
   {
@@ -206,7 +199,11 @@ void initializeSidebarButtons() {
   for (int j = 0; j < buttons.length; j++) {
     if (j == 1) {
       buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "Pie Chart", 255, body, j);
-    } else if (j == 4) {
+    } 
+    else if(j==2)
+    {
+      buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "Map", 255, body, j);
+    }else if (j == 4) {
       buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "Bar Chart", 255, body, j);
     } else {
       buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "button " + j, 255, body, j);

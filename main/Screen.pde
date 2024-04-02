@@ -71,13 +71,16 @@ class Screen
       break;
       
      default:
- //    fill(WELCOMESCREEN);
+     fill(SCREEN6);
      rect(startX, startY, screenX, screenY);
      fill(0);
      textSize(20);
      textAlign(CENTER);
      text("Welcome to our program. \nPlease press one of the side buttons to begin", startX, 50);
     }
+    
+    fill(0);
+    rect(SCREENX-100, SCREENY-500, 200, SCREENY-200);
     textSize(12);
   }
 }
