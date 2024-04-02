@@ -139,7 +139,8 @@ void mousePressed() {
   int event;
   scrollY -= 20;
   event = showCase.pressed(mouseX, mouseY);
-  scrollY -= 20;
+  //scrollY -= 20;
+  System.out.println(event);
   if (event>-1)
   {
     startingEntry += displayNum;
