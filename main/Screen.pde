@@ -78,6 +78,9 @@ class Screen
      textAlign(CENTER);
      text("Welcome to our program. \nPlease press one of the side buttons to begin", startX, 50);
     }
+    
+    fill(0);
+    rect(SCREENX-100, SCREENY-500, 200, SCREENY-200);
     textSize(12);
   }
 }

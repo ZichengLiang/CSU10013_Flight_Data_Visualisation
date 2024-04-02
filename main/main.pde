@@ -150,13 +150,6 @@ void mousePressed() {
   for (int i =0; i<buttonsHorizontal.length; i++)
   {
     event=buttonsHorizontal[i].getEvent(mouseX, mouseY);
-    if (event>=0)
-    {
-      if (event==0)
-      {
-        showCase.show=-showCase.show;
-      }
-    }
   }
   for (int i =0; i<buttons.length; i++)
   {
