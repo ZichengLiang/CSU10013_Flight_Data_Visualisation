@@ -234,6 +234,6 @@ boolean inTopDestinations(String airport, String[] topDestinations) {
 ArrayList<Datapoint> sortByDistance(ArrayList<Datapoint> input) {
   ArrayList<Datapoint> sortedList = new ArrayList<Datapoint>(input);
 
-  Collections.sort(input, (item2, item1) -> Integer.compare(item1.getDistance(), item2.getDistance()));
+  Collections.sort(sortedList, (item2, item1) -> Integer.compare(item1.getDistance(), item2.getDistance()));
   return sortedList;
 }
