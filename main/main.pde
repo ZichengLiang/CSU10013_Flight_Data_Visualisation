@@ -3,6 +3,7 @@ import java.util.*;
 
 Datapoint[] datapoints;
 String[] lines;
+
 int datapointCount = 0;
 PFont body;
 int displayNum = 10; // Display this many entries on each screen;
@@ -10,6 +11,7 @@ int startingEntry = 0; // Display from this entry number;
 int sideBarButtonsNum = 5;
 int horizontalButtonsNum = 3;
 boolean drawBarChart = false; // Used to check if bar chart is used
+Query currentQuery;
 
 // Oliver, 15th March: creation of widgets to switch between screens
 
@@ -42,11 +44,15 @@ void setup() {
   table = loadTable("flights2k.csv", "header");
   // Query functions test cases:
   Query fromWholeDataSet = new Query();
-  int totalFlights    = fromWholeDataSet.lastQueryList.size();
-  int cancelledNumber = fromWholeDataSet.cancelledFlights().size();
-  //int cancelledNumberPercent = cancelledNumber/totalFlights;
-  int divertedNumber  = fromWholeDataSet.divertedFlights().size();
-  //int divertedNumberPercent = divertedNumber/totalFlights;
+  currentQuery = fromWholeDataSet;
+  // main page - change the query
+  // chart pages - change the 
+  int totalFlights    = currentQuery.getArrayList().size();
+  int cancelledNumber = currentQuery.filterQuery(null, null, null, true, false).size();
+  // if "cancelled" checkbox ticked:
+   currentQuery.setCancelled(true); // the interaction does this, and
+   cancelledNumber = currentQuery.filterQuery().size();
+  int divertedNumber  = currentQuery.filterQuery(null, null, null, false, true).size();
 
   int totalUnaffected = totalFlights-(divertedNumber + cancelledNumber);
   //int flightsUnaffected = totalFlights - (cancelledNumber + divertedNumber);
@@ -56,9 +62,7 @@ void setup() {
   
   thePieChart = new PieChart(AFlights);
   // Zicheng  20/03/24 Initialised flight distances to bar chart
-  Query fromWholeDataset = new Query();
-  ArrayList<Datapoint> flightRoute = fromWholeDataset.flightRoute("JFK", "LAX");
-  ArrayList<Datapoint> testFlights = fromWholeDataset.flightsFrom("JFK");
+  ArrayList<Datapoint> testFlights = currentQuery.flightsFrom("JFK");
   ArrayList<Datapoint> sortedFlights = sortByDistance(testFlights);
 
   Datapoint[] flights = sortedFlights.toArray(Datapoint[]::new);
@@ -95,16 +99,14 @@ void setup() {
   //the side bar buttons here:
   initializeSidebarButtons();
   initializeHorizontalButtons();
-  //>>>>>>> c36bb64bd30e5d0925805a00234b1a2e182fee62
   // Oliver, 22nd March: Working on horix=zontal buttons
   showCase = new WidgetType2(SCREENX/1.5, SCREENY/6, SCREENX/1.01, SCREENY/3,
-
    255, body);
    
 
    //Query for flights by a specific carrier (e.g., American Airlines with carrier code "AA")
-  Query carrierQuery = new Query();
-  ArrayList<Datapoint> bySpecificCarrier = carrierQuery.flightsByCarrier("AA");
+    Query carrierQuery = new Query();
+    ArrayList<Datapoint> bySpecificCarrier = carrierQuery.flightsByCarrier("AA");
   
    //Query for flights on a specific date
     Query onDate = new Query();
@@ -148,6 +150,7 @@ void mousePressed() {
       startingEntry = 0; // go back to the beginning;
     }
   }
+  
   for (int i =0; i<buttonsHorizontal.length; i++)
   {
     event=buttonsHorizontal[i].getEvent(mouseX, mouseY);
@@ -159,6 +162,7 @@ void mousePressed() {
       }
     }
   }
+  
   for (int i =0; i<buttons.length; i++)
   {
     event=buttons[i].getEvent(mouseX, mouseY);
@@ -167,6 +171,7 @@ void mousePressed() {
       Screens.screenType=event;
     }
   }
+  
   redraw();
 }
 
@@ -198,7 +203,7 @@ Datapoint[] loadDatapoints(String fileName) {
     }
   } // for loop ends here
 
-  return datapoints; // this is an array of Datapoint instances
+  return datapoints; // this is an array of Datapoint elements
 }
 
 void initializeSidebarButtons() {
@@ -206,7 +211,11 @@ void initializeSidebarButtons() {
   for (int j = 0; j < buttons.length; j++) {
     if (j == 1) {
       buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "Pie Chart", 255, body, j);
-    } else if (j == 4) {
+    } 
+    else if (j == 2) {
+      buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "Show Map", 255, body, j);
+    }
+    else if (j == 4) {
       buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "Bar Chart", 255, body, j);
     } else {
       buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "button " + j, 255, body, j);
@@ -236,7 +245,6 @@ boolean inTopDestinations(String airport, String[] topDestinations) {
 
 ArrayList<Datapoint> sortByDistance(ArrayList<Datapoint> input) {
   ArrayList<Datapoint> sortedList = new ArrayList<Datapoint>(input);
-
-  Collections.sort(input, (item2, item1) -> Integer.compare(item1.getDistance(), item2.getDistance()));
+  Collections.sort(sortedList, (item2, item1) -> Integer.compare(item1.getDistance(), item2.getDistance()));
   return sortedList;
 }
