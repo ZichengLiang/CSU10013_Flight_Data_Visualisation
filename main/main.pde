@@ -1,5 +1,6 @@
 // Zicheng, 12th March, 21:00: I modified the sample program on https://processing.org/examples/loadfile2.html to fit our dataset;
 import java.util.*;
+import g4p_controls.*;
 
 Datapoint[] datapoints;
 String[] lines;
@@ -25,6 +26,8 @@ Map map;
 PieChart thePieChart;
 //Daniel 15/03/24 initialized BarCharts here
 TheBarChart theBarChart;
+//Daniel 02/04/24 Checkbox
+GCheckbox checkbox1;
 
 void settings() {
   size(SCREENX, SCREENY);
@@ -59,7 +62,7 @@ void setup() {
 
   int[] AFlights = {divertedNumber, cancelledNumber, totalUnaffected};
   //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
-  
+
   thePieChart = new PieChart(AFlights);
   // Zicheng  20/03/24 Initialised flight distances to bar chart
   ArrayList<Datapoint> testFlights = currentQuery.flightsFrom("JFK");
@@ -92,17 +95,15 @@ void setup() {
   topDestinations = Arrays.copyOf(topDestinations, airportCounter);
   theBarChart = new TheBarChart(barChart, topDistances, topDestinations);
 
-
-
   // Buttons
   Screens = new Screen();
   //the side bar buttons here:
   initializeSidebarButtons();
   initializeHorizontalButtons();
   // Oliver, 22nd March: Working on horix=zontal buttons
-     showCase = new Text(SCREENX-100, SCREENY-100, 200, 200,
-  255, body);
-   
+  showCase = new Text(SCREENX-100, SCREENY-100, 200, 200,
+    255, body);
+
 
    //Query for flights by a specific carrier (e.g., American Airlines with carrier code "AA")
     Query carrierQuery = new Query();
@@ -112,14 +113,20 @@ void setup() {
     Query onDate = new Query();
     ArrayList<Datapoint> onSpecificDate = onDate.flightsOnDate("20220101"); // Example: "20240101" for January 1, 2024
 
-// Aryan, 27th March
-    // Get the summary for a specific flight number (replace "XX" with the actual flight number)
-    getFlightSummary("AA", 1); // First enter the airline code within quotes and then enter the flt num
+  //Query for flights on a specific date
+  Query onDate = new Query();
+  ArrayList<Datapoint> onSpecificDate = onDate.flightsOnDate("20220101"); // Example: "20240101" for January 1, 2024
+
+  // Aryan, 27th March
+  // Get the summary for a specific flight number (replace "XX" with the actual flight number)
+  getFlightSummary("AA", 1); // First enter the airline code within quotes and then enter the flt num
 
   // Oliver 26th March: Map work
   map = new Map(SCREENX/5, SCREENY/3, 700, 450, datapoints);
-}
 
+  // Daniel  2nd April: Checkboxes
+  createGUI();
+}
 
 //displaynum = 10
 void draw() {
@@ -206,11 +213,10 @@ void initializeSidebarButtons() {
   for (int j = 0; j < buttons.length; j++) {
     if (j == 1) {
       buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "Pie Chart", 255, body, j);
-    } 
-    else if(j==2)
+    } else if (j==2)
     {
       buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "Map", 255, body, j);
-    }else if (j == 4) {
+    } else if (j == 4) {
       buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "Bar Chart", 255, body, j);
     } else {
       buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "button " + j, 255, body, j);
@@ -222,9 +228,9 @@ void initializeHorizontalButtons() {
   buttonsHorizontal = new Widget[horizontalButtonsNum];
   for (int j = 0; j < buttonsHorizontal.length; j++) {
     if (j == 0) {
-      buttonsHorizontal[j] = new Widget(((SCREENX - SCREENX / 1.99) / buttonsHorizontal.length) * j + SCREENX / 4, SCREENY - 65, 100, 60,20, "Toggle data", 255, body, j);
+      buttonsHorizontal[j] = new Widget(((SCREENX - SCREENX / 1.99) / buttonsHorizontal.length) * j + SCREENX / 4, SCREENY - 65, 100, 60, 20, "Toggle data", 255, body, j);
     } else {
-      buttonsHorizontal[j] = new Widget(((SCREENX - SCREENX / 1.99) / buttonsHorizontal.length) * j + SCREENX / 4, SCREENY - 65, 100, 60,20, "button" + j, 255, body, j);
+      buttonsHorizontal[j] = new Widget(((SCREENX - SCREENX / 1.99) / buttonsHorizontal.length) * j + SCREENX / 4, SCREENY - 65, 100, 60, 20, "button" + j, 255, body, j);
     }
   }
 }
@@ -242,4 +248,56 @@ ArrayList<Datapoint> sortByDistance(ArrayList<Datapoint> input) {
   ArrayList<Datapoint> sortedList = new ArrayList<Datapoint>(input);
   Collections.sort(sortedList, (item2, item1) -> Integer.compare(item1.getDistance(), item2.getDistance()));
   return sortedList;
+}
+//CheckBoxes
+/*public void checkbox1_clicked() {
+ if (checkbox1.isSelected() == true) {
+ println("Checkbox 1 clicked");
+ } else {
+ println("Checkbox 1 not clicked");
+ }
+ }
+ 
+ public void checkbox2_clicked() {
+ if (checkbox2.isSelected() == false) {
+ println("Checkbox 2 clicked");
+ } else {
+ println("Checkbox 2 not clicked");
+ }
+ }
+ 
+ public void checkbox3_clicked() {
+ if (checkbox3.isSelected() == true) {
+ println("Checkbox 3 clicked");
+ } else {
+ println("Checkbox 3 not clicked");
+ }
+ }*/
+
+public void createGUI() {
+  checkbox1 = new GCheckbox(this, SCREENX - 180, 30, 200, 20);
+  checkbox1.setText("Distance");
+  checkbox1.addEventHandler(this, "checkboxClicked");
+  checkbox1.setOpaque(false);
+
+  /*checkbox2 = new GCheckbox(this, SCREENX - 300, 80, 200, 20);
+   checkbox2.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
+   checkbox2.setText("Flights from");
+   checkbox2.addEventHandler(this, "checkboxClicked");
+   checkbox2.setOpaque(false);
+   
+   
+   checkbox3 = new GCheckbox(this, SCREENX - 300, 130, 200, 20);
+   checkbox3.setText("Flights to");
+   checkbox3.addEventHandler(this, "handleToggleControlEvents");
+   checkbox3.setOpaque(false);*/
+}
+public void handleToggleControlEvents(GToggleControl checkbox) {
+  if (checkbox == checkbox1) {
+    if (checkbox1.isSelected()) {
+      println("Checkbox 1 is selected");
+    } else {
+      println("Checkbox 1 is deselected");
+    }
+  }
 }
