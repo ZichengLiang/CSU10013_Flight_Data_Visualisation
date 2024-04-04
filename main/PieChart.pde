@@ -8,16 +8,16 @@ class PieChart {
   Query fromWholeDataSet = new Query();
   int totalFlights = fromWholeDataSet.lastQueryList.size();
 
-  int[] angles = {90,90,90,90}; //represents degrees
+  int[] angles = {90, 90, 90, 90}; //represents degrees
   String[] dataLables;
-  
-  PieChart(int[] data){
+
+  PieChart(int[] data) {
 
     originalData = data;
     this.data = piConverter(data);
   }
-  
-  PieChart(){
+
+  PieChart() {
   }
 
   void  draw() {
@@ -32,15 +32,15 @@ class PieChart {
     //  }
     //}
   }
-  
-  void getAbnormalFlights(Query query){
-   this.dataLables = new String[] {"Diverted","cancelled","Unchanged"};
-   int cancelledNumber = query.cancelledFlights().size();
-   int divertedNumber  = query.divertedFlights().size();
-   int unaffectedFlights = query.getArrayList().size() - cancelledNumber - divertedNumber;
-   int[] abnormalFlights = {divertedNumber, cancelledNumber, unaffectedFlights};
-   originalData = abnormalFlights;
-   this.data = piConverter(abnormalFlights);
+
+  void getAbnormalFlights(Query query) {
+    this.dataLables = new String[] {"Diverted", "cancelled", "Unchanged"};
+    int cancelledNumber = query.cancelledFlights().size();
+    int divertedNumber  = query.divertedFlights().size();
+    int unaffectedFlights = query.getArrayList().size() - cancelledNumber - divertedNumber;
+    int[] abnormalFlights = {divertedNumber, cancelledNumber, unaffectedFlights};
+    originalData = abnormalFlights;
+    this.data = piConverter(abnormalFlights);
   }
 
   void pieChart(float diameter) {
@@ -65,16 +65,16 @@ class PieChart {
     int[]convertedData = new int[data.length];
     float dataPointDecValue;
 
- for (int i = 0;  i < data.length; i++){           // 22/03/2024 11:32 
-   dataPointDecValue = data[i]*Conversion;      //  data is multiplied by 360 to convert it to a fraction of PI
-   //println(dataPointDecValue);
-   dataPointDecValue = dataPointDecValue/totalFlights;       // the data fraction eg 218*360 cancelled flights out of 2000 218*360/2000 is converted to decimal form
-   //println(dataPointDecValue);
-   int dataPointDecFin = (int)dataPointDecValue;   // converts the float into an int
-   convertedData[i] = dataPointDecFin;
-   //println(convertedData[i]);
- }
-     Conversion = 0;
+    for (int i = 0; i < data.length; i++) {           // 22/03/2024 11:32
+      dataPointDecValue = data[i]*Conversion;      //  data is multiplied by 360 to convert it to a fraction of PI
+      //println(dataPointDecValue);
+      dataPointDecValue = dataPointDecValue/totalFlights;       // the data fraction eg 218*360 cancelled flights out of 2000 218*360/2000 is converted to decimal form
+      //println(dataPointDecValue);
+      int dataPointDecFin = (int)dataPointDecValue;   // converts the float into an int
+      convertedData[i] = dataPointDecFin;
+      //println(convertedData[i]);
+    }
+    Conversion = 0;
 
     return(convertedData);
   }

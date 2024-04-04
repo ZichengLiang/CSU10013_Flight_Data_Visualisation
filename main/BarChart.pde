@@ -6,6 +6,7 @@ class TheBarChart {
   BarChart barChart;
   float[] dataDisplay = {0.0};
   String[] labelDisplay = {"sample"};
+  String title = "default";
 
   TheBarChart(BarChart chart) {
     barChart = chart;
@@ -16,7 +17,7 @@ class TheBarChart {
     barChart.showValueAxis(true);
     barChart.showCategoryAxis(true);
     barChart.setBarLabels(labelDisplay);
-    //barChart.setCategoryAxisLabel("Airports");
+    barChart.setCategoryAxisLabel(title);
 
     //Colour
     barChart.setBarColour(#26B6E0); // Light Blue
@@ -27,7 +28,7 @@ class TheBarChart {
   void setData(float[] dataDisplay) {
     this.dataDisplay = dataDisplay;
   }
-  void byDistanceFrom(String origin){
+  void byDistanceFrom(String origin) {
     ArrayList<Datapoint> flightsFrom = currentQuery.flightsFrom(origin);
     Collections.sort(flightsFrom, (item2, item1) -> Integer.compare(item1.getDistance(), item2.getDistance()));
     Datapoint[] flights = flightsFrom.toArray(Datapoint[]::new);
@@ -52,18 +53,18 @@ class TheBarChart {
     }
     topDistances = Arrays.copyOf(topDistances, airportCounter);
     topDestinations = Arrays.copyOf(topDestinations, airportCounter);
-    
+    title = "longest flights from " + origin;
+    barChart.setCategoryAxisLabel(title);
     barChart.setData(topDistances);
     barChart.setBarLabels(topDestinations);
   }
-  
-  
+
+
   void draw() {
-    barChart.draw(300, 50, width - 800, height - 200);
+    barChart.draw(300, 50, width - 700, height - 200);
 
     fill(#26B6E0);
     textAlign(CENTER, TOP);
     textSize(15);
-    text("Airports", 415, 580);
   }
 }

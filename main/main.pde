@@ -40,7 +40,7 @@ void setup() {
   textSize(12);
   rectMode(CENTER);
 
-  datapoints = loadDatapoints("flights2k.csv");
+  datapoints = loadDatapoints("flights10k.csv");
   table = loadTable("flights2k.csv", "header");
   // Query functions test cases:
   Query fromWholeDataSet = new Query();
@@ -55,8 +55,6 @@ void setup() {
   BarChart barChart = new BarChart(this); // Create a new BarChart instance
   theBarChart = new TheBarChart(barChart);
   theBarChart.byDistanceFrom("JFK");
-
-
   // Buttons
   Screens = new Screen();
   //the side bar buttons here:
@@ -65,6 +63,8 @@ void setup() {
   // Oliver, 22nd March: Working on horix=zontal buttons
   showCase = new Text(SCREENX-100, SCREENY-100, 200, 200,
     255, body);
+
+  createGUI();
 
 
   //Query for flights by a specific carrier (e.g., American Airlines with carrier code "AA")
@@ -78,7 +78,6 @@ void setup() {
   // Get the summary for a specific flight number (replace "XX" with the actual flight number)
   getFlightSummary("AA", 1); // First enter the airline code within quotes and then enter the flt num
   // Daniel  2nd April: Checkboxes
-  createGUI();
 }
 
 
@@ -169,8 +168,7 @@ void initializeSidebarButtons() {
   for (int j = 0; j < buttons.length; j++) {
     if (j == 1) {
       buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "Pie Chart", 255, body, j);
-    } else if (j==2)
-    {
+    } else if (j==2) {
       buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "Map", 255, body, j);
     } else if (j == 4) {
       buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "Bar Chart", 255, body, j);
@@ -200,13 +198,17 @@ boolean inTopDestinations(String airport, String[] topDestinations) {
   return false;
 }
 
-
 //CheckBoxes
-public void checkbox1_clicked() {
+public void checkbox1_clicked(GCheckbox checkbox, GEvent event) {
   if (checkbox1.isSelected() == true) {
-    println("Checkbox 1 clicked");
+    currentQuery.setCancelled(true);
+    Query cancelled = new Query(currentQuery.filterQuery(), "Cancelled");
+    currentQuery = cancelled;
+    println("Checkbox 1 ticked");
   } else {
-    println("Checkbox 1 not clicked");
+    currentQuery = new Query();
+    currentQuery.setCancelled(false);
+    println("Checkbox 1 unticked");
   }
 }
 
@@ -228,7 +230,7 @@ public void checkbox1_clicked() {
 
 public void createGUI() {
   checkbox1 = new GCheckbox(this, SCREENX - 180, 30, 200, 20);
-  checkbox1.setText("Distance");
+  checkbox1.setText("cancelled");
   checkbox1.addEventHandler(this, "checkbox1_clicked");
   checkbox1.setOpaque(false);
 
@@ -245,11 +247,11 @@ public void createGUI() {
    checkbox3.setOpaque(false);*/
 }
 /*public void handleToggleControlEvents(GToggleControl checkbox) {
-  if (checkbox == checkbox1) {
-    if (checkbox1.isSelected()) {
-      println("Checkbox 1 is selected");
-    } else {
-      println("Checkbox 1 is deselected");
-    }
-  }
-}*/
+ if (checkbox == checkbox1) {
+ if (checkbox1.isSelected()) {
+ println("Checkbox 1 is selected");
+ } else {
+ println("Checkbox 1 is deselected");
+ }
+ }
+ }*/
