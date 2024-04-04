@@ -431,7 +431,7 @@ class Query {
       
       return report.toString();
     }
-} // getReport ends
+  } // getReport ends
 
 
   ArrayList<Datapoint> getArrayList(){

@@ -30,9 +30,6 @@ void settings() {
   size(SCREENX, SCREENY);
 }
 void setup() {
-  //Daniel 15/03/24 initialized BarCharts here
-  BarChart barChart = new BarChart(this); // Create a new BarChart instance
-
   fill(BACKGROUND_COLOUR);
   noLoop();
   body = loadFont("myFont-12.vlw");
@@ -45,40 +42,16 @@ void setup() {
   // Query functions test cases:
   Query fromWholeDataSet = new Query();
   currentQuery = fromWholeDataSet;
+  // Oliver 26th March: Map work
+  map = new Map(SCREENX/5, SCREENY/3, 700, 450, datapoints);
  //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
   thePieChart = new PieChart();
   thePieChart.getAbnormalFlights(currentQuery);
   // Zicheng  20/03/24 Initialised flight distances to bar chart
-  ArrayList<Datapoint> testFlights = currentQuery.flightsFrom("JFK");
-  ArrayList<Datapoint> sortedFlights = sortByDistance(testFlights);
-
-  Datapoint[] flights = sortedFlights.toArray(Datapoint[]::new);
-
-  float[] flightDistance = new float[flights.length];
-  for (int i = 0; i < flights.length; i++) {
-    flightDistance[i] = flights[i].distance;
-  }
-  String[] flightDestination = new String[flights.length];
-  for (int i = 0; i < flights.length; i++) {
-    flightDestination[i] = flights[i].dest;
-  }
-
-  // BarChart (Checks flight distance)
-  float[] topDistances = new float[datapoints.length];
-  String[] topDestinations = new String[datapoints.length];
-  int airportCounter = 0; //Counts airports passed through
-
-  for (int i = 0; i < flightDistance.length && airportCounter < 5; i++) {
-    if (! inTopDestinations(flightDestination[i], topDestinations)) {
-      topDistances[airportCounter] = flightDistance[i];
-      topDestinations[airportCounter] = flightDestination[i];
-      airportCounter++;
-    }
-  }
-  topDistances = Arrays.copyOf(topDistances, airportCounter);
-  topDestinations = Arrays.copyOf(topDestinations, airportCounter);
-  theBarChart = new TheBarChart(barChart, topDistances, topDestinations);
-
+  //Daniel 15/03/24 initialized BarCharts here
+  BarChart barChart = new BarChart(this); // Create a new BarChart instance
+  theBarChart = new TheBarChart(barChart);
+  theBarChart.byDistanceFrom("JFK");
 
 
   // Buttons
@@ -103,8 +76,7 @@ void setup() {
     // Get the summary for a specific flight number (replace "XX" with the actual flight number)
     getFlightSummary("AA", 1); // First enter the airline code within quotes and then enter the flt num
 
-  // Oliver 26th March: Map work
-  map = new Map(SCREENX/5, SCREENY/3, 700, 450, datapoints);
+  
 }
 
 
