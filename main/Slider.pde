@@ -1,83 +1,83 @@
+// Aryan: 3rd April
+
 import g4p_controls.*;
 import java.util.ArrayList;
+import processing.core.PApplet; // Import the PApplet class
 
-// Initialize your ArrayList to store Datapoint objects
-//ArrayList<Datapoint> datapoints; // Assume this is populated with your CSV data
-ArrayList<Datapoint> filteredFlights = new ArrayList<Datapoint>(); // To store filtered results
+public class SliderClass {
 
-// Slider to control departure hour
-GSlider hourSlider;
+  ArrayList<Datapoint> filteredFlights = new ArrayList<Datapoint>(); // To store filtered results
+  GSlider hourSlider;
+  String[] tickLabels = new String[24];
+  PApplet parent; // Reference to the parent PApplet instance
 
-String[] tickLabels = new String[24];
+  public SliderClass(PApplet parent) {
+    this.parent = parent; // Assign the parent PApplet instance
+    G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
+    G4P.setMouseOverEnabled(true);
+    int sliderWidth = 175; // Width of the slider
+    int sliderHeight = 40; // Height of the slider
+    int margin = 10; // Margin from the edges of the window
 
+    // Initialize the tick labels with numbers from 0 to 23
+    for (int i = 0; i < 24; i++) {
+      tickLabels[i] = String.format("%02d:00", i); // Format each hour with leading zeros
+    }
 
-// Handler for the slider change event
-public void hourSliderChanged(GSlider slider, GEvent event) {
-  // Check for the drag event to update the slider position continuously
-  if (event == GEvent.DRAGGED) {
-    int hour = slider.getValueI();
-    // Update any necessary components based on the slider's value
-    println("Slider moved to: " + hour); // Debugging line to check slider movement
-    filterFlightsAfterHour(hour); // Apply filter based on the selected hour
-    // Add any additional actions needed during the drag here
+    // Position the slider at the top right, with a margin
+    int sliderX = parent.width - sliderWidth - margin; // X position
+    int sliderY = 400;
+
+    hourSlider = new GSlider(parent, sliderX, sliderY, sliderWidth, sliderHeight, 10.0); // Use the parent PApplet instance
+    hourSlider.setLimits(0, 0, 23); // Slider range from 0 to 23 hours
+    hourSlider.setNumberFormat(G4P.INTEGER, 0);
+    hourSlider.setShowValue(true); // Display value above cursor
+    hourSlider.setOpaque(false);
+    hourSlider.addEventHandler(this, "hourSliderChanged");
   }
-}
 
-void filterFlightsAfterHour(int hour) {
-  // Clear previous filter results
-  filteredFlights.clear();
 
-  // Loop through datapoints and filter based on the hour
-  for (Datapoint dp : datapoints) {
-    if (matchesHourCriteria(dp, hour)) {
-      filteredFlights.add(dp);
+// here you can add any actions u wish to
+  public void hourSliderChanged(GSlider slider, GEvent event) {
+    if (event == GEvent.DRAGGED) {
+      int hour = slider.getValueI();
+      //println("Slider moved to: " + hour);
+      filterFlightsAfterHour(hour);
     }
   }
 
-  // Now you can use filteredFlights for display or further processing
-  println("Filtered flights count: " + filteredFlights.size());
-}
+  public void filterFlightsAfterHour(int hour) {
+    filteredFlights.clear();
+    for (Datapoint dp : datapoints) {
+      if (matchesHourCriteria(dp, hour)) {
+        filteredFlights.add(dp);
+      }
+    }
+    println("Filtered flights count: " + filteredFlights.size());
+  }
 
-boolean matchesHourCriteria(Datapoint dp, int hour) {
-  // Convert CRSDepTime to a comparable format (hour only)
-  int flightHour = dp.getCRSDepTime() / 100; // Assuming CRSDepTime is in HHMM format
-  
-  // Check if the flight departs on or after the specified hour
-  return flightHour >= hour;
-}
+  public boolean matchesHourCriteria(Datapoint dp, int hour) {
+    int flightHour = dp.getCRSDepTime() / 100;
+    return flightHour >= hour;
+  }
 
-//void drawTickLabels(float margin) {
-//  float interval = hourSlider.getWidth() / 24.0; // Calculate the interval between tick labels
-//  //float x = hourSlider.getX() + interval / 2.0; // Start drawing tick labels from the center of each interval
-//  float y = hourSlider.getY() + hourSlider.getHeight() + margin; // Y position for tick labels (below the slider with margin)
+  public void drawTickLabels(float margin) {
+    float interval = hourSlider.getWidth() / 24.0;
+    float y = hourSlider.getY() + hourSlider.getHeight() + margin;
 
-//  textAlign(CENTER, CENTER);
-//  textSize(10);
-  
-//  for (int i = 0; i < 24; i++) {
-//    float x = hourSlider.getX() + (i + 0.5) * interval; // Adjust the x position to place the text in the center of the tick interval
-//    stroke(255); // Set the stroke color to white
-//    fill(255); // Set the fill color to white
-//    text(tickLabels[i], x, y); // Draw tick labels
-//  }
-//}
+    textAlign(CENTER, CENTER);
+    textSize(10);
 
-void drawTickLabels(float margin) {
-  float interval = hourSlider.getWidth() / 24.0; // Calculate the interval between tick labels
-  float y = hourSlider.getY() + hourSlider.getHeight() + margin; // Y position for tick labels (below the slider with margin)
+    int currentIndex = (int) ((hourSlider.getValueF() / 24.0) * 24);
 
-  textAlign(CENTER, CENTER);
-  textSize(10);
-  
-  int currentIndex = (int) ((hourSlider.getValueF() / 24.0) * 24); // Calculate the index of the current tick label
-  
-  for (int i = 0; i < 24; i++) {
-    float x = hourSlider.getX() + (i + 0.5) * interval; // Adjust the x position to place the text in the center of the tick interval
-    stroke(255); // Set the stroke color to white
-    fill(255); // Set the fill color to white
-    if (i == currentIndex) {
-      text(tickLabels[i], x, y); // Draw tick label only if it corresponds to the current slider position
-      break; // Break the loop once the current tick label is drawn
+    for (int i = 0; i < 24; i++) {
+      float x = hourSlider.getX() + (i + 0.5) * interval;
+      stroke(255);
+      fill(255);
+      if (i == currentIndex) {
+        text(tickLabels[i], x, y);
+        break;
+      }
     }
   }
 }
