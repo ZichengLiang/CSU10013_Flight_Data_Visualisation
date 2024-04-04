@@ -14,7 +14,7 @@ class Text
     this.y=y;
     startX=x-(width/2);
     startY=y-(height/2);
-    
+
     this.width = width;
     this.height= height;
     this.widgetColor=widgetColor;
@@ -30,7 +30,7 @@ class Text
     for (int i3 = 0; i3 < displayNum; i3++) {
       int thisEntry = 0;
       thisEntry = startingEntry + i3;
-      if (thisEntry < 10) {
+      if (thisEntry < data.length) {
         // A bug: when the remaining data entries are less than 10, it goes wrong
         text(thisEntry + " > " + data[thisEntry].carrierCode + data[thisEntry].flightNumber + " ---- "
           + data[thisEntry].origin + " -> " + data[thisEntry].dest
