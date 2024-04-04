@@ -40,7 +40,7 @@ class Screen
   {
     switch(screenType)
     {
-    case 0: 
+    case 0:
       fill(SCREEN1);
       rect(startX, startY, screenX, screenY);
       
@@ -94,17 +94,17 @@ class Screen
       fill(SCREEN5);
       theBarChart.draw();
       break;
-      
-     default:
-     fill(SCREEN6);
-     rect(startX, startY, screenX, screenY);
-     fill(0);
-     textSize(20);
-     textAlign(CENTER);
-     text("Welcome to our program. \nPlease press one of the side buttons to begin", startX, 50);
+
+    default:
+      fill(SCREEN6);
+      rect(startX, startY, screenX, screenY);
+      fill(0);
+      textSize(20);
+      textAlign(CENTER);
+      text("Welcome to our program. \nPlease press one of the side buttons to begin", SCREENX / 2, 50);
     }
-    
-    fill(0);
+
+    fill(#BC3D3D); // Redish
     rect(SCREENX-100, SCREENY-500, 200, SCREENY-200);
     textSize(12);
   }

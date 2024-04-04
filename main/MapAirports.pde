@@ -1,5 +1,4 @@
 class Airports
 {
   float x;
-  
 }

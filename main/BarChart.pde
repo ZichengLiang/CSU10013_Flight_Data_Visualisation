@@ -59,7 +59,7 @@ class TheBarChart {
   
   
   void draw() {
-    barChart.draw(150, 50, width - 200, height - 200);
+    barChart.draw(300, 50, width - 800, height - 200);
 
     fill(#26B6E0);
     textAlign(CENTER, TOP);
