@@ -47,7 +47,7 @@ void setup() {
   currentQuery = fromWholeDataSet;
   // Oliver 26th March: Map work
   map = new Map(SCREENX/5, SCREENY/3, 700, 450, datapoints);
- //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
+  //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
   thePieChart = new PieChart();
   thePieChart.getAbnormalFlights(currentQuery);
   // Zicheng  20/03/24 Initialised flight distances to bar chart
@@ -67,28 +67,22 @@ void setup() {
     255, body);
 
 
-   //Query for flights by a specific carrier (e.g., American Airlines with carrier code "AA")
-    Query carrierQuery = new Query();
-    ArrayList<Datapoint> bySpecificCarrier = carrierQuery.flightsByCarrier("AA");
-  
-   //Query for flights on a specific date
-    Query onDate = new Query();
-    ArrayList<Datapoint> onSpecificDate = onDate.flightsOnDate("20220101"); // Example: "20240101" for January 1, 2024
+  //Query for flights by a specific carrier (e.g., American Airlines with carrier code "AA")
+  Query carrierQuery = new Query();
+  ArrayList<Datapoint> bySpecificCarrier = carrierQuery.flightsByCarrier("AA");
 
   //Query for flights on a specific date
   Query onDate = new Query();
   ArrayList<Datapoint> onSpecificDate = onDate.flightsOnDate("20220101"); // Example: "20240101" for January 1, 2024
-
   // Aryan, 27th March
   // Get the summary for a specific flight number (replace "XX" with the actual flight number)
   getFlightSummary("AA", 1); // First enter the airline code within quotes and then enter the flt num
-  
-}
-
-
   // Daniel  2nd April: Checkboxes
   createGUI();
 }
+
+
+
 
 //displaynum = 10
 void draw() {
@@ -121,12 +115,12 @@ void mousePressed() {
       startingEntry = 0; // go back to the beginning;
     }
   }
-  
+
   for (int i =0; i<buttonsHorizontal.length; i++)
   {
     event=buttonsHorizontal[i].getEvent(mouseX, mouseY);
   }
-  
+
   for (int i =0; i<buttons.length; i++)
   {
     event=buttons[i].getEvent(mouseX, mouseY);
@@ -135,7 +129,7 @@ void mousePressed() {
       Screens.screenType=event;
     }
   }
-  
+
   redraw();
 }
 
@@ -208,15 +202,15 @@ boolean inTopDestinations(String airport, String[] topDestinations) {
 
 
 //CheckBoxes
-/*public void checkbox1_clicked() {
- if (checkbox1.isSelected() == true) {
- println("Checkbox 1 clicked");
- } else {
- println("Checkbox 1 not clicked");
- }
- }
- 
- public void checkbox2_clicked() {
+public void checkbox1_clicked() {
+  if (checkbox1.isSelected() == true) {
+    println("Checkbox 1 clicked");
+  } else {
+    println("Checkbox 1 not clicked");
+  }
+}
+
+/*public void checkbox2_clicked() {
  if (checkbox2.isSelected() == false) {
  println("Checkbox 2 clicked");
  } else {
@@ -235,7 +229,7 @@ boolean inTopDestinations(String airport, String[] topDestinations) {
 public void createGUI() {
   checkbox1 = new GCheckbox(this, SCREENX - 180, 30, 200, 20);
   checkbox1.setText("Distance");
-  checkbox1.addEventHandler(this, "checkboxClicked");
+  checkbox1.addEventHandler(this, "checkbox1_clicked");
   checkbox1.setOpaque(false);
 
   /*checkbox2 = new GCheckbox(this, SCREENX - 300, 80, 200, 20);
@@ -250,7 +244,7 @@ public void createGUI() {
    checkbox3.addEventHandler(this, "handleToggleControlEvents");
    checkbox3.setOpaque(false);*/
 }
-public void handleToggleControlEvents(GToggleControl checkbox) {
+/*public void handleToggleControlEvents(GToggleControl checkbox) {
   if (checkbox == checkbox1) {
     if (checkbox1.isSelected()) {
       println("Checkbox 1 is selected");
@@ -258,4 +252,4 @@ public void handleToggleControlEvents(GToggleControl checkbox) {
       println("Checkbox 1 is deselected");
     }
   }
-}
+}*/

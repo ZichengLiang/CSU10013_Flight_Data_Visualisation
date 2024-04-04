@@ -64,6 +64,6 @@ class TheBarChart {
     fill(#26B6E0);
     textAlign(CENTER, TOP);
     textSize(15);
-    text("Airports", 415, 500);
+    text("Airports", 415, 580);
   }
 }

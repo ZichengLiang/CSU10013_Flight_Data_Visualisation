@@ -9,19 +9,14 @@ static class AirportTimezones {
     airportTimezones.put("LAX", "America/Los_Angeles");  // Example: LAX airport in Los Angeles
     // Add more airport codes and timezones as needed
   }
-}
-
-
-        // Static initializer block to populate the map
-        static {
+   static {
             // Populate the map with airport codes and their timezones
             airportTimezones.put("JFK", "America/New_York");  // Example: JFK airport in New York
             airportTimezones.put("LAX", "America/Los_Angeles");  // Example: LAX airport in Los Angeles
             airportTimezones.put("HNL", "America/Hawaii");
             // Add more airport codes and timezones as needed
         }
-    }
-
+}
 
 
 
