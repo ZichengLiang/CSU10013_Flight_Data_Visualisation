@@ -24,7 +24,7 @@ class Screen
     startX = (4*SCREENX/6);//-(borders+screenX/2);
     startY = SCREENY/2;
 
-    screenType=-1;
+    screenType=0;
     borders = 15;
   }
 

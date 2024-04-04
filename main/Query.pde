@@ -8,42 +8,145 @@
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.function.Predicate;
 class Query {
   // TODO: write more query functions
   ArrayList<Datapoint> lastQueryList;
   String name;
 
+  String carrier, origin, dest;
+  boolean diverted, cancelled;
+  
   // Constructors: default constructor search within the whole set
   Query() {
     List<Datapoint> tempList = Arrays.asList(datapoints);
     this.lastQueryList = new ArrayList<Datapoint>(tempList);
     name = "whole data set";
+    carrier = origin = dest = "";
+    diverted = cancelled = false;
   }
   // this constructor takes in one ArrayList and search within the given set
   Query(ArrayList<Datapoint> lastQueryList, String name) {
     this.lastQueryList = lastQueryList;
     this.name = name;
+    carrier = origin = dest = "";
+    diverted = cancelled = false;
   }
-  /*
-   methods list:
-   ArrayList<Datapoint> flightsFrom(String airportCode); ArrayList<Datapoint> flightsFrom(int originWac);
-   ArrayList<Datapoint> flightsTo(String airportCode); ArrayList<Datapoint> flightsTo(int destWac);
-   ArrayList<Datapoint> flightRoute(String origin, String dest);
-   ArrayList<Datapoint> lateFlights();
-   ArrayList<Datapoint> divertedFlights();
-   ArrayList<Datapoint> flightsByCarrier(String carrierCode);
-   ArrayList<Datapoint> flightsOnDate(String date);
-   
-   String GetReport(ArrayList<Datapoint> inputList, int TYPE);
-   */
+
+  /** 
+  methods list:
+     fliters:
+     setters
+     ArrayList<Datapoint> filterQuery(String origin, String dest, boolean cancelled, boolean diverted);
+     
+     ArrayList<Datapoint> flightsFrom(String airportCode); ArrayList<Datapoint> flightsFrom(int originWac);
+     ArrayList<Datapoint> flightsTo(String airportCode); ArrayList<Datapoint> flightsTo(int destWac);
+     ArrayList<Datapoint> flightRoute(String origin, String dest);
+     ArrayList<Datapoint> lateFlights();
+     ArrayList<Datapoint> cancelledFlights()
+     ArrayList<Datapoint> divertedFlights();
+     ArrayList<Datapoint> flightsByCarrier(String carrierCode);
+     ArrayList<Datapoint> flightsOnDate(String date);
+  utility methods
+     ArrayList<Datapoint> getArrayList()
+     String GetReport(ArrayList<Datapoint> inputList, int TYPE);
+  */
+  
+  void setCarrier(String carrier){
+    this.carrier = carrier;
+  }
+  
+  void setOrigin(String origin){
+    this.origin = origin;
+  }
+  
+  void setDest(String dest){
+    this.dest = dest;
+  }
+  
+  void setCancelled(boolean cancelled){
+    this.cancelled = cancelled;
+  }
+  
+  void setDiverted (boolean diverted){
+    this.diverted = diverted;
+  }
+  
+  
+  ArrayList<Datapoint> filterModel(Predicate<Datapoint> predicate){
+     ArrayList<Datapoint> filteredList = new ArrayList<Datapoint>(lastQueryList.stream()
+    .filter(predicate)
+    .collect(Collectors.toList()));
+    return filteredList;
+  }
+  
+   ArrayList<Datapoint> filterQuery() {
+    // when handling user interaction, there should be initialised parameters, and once an event happens, change the parameter and make a filter
+    // all charts should obtain its dataset from the filtered Query (to offer real-time response)
+    Predicate<Datapoint> predicate = datapoint -> true; // Base predicate that allows all data entries
+
+    // Add conditions dynamically based on user inputs, using parallel if statements
+    if (carrier != null && !carrier.isEmpty()){
+      // if empty, the filter won't be effective
+        predicate = predicate.and(datapoint -> datapoint.carrierCodeIs(carrier));
+    }
+    if (origin != null && !origin.isEmpty()) {
+        predicate = predicate.and(datapoint -> datapoint.originIs(origin));
+    }
+    if (dest != null && !dest.isEmpty()) {
+        predicate = predicate.and(datapoint -> datapoint.destIs(dest));
+    }
+    if (cancelled) {
+        predicate = predicate.and(Datapoint::isCancelled);
+    }
+    if (diverted) {
+        predicate = predicate.and(Datapoint::isDiverted);
+    }
+
+    // Apply the combined predicate to filter flights
+    return filterModel(predicate);
+  }
+  
+  ArrayList<Datapoint> filterQuery(String carrier, String origin, String dest, boolean cancelled, boolean diverted) {
+    // when handling user interaction, there should be initialised parameters, and once an event happens, change the parameter and make a filter
+    // all charts should obtain its dataset from the filtered Query (to offer real-time response)
+    Predicate<Datapoint> predicate = datapoint -> true; // Base predicate that allows all data entries
+
+    // Add conditions dynamically based on user inputs, using parallel if statements
+    if (carrier != null && !carrier.isEmpty()){
+      // if empty, the filter won't be effective
+        predicate = predicate.and(datapoint -> datapoint.carrierCodeIs(carrier));
+    }
+    if (origin != null && !origin.isEmpty()) {
+        predicate = predicate.and(datapoint -> datapoint.originIs(origin));
+    }
+    if (dest != null && !dest.isEmpty()) {
+        predicate = predicate.and(datapoint -> datapoint.destIs(dest));
+    }
+    if (cancelled) {
+        predicate = predicate.and(Datapoint::isCancelled);
+    }
+    if (diverted) {
+        predicate = predicate.and(Datapoint::isDiverted);
+    }
+
+    // Apply the combined predicate to filter flights
+    return filterModel(predicate);
+  }
+
   ArrayList<Datapoint> flightsFrom(String airportCode) {
     // queries function: print all the flights going to passed airport code
-    ArrayList<Datapoint> flightsFromList = new ArrayList<Datapoint>(lastQueryList.stream()
-      .filter(datapoint -> datapoint.originIs(airportCode))
-      .collect(Collectors.toList()));
+    if(airportCode.isEmpty()){
+      return this.getArrayList();
+    }
+    else{
+      ArrayList<Datapoint> flightsFromList = filterModel(datapoint -> datapoint.originIs(airportCode));
+    
+      println(getReport(flightsFromList, FLIGHTS_FROM));
+    
+      return flightsFromList;
+    }
 
-    println(getReport(flightsFromList, FLIGHTS_FROM));
-    return flightsFromList;
   }
 
   ArrayList<Datapoint> flightsFrom(int originWac) {
@@ -64,6 +167,19 @@ class Query {
     println(getReport(flightsFromList, FLIGHTS_FROM));
     return flightsFromList;
   }
+  
+  ArrayList<Datapoint> flightsTo(String airportCode) {
+    // queries function: print all the flights going to passed airport code
+    if (airportCode.isEmpty()){
+      return this.getArrayList();
+    }
+    ArrayList<Datapoint> flightsToList = filterModel(datapoint -> datapoint.destIs(airportCode));
+    
+    println(getReport(flightsToList, FLIGHTS_TO));
+    
+    return flightsToList;
+  }
+  
 
   ArrayList<Datapoint> flightsTo(int destWac) {
     // queries function: print all the flights going to passed airport code
@@ -121,25 +237,17 @@ class Query {
         println(cancelledFlightsList.size() + "> " + lastQuery[i].flightCode + " on " + lastQuery[i].flightDate + " is cancelled.");
       }
     }
+
     println("There are " + cancelledFlightsList.size() + " diverted flights out of " + lastQuery.length + " flights.");
     return cancelledFlightsList;
   }
 
 
 
-  ArrayList<Datapoint> flightsTo(String airportCode) {
-    // queries function: print all the flights going to passed airport code
-    ArrayList<Datapoint> flightsToList = new ArrayList<Datapoint>(lastQueryList.stream()
-      .filter(datapoint -> datapoint.destIs(airportCode))
-      .collect(Collectors.toList()));
 
-    println(getReport(flightsToList, FLIGHTS_TO));
-    return flightsToList;
-  }
-
-  // This is for flights by particular carrier
-  ArrayList<Datapoint> flightsByCarrier(String carrierCode) {
-    ArrayList<Datapoint> flightsByCarrierList = new ArrayList<Datapoint>(lastQueryList.stream()
+// This is for flights by particular carrier
+    ArrayList<Datapoint> flightsByCarrier(String carrierCode) {
+      ArrayList<Datapoint> flightsByCarrierList = new ArrayList<Datapoint>(lastQueryList.stream()
       .filter(datapoint -> datapoint.carrierCodeIs(carrierCode))
       .collect(Collectors.toList()));
 
@@ -233,5 +341,12 @@ class Query {
 
       return report.toString();
     }
-  } // getReport ends
+
+} // getReport ends
+
+
+  ArrayList<Datapoint> getArrayList(){
+    return lastQueryList;
+  }
+  
 }

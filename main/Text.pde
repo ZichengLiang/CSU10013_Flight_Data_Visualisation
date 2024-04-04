@@ -4,7 +4,6 @@ class Text
   float x, y, width, height, startX, startY;
   color widgetColor, labelColor;
   PFont widgetFont;
-  int show;
   Datapoint[] data;
 
   Text(float x, float y, float width, float height,
@@ -43,13 +42,10 @@ class Text
 
   int pressed(float mX, float mY)
   {
-    if (show==1)
-    {
       if (mX>x-(width/2) && mX < x+(width/2) && mY >y-(height/2) && mY <y+(height/2))
       {
         return 1;
       }
-    }
     return EVENT_NULL;
   }
 }
