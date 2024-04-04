@@ -1,7 +1,7 @@
 Table table;
 int fontSize = 8; 
 int tableX = 340; 
-int tableY = 50; 
+int tableY = 20; 
 int tableWidth = 200; 
 int tableHeight = 200; 
 int rowHeight = 20; 

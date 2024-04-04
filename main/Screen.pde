@@ -56,7 +56,17 @@ class Screen
       fill(SCREEN3);
       rect(startX, startY, screenX, screenY);
       displayTableData(tableX, tableY, tableWidth, tableHeight);
-      drawScroll(1900, mouseY, 100, 50, color(200));
+      fill(200);
+      triangle(arrowX, arrowMargin + buttonHeight, arrowX + buttonWidth / 2, arrowMargin, arrowX + buttonWidth, arrowMargin + buttonHeight);
+      fill(200);
+      triangle(arrowX, downArrowY, arrowX + buttonWidth / 2, downArrowY + buttonHeight, arrowX + buttonWidth, downArrowY);
+      fill(0);
+      fill(200);
+      triangle(leftArrowX + buttonWidth , horizontalArrowsY , leftArrowX + buttonWidth / 2 , horizontalArrowsY + buttonHeight / 2 , leftArrowX + buttonWidth , horizontalArrowsY + buttonHeight);
+      fill(200);
+      triangle(rightArrowX, horizontalArrowsY, rightArrowX + buttonWidth / 2, horizontalArrowsY + buttonHeight / 2, rightArrowX, horizontalArrowsY + buttonHeight);
+      if (mouse == true){
+      } 
       break;
 
     case 3:

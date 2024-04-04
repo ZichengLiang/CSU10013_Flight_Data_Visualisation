@@ -1,17 +1,8 @@
-void drawScroll(float x, float y, float w, float h, color col) {
-  fill(col);
-  noStroke(); // Optionally, customize or remove as needed
-  
-  // Calculate the positions and dimensions correctly
-  float capsuleStartX = x - w / 2; // Starting x-coordinate of the capsule
-  float capsuleEndX = x + w / 2;   // Ending x-coordinate of the capsule
-  float rectWidth = w - h;         // Width of the rectangle part of the capsule
-  
-  // Ensure the rectangle is drawn in the correct position
-  rect(capsuleStartX + h / 2, y - h / 2, rectWidth, h);
-  
-  // Draw the left semicircle (cap)
-  ellipse(capsuleStartX + h / 2, y, h, h);
-  // Draw the right semicircle (cap)
-  ellipse((capsuleEndX - h / 2)-rectWidth, y - h, h, h);
-}
+int buttonWidth = 50;
+int buttonHeight = 30;
+float arrowMargin = 10; // Margin from the top and the right edge
+float arrowX = width - buttonWidth - arrowMargin + 1810; 
+float downArrowY = arrowMargin + buttonHeight + 10;
+float leftArrowX = width - (buttonWidth * 2 + arrowMargin * 3) + 1850;
+float rightArrowX = width - (buttonWidth + arrowMargin * 2) + 1850;
+float horizontalArrowsY = arrowMargin + 100; // Y position for both left and right arrows

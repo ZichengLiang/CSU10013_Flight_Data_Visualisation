@@ -10,6 +10,7 @@ int startingEntry = 0; // Display from this entry number;
 int sideBarButtonsNum = 5;
 int horizontalButtonsNum = 3;
 boolean drawBarChart = false; // Used to check if bar chart is used
+boolean mouse = false;
 
 // Oliver, 15th March: creation of widgets to switch between screens
 
@@ -117,9 +118,24 @@ void draw() {
 
 
 void mousePressed() {
+  if (mouseX > arrowX && mouseX < arrowX + buttonWidth && mouseY > arrowMargin && mouseY < arrowMargin + buttonHeight) {
+    scrollY += 20; // Move text down
+  }
+  
+  // Check if click is within the down arrow area
+  if (mouseX > arrowX && mouseX < arrowX + buttonWidth && mouseY > downArrowY && mouseY < downArrowY + buttonHeight) {
+    scrollY -= 20; // Move text up
+  }
+  if (mouseX > leftArrowX && mouseX < leftArrowX + buttonWidth && mouseY > horizontalArrowsY && mouseY < horizontalArrowsY + buttonHeight) {
+    tableX -= 10; // Move text left
+  }
+
+  // Right Arrow
+  if (mouseX > rightArrowX && mouseX < rightArrowX + buttonWidth && mouseY > horizontalArrowsY && mouseY < horizontalArrowsY + buttonHeight) {
+    tableX += 10; // Move text right
+  }
   int event;
   event = showCase.pressed(mouseX, mouseY);
-  scrollY -= 20;
   if (event>-1)
   {
     startingEntry += displayNum;
