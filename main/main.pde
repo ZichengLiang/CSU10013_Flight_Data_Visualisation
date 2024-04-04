@@ -45,22 +45,9 @@ void setup() {
   // Query functions test cases:
   Query fromWholeDataSet = new Query();
   currentQuery = fromWholeDataSet;
-  // main page - change the query
-  // chart pages - change the 
-  int totalFlights    = currentQuery.getArrayList().size();
-  int cancelledNumber = currentQuery.filterQuery(null, null, null, true, false).size();
-  // if "cancelled" checkbox ticked:
-   currentQuery.setCancelled(true); // the interaction does this, and
-   cancelledNumber = currentQuery.filterQuery().size();
-  int divertedNumber  = currentQuery.filterQuery(null, null, null, false, true).size();
-
-  int totalUnaffected = totalFlights-(divertedNumber + cancelledNumber);
-  //int flightsUnaffected = totalFlights - (cancelledNumber + divertedNumber);
-
-  int[] AFlights = {divertedNumber, cancelledNumber, totalUnaffected};
-  //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
-  
-  thePieChart = new PieChart(AFlights);
+ //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
+  thePieChart = new PieChart();
+  thePieChart.getAbnormalFlights(currentQuery);
   // Zicheng  20/03/24 Initialised flight distances to bar chart
   ArrayList<Datapoint> testFlights = currentQuery.flightsFrom("JFK");
   ArrayList<Datapoint> sortedFlights = sortByDistance(testFlights);
@@ -136,7 +123,7 @@ void draw() {
   {
     buttonsHorizontal[i].draw();
   }
-  showCase.draw(datapoints);
+  showCase.draw(currentQuery.filterQuery().toArray(Datapoint[]::new));
 }
 
 void mousePressed() {
@@ -239,7 +226,7 @@ boolean inTopDestinations(String airport, String[] topDestinations) {
 }
 
 ArrayList<Datapoint> sortByDistance(ArrayList<Datapoint> input) {
-  ArrayList<Datapoint> sortedList = new ArrayList<Datapoint>(input);
-  Collections.sort(sortedList, (item2, item1) -> Integer.compare(item1.getDistance(), item2.getDistance()));
-  return sortedList;
-}
+    ArrayList<Datapoint> sortedList = new ArrayList<Datapoint>(input);
+    Collections.sort(sortedList, (item2, item1) -> Integer.compare(item1.getDistance(), item2.getDistance()));
+    return sortedList;
+  }

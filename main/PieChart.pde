@@ -4,16 +4,18 @@ class PieChart {
   
   int[] data;
   int[] originalData;
-  int Conversion; //determaines what kind of conversion is done in piConverter - radians or percentage
+  int Conversion = 360; //determaines what kind of conversion is done in piConverter - radians or percentage
   Query fromWholeDataSet = new Query();
   int totalFlights = fromWholeDataSet.lastQueryList.size();
   int[] angles = {90,90,90,90}; //represents degrees
-  String[] dataLables ={"Diverted","cancelled","Unchanged"};
+  String[] dataLables;
   
   PieChart(int[] data){
     originalData = data;
-    Conversion = 360;
     this.data = piConverter(data);
+  }
+  
+  PieChart(){
   }
 
   void  draw() {
@@ -27,6 +29,16 @@ class PieChart {
   //    DataToggle[j] = new Widget( (SCREENX / buttons.length) * j + 60,60, 100, 60, 20, "Bar Chart", 255, body, j);
   //  }
   //}
+  }
+  
+  void getAbnormalFlights(Query query){
+   this.dataLables = new String[] {"Diverted","cancelled","Unchanged"};
+   int cancelledNumber = query.cancelledFlights().size();
+   int divertedNumber  = query.divertedFlights().size();
+   int unaffectedFlights = query.getArrayList().size() - cancelledNumber - divertedNumber;
+   int[] abnormalFlights = {divertedNumber, cancelledNumber, unaffectedFlights};
+   originalData = abnormalFlights;
+   this.data = piConverter(abnormalFlights);
   }
 
   void pieChart(float diameter) {
@@ -52,12 +64,12 @@ int[] piConverter(int[] data){
     float dataPointDecValue;
  for (int i = 0;  i < data.length; i++){           // 22/03/2024 11:32 
    dataPointDecValue = data[i]*Conversion;      //  data is multiplied by 360 to convert it to a fraction of PI
-    println(dataPointDecValue);
+   //println(dataPointDecValue);
    dataPointDecValue = dataPointDecValue/totalFlights;       // the data fraction eg 218*360 cancelled flights out of 2000 218*360/2000 is converted to decimal form
-   println(dataPointDecValue);
+   //println(dataPointDecValue);
    int dataPointDecFin = (int)dataPointDecValue;   // converts the float into an int
    convertedData[i] = dataPointDecFin;
-   println(convertedData[i]);
+   //println(convertedData[i]);
  }
      Conversion = 0;
     return(convertedData);

@@ -30,9 +30,8 @@ class Text
     for (int i3 = 0; i3 < displayNum; i3++) {
       int thisEntry = 0;
       thisEntry = startingEntry + i3;
-      //~M: seems to be confusing the system, prints 10 times once replaced
-      if (thisEntry < datapointCount) {
-        //M: there seems to be somthing going wrong with calling on data here, i need more info on exactly how data is being called before i can fix this
+      if (thisEntry < 10) {
+        // A bug: when the remaining data entries are less than 10, it goes wrong
         text(thisEntry + " > " + data[thisEntry].carrierCode + data[thisEntry].flightNumber + " ---- "
           + data[thisEntry].origin + " -> " + data[thisEntry].dest
           , x+50, startY + i3*20 + 15);

@@ -43,7 +43,32 @@ class Screen
     case 0: 
       fill(SCREEN1);
       rect(startX, startY, screenX, screenY);
-
+      
+      fill(255);
+      textSize(20);
+      textAlign(RIGHT);
+      text("This is Team 9, welcome to our program ! \nPlease press one of the side buttons to begin", startX, 100);
+      // Zicheng: 4th April, addded the insights using query functions
+      textAlign(LEFT);
+      text("Insights: Among " + currentQuery.getArrayList().size() + " flights in the current query...", screenX/4, 200);
+      ArrayList<Datapoint> longestFlights = currentQuery.sortByDistance();
+      textAlign(LEFT);
+      text("* The longest flight goes from " + longestFlights.get(0).combinedOriginCityName 
+      + " to " + longestFlights.get(0).combinedDestCityName
+      + "\n its flight distance is " + longestFlights.get(0).distance + " miles.", screenX/4, 250); // y position = 250
+      
+      textAlign(LEFT);
+      text("* The busiest carrier company is " + currentQuery.busiestAirline()
+      + " which operates " + currentQuery.flightsByCarrier.get(currentQuery.busiestAirline()).size() + " airlines .", screenX/4, 320); // y position = 320
+      
+      textAlign(LEFT);
+      text("* The busiest airport (by departure) is " + currentQuery.busiestDeptAirport()
+      + "\n from where " + currentQuery.flightsByOrigin.get(currentQuery.busiestDeptAirport()).size() + " flights depart.", screenX/4, 360); // y position = 360
+      
+       textAlign(LEFT);
+      text("* The busiest airport (by arrival) is " + currentQuery.busiestArrAirport()
+      + "\n where " + currentQuery.flightsByDestination.get(currentQuery.busiestArrAirport()).size() + " flights arrive.", screenX/4, 420); // y position = 400
+      
       break;
 
     case 1: //Reserved for Pie Chart

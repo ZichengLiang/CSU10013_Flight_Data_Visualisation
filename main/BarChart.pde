@@ -31,6 +31,40 @@ class TheBarChart {
   void setLabel(String[] labelDisplay) {
     this.labelDisplay = labelDisplay;
   }
+  
+  void byDistanceFrom(String origin){
+    ArrayList<Datapoint> flightsFrom = currentQuery.flightsFrom(origin);
+    Collections.sort(flightsFrom, (item2, item1) -> Integer.compare(item1.getDistance(), item2.getDistance()));
+    Datapoint[] flights = flightsFrom.toArray(Datapoint[]::new);
+    
+    float[] flightDistance = new float[flights.length];
+      for (int i = 0; i < flights.length; i++) {
+        flightDistance[i] = flights[i].distance;
+      }
+    String[] flightDestination = new String[flights.length];
+      for (int i = 0; i < flights.length; i++) {
+        flightDestination[i] = flights[i].dest;
+      }
+      
+    float[] topDistances = new float[datapoints.length];
+  String[] topDestinations = new String[datapoints.length];
+  int airportCounter = 0; //Counts airports passed through
+
+  for (int i = 0; i < flightDistance.length && airportCounter < 5; i++) {
+    if (! inTopDestinations(flightDestination[i], topDestinations)) {
+      topDistances[airportCounter] = flightDistance[i];
+      topDestinations[airportCounter] = flightDestination[i];
+      airportCounter++;
+    }
+  }
+  topDistances = Arrays.copyOf(topDistances, airportCounter);
+  topDestinations = Arrays.copyOf(topDestinations, airportCounter);
+  
+  this.dataDisplay = topDistances;
+  this.labelDisplay = topDestinations;
+  }
+  
+  
   void draw() {
     barChart.draw(150, 50, width - 200, height - 200);
 
