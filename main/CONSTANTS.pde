@@ -1,7 +1,7 @@
 final int DATAPOINTVARIABLECOUNT = 20;
 
-final int SCREENX = 1500;
-final int SCREENY = 800;
+final int SCREENX = 1080;
+final int SCREENY = 720;
 
 final int EVENT_BUTTON1=1;
 final int EVENT_BUTTON2=2;

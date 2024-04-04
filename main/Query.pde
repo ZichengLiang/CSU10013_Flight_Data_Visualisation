@@ -4,14 +4,33 @@
  divertedFlights help show the number of diverted flights from a particular airport
  flightsByCarrier help show the details of flights from a particular carrier including the summary
  flightsOnDate help show the number of flights on a particular date
- */
+
+*/ 
+/*
+ Zicheng: 4th April
+ 18th March: created the class, including two constructors and flights from/to/late functions
+ 20th March: 
+ 2nd April: make use of Predicates to define each filter function
+ 3rd April: introduced filterQuery function to allow user interactions
+ (overloaded: one controlled by class member attributes, another controlled by parameters)
+ 4th April: added hashmaps: flightsbyOrigin/Dest/Carrier
+*/ 
+
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Collections;
 import java.util.function.Predicate;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
+
 class Query {
-  // TODO: write more query functions
-  ArrayList<Datapoint> lastQueryList;
+  ArrayList<Datapoint> lastQueryList; 
+  HashMap<String, List<Datapoint>> flightsByOrigin;
+  HashMap<String, List<Datapoint>> flightsByDestination;
+  HashMap<String, List<Datapoint>> flightsByCarrier;
+
   String name;
 
   String carrier, origin, dest;
@@ -21,6 +40,7 @@ class Query {
   Query() {
     List<Datapoint> tempList = Arrays.asList(datapoints);
     this.lastQueryList = new ArrayList<Datapoint>(tempList);
+    indexData();
     name = "whole data set";
     carrier = origin = dest = "";
     diverted = cancelled = false;
@@ -28,6 +48,7 @@ class Query {
   // this constructor takes in one ArrayList and search within the given set
   Query(ArrayList<Datapoint> lastQueryList, String name) {
     this.lastQueryList = lastQueryList;
+    indexData();
     this.name = name;
     carrier = origin = dest = "";
     diverted = cancelled = false;
@@ -47,6 +68,10 @@ class Query {
      ArrayList<Datapoint> divertedFlights();
      ArrayList<Datapoint> flightsByCarrier(String carrierCode);
      ArrayList<Datapoint> flightsOnDate(String date);
+     ArrayList<Datapoint> sortByDistance()
+     String busiestAirline();
+     String busiestDeptAirport();
+     String busietArrAirport();
   utility methods
      ArrayList<Datapoint> getArrayList()
      String GetReport(ArrayList<Datapoint> inputList, int TYPE);
@@ -266,9 +291,82 @@ class Query {
     println(getReport(flightsList, FLIGHTS_ON_DATE));
     return flightsList;
   }
+  
+  ArrayList<Datapoint> sortByDistance() {
+    ArrayList<Datapoint> sortedList = lastQueryList;
+    Collections.sort(sortedList, (item2, item1) -> Integer.compare(item1.getDistance(), item2.getDistance()));
+    return sortedList;
+  }
+  
+  ArrayList<Datapoint> sortByDuration() {
+    ArrayList<Datapoint> sortedList = lastQueryList;
+    Collections.sort(sortedList, (item2, item1) -> Integer.compare(item1.getActualFlightDuration(), item2.getActualFlightDuration()));
+    return sortedList;
+  }
+  
+  private void indexData() {
+        flightsByOrigin = new HashMap<>();
+        flightsByDestination = new HashMap<>();
+        flightsByCarrier = new HashMap<>();
 
-  String getReport(ArrayList<Datapoint> inputList, int type) {
-    if (inputList.isEmpty()) {
+        for (Datapoint datapoint : lastQueryList) { // enhanced for loop
+            // the computeIfAbsent method checks if this origin already exists as a key in the flightsByOrigin map
+            flightsByOrigin.computeIfAbsent( datapoint.getOrigin(), k -> new ArrayList<>() ).add(datapoint);
+            // For each unique origin airport, there will be an ArrayList of Datapoint objects in the flightsByOrigin map
+            // and you can easily perform various operations on this list, including getting its size. 
+            flightsByDestination.computeIfAbsent( datapoint.getDest(), k -> new ArrayList<>() ).add(datapoint);
+            // k represents the key being checked in the map. Here, it corresponds to the destination obtained by calling datapoint.getDest().
+            flightsByCarrier.computeIfAbsent( datapoint.getCarrierCode(), k -> new ArrayList<>() ).add(datapoint);
+        }
+    }
+    
+    String busiestAirline(){
+      if (flightsByCarrier.isEmpty()) {
+            throw new IllegalArgumentException("Map is empty");
+        }
+
+        Entry<String, List<Datapoint>> maxEntry = null;
+        
+        for (Entry<String, List<Datapoint>> flightsByCarrier : flightsByCarrier.entrySet()) {
+            if (maxEntry == null || flightsByCarrier.getValue().size() > maxEntry.getValue().size()) {
+                maxEntry = flightsByCarrier;
+            }
+        }
+        return maxEntry.getKey();
+    }
+    
+     String busiestDeptAirport(){
+      if (flightsByOrigin.isEmpty()) {
+            throw new IllegalArgumentException("Map is empty");
+        }
+
+        Entry<String, List<Datapoint>> maxEntry = null;
+        
+        for (Entry<String, List<Datapoint>> flightsByOrigin : flightsByOrigin.entrySet()) {
+            if (maxEntry == null || flightsByOrigin.getValue().size() > maxEntry.getValue().size()) {
+                maxEntry = flightsByOrigin;
+            }
+        }
+        return maxEntry.getKey();
+    }
+    
+    String busiestArrAirport(){
+      if (flightsByDestination.isEmpty()) {
+            throw new IllegalArgumentException("Map is empty");
+        }
+
+        Entry<String, List<Datapoint>> maxEntry = null;
+        
+        for (Entry<String, List<Datapoint>> flightsByDestination : flightsByDestination.entrySet()) {
+            if (maxEntry == null || flightsByDestination.getValue().size() > maxEntry.getValue().size()) {
+                maxEntry = flightsByDestination;
+            }
+        }
+        return maxEntry.getKey();
+    }
+  
+    String getReport(ArrayList<Datapoint> inputList, int type){
+    if(inputList.isEmpty()){
       return ("Sorry, there is no such flight!");
     } else if (type < 0 || type > 6) { // 6 is the last number of supported query function
       return ("Sorry, we cannot make such query now!");
@@ -341,8 +439,8 @@ class Query {
 
       return report.toString();
     }
+  } // getReport ends
 
-} // getReport ends
 
 
   ArrayList<Datapoint> getArrayList(){
