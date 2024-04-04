@@ -66,18 +66,38 @@ void setup() {
 
   createGUI();
 
+  // Oliver 26th March: Map work
+  map = new Map(SCREENX/5, SCREENY/3, 700, 450, datapoints);
+  
+  
+  // Aryan, 4th April
+  // for making the sliding bar
+  
+  //size(800, 600);
+  G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
+  G4P.setMouseOverEnabled(true);
+  int sliderWidth = 175; // Width of the slider
+  int sliderHeight = 40; // Height of the slider
+  int margin = 10; // Margin from the edges of the window
 
-  //Query for flights by a specific carrier (e.g., American Airlines with carrier code "AA")
-  Query carrierQuery = new Query();
-  ArrayList<Datapoint> bySpecificCarrier = carrierQuery.flightsByCarrier("AA");
+  // Initialize the tick labels with numbers from 0 to 23
+  for (int i = 0; i < 24; i++) {
+    tickLabels[i] = String.format("%02d:00", i); // Format each hour with leading zeros
+  }
 
-  //Query for flights on a specific date
-  Query onDate = new Query();
-  ArrayList<Datapoint> onSpecificDate = onDate.flightsOnDate("20220101"); // Example: "20240101" for January 1, 2024
-  // Aryan, 27th March
-  // Get the summary for a specific flight number (replace "XX" with the actual flight number)
-  getFlightSummary("AA", 1); // First enter the airline code within quotes and then enter the flt num
-  // Daniel  2nd April: Checkboxes
+  // Position the slider at the top right, with a margin
+  int sliderX = width - sliderWidth - margin; // X position
+  //int sliderY = margin; // Y position, just a margin from the top
+  int sliderY = 400;
+
+  hourSlider = new GSlider(this, sliderX, sliderY, sliderWidth, sliderHeight, 10.0);
+  hourSlider.setLimits(0, 0, 23); // Slider range from 0 to 23 hours
+  hourSlider.setNumberFormat(G4P.INTEGER, 0);
+  hourSlider.setShowValue(true); // Display value above cursor
+  hourSlider.setOpaque(false);
+  hourSlider.addEventHandler(this, "hourSliderChanged");
+
+  
 }
 
 
@@ -99,6 +119,7 @@ void draw() {
     buttonsHorizontal[i].draw();
   }
   showCase.draw(currentQuery.filterQuery().toArray(Datapoint[]::new));
+  drawTickLabels(10);
 }
 
 void mousePressed() {
