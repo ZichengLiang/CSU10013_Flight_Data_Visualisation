@@ -15,7 +15,7 @@ class Text
     this.y=y;
     startX=x-(width/2);
     startY=y-(height/2);
-    
+
     this.width = width;
     this.height= height;
     this.widgetColor=widgetColor;
