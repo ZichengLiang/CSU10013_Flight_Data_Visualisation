@@ -28,6 +28,7 @@ class TheBarChart {
   void setData(float[] dataDisplay) {
     this.dataDisplay = dataDisplay;
   }
+  
   void byDistanceFrom(String origin) {
     ArrayList<Datapoint> flightsFrom = currentQuery.flightsFrom(origin);
     Collections.sort(flightsFrom, (item2, item1) -> Integer.compare(item1.getDistance(), item2.getDistance()));
@@ -58,7 +59,7 @@ class TheBarChart {
     barChart.setData(topDistances);
     barChart.setBarLabels(topDestinations);
   }
-
+  
 
   void draw() {
     barChart.draw(300, 50, width - 700, height - 200);

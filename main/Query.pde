@@ -96,6 +96,10 @@ class Query {
   void setDiverted (boolean diverted) {
     this.diverted = diverted;
   }
+  
+  HashMap<String, List<Datapoint>> getFlightsByCarrier(){
+    return flightsByCarrier;
+  }
 
 
   ArrayList<Datapoint> filterModel(Predicate<Datapoint> predicate) {

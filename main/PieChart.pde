@@ -5,14 +5,10 @@ class PieChart {
   int[] data;
   int[] originalData;
   int Conversion = 360; //determaines what kind of conversion is done in piConverter - radians or percentage
-  Query fromWholeDataSet = new Query();
-  int totalFlights = fromWholeDataSet.lastQueryList.size();
-
   int[] angles = {90, 90, 90, 90}; //represents degrees
   String[] dataLables;
 
   PieChart(int[] data) {
-
     originalData = data;
     this.data = piConverter(data);
   }
@@ -43,6 +39,28 @@ class PieChart {
     this.data = piConverter(abnormalFlights);
   }
 
+  void carrierCO(Query query) {
+    HashMap<String, List<Datapoint>> flightsByCarrier = query.flightsByCarrier;
+    if (flightsByCarrier.isEmpty()) {
+      throw new IllegalArgumentException("Map is empty");
+    }
+
+    ArrayList<String> companies = new ArrayList<>();
+    ArrayList<Integer> flights = new ArrayList<>();
+
+    for (Entry<String, List<Datapoint>> carrier : flightsByCarrier.entrySet()) {
+      companies.add(carrier.getKey());
+      flights.add(carrier.getValue().size());
+    }
+
+    int[] intFlights = flights.stream()
+    .mapToInt(Integer::intValue)
+    .toArray();
+
+    this.data = piConverter(intFlights);
+    this.dataLables = companies.toArray(String[]::new);
+  }
+
   void pieChart(float diameter) {
     float lastAngle = 0;
     for (int i = 0; i < data.length; i++) {
@@ -53,7 +71,7 @@ class PieChart {
       arc(width/2, height/2, diameter, diameter, lastAngle, lastAngle+radians(data[i]));//creates an arc in the piechart using data
       if (i < dataLables.length) {
         textSize(15);
-        text( dataLables[i] +" = "+ originalData[i], 700, 40+30*i);
+        //text( dataLables[i] +" = "+ originalData[i], 700, 40+30*i);
       }
       lastAngle += radians(data[i]);
     }
@@ -68,7 +86,7 @@ class PieChart {
     for (int i = 0; i < data.length; i++) {           // 22/03/2024 11:32
       dataPointDecValue = data[i]*Conversion;      //  data is multiplied by 360 to convert it to a fraction of PI
       //println(dataPointDecValue);
-      dataPointDecValue = dataPointDecValue/totalFlights;       // the data fraction eg 218*360 cancelled flights out of 2000 218*360/2000 is converted to decimal form
+      dataPointDecValue = dataPointDecValue/currentQuery.getArrayList().size();       // the data fraction eg 218*360 cancelled flights out of 2000 218*360/2000 is converted to decimal form
       //println(dataPointDecValue);
       int dataPointDecFin = (int)dataPointDecValue;   // converts the float into an int
       convertedData[i] = dataPointDecFin;

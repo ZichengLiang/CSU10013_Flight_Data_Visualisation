@@ -1,6 +1,9 @@
 // Zicheng, 12th March, 21:00: I modified the sample program on https://processing.org/examples/loadfile2.html to fit our dataset;
 import java.util.*;
 import g4p_controls.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 Datapoint[] datapoints;
 String[] lines;
@@ -38,8 +41,8 @@ void setup() {
   textFont(body);
   textSize(12);
   rectMode(CENTER);
-
-  datapoints = loadDatapoints("flights10k.csv");
+  
+  datapoints = loadDatapoints("flights2k.csv");
   table = loadTable("flights2k.csv", "header");
   // Query functions test cases:
   Query fromWholeDataSet = new Query();
@@ -49,6 +52,7 @@ void setup() {
   //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
   thePieChart = new PieChart();
   thePieChart.getAbnormalFlights(currentQuery);
+  //thePieChart.carrierCO(currentQuery);
   // Zicheng  20/03/24 Initialised flight distances to bar chart
   //Daniel 15/03/24 initialized BarCharts here
   BarChart barChart = new BarChart(this); // Create a new BarChart instance
@@ -67,11 +71,10 @@ void setup() {
 
   // Oliver 26th March: Map work
   map = new Map(SCREENX/5, SCREENY/3, 700, 450, datapoints);
-  
+
   // Aryan: 4th April
   // Create an instance of SliderClass
   SliderClass slider = new SliderClass(this);
-
 }
 
 
@@ -93,9 +96,6 @@ void draw() {
     buttonsHorizontal[i].draw();
   }
   showCase.draw(currentQuery.filterQuery().toArray(Datapoint[]::new));
-  
-
-
 }
 
 void mousePressed() {
@@ -115,6 +115,9 @@ void mousePressed() {
   for (int i =0; i<buttonsHorizontal.length; i++)
   {
     event=buttonsHorizontal[i].getEvent(mouseX, mouseY);
+    if(event >= 0){
+      
+    }
   }
 
   for (int i =0; i<buttons.length; i++)
@@ -131,10 +134,10 @@ void mousePressed() {
 
 Datapoint[] loadDatapoints(String fileName) {
   lines = loadStrings(fileName); // Loads in csv file in String array "lines" (each line is an element in array)
-  datapoints = new Datapoint[lines.length - 1];  // Adjusted the size of datapoints array
-
+  datapoints = new Datapoint[lines.length - 1];  // Adjusted the size of datapoints array, skipping the first line;
+  //TODO: upgrade with bufferedReader
   for (int i = 1; i < lines.length; i++) {  // Start reading from the second line
-    String[] pieces = split(lines[i], ','); // Got rid of integer and replaced it with constant variable
+    String[] pieces = split(lines[i], ',');
 
     if (pieces.length == DATAPOINTVARIABLECOUNT) { // checks if all the variables are there, if so, load it
       datapoints[datapointCount] = new Datapoint(pieces);
@@ -159,6 +162,7 @@ Datapoint[] loadDatapoints(String fileName) {
 
   return datapoints; // this is an array of Datapoint elements
 }
+
 
 void initializeSidebarButtons() {
   buttons = new Widget[sideBarButtonsNum];
