@@ -60,22 +60,25 @@ void setup() {
   initializeSidebarButtons();
   initializeHorizontalButtons();
 
+
   // Oliver, 22nd March: Working on horix=zontal buttons
   showCase = new Text(SCREENX-100, SCREENY-100, 200, 200, 255, body);
-
-  //Query for flights by a specific carrier (e.g., American Airlines with carrier code "AA")
-  Query carrierQuery = new Query();
-  ArrayList<Datapoint> bySpecificCarrier = carrierQuery.flightsByCarrier("AA");
-
+  
   //Query for flights on a specific date
   Query onDate = new Query();
   ArrayList<Datapoint> onSpecificDate = onDate.flightsOnDate("20220101"); // Example: "20240101" for January 1, 2024
-
-  // Aryan, 27th March
-  getFlightSummary("AA", 1); // First enter the airline code within quotes and then enter the flt num
-
+  
   // Daniel  2nd April: Checkboxes
   createGUI();
+
+  // Oliver 26th March: Map work
+  map = new Map(SCREENX/5, SCREENY/3, 700, 450, datapoints);
+  
+  // Aryan: 4th April
+  // Create an instance of SliderClass
+  SliderClass slider = new SliderClass(this);
+
+
 }
 
 //displaynum = 10
@@ -96,6 +99,9 @@ void draw() {
     }
   }
   showCase.draw(currentQuery.filterQuery().toArray(Datapoint[]::new));
+  
+
+
 }
 
 void mousePressed() {
