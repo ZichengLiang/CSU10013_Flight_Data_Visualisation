@@ -11,11 +11,9 @@ int displayNum = 10; // Display this many entries on each screen;
 int startingEntry = 0; // Display from this entry number;
 int sideBarButtonsNum = 5;
 int horizontalButtonsNum = 3;
-boolean drawBarChart = false; // Used to check if bar chart is used
 Query currentQuery;
 
 // Oliver, 15th March: creation of widgets to switch between screens
-
 Screen Screens;
 Widget[] buttons;
 Widget[] buttonsHorizontal;
@@ -26,15 +24,15 @@ Map map;
 PieChart thePieChart;
 //Daniel 15/03/24 initialized BarCharts here
 TheBarChart theBarChart;
-//Daniel 02/04/24 Checkbox
-GCheckbox checkbox1;
+//Daniel 02/04/24 Checkbox initialized
+GCheckbox checkbox1, checkbox2;
+boolean horizontalButtons = false;
 
 void settings() {
   size(SCREENX, SCREENY);
 }
 void setup() {
   fill(BACKGROUND_COLOUR);
-  noLoop();
   body = loadFont("myFont-12.vlw");
   textFont(body);
   textSize(12);
@@ -50,22 +48,20 @@ void setup() {
   //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
   thePieChart = new PieChart();
   thePieChart.getAbnormalFlights(currentQuery);
+
   // Zicheng  20/03/24 Initialised flight distances to bar chart
   //Daniel 15/03/24 initialized BarCharts here
   BarChart barChart = new BarChart(this); // Create a new BarChart instance
   theBarChart = new TheBarChart(barChart);
-  theBarChart.byDistanceFrom("JFK");
+
   // Buttons
   Screens = new Screen();
   //the side bar buttons here:
   initializeSidebarButtons();
   initializeHorizontalButtons();
+
   // Oliver, 22nd March: Working on horix=zontal buttons
-  showCase = new Text(SCREENX-100, SCREENY-100, 200, 200,
-    255, body);
-
-  createGUI();
-
+  showCase = new Text(SCREENX-100, SCREENY-100, 200, 200, 255, body);
 
   //Query for flights by a specific carrier (e.g., American Airlines with carrier code "AA")
   Query carrierQuery = new Query();
@@ -74,14 +70,13 @@ void setup() {
   //Query for flights on a specific date
   Query onDate = new Query();
   ArrayList<Datapoint> onSpecificDate = onDate.flightsOnDate("20220101"); // Example: "20240101" for January 1, 2024
+
   // Aryan, 27th March
-  // Get the summary for a specific flight number (replace "XX" with the actual flight number)
   getFlightSummary("AA", 1); // First enter the airline code within quotes and then enter the flt num
+
   // Daniel  2nd April: Checkboxes
+  createGUI();
 }
-
-
-
 
 //displaynum = 10
 void draw() {
@@ -94,9 +89,11 @@ void draw() {
   {
     buttons[i].draw();
   }
-  for (int i=0; i<buttonsHorizontal.length; i++)
-  {
-    buttonsHorizontal[i].draw();
+  if ( horizontalButtons == true) {
+    for (int i=0; i<buttonsHorizontal.length; i++)
+    {
+      buttonsHorizontal[i].draw();
+    }
   }
   showCase.draw(currentQuery.filterQuery().toArray(Datapoint[]::new));
 }
@@ -182,9 +179,11 @@ void initializeHorizontalButtons() {
   buttonsHorizontal = new Widget[horizontalButtonsNum];
   for (int j = 0; j < buttonsHorizontal.length; j++) {
     if (j == 0) {
-      buttonsHorizontal[j] = new Widget(((SCREENX - SCREENX / 1.99) / buttonsHorizontal.length) * j + SCREENX / 4, SCREENY - 65, 100, 60, 20, "Toggle data", 255, body, j);
+      buttonsHorizontal[j] = new Widget(SCREENX / 4, SCREENY - 65, 100, 60, 20, "Flight distance", 255, body, j); // 0.25
+    } else if (j == 1) {
+      buttonsHorizontal[j] = new Widget( SCREENX / 2, SCREENY - 65, 100, 60, 20, "Flight from", 255, body, j); // 0.5
     } else {
-      buttonsHorizontal[j] = new Widget(((SCREENX - SCREENX / 1.99) / buttonsHorizontal.length) * j + SCREENX / 4, SCREENY - 65, 100, 60, 20, "button" + j, 255, body, j);
+      buttonsHorizontal[j] = new Widget(SCREENX - (SCREENX / 4) - 10, SCREENY - 65, 100, 60, 20, "Flights by \nAirline", 255, body, j); // 0.75
     }
   }
 }
@@ -212,15 +211,17 @@ public void checkbox1_clicked(GCheckbox checkbox, GEvent event) {
   }
 }
 
-/*public void checkbox2_clicked() {
- if (checkbox2.isSelected() == false) {
- println("Checkbox 2 clicked");
- } else {
- println("Checkbox 2 not clicked");
- }
- }
- 
- public void checkbox3_clicked() {
+public void checkbox2_clicked(GCheckbox checkbox, GEvent event) {
+  if (checkbox2.isSelected() == true) {
+    //theBarChart.byAirlines();
+    println("Checkbox 2 clicked");
+  } else {
+    //theBarChart.byDistanceFrom("JFK");
+    println("Checkbox 2 not clicked");
+  }
+}
+
+/*public void checkbox3_clicked() {
  if (checkbox3.isSelected() == true) {
  println("Checkbox 3 clicked");
  } else {
@@ -231,27 +232,16 @@ public void checkbox1_clicked(GCheckbox checkbox, GEvent event) {
 public void createGUI() {
   checkbox1 = new GCheckbox(this, SCREENX - 180, 30, 200, 20);
   checkbox1.setText("cancelled");
-  checkbox1.addEventHandler(this, "checkbox1_clicked");
   checkbox1.setOpaque(false);
+  checkbox1.addEventHandler(this, "checkbox1_clicked");
 
-  /*checkbox2 = new GCheckbox(this, SCREENX - 300, 80, 200, 20);
-   checkbox2.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
-   checkbox2.setText("Flights from");
-   checkbox2.addEventHandler(this, "checkboxClicked");
-   checkbox2.setOpaque(false);
-   
-   
-   checkbox3 = new GCheckbox(this, SCREENX - 300, 130, 200, 20);
+  checkbox2 = new GCheckbox(this, SCREENX - 180, 80, 200, 20);
+  checkbox2.setText("Flights from");
+  checkbox2.setOpaque(false);
+  checkbox2.addEventHandler(this, "checkbox2_clicked");
+
+  /*checkbox3 = new GCheckbox(this, SCREENX - 300, 130, 200, 20);
    checkbox3.setText("Flights to");
    checkbox3.addEventHandler(this, "handleToggleControlEvents");
    checkbox3.setOpaque(false);*/
 }
-/*public void handleToggleControlEvents(GToggleControl checkbox) {
- if (checkbox == checkbox1) {
- if (checkbox1.isSelected()) {
- println("Checkbox 1 is selected");
- } else {
- println("Checkbox 1 is deselected");
- }
- }
- }*/
