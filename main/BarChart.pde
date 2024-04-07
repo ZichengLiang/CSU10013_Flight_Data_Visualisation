@@ -60,6 +60,15 @@ class TheBarChart {
     barChart.setBarLabels(topDestinations);
   }
   
+  boolean inTopDestinations(String airport, String[] topDestinations) {
+  for (String destination : topDestinations) {
+    if (airport.equals(destination)) {
+      return true;
+    }
+  }
+  return false;
+}
+  
 
   void draw() {
     barChart.draw(300, 50, width - 700, height - 200);

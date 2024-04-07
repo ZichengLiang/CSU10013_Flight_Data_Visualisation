@@ -16,24 +16,11 @@ class PieChart {
   PieChart() {
   }
 
-  void  draw() {
-    fill(255);
-    rect(650, 40, 160, 60*data.length, 20);
-    pieChart(300);
-    //   for (int j = 0; j < DataToggle.length; j++) {
-    //  if (j == 1) {
-    //    DataToggle[j] = new Widget( (SCREENX / buttons.length) * j + 60,60, 100, 60, 20, "Pie Chart", 255, body, j);
-    //  } else if (j == 4) {
-    //    DataToggle[j] = new Widget( (SCREENX / buttons.length) * j + 60,60, 100, 60, 20, "Bar Chart", 255, body, j);
-    //  }
-    //}
-  }
-
-  void getAbnormalFlights(Query query) {
-    this.dataLables = new String[] {"Diverted", "cancelled", "Unchanged"};
-    int cancelledNumber = query.cancelledFlights().size();
-    int divertedNumber  = query.divertedFlights().size();
-    int unaffectedFlights = query.getArrayList().size() - cancelledNumber - divertedNumber;
+  void getAbnormalFlights() {
+    this.dataLables = new String[] {"Diverted", "Cancelled", "Unchanged"};
+    int cancelledNumber = currentQuery.cancelledFlights().size();
+    int divertedNumber  = currentQuery.divertedFlights().size();
+    int unaffectedFlights = currentQuery.getArrayList().size() - cancelledNumber - divertedNumber;
     int[] abnormalFlights = {divertedNumber, cancelledNumber, unaffectedFlights};
     originalData = abnormalFlights;
     this.data = piConverter(abnormalFlights);
@@ -77,8 +64,6 @@ class PieChart {
     }
   }
 
-
-
   int[] piConverter(int[] data) {
     int[]convertedData = new int[data.length];
     float dataPointDecValue;
@@ -95,5 +80,18 @@ class PieChart {
     Conversion = 0;
 
     return(convertedData);
+  }
+  
+  void  draw() {
+    fill(255);
+    rect(650, 40, 160, 60*data.length, 20);
+    pieChart(300);
+    //   for (int j = 0; j < DataToggle.length; j++) {
+    //  if (j == 1) {
+    //    DataToggle[j] = new Widget( (SCREENX / buttons.length) * j + 60,60, 100, 60, 20, "Pie Chart", 255, body, j);
+    //  } else if (j == 4) {
+    //    DataToggle[j] = new Widget( (SCREENX / buttons.length) * j + 60,60, 100, 60, 20, "Bar Chart", 255, body, j);
+    //  }
+    //}
   }
 }
