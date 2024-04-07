@@ -34,6 +34,7 @@ public class SliderClass {
     hourSlider.setShowValue(true); // Display value above cursor
     hourSlider.setOpaque(false);
     hourSlider.addEventHandler(this, "hourSliderChanged");
+    hourSlider.addEventHandler(this, "handleSliderEvents");
   }
 
 
@@ -41,9 +42,13 @@ public class SliderClass {
   public void hourSliderChanged(GSlider slider, GEvent event) {
     if (event == GEvent.DRAGGED) {
       int hour = slider.getValueI();
-      //println("Slider moved to: " + hour);
       filterFlightsAfterHour(hour);
     }
+  }
+  
+  public void handleSliderEvents(GSlider slider, GEvent event) {
+    int hour = slider.getValueI();
+    println(hour);
   }
 
   public void filterFlightsAfterHour(int hour) {

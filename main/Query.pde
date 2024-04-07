@@ -27,9 +27,9 @@ import java.util.stream.Collectors;
 
 class Query {
   ArrayList<Datapoint> lastQueryList;
-  HashMap<String, List<Datapoint>> flightsByOrigin;
-  HashMap<String, List<Datapoint>> flightsByDestination;
-  HashMap<String, List<Datapoint>> flightsByCarrier;
+  public HashMap<String, List<Datapoint>> flightsByOrigin;
+  public HashMap<String, List<Datapoint>> flightsByDestination;
+  public HashMap<String, List<Datapoint>> flightsByCarrier;
 
   String name;
 
@@ -95,6 +95,10 @@ class Query {
 
   void setDiverted (boolean diverted) {
     this.diverted = diverted;
+  }
+  
+  HashMap<String, List<Datapoint>> getFlightsByCarrier(){
+    return flightsByCarrier;
   }
 
 
@@ -166,7 +170,7 @@ class Query {
     } else {
       ArrayList<Datapoint> flightsFromList = filterModel(datapoint -> datapoint.originIs(airportCode));
 
-      println(getReport(flightsFromList, FLIGHTS_FROM));
+      //println(getReport(flightsFromList, FLIGHTS_FROM));
 
       return flightsFromList;
     }
@@ -187,7 +191,7 @@ class Query {
       .filter(datapoint -> datapoint.originWacIs(originWac))
       .collect(Collectors.toList()));
 
-    println(getReport(flightsFromList, FLIGHTS_FROM));
+    //println(getReport(flightsFromList, FLIGHTS_FROM));
     return flightsFromList;
   }
 
@@ -198,7 +202,7 @@ class Query {
     }
     ArrayList<Datapoint> flightsToList = filterModel(datapoint -> datapoint.destIs(airportCode));
 
-    println(getReport(flightsToList, FLIGHTS_TO));
+    //println(getReport(flightsToList, FLIGHTS_TO));
 
     return flightsToList;
   }
@@ -210,7 +214,7 @@ class Query {
       .filter(datapoint -> datapoint.destWacIs(destWac))
       .collect(Collectors.toList()));
 
-    println(getReport(flightsToList, FLIGHTS_TO));
+    //println(getReport(flightsToList, FLIGHTS_TO));
     return flightsToList;
   }
 
@@ -219,7 +223,7 @@ class Query {
       .filter(datapoint -> datapoint.originIs(origin)).filter(datapoint -> datapoint.destIs(dest))
       .collect(Collectors.toList()));
 
-    println(getReport(flightRoute, FLIGHT_ROUTE));
+    //println(getReport(flightRoute, FLIGHT_ROUTE));
 
     return flightRoute;
   }
@@ -233,7 +237,7 @@ class Query {
       .filter(datapoint -> datapoint.isLate())
       .collect(Collectors.toList()));
 
-    println(getReport(lateFlightsList, LATE_FLIGHTS));
+   //println(getReport(lateFlightsList, LATE_FLIGHTS));
     return lateFlightsList;
   }
 
@@ -244,7 +248,7 @@ class Query {
       .filter(datapoint -> datapoint.isDiverted())
       .collect(Collectors.toList()));
 
-    println(getReport(divertedFlightsList, DIVERTED_FLIGHTS));
+   // println(getReport(divertedFlightsList, DIVERTED_FLIGHTS));
     return divertedFlightsList;
   }
 
@@ -253,7 +257,7 @@ class Query {
     ArrayList<Datapoint> cancelledFlightsList = new ArrayList<Datapoint>();
     Datapoint[] lastQuery = lastQueryList.toArray(new Datapoint[0]);
 
-    println("These flights are calcelled:");
+   /* println("These flights are calcelled:");
     for (int i = 0; i < lastQuery.length; i++) {
       if (lastQuery[i].isCancelled()) {
         cancelledFlightsList.add(lastQuery[i]);
@@ -262,6 +266,7 @@ class Query {
     }
 
     println("There are " + cancelledFlightsList.size() + " diverted flights out of " + lastQuery.length + " flights.");
+    */
     return cancelledFlightsList;
   }
 
@@ -274,7 +279,7 @@ class Query {
       .filter(datapoint -> datapoint.carrierCodeIs(carrierCode))
       .collect(Collectors.toList()));
 
-    println(getReport(flightsByCarrierList, FLIGHTS_BY_CARRIER));
+    //println(getReport(flightsByCarrierList, FLIGHTS_BY_CARRIER));
 
     return flightsByCarrierList;
   }
@@ -286,7 +291,7 @@ class Query {
       }
     }
 
-    println(getReport(flightsList, FLIGHTS_ON_DATE));
+    //println(getReport(flightsList, FLIGHTS_ON_DATE));
     return flightsList;
   }
 
