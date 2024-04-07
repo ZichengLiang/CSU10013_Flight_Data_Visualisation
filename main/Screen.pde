@@ -70,7 +70,7 @@ class Screen
      //   + "\n where " + currentQuery.flightsByDestination.get(currentQuery.busiestArrAirport()).size() + " flights arrive.", screenX/4, 420); // y position = 400
 
       textAlign(LEFT);
-      Date queryDate = new Date(122, 0, slider.getUserInput());
+      Date queryDate = new Date(122, 0, dateSlider.getUserInput());
       text("* There are " 
       + currentQuery.flightsAfterDate(queryDate)
         + " flights \n  after the date "  + queryDate, screenX/4, 420); // y position = 420

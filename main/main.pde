@@ -33,7 +33,7 @@ TheBarChart theBarChart;
 //Daniel 02/04/24 Checkbox
 GCheckbox checkbox1;
 
-Slider slider;
+Slider dateSlider;
 
 void settings() {
   size(SCREENX, SCREENY);
@@ -73,7 +73,7 @@ void setup() {
   map = new Map(SCREENX/5, SCREENY/3, 700, 450, datapoints);
   // Aryan: 4th April
   // Create an instance of SliderClass
-  slider = new Slider(this);
+  dateSlider = new Slider(this, 31);
 }
 
 

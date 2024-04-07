@@ -12,7 +12,7 @@ public class Slider {
   PApplet parent; // Reference to the parent PApplet instance
   int userInput;
 
-  public Slider(PApplet parent) {
+  public Slider(PApplet parent, int limit) {
     this.parent = parent; // Assign the parent PApplet instance
     G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
     G4P.setMouseOverEnabled(true);
@@ -30,7 +30,7 @@ public class Slider {
     int sliderY = 400;
 
     hourSlider = new GSlider(parent, sliderX, sliderY, sliderWidth, sliderHeight, 10.0); // Use the parent PApplet instance
-    hourSlider.setLimits(0, 0, 23); // Slider range from 0 to 23 hours
+    hourSlider.setLimits(0, 0, limit); // Slider range from 0 to 23 hours
     hourSlider.setNumberFormat(G4P.INTEGER, 0);
     hourSlider.setShowValue(true); // Display value above cursor
     hourSlider.setOpaque(false);
