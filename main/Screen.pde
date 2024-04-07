@@ -72,9 +72,7 @@ class Screen
       textAlign(LEFT);
       Date queryDate = new Date(122, 0, slider.getUserInput());
       text("* There are " 
-      + currentQuery.getArrayList().stream()
-      .filter(datapoint -> datapoint.getFlightDate().after(queryDate))
-      .toArray(Datapoint[]::new).length
+      + currentQuery.flightsAfterDate(queryDate)
         + " flights \n  after the date "  + queryDate, screenX/4, 420); // y position = 420
 
       break;
@@ -113,7 +111,7 @@ class Screen
     }
 
     fill(#BC3D3D); // Redish
-    rect(SCREENX-100, SCREENY-500, 200, SCREENY-200);
+    rect(SCREENX-100, SCREENY-500, 200, SCREENY-100);
     textSize(12);
   }
 }

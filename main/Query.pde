@@ -29,6 +29,7 @@ class Query {
   ArrayList<Datapoint> lastQueryList;
   public HashMap<String, List<Datapoint>> flightsByOrigin;
   public HashMap<String, List<Datapoint>> flightsByDestination;
+  public HashMap<Date, List<Datapoint>>  flightsByDate;
   public HashMap<String, List<Datapoint>> flightsByCarrier;
 
   String name;
@@ -96,8 +97,8 @@ class Query {
   void setDiverted (boolean diverted) {
     this.diverted = diverted;
   }
-  
-  HashMap<String, List<Datapoint>> getFlightsByCarrier(){
+
+  HashMap<String, List<Datapoint>> getFlightsByCarrier() {
     return flightsByCarrier;
   }
 
@@ -237,7 +238,7 @@ class Query {
       .filter(datapoint -> datapoint.isLate())
       .collect(Collectors.toList()));
 
-   //println(getReport(lateFlightsList, LATE_FLIGHTS));
+    //println(getReport(lateFlightsList, LATE_FLIGHTS));
     return lateFlightsList;
   }
 
@@ -248,7 +249,7 @@ class Query {
       .filter(datapoint -> datapoint.isDiverted())
       .collect(Collectors.toList()));
 
-   // println(getReport(divertedFlightsList, DIVERTED_FLIGHTS));
+    // println(getReport(divertedFlightsList, DIVERTED_FLIGHTS));
     return divertedFlightsList;
   }
 
@@ -257,16 +258,16 @@ class Query {
     ArrayList<Datapoint> cancelledFlightsList = new ArrayList<Datapoint>();
     Datapoint[] lastQuery = lastQueryList.toArray(new Datapoint[0]);
 
-   /* println("These flights are calcelled:");
-    for (int i = 0; i < lastQuery.length; i++) {
-      if (lastQuery[i].isCancelled()) {
-        cancelledFlightsList.add(lastQuery[i]);
-        println(cancelledFlightsList.size() + "> " + lastQuery[i].flightCode + " on " + lastQuery[i].flightDate + " is cancelled.");
-      }
-    }
-
-    println("There are " + cancelledFlightsList.size() + " diverted flights out of " + lastQuery.length + " flights.");
-    */
+    /* println("These flights are calcelled:");
+     for (int i = 0; i < lastQuery.length; i++) {
+     if (lastQuery[i].isCancelled()) {
+     cancelledFlightsList.add(lastQuery[i]);
+     println(cancelledFlightsList.size() + "> " + lastQuery[i].flightCode + " on " + lastQuery[i].flightDate + " is cancelled.");
+     }
+     }
+     
+     println("There are " + cancelledFlightsList.size() + " diverted flights out of " + lastQuery.length + " flights.");
+     */
     return cancelledFlightsList;
   }
 
@@ -285,16 +286,16 @@ class Query {
   }
   /*
   ArrayList<Datapoint> flightsOnDate(String date) {
-    ArrayList<Datapoint> flightsList = new ArrayList<Datapoint>();
-    for (Datapoint datapoint : lastQueryList) {
-      if (datapoint.flightDate.trim().equals(date.trim())) {
-        flightsList.add(datapoint);
-      }
-    }
-    */
+   ArrayList<Datapoint> flightsList = new ArrayList<Datapoint>();
+   for (Datapoint datapoint : lastQueryList) {
+   if (datapoint.flightDate.trim().equals(date.trim())) {
+   flightsList.add(datapoint);
+   }
+   }
+   */
 
-    //println(getReport(flightsList, FLIGHTS_ON_DATE));
-    //return flightsList;
+  //println(getReport(flightsList, FLIGHTS_ON_DATE));
+  //return flightsList;
   //}
 
   ArrayList<Datapoint> sortByDistance() {
@@ -313,6 +314,7 @@ class Query {
     flightsByOrigin = new HashMap<>();
     flightsByDestination = new HashMap<>();
     flightsByCarrier = new HashMap<>();
+    flightsByDate = new HashMap<>();
 
     for (Datapoint datapoint : lastQueryList) { // enhanced for loop
       // the computeIfAbsent method checks if this origin already exists as a key in the flightsByOrigin map
@@ -322,7 +324,23 @@ class Query {
       flightsByDestination.computeIfAbsent( datapoint.getDest(), k -> new ArrayList<>() ).add(datapoint);
       // k represents the key being checked in the map. Here, it corresponds to the destination obtained by calling datapoint.getDest().
       flightsByCarrier.computeIfAbsent( datapoint.getCarrierCode(), k -> new ArrayList<>() ).add(datapoint);
+      flightsByDate.computeIfAbsent( datapoint.getFlightDate(), k -> new ArrayList<>() ).add(datapoint);
     }
+  }
+  
+  int flightsAfterDate(Date queryDate){
+    if(flightsByDate.isEmpty()){
+       throw new IllegalArgumentException("Map is empty");
+    }
+    
+    int flightsCount = 0;
+    for( Entry<Date, List<Datapoint>> flightByDate : flightsByDate.entrySet()){
+      if(flightByDate.getKey().after(queryDate)){
+        flightsCount += flightByDate.getValue().size();
+      }
+    }
+    
+    return flightsCount;
   }
 
   String busiestAirline() {
