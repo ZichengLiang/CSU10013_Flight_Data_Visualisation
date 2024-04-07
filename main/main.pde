@@ -1,5 +1,6 @@
 // Zicheng, 12th March, 21:00: I modified the sample program on https://processing.org/examples/loadfile2.html to fit our dataset;
 import java.util.*;
+import java.text.*;
 import g4p_controls.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -42,7 +43,7 @@ void setup() {
   textSize(12);
   rectMode(CENTER);
 
-  datapoints = loadDatapoints("flights2k.csv");
+  datapoints = loadDatapoints("flights_full.csv");
   table = loadTable("flights2k.csv", "header");
   Screens = new Screen();
   Query fromWholeDataSet = new Query();

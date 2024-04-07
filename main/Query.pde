@@ -283,6 +283,7 @@ class Query {
 
     return flightsByCarrierList;
   }
+  /*
   ArrayList<Datapoint> flightsOnDate(String date) {
     ArrayList<Datapoint> flightsList = new ArrayList<Datapoint>();
     for (Datapoint datapoint : lastQueryList) {
@@ -290,10 +291,11 @@ class Query {
         flightsList.add(datapoint);
       }
     }
+    */
 
     //println(getReport(flightsList, FLIGHTS_ON_DATE));
-    return flightsList;
-  }
+    //return flightsList;
+  //}
 
   ArrayList<Datapoint> sortByDistance() {
     ArrayList<Datapoint> sortedList = lastQueryList;
