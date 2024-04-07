@@ -65,9 +65,15 @@ class Screen
       text("* The busiest airport (by departure) is " + currentQuery.busiestDeptAirport()
         + "\n from where " + currentQuery.flightsByOrigin.get(currentQuery.busiestDeptAirport()).size() + " flights depart.", screenX/4, 360); // y position = 360
 
+     // textAlign(LEFT);
+     // text("* The busiest airport (by arrival) is " + currentQuery.busiestArrAirport()
+     //   + "\n where " + currentQuery.flightsByDestination.get(currentQuery.busiestArrAirport()).size() + " flights arrive.", screenX/4, 420); // y position = 400
+
       textAlign(LEFT);
-      text("* The busiest airport (by arrival) is " + currentQuery.busiestArrAirport()
-        + "\n where " + currentQuery.flightsByDestination.get(currentQuery.busiestArrAirport()).size() + " flights arrive.", screenX/4, 420); // y position = 400
+      Date queryDate = new Date(122, 0, dateSlider.getUserInput());
+      text("* There are " 
+      + currentQuery.flightsAfterDate(queryDate)
+        + " flights \n  after the date "  + queryDate, screenX/4, 420); // y position = 420
 
       break;
 
@@ -105,7 +111,7 @@ class Screen
     }
 
     fill(#BC3D3D); // Redish
-    rect(SCREENX-100, SCREENY-500, 200, SCREENY-200);
+    rect(SCREENX-100, SCREENY-500, 200, SCREENY-100);
     textSize(12);
   }
 }

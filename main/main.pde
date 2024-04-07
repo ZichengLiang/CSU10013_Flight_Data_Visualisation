@@ -1,5 +1,6 @@
 // Zicheng, 12th March, 21:00: I modified the sample program on https://processing.org/examples/loadfile2.html to fit our dataset;
 import java.util.*;
+import java.text.*;
 import g4p_controls.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -32,6 +33,8 @@ TheBarChart theBarChart;
 //Daniel 02/04/24 Checkbox
 GCheckbox checkbox1;
 
+Slider dateSlider;
+
 void settings() {
   size(SCREENX, SCREENY);
 }
@@ -42,7 +45,7 @@ void setup() {
   textSize(12);
   rectMode(CENTER);
 
-  datapoints = loadDatapoints("flights2k.csv");
+  datapoints = loadDatapoints("flights_full.csv");
   table = loadTable("flights2k.csv", "header");
   Screens = new Screen();
   Query fromWholeDataSet = new Query();
@@ -70,7 +73,7 @@ void setup() {
   map = new Map(SCREENX/5, SCREENY/3, 700, 450, datapoints);
   // Aryan: 4th April
   // Create an instance of SliderClass
-  SliderClass slider = new SliderClass(this);
+  dateSlider = new Slider(this, 31);
 }
 
 

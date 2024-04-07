@@ -21,6 +21,10 @@ class Text
     this.widgetFont=widgetFont;
     labelColor= color(0);
   }
+  
+  int getHeight(){
+    return (int) height;
+  }
 
   void draw(Datapoint[] data)
   {
