@@ -4,14 +4,15 @@ import g4p_controls.*;
 import java.util.ArrayList;
 import processing.core.PApplet; // Import the PApplet class
 
-public class SliderClass {
+public class Slider {
 
   ArrayList<Datapoint> filteredFlights = new ArrayList<Datapoint>(); // To store filtered results
   GSlider hourSlider;
   String[] tickLabels = new String[24];
   PApplet parent; // Reference to the parent PApplet instance
+  int userInput;
 
-  public SliderClass(PApplet parent) {
+  public Slider(PApplet parent) {
     this.parent = parent; // Assign the parent PApplet instance
     G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
     G4P.setMouseOverEnabled(true);
@@ -39,6 +40,7 @@ public class SliderClass {
 
 
 // here you can add any actions u wish to
+
   public void hourSliderChanged(GSlider slider, GEvent event) {
     if (event == GEvent.DRAGGED) {
       int hour = slider.getValueI();
@@ -46,9 +48,12 @@ public class SliderClass {
     }
   }
   
+  public int getUserInput(){
+    return userInput;
+  }
+  
   public void handleSliderEvents(GSlider slider, GEvent event) {
-    int hour = slider.getValueI();
-    println(hour);
+    userInput = slider.getValueI();
   }
 
   public void filterFlightsAfterHour(int hour) {
