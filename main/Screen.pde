@@ -57,6 +57,11 @@ class Screen
       rect(startX, startY, screenX, screenY);
       displayTableData(tableX, tableY, tableWidth, tableHeight);
       fill(200);
+      rect(buttonX + (plusMinusButtonSize - plusMinusButtonSize / 3) / 2+ 1830, plusButtonY + (plusMinusButtonSize / 3) + 80, plusMinusButtonSize / 3+50, plusMinusButtonSize / 3);
+      rect(buttonX + (plusMinusButtonSize / 3)+ 1830, plusButtonY + (plusMinusButtonSize - plusMinusButtonSize / 3) / 2 + 80, plusMinusButtonSize / 3, plusMinusButtonSize / 3 + 50);
+      fill(200);
+      rect(buttonX + (plusMinusButtonSize - plusMinusButtonSize / 3) + 3650 / 2, minusButtonY + plusMinusButtonSize / 3 + 120, plusMinusButtonSize / 3 + 50, plusMinusButtonSize / 3);
+      fill(200);
       triangle(arrowX, arrowMargin + buttonHeight, arrowX + buttonWidth / 2, arrowMargin, arrowX + buttonWidth, arrowMargin + buttonHeight);
       fill(200);
       triangle(arrowX, downArrowY, arrowX + buttonWidth / 2, downArrowY + buttonHeight, arrowX + buttonWidth, downArrowY);

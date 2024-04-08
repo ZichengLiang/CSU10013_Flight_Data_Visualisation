@@ -134,6 +134,7 @@ void mousePressed() {
   if (mouseX > rightArrowX && mouseX < rightArrowX + buttonWidth && mouseY > horizontalArrowsY && mouseY < horizontalArrowsY + buttonHeight) {
     tableX += 10; // Move text right
   }
+   
   int event;
   event = showCase.pressed(mouseX, mouseY);
   if (event>-1)
