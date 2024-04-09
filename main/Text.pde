@@ -38,7 +38,7 @@ class Text
         // A bug: when the remaining data entries are less than 10, it goes wrong
         text(thisEntry + " > " + data[thisEntry].carrierCode + data[thisEntry].flightNumber + " ---- "
           + data[thisEntry].origin + " -> " + data[thisEntry].dest
-          , x+50, startY + i3*20 + 15);
+          , x-80, startY + i3*20 + 15);
       }
     }
   }

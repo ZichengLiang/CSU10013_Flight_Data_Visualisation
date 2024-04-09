@@ -51,13 +51,13 @@ void setup() {
   currentQuery = fromWholeDataSet;
   // Oliver 26th March: Map work
   map = new Map(SCREENX/5, SCREENY/3, 700, 450, datapoints);
-  
+
   //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
   thePieChart = new PieChart();
-  thePieChart.getAbnormalFlights(currentQuery);
+  thePieChart.getAbnormalFlights();
   //thePieChart.getAbnormalFlights();
   thePieChart.carrierCO(currentQuery);
-  
+
   // Zicheng  20/03/24 Initialised flight distances to bar chart
   //Daniel 15/03/24 initialized BarCharts here
   BarChart barChart = new BarChart(this); // Create a new BarChart instance
@@ -73,11 +73,8 @@ void setup() {
 
   // Oliver, 22nd March: Working on horix=zontal buttons
   showCase = new Text(SCREENX-100, SCREENY-100, 200, 200, 255, body);
-  
-  //Query for flights on a specific date
-  Query onDate = new Query();
-  ArrayList<Datapoint> onSpecificDate = onDate.flightsOnDate("20220101"); // Example: "20240101" for January 1, 2024
-  
+
+
   // Daniel  2nd April: Checkboxes
 
   createGUI();
@@ -89,7 +86,7 @@ void setup() {
   dateSlider = new Slider(this, 31);
 }
 
-}
+
 
 //displaynum = 10
 void draw() {
@@ -154,8 +151,7 @@ Datapoint[] loadDatapoints(String fileName) {
       // Process pieces to create a Datapoint and add to tempList
       if (pieces.length == DATAPOINTVARIABLECOUNT) { // checks if all the variables are there, if so, load it
         tempList.add(new Datapoint(pieces));
-      } 
-      else {
+      } else {
         String[] adjustedPieces = new String[DATAPOINTVARIABLECOUNT];
         if (pieces.length == DATAPOINTVARIABLECOUNT - 1 ) { //in the given dataset, cancelled flights have no dep_time and arr_time
           arrayCopy(pieces, 0, adjustedPieces, 0, 16); //copy from first element to CRSArrTime
@@ -179,7 +175,7 @@ Datapoint[] loadDatapoints(String fileName) {
   println(tempList.size() + " entries loaded");
   return tempList.toArray(Datapoint[]::new);
 }
- 
+
 void initializeSidebarButtons() {
   buttons = new Widget[sideBarButtonsNum];
   for (int j = 0; j < buttons.length; j++) {
@@ -256,12 +252,10 @@ public void createGUI() {
    checkbox3.setText("Flights to");
    checkbox3.addEventHandler(this, "handleToggleControlEvents");
    checkbox3.setOpaque(false);*/
-
 }
 
 public void renewGraphs() {
   //thePieChart.getAbnormalFlights();
   thePieChart.carrierCO(currentQuery);
   theBarChart.byDistanceFrom("JFK");
-
 }
