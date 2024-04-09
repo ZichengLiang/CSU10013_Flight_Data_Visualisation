@@ -83,6 +83,7 @@ class TheBarChart {
     barChart.setBarLabels(topAirlines);
     title = "Top Airlines by Number of Flights";
     barChart.setCategoryAxisLabel(title);
+
     barChart.setMaxValue(topFlightCount[0]);
   }
 
@@ -109,6 +110,7 @@ class TheBarChart {
     barChart.setBarLabels(topAirports);
     title = "Top Departures from " + origin;
     barChart.setCategoryAxisLabel(title);
+
     barChart.setMaxValue(topFlightCount[0]);
   }
   
@@ -126,7 +128,7 @@ class TheBarChart {
     barChart.draw(300, 50, width - 700, height - 200);
     }
     fill(#26B6E0);
-    textAlign(CENTER, TOP);
+   // textAlign(CENTER, TOP);
     textSize(15);
   }
 }
