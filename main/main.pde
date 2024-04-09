@@ -54,7 +54,7 @@ void setup() {
   
   //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
   thePieChart = new PieChart();
-  thePieChart.getAbnormalFlights(currentQuery);
+  thePieChart.getAbnormalFlights();
   //thePieChart.getAbnormalFlights();
   thePieChart.carrierCO(currentQuery);
   
@@ -75,9 +75,6 @@ void setup() {
   showCase = new Text(SCREENX-100, SCREENY-100, 200, 200, 255, body);
   
   //Query for flights on a specific date
-  Query onDate = new Query();
-  ArrayList<Datapoint> onSpecificDate = onDate.flightsOnDate("20220101"); // Example: "20240101" for January 1, 2024
-  
   // Daniel  2nd April: Checkboxes
 
   createGUI();
@@ -87,8 +84,6 @@ void setup() {
   // Create an instance of SliderClass
 
   dateSlider = new Slider(this, 31);
-}
-
 }
 
 //displaynum = 10
