@@ -9,6 +9,7 @@ int columnWidth = 100;
 float scrollY = 0;
 
 void displayTableData(int xcoordinate, int ycoordinate, int width, int height) {
+  textFont(myFont);
   textAlign(LEFT, CENTER); // Align text to the left
   textSize(fontSize);
   

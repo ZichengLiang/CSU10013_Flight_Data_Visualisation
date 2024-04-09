@@ -11,6 +11,8 @@ int sideBarButtonsNum = 5;
 int horizontalButtonsNum = 3;
 boolean drawBarChart = false; // Used to check if bar chart is used
 boolean mouse = false;
+PFont myFont;
+
 
 // Oliver, 15th March: creation of widgets to switch between screens
 
@@ -33,6 +35,7 @@ void setup() {
   fill(BACKGROUND_COLOUR);
   noLoop();
   body = loadFont("myFont-12.vlw");
+  myFont = createFont("Times New Roman", 16);
   textFont(body);
   textSize(12);
   rectMode(CENTER);
