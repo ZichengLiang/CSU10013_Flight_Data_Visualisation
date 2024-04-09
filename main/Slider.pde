@@ -4,14 +4,15 @@ import g4p_controls.*;
 import java.util.ArrayList;
 import processing.core.PApplet; // Import the PApplet class
 
-public class SliderClass {
+public class Slider {
 
   ArrayList<Datapoint> filteredFlights = new ArrayList<Datapoint>(); // To store filtered results
   GSlider hourSlider;
   String[] tickLabels = new String[24];
   PApplet parent; // Reference to the parent PApplet instance
+  int userInput;
 
-  public SliderClass(PApplet parent) {
+  public Slider(PApplet parent, int limit) {
     this.parent = parent; // Assign the parent PApplet instance
     G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
     G4P.setMouseOverEnabled(true);
@@ -29,21 +30,30 @@ public class SliderClass {
     int sliderY = 400;
 
     hourSlider = new GSlider(parent, sliderX, sliderY, sliderWidth, sliderHeight, 10.0); // Use the parent PApplet instance
-    hourSlider.setLimits(0, 0, 23); // Slider range from 0 to 23 hours
+    hourSlider.setLimits(0, 0, limit); // Slider range from 0 to 23 hours
     hourSlider.setNumberFormat(G4P.INTEGER, 0);
     hourSlider.setShowValue(true); // Display value above cursor
     hourSlider.setOpaque(false);
     hourSlider.addEventHandler(this, "hourSliderChanged");
+    hourSlider.addEventHandler(this, "handleSliderEvents");
   }
 
 
 // here you can add any actions u wish to
+
   public void hourSliderChanged(GSlider slider, GEvent event) {
     if (event == GEvent.DRAGGED) {
       int hour = slider.getValueI();
-      //println("Slider moved to: " + hour);
       filterFlightsAfterHour(hour);
     }
+  }
+  
+  public int getUserInput(){
+    return userInput;
+  }
+  
+  public void handleSliderEvents(GSlider slider, GEvent event) {
+    userInput = slider.getValueI();
   }
 
   public void filterFlightsAfterHour(int hour) {

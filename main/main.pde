@@ -1,6 +1,10 @@
 // Zicheng, 12th March, 21:00: I modified the sample program on https://processing.org/examples/loadfile2.html to fit our dataset;
 import java.util.*;
+import java.text.*;
 import g4p_controls.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 Datapoint[] datapoints;
 String[] lines;
@@ -28,6 +32,8 @@ TheBarChart theBarChart;
 GCheckbox checkbox1, checkbox2;
 boolean horizontalButtons = false;
 
+Slider dateSlider;
+
 void settings() {
   size(SCREENX, SCREENY);
 }
@@ -38,21 +44,25 @@ void setup() {
   textSize(12);
   rectMode(CENTER);
 
-  datapoints = loadDatapoints("flights10k.csv");
+  datapoints = loadDatapoints("flights_full.csv");
   table = loadTable("flights2k.csv", "header");
-  // Query functions test cases:
+  Screens = new Screen();
   Query fromWholeDataSet = new Query();
   currentQuery = fromWholeDataSet;
   // Oliver 26th March: Map work
   map = new Map(SCREENX/5, SCREENY/3, 700, 450, datapoints);
+  
   //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
   thePieChart = new PieChart();
   thePieChart.getAbnormalFlights(currentQuery);
-
+  //thePieChart.getAbnormalFlights();
+  thePieChart.carrierCO(currentQuery);
+  
   // Zicheng  20/03/24 Initialised flight distances to bar chart
   //Daniel 15/03/24 initialized BarCharts here
   BarChart barChart = new BarChart(this); // Create a new BarChart instance
   theBarChart = new TheBarChart(barChart);
+
 
   // Buttons
   Screens = new Screen();
@@ -69,15 +79,15 @@ void setup() {
   ArrayList<Datapoint> onSpecificDate = onDate.flightsOnDate("20220101"); // Example: "20240101" for January 1, 2024
   
   // Daniel  2nd April: Checkboxes
-  createGUI();
 
+  createGUI();
   // Oliver 26th March: Map work
   map = new Map(SCREENX/5, SCREENY/3, 700, 450, datapoints);
-  
   // Aryan: 4th April
   // Create an instance of SliderClass
-  SliderClass slider = new SliderClass(this);
 
+  dateSlider = new Slider(this, 31);
+}
 
 }
 
@@ -99,9 +109,6 @@ void draw() {
     }
   }
   showCase.draw(currentQuery.filterQuery().toArray(Datapoint[]::new));
-  
-
-
 }
 
 void mousePressed() {
@@ -121,6 +128,8 @@ void mousePressed() {
   for (int i =0; i<buttonsHorizontal.length; i++)
   {
     event=buttonsHorizontal[i].getEvent(mouseX, mouseY);
+    if (event >= 0) {
+    }
   }
 
   for (int i =0; i<buttons.length; i++)
@@ -136,36 +145,41 @@ void mousePressed() {
 }
 
 Datapoint[] loadDatapoints(String fileName) {
-  lines = loadStrings(fileName); // Loads in csv file in String array "lines" (each line is an element in array)
-  datapoints = new Datapoint[lines.length - 1];  // Adjusted the size of datapoints array
-
-  for (int i = 1; i < lines.length; i++) {  // Start reading from the second line
-    String[] pieces = split(lines[i], ','); // Got rid of integer and replaced it with constant variable
-
-    if (pieces.length == DATAPOINTVARIABLECOUNT) { // checks if all the variables are there, if so, load it
-      datapoints[datapointCount] = new Datapoint(pieces);
-      datapointCount++;
-    } else {
-      String[] adjustedPieces = new String[DATAPOINTVARIABLECOUNT];
-      if (pieces.length == DATAPOINTVARIABLECOUNT - 1 ) { //in the given dataset, cancelled flights have no dep_time and arr_time
-        arrayCopy(pieces, 0, adjustedPieces, 0, 16); //copy from first element to CRSArrTime
-        adjustedPieces[16] = "9999"; // the actual arrive time is set to " ";
-        arrayCopy(pieces, 16, adjustedPieces, 17, 3); //copy the last three elements
-      } else if (pieces.length == DATAPOINTVARIABLECOUNT - 2 ) { //in the given dataset, cancelled flights have no dep_time and arr_time
-        arrayCopy(pieces, 0, adjustedPieces, 0, 14); //copy from first element to CRSDeptTime
-        adjustedPieces[14] = "9999"; // the actual dept time is set to " ";
-        adjustedPieces[15] = pieces[14];
-        adjustedPieces[16] = "9999"; // the actual arr time is set to " ";
-        arrayCopy(pieces, 15, adjustedPieces, 17, 3); //copy the last three elements
+  ArrayList<Datapoint> tempList = new ArrayList<>();
+  try (BufferedReader br = new BufferedReader(new FileReader(sketchPath(fileName)))) {
+    String line;
+    br.readLine(); // Skip header
+    while ((line = br.readLine()) != null) {
+      String[] pieces = line.split(",");
+      // Process pieces to create a Datapoint and add to tempList
+      if (pieces.length == DATAPOINTVARIABLECOUNT) { // checks if all the variables are there, if so, load it
+        tempList.add(new Datapoint(pieces));
+      } 
+      else {
+        String[] adjustedPieces = new String[DATAPOINTVARIABLECOUNT];
+        if (pieces.length == DATAPOINTVARIABLECOUNT - 1 ) { //in the given dataset, cancelled flights have no dep_time and arr_time
+          arrayCopy(pieces, 0, adjustedPieces, 0, 16); //copy from first element to CRSArrTime
+          adjustedPieces[16] = "9999"; // the actual arrive time is set to " ";
+          arrayCopy(pieces, 16, adjustedPieces, 17, 3); //copy the last three elements
+        } else if (pieces.length == DATAPOINTVARIABLECOUNT - 2 ) { //in the given dataset, cancelled flights have no dep_time and arr_time
+          arrayCopy(pieces, 0, adjustedPieces, 0, 14); //copy from first element to CRSDeptTime
+          adjustedPieces[14] = "9999"; // the actual dept time is set to " ";
+          adjustedPieces[15] = pieces[14];
+          adjustedPieces[16] = "9999"; // the actual arr time is set to " ";
+          arrayCopy(pieces, 15, adjustedPieces, 17, 3); //copy the last three elements
+        }
+        tempList.add(new Datapoint(adjustedPieces));
       }
-      datapoints[datapointCount] = new Datapoint(adjustedPieces);
-      datapointCount++;
     }
-  } // for loop ends here
-
-  return datapoints; // this is an array of Datapoint elements
+    br.close();
+  }
+  catch (IOException e) {
+    e.printStackTrace();
+  }
+  println(tempList.size() + " entries loaded");
+  return tempList.toArray(Datapoint[]::new);
 }
-
+ 
 void initializeSidebarButtons() {
   buttons = new Widget[sideBarButtonsNum];
   for (int j = 0; j < buttons.length; j++) {
@@ -193,27 +207,18 @@ void initializeHorizontalButtons() {
     }
   }
 }
-
-boolean inTopDestinations(String airport, String[] topDestinations) {
-  for (String destination : topDestinations) {
-    if (airport.equals(destination)) {
-      return true;
-    }
-  }
-  return false;
-}
-
 //CheckBoxes
 public void checkbox1_clicked(GCheckbox checkbox, GEvent event) {
   if (checkbox1.isSelected() == true) {
     currentQuery.setCancelled(true);
-    Query cancelled = new Query(currentQuery.filterQuery(), "Cancelled");
-    currentQuery = cancelled;
-    println("Checkbox 1 ticked");
+    currentQuery = new Query(currentQuery.filterQuery(), "Cancelled");
+    renewGraphs();
+    redraw();
   } else {
     currentQuery = new Query();
-    currentQuery.setCancelled(false);
-    println("Checkbox 1 unticked");
+    //currentQuery.setCancelled(false);
+    renewGraphs();
+    redraw();
   }
 }
 
@@ -235,6 +240,7 @@ public void checkbox2_clicked(GCheckbox checkbox, GEvent event) {
  }
  }*/
 
+
 public void createGUI() {
   checkbox1 = new GCheckbox(this, SCREENX - 180, 30, 200, 20);
   checkbox1.setText("cancelled");
@@ -250,4 +256,12 @@ public void createGUI() {
    checkbox3.setText("Flights to");
    checkbox3.addEventHandler(this, "handleToggleControlEvents");
    checkbox3.setOpaque(false);*/
+
+}
+
+public void renewGraphs() {
+  //thePieChart.getAbnormalFlights();
+  thePieChart.carrierCO(currentQuery);
+  theBarChart.byDistanceFrom("JFK");
+
 }

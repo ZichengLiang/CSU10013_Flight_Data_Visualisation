@@ -1,17 +1,13 @@
 // Aryan, Friday 22nd March: imported the following java.time package
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
-import java.util.Locale;
-import java.time.ZoneId;
-import java.util.HashMap;
+import java.time.*;
+import java.util.*;
 
 // Zicheng, 12th March, 18:00: created the Datapoint class;
 class Datapoint {
   // Zicheng, 12th March, 18:00: fields added according to the .csv files;
 
   // flight date infos
-  String flightDate, flightDay, flightMonth;
+  Date flightDate;
   // flight code infos
   String carrierCode;
   int flightNumber;
@@ -32,16 +28,15 @@ class Datapoint {
 
   // Zicheng, 12th March, 21:00: a constructor with all parameters;
   public Datapoint(String[] pieces) {
-    flightDate = pieces[0];
-    char[] flightDateEdit = flightDate.toCharArray();
-    for (int i = 0; i < 6; i++) {
-      flightDateEdit = shorten(flightDateEdit);
-    }
-    flightDate = new String(flightDateEdit);
-    //TODO: get out flightDay and flightMonth
-    // flightDay = new String(flightDateEdit, 0, 1); // String(data, offset, length), it doesn't work when length == 2, why??
-    // flightMonth = new String(flightDateEdit, 4, 1); // this doesn't work either! ArrayIndexOutOfBound exception
 
+    SimpleDateFormat dateFormat = new SimpleDateFormat ("MM/dd/yyyy HH:mm");
+    String flightDateOrg = pieces[0];
+    try {
+      flightDate = dateFormat.parse(flightDateOrg);
+    }
+    catch (ParseException e) {
+      System.out.println("Unparseable using " + dateFormat);
+    }
 
     carrierCode = pieces[1];
     flightNumber = int (pieces[2]);
@@ -79,16 +74,8 @@ class Datapoint {
     actualFlightDuration = getDuration(depTime, arrTime);
   }
 
-  public String getFlightDate() {
+  public Date getFlightDate() {
     return flightDate;
-  }
-
-  public String getFlightDay() {
-    return flightDay;
-  }
-
-  public String getFlightMonth() {
-    return flightMonth;
   }
 
   public String getCarrierCode() {
@@ -268,7 +255,7 @@ class Datapoint {
     return output;
   }
 
-  private final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("MM/dd/yyyy HHmm", Locale.US);
+  //private final DateTimeFormatter DATE_TIME_FORMATTER = new DateTimeFormatter.ofPattern("MM/dd/yyyy HHmm", Locale.US);
 
   public String getOriginTimezone() {
     if (AirportTimezones.airportTimezones.containsKey(origin)) {
