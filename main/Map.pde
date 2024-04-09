@@ -1,4 +1,4 @@
-class Map
+class TheMap
 {
   PImage map;
   float x, y, sizeX, sizeY;
@@ -7,21 +7,40 @@ class Map
   PShape america;
   MapStates[] states;
 
-  Map (float x, float y, float sizeX, float sizeY, ArrayList<Datapoint> data)
+  TheMap (float x, float y, float sizeX, float sizeY)
   {
-    map = loadImage("alabama.png");
     this.x=x;
     this.y=y;
     this.sizeX=sizeX;
     this.sizeY=sizeY;
-    
-    blue = 20000;
+
+    blue = 10000;
     //map.resize(100,100);
 
     america = loadShape("us.svg");
+  }
 
-    // creates all the childShapes in a list
-    colorMode(RGB,100000);
+  void draw()
+  {
+    colorMode(RGB, 100000);
+
+    fill(255, 0, 0);
+    noStroke();
+    shape(america, x, y, sizeX, sizeY);
+
+    for (int i =0; i<states.length; i++)
+    {
+      states[i].draw();
+    }
+
+    colorMode(RGB, 255);
+  }
+
+  void renewMap(ArrayList<Datapoint> list)
+  {
+    ArrayList<Datapoint> data = (ArrayList<Datapoint>)list.clone();
+
+    colorMode(RGB, 100000);
     states = new MapStates[50];
     states[0] = new MapStates("OH", america, x, y, sizeX, sizeY,
       color(findColour(data, "OH"), 0, blue) ) ;
@@ -123,24 +142,8 @@ class Map
       color( findColour(data, "WY"), 0, blue)) ;
     states[49] = new MapStates("NH", america, x, y, sizeX, sizeY,
       color( findColour(data, "NH"), 0, blue)) ;
-      
-      colorMode(RGB,255);
-  }
 
-  void draw()
-  {
-    colorMode(RGB, 100000);
-    
-    fill(255, 0, 0);
-    noStroke();
-    shape(america, x, y, sizeX, sizeY);
-
-    for (int i =0; i<states.length; i++)
-    {
-      states[i].draw();
-    }
-    
-    colorMode(RGB,255);
+    colorMode(RGB, 255);
   }
 }
 
@@ -150,10 +153,13 @@ int findColour(ArrayList <Datapoint> data, String state)
   int point =0;
   for (int x=1; x<data.size(); x++)
   {
-    Datapoint tempData = data.get(x);
-    if (tempData.originState.equals(state))
+    if (data.get(x) != null)
     {
-      point+=3;
+      if (data.get(x).originState.equals(state))
+      {
+        data.remove(x);
+        point+=3;
+      }
     }
   }
   return point;

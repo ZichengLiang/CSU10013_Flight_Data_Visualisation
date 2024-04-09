@@ -25,7 +25,7 @@ Widget[] buttons;
 Widget[] buttonsHorizontal;
 Text showCase;
 
-Map map;
+TheMap map;
 //Muireann O'Neill 15/03/24 11:12 declaring Charts here;
 PieChart thePieChart;
 //Daniel 15/03/24 initialized BarCharts here
@@ -68,7 +68,7 @@ void setup() {
     255, body);
   createGUI();
   // Oliver 26th March: Map work
-  map = new Map(SCREENX/5, SCREENY/3, 700, 450, currentQuery.getArrayList());
+//  map = new TheMap(SCREENX/5, SCREENY/3, 700, 450, currentQuery.getArrayList());
   // Aryan: 4th April
   // Create an instance of SliderClass
   dateSlider = new Slider(this, 31);
@@ -122,6 +122,7 @@ void mousePressed() {
     if (event>=0)
     {
       Screens.screenType=event;
+      Screens.screenChange=true;
     }
   }
 
@@ -200,6 +201,9 @@ public void checkbox1_clicked(GCheckbox checkbox, GEvent event) {
     currentQuery.setCancelled(true);
     currentQuery = new Query(currentQuery.filterQuery(), "Cancelled");
     renewGraphs();
+    
+    // helps with the map class not affecting others when off screen
+    Screens.screenChange=true;
     redraw();
   } else {
     currentQuery = new Query();

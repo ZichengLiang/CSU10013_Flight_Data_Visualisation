@@ -12,6 +12,8 @@ class Screen
   //Screen location
   float startX;
   float startY;
+  
+  boolean screenChange; // to help tell if the screen should need to change for Map class
 
   // Main Screen
   Screen()
@@ -26,6 +28,8 @@ class Screen
 
     screenType=0;
     borders = 15;
+    
+    screenChange=false;
   }
 
   // Graph Screen Type A
@@ -84,6 +88,11 @@ class Screen
       break;
 
     case 2: // reserved for table
+    if(screenChange)
+    {
+      map.renewMap(currentQuery.getArrayList());
+      screenChange=false;
+    }
       fill(SCREEN3);
       rect(startX, startY, screenX, screenY);
       map.draw();
