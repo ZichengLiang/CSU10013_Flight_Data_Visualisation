@@ -1,5 +1,5 @@
 Table table;
-int fontSize = 8; 
+int fontSize = 10; 
 int tableX = 340; 
 int tableY = 20; 
 int tableWidth = 200; 

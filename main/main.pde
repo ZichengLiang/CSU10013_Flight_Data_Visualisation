@@ -118,6 +118,16 @@ void draw() {
 
 
 void mousePressed() {
+  float distToPlus = dist(mouseX, mouseY, 1877, 197);
+  if (distToPlus < 30) {
+    fontSize += 1;
+  }
+  
+  float distToMinus = dist(mouseX, mouseY, 1878, 267);
+  if (distToMinus < 30) {
+     fontSize -= 1;
+  }
+
   if (mouseX > arrowX && mouseX < arrowX + buttonWidth && mouseY > arrowMargin && mouseY < arrowMargin + buttonHeight) {
     scrollY += 20; // Move text down
   }

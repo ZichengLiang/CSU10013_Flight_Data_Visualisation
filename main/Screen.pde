@@ -57,6 +57,8 @@ class Screen
       rect(startX, startY, screenX, screenY);
       displayTableData(tableX, tableY, tableWidth, tableHeight);
       fill(200);
+      rect(0, 0, screenX/2.9 + 3, 2500);
+      fill(200);
       rect(buttonX + (plusMinusButtonSize - plusMinusButtonSize / 3) / 2+ 1830, plusButtonY + (plusMinusButtonSize / 3) + 80, plusMinusButtonSize / 3+50, plusMinusButtonSize / 3);
       rect(buttonX + (plusMinusButtonSize / 3)+ 1830, plusButtonY + (plusMinusButtonSize - plusMinusButtonSize / 3) / 2 + 80, plusMinusButtonSize / 3, plusMinusButtonSize / 3 + 50);
       fill(200);
