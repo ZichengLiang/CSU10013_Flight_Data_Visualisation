@@ -31,6 +31,7 @@ class TheBarChart {
   
   void byDistanceFrom(String origin) {
     ArrayList<Datapoint> flightsFrom = currentQuery.flightsFrom(origin);
+    
     Collections.sort(flightsFrom, (item2, item1) -> Integer.compare(item1.getDistance(), item2.getDistance()));
     Datapoint[] flights = flightsFrom.toArray(Datapoint[]::new);
     float[] flightDistance = new float[flights.length];
@@ -63,13 +64,8 @@ class TheBarChart {
 
   void byAirlines() {
     HashMap<String, Integer> flightCountByAirline = new HashMap<>();
-    for (Datapoint datapoint : currentQuery.getArrayList()) {
-      String airlineCode = datapoint.getCarrierCode();
-      if (flightCountByAirline.containsKey(airlineCode)) {
-        flightCountByAirline.put(airlineCode, flightCountByAirline.get(airlineCode) + 1);
-      } else {
-        flightCountByAirline.put(airlineCode, 1);
-      }
+    for (Entry<String, List<Datapoint>> entry : currentQuery.flightsByCarrier.entrySet()) {
+      flightCountByAirline.put(entry.getKey(), entry.getValue().size());
     }
     ArrayList<String> flightsByCarrier = new ArrayList<>(flightCountByAirline.keySet());
     Collections.sort(flightsByCarrier, (item1, item2) -> flightCountByAirline.get(item2) - flightCountByAirline.get(item1));
@@ -87,19 +83,15 @@ class TheBarChart {
     barChart.setBarLabels(topAirlines);
     title = "Top Airlines by Number of Flights";
     barChart.setCategoryAxisLabel(title);
-    barChart.setMaxValue(150000);
+
+    barChart.setMaxValue(topFlightCount[0]);
   }
 
 
   void byFlightFrom(String origin) {
     HashMap<String, Integer> flightCount = new HashMap<>();
-    for (Datapoint datapoint : currentQuery.getArrayList()) {
-      String airportCode = datapoint.getOrigin();
-      if (flightCount.containsKey(airportCode)) {
-        flightCount.put(airportCode, flightCount.get(airportCode) + 1);
-      } else {
-        flightCount.put(airportCode, 1);
-      }
+    for (Entry<String, List<Datapoint>> entry : currentQuery.flightsByOrigin.entrySet()) {
+      flightCount.put(entry.getKey(), entry.getValue().size());
     }
     ArrayList<String> sortedFlights = new ArrayList<>(flightCount.keySet());
     Collections.sort(sortedFlights, (item1, item2) -> flightCount.get(item2) - flightCount.get(item1));
@@ -118,7 +110,8 @@ class TheBarChart {
     barChart.setBarLabels(topAirports);
     title = "Top Departures from " + origin;
     barChart.setCategoryAxisLabel(title);
-    barChart.setMaxValue(30000);
+
+    barChart.setMaxValue(topFlightCount[0]);
   }
   
   boolean inTopDestinations(String airport, String[] topDestinations) {

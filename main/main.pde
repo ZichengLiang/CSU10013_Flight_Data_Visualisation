@@ -73,10 +73,7 @@ void setup() {
 
   // Oliver, 22nd March: Working on horix=zontal buttons
   showCase = new Text(SCREENX-100, SCREENY-100, 200, 200, 255, body);
-
-
   // Daniel  2nd April: Checkboxes
-
   createGUI();
   // Oliver 26th March: Map work
   map = new Map(SCREENX/5, SCREENY/3, 700, 450, datapoints);
@@ -85,8 +82,6 @@ void setup() {
 
   dateSlider = new Slider(this, 31);
 }
-
-
 
 //displaynum = 10
 void draw() {
