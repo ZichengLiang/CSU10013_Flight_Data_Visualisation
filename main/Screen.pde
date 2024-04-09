@@ -36,8 +36,8 @@ class Screen
   //  }
 
   // Drawing of screen
-  void draw()
-  {
+  void draw() {
+    horizontalButtons = (screenType == 4);
     switch(screenType)
     {
     case 0:

@@ -25,6 +25,7 @@ class Widget {
     rect(x, y, width, height, cornerRadius, cornerRadius, cornerRadius, cornerRadius);
     fill(labelColor);
     textAlign(RIGHT);
+
     text(label, x+width/4, y);
   }
   int getEvent(int mX, int mY) {
