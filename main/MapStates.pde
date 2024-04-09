@@ -21,4 +21,9 @@ class MapStates
     fill(colour);
     shape(state, x, y, sizeX, sizeY);
   }
+  
+  void colourChange(color colour)
+  {
+    this.colour=colour;
+  }
 }

@@ -12,7 +12,7 @@ class Screen
   //Screen location
   float startX;
   float startY;
-  
+
   boolean screenChange; // to help tell if the screen should need to change for Map class
 
   // Main Screen
@@ -28,7 +28,7 @@ class Screen
 
     screenType=0;
     borders = 15;
-    
+
     screenChange=false;
   }
 
@@ -69,14 +69,14 @@ class Screen
       text("* The busiest airport (by departure) is " + currentQuery.busiestDeptAirport()
         + "\n from where " + currentQuery.flightsByOrigin.get(currentQuery.busiestDeptAirport()).size() + " flights depart.", screenX/4, 360); // y position = 360
 
-     // textAlign(LEFT);
-     // text("* The busiest airport (by arrival) is " + currentQuery.busiestArrAirport()
-     //   + "\n where " + currentQuery.flightsByDestination.get(currentQuery.busiestArrAirport()).size() + " flights arrive.", screenX/4, 420); // y position = 400
+      // textAlign(LEFT);
+      // text("* The busiest airport (by arrival) is " + currentQuery.busiestArrAirport()
+      //   + "\n where " + currentQuery.flightsByDestination.get(currentQuery.busiestArrAirport()).size() + " flights arrive.", screenX/4, 420); // y position = 400
 
       textAlign(LEFT);
       Date queryDate = new Date(122, 0, dateSlider.getUserInput());
-      text("* There are " 
-      + currentQuery.flightsAfterDate(queryDate)
+      text("* There are "
+        + currentQuery.flightsAfterDate(queryDate)
         + " flights \n  after the date "  + queryDate, screenX/4, 420); // y position = 420
 
       break;
@@ -88,11 +88,11 @@ class Screen
       break;
 
     case 2: // reserved for table
-    if(screenChange)
-    {
-      map.renewMap(currentQuery.getArrayList());
-      screenChange=false;
-    }
+      if (screenChange)
+      {
+        map.renewMap(currentQuery.getArrayList());
+        screenChange=false;
+      }
       fill(SCREEN3);
       rect(startX, startY, screenX, screenY);
       map.draw();
