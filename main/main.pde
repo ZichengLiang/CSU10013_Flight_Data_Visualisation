@@ -140,12 +140,12 @@ void mousePressed() {
     scrollY -= 20; // Move text up
   }
   if (mouseX > leftArrowX && mouseX < leftArrowX + buttonWidth && mouseY > horizontalArrowsY && mouseY < horizontalArrowsY + buttonHeight) {
-    tableX -= 10; // Move text left
+    tableX += 20; // Move text left
   }
 
   // Right Arrow
   if (mouseX > rightArrowX && mouseX < rightArrowX + buttonWidth && mouseY > horizontalArrowsY && mouseY < horizontalArrowsY + buttonHeight) {
-    tableX += 10; // Move text right
+    tableX -= 20; // Move text right
   }
    
   int event;
