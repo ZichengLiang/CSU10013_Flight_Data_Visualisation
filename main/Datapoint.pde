@@ -5,7 +5,7 @@ import java.util.*;
 // Zicheng, 12th March, 18:00: created the Datapoint class;
 class Datapoint {
   // Zicheng, 12th March, 18:00: fields added according to the .csv files;
-
+  // Zicheng: 6th April, fixed the date function and connected it to the text display
   // flight date infos
   Date flightDate;
   // flight code infos
@@ -25,6 +25,7 @@ class Datapoint {
 
   String combinedOriginCityName, combinedDestCityName;
   int lateDepMinutes, lateArrMinutes, plannedFlightDuration, actualFlightDuration;
+  SimpleDateFormat dateFormat = new SimpleDateFormat ("MM/dd/yyyy HH:mm");
 
   // Zicheng, 12th March, 21:00: a constructor with all parameters;
   public Datapoint(String[] pieces) {
@@ -131,11 +132,11 @@ class Datapoint {
   }
 
   public int getCancelled() {
-    return cancelled;
+    return  cancelled;
   }
 
   public int getDiverted() {
-    return diverted;
+    return  diverted;
   }
 
   public int getDistance() {

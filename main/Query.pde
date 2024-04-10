@@ -9,11 +9,12 @@
 /*
  Zicheng: 4th April
  18th March: created the class, including two constructors and flights from/to/late functions
- 20th March:
+ 20th March: 
  2nd April: make use of Predicates to define each filter function
  3rd April: introduced filterQuery function to allow user interactions
  (overloaded: one controlled by class member attributes, another controlled by parameters)
  4th April: added hashmaps: flightsbyOrigin/Dest/Carrier
+ 6th April: added hashmap: flightsByDate
  */
 
 import java.util.Arrays;
