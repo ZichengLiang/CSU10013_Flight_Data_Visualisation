@@ -8,7 +8,7 @@ import java.io.IOException;
 
 Datapoint[] datapoints;
 String[] lines;
-
+String Search;
 int datapointCount = 0;
 PFont body;
 int displayNum = 10; // Display this many entries on each screen;
@@ -19,7 +19,7 @@ int horizontalButtonsNum = 3;
 boolean mouse = false;
 
 Query currentQuery;
-
+SearchBox txt;
 // Oliver, 15th March: creation of widgets to switch between screens
 Screen Screens;
 Widget[] buttons;
@@ -54,10 +54,12 @@ void setup() {
   Screens = new Screen();
   Query fromWholeDataSet = new Query();
   currentQuery = fromWholeDataSet;
-  //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
+
+
+ //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
+  txt = new SearchBox(200, 200, 180, 40);
   thePieChart = new PieChart();
   thePieChart.getAbnormalFlights();
-  //thePieChart.getAbnormalFlights();
   thePieChart.carrierCO(currentQuery);
 
   // Zicheng  20/03/24 Initialised flight distances to bar chart
@@ -65,13 +67,11 @@ void setup() {
   BarChart barChart = new BarChart(this); // Create a new BarChart instance
   theBarChart = new TheBarChart(barChart); 
 
-
   // Buttons
   Screens = new Screen();
   //the side bar buttons here:
   initializeSidebarButtons();
   initializeHorizontalButtons();
-
 
   // Oliver, 22nd March: Working on horix=zontal buttons
   showCase = new Text(SCREENX-100, SCREENY-100, 200, 200, 255, body);
@@ -93,9 +93,11 @@ void setup() {
 void draw() {
   noStroke();
   background(BACKGROUND_COLOUR);
-
+ 
   textSize(12);
+  
   Screens.draw();
+  
   for (int i=0; i<buttons.length; i++)
   {
     buttons[i].draw();
