@@ -87,6 +87,7 @@ class Screen
     case 1: //Reserved for Pie Chart
       fill(SCREEN2);
       rect(startX, startY, screenX, screenY);
+      thePieChart.PieChange(currentQuery.getArrayList());
       thePieChart.draw();
       break;
 
