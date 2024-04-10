@@ -167,7 +167,7 @@ void mousePressed() {
 
   redraw();
 }
-
+//Zicheng 7th April: upgrade loadDatapoints method with BufferedReader;
 Datapoint[] loadDatapoints(String fileName) {
   ArrayList<Datapoint> tempList = new ArrayList<>();
   try (BufferedReader br = new BufferedReader(new FileReader(sketchPath(fileName)))) {
