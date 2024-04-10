@@ -27,9 +27,11 @@ class TheBarChart {
   void setData(float[] dataDisplay) {
     this.dataDisplay = dataDisplay;
   }
-  
+
   void byDistanceFrom(String origin) {
+
     ArrayList<Datapoint> flightsFrom = currentQuery.flightsFrom(origin); // Sorts flights
+
     Collections.sort(flightsFrom, (item2, item1) -> Integer.compare(item1.getDistance(), item2.getDistance()));
    
     Datapoint[] flights = flightsFrom.toArray(Datapoint[]::new);
@@ -81,9 +83,9 @@ class TheBarChart {
     barChart.setData(topFlightCount);
     barChart.setBarLabels(topAirlines);
     title = "Top Airlines by Number of Flights";
-    barChart.setCategoryAxisLabel(title); // Sets title to x-axis
+    barChart.setCategoryAxisLabel(title);
+    barChart.setMaxValue(200000);
 
-    barChart.setMaxValue(topFlightCount[0]); // Max value on y-axis
   }
 
 
@@ -107,26 +109,28 @@ class TheBarChart {
 
     barChart.setData(topFlightCount);
     barChart.setBarLabels(topAirports);
-    title = "Top Departures from " + origin;
-    barChart.setCategoryAxisLabel(title); // Sets title to x-axis
 
-    barChart.setMaxValue(topFlightCount[0]); // Max value on y-axis
+    title = "Top Flights from " + origin;
+    barChart.setCategoryAxisLabel(title);
+    barChart.setMaxValue(40000);
   }
-  
-  boolean inTopDestinations(String airport, String[] topDestinations) { // Checks if destination is in top 5
-  for (String destination : topDestinations) {
-    if (airport.equals(destination)) {
-      return true;
+
+  boolean inTopDestinations(String airport, String[] topDestinations) {
+    for (String destination : topDestinations) {
+      if (airport.equals(destination)) {
+        return true;
+      }
     }
+    return false;
   }
-  return false;
-}
 
   void draw() {
-    if(button1Clicked == true ||  button2Clicked == true || button3Clicked == true) {
-    barChart.draw(300, 50, width - 700, height - 200); // Draws Bar Chart
+    if (button1Clicked == true ||  button2Clicked == true || button3Clicked == true) {
+      barChart.draw(300, 50, width - 700, height - 200);
     }
-    fill(#26B6E0); // Light blue
+    fill(#26B6E0);
+    // textAlign(CENTER, TOP);
+
     textSize(15);
   }
 }
