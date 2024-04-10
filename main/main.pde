@@ -217,6 +217,10 @@ void initializeSidebarButtons() {
     {
       buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "Main Screen", 255, body, j);
     }
+    else if(j==3)
+    {
+      buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "Table", 255, body, j);
+    }
       else {
       buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "button " + j, 255, body, j);
     }

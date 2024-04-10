@@ -151,6 +151,11 @@ class Screen
 
     fill(#BC3D3D); // Redish
     rect(SCREENX-100, SCREENY-500, 200, SCREENY-100);
+    
+    //adds title to filter
+    fill(0);
+    text("Filter",SCREENX-190, 20);
+    
     textSize(12);
   }
   
