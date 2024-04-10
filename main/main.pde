@@ -17,6 +17,8 @@ int sideBarButtonsNum = 5;
 int horizontalButtonsNum = 3;
 
 boolean mouse = false;
+PFont myFont;
+
 
 Query currentQuery;
 SearchBox txt;
@@ -45,6 +47,7 @@ void settings() {
 void setup() {
   fill(BACKGROUND_COLOUR);
   body = loadFont("myFont-12.vlw");
+  myFont = createFont("Times New Roman", 16);
   textFont(body);
   textSize(12);
   rectMode(CENTER);
@@ -120,25 +123,25 @@ void mousePressed() {
   }
 
   if (mouseX > arrowX && mouseX < arrowX + buttonWidth && mouseY > arrowMargin && mouseY < arrowMargin + buttonHeight) {
-    scrollY += 20; // Move text down
+    scrollY1 += 20; // Move text down
   }
   
   // Check if click is within the down arrow area
   if (mouseX > arrowX && mouseX < arrowX + buttonWidth && mouseY > downArrowY && mouseY < downArrowY + buttonHeight) {
-    scrollY -= 20; // Move text up
+    scrollY1  -= 20; // Move text up
   }
   if (mouseX > leftArrowX && mouseX < leftArrowX + buttonWidth && mouseY > horizontalArrowsY && mouseY < horizontalArrowsY + buttonHeight) {
-    tableX -= 10; // Move text left
+    tableX += 20; // Move text left
   }
 
   // Right Arrow
   if (mouseX > rightArrowX && mouseX < rightArrowX + buttonWidth && mouseY > horizontalArrowsY && mouseY < horizontalArrowsY + buttonHeight) {
-    tableX += 10; // Move text right
+    tableX -= 20; // Move text right
   }
 
   int event = -1;
 
-  scrollY -= 20;
+  //scrollY -= 20;
   event = showCase.pressed(mouseX, mouseY);
  
   if (event>-1)

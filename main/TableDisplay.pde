@@ -1,16 +1,16 @@
 Table table;
-
-int fontSize = 10; 
-int tableX = 340; 
+int fontSize = 12; 
+int tableX = 260; 
 int tableY = 20; 
 int tableWidth = 200; 
 int tableHeight = 200; 
-int rowHeight = 20; 
+int rowHeight = 20;                                                         
 int columnWidth = 100; 
-
-float scrollY = 0;
+float scrollY1 = 0;
 
 void displayTableData(int xcoordinate, int ycoordinate, int width, int height) {
+  textFont(myFont);
+  textAlign(LEFT, CENTER); // Align text to the left
   textSize(fontSize);
 
   // Calculate the maximum width for each column
@@ -27,7 +27,7 @@ void displayTableData(int xcoordinate, int ycoordinate, int width, int height) {
   }
 
   float x = xcoordinate;
-  float y = ycoordinate + scrollY;
+  float y = ycoordinate + scrollY1;
 
   fill(0);
   // Display column headers
