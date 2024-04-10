@@ -74,7 +74,7 @@ void setup() {
   createGUI();
   // Oliver 26th March: Map work
 
-  map = new Map(SCREENX/6, SCREENY/3, 700, 450, currentQuery.getArrayList());
+  map = new TheMap(SCREENX/6, SCREENY/3, 700, 450, currentQuery.getArrayList());
 
   // Aryan: 4th April
   // Create an instance of SliderClass
