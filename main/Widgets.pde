@@ -24,8 +24,8 @@ class Widget {
     fill(widgetColor);
     rect(x, y, width, height, cornerRadius, cornerRadius, cornerRadius, cornerRadius);
     fill(labelColor);
-    textAlign(RIGHT);
-    text(label, x+width/4, y);
+
+    text(label, (x+width) - 140, y-10);
   }
   int getEvent(int mX, int mY) {
     if (mX>x-(width/2) && mX < x+(width/2) && mY >y-(height/2) && mY <y+(height/2)) {
