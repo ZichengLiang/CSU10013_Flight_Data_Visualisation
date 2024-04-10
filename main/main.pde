@@ -23,7 +23,7 @@ Widget[] buttons;
 Widget[] buttonsHorizontal;
 Text showCase;
 
-Map map;
+TheMap map;
 //Muireann O'Neill 15/03/24 11:12 declaring Charts here;
 PieChart thePieChart;
 //Daniel 15/03/24 initialized BarCharts here
@@ -49,9 +49,6 @@ void setup() {
   Screens = new Screen();
   Query fromWholeDataSet = new Query();
   currentQuery = fromWholeDataSet;
-  // Oliver 26th March: Map work
-  map = new Map(SCREENX/5, SCREENY/3, 700, 450, datapoints);
-
   //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
   thePieChart = new PieChart();
   thePieChart.getAbnormalFlights();
@@ -76,11 +73,13 @@ void setup() {
   // Daniel  2nd April: Checkboxes
   createGUI();
   // Oliver 26th March: Map work
-  map = new Map(SCREENX/5, SCREENY/3, 700, 450, datapoints);
+  map = new TheMap(SCREENX/5, SCREENY/3, 700, 450, currentQuery.getArrayList());
   // Aryan: 4th April
   // Create an instance of SliderClass
 
   dateSlider = new Slider(this, 31);
+  
+  thread("map.renewMap");
 }
 
 //displaynum = 10
@@ -104,7 +103,7 @@ void draw() {
 }
 
 void mousePressed() {
-  int event;
+  int event = -1;
   scrollY -= 20;
   event = showCase.pressed(mouseX, mouseY);
   //scrollY -= 20;
@@ -180,7 +179,12 @@ void initializeSidebarButtons() {
       buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "Map", 255, body, j);
     } else if (j == 4) {
       buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "Bar Chart", 255, body, j);
-    } else {
+    }
+    else if(j==0)
+    {
+      buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "Main Screen", 255, body, j);
+    }
+      else {
       buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "button " + j, 255, body, j);
     }
   }
