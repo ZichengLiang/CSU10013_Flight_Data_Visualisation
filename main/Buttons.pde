@@ -5,19 +5,23 @@ boolean button1Clicked = false;
 boolean button2Clicked = false;
 boolean button3Clicked = false;
 
+// Reserved these for bar chart display
 void mouseClicked() {
-  if (mouseX > 280 && mouseX < 400 && mouseY > 510 && mouseY < 550) { // Adjusted mouse coordinates
+  if ((mouseX > (SCREENX / 4) - 50 && mouseX < (SCREENX / 4) + 50) && (mouseY > (SCREENY - 65) - 30 && mouseY < (SCREENY - 65) + 30)) {
     println("Button 1 clicked!");
-    // Add any actions you want to execute when Button 1 is clicked
+    button1Clicked = true;
+    theBarChart.byAirlines();
   }
-  
-  if (mouseX > 430 && mouseX < 550 && mouseY > 510 && mouseY < 550) { // Adjusted mouse coordinates
+
+  if ((mouseX > (SCREENX / 2) - 50 && mouseX < (SCREENX / 2) + 50) && (mouseY > (SCREENY - 65) - 30 && mouseY < (SCREENY - 65) + 30)) {
     println("Button 2 clicked!");
-    // Add any actions you want to execute when Button 2 is clicked
+    button2Clicked = true;
+    theBarChart.byFlightFrom("JFK");
   }
-  
-  if (mouseX > 580 && mouseX < 700 && mouseY > 510 && mouseY < 550) { // Adjusted mouse coordinates
+
+  if ((mouseX > (SCREENX - (SCREENX / 4) - 10) - 50 && mouseX < (SCREENX - (SCREENX / 4) - 10) + 50) && (mouseY > (SCREENY - 65) - 30 && mouseY < (SCREENY - 65) + 30)) {
     println("Button 3 clicked!");
-    // Add any actions you want to execute when Button 3 is clicked
+    button3Clicked = true;
+    theBarChart.byDistanceFrom("JFK");
   }
 }

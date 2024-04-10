@@ -4,20 +4,20 @@ import org.gicentre.utils.stat.*;
 
 class TheBarChart {
   BarChart barChart;
-  float[] dataDisplay;
-  String[] labelDisplay;
+  float[] dataDisplay = {0.0};
+  String[] labelDisplay = {"sample"};
+  String title = "default";
 
-  TheBarChart(BarChart chart, float[]inputData, String[]inputLabels) {
+  TheBarChart(BarChart chart) {
     barChart = chart;
-    barChart.setData(inputData);
-
+    barChart.setData(dataDisplay);
     barChart.setMinValue(0);
-    barChart.setMaxValue(6000);
+    //barChart.setMaxValue(1000);
 
     barChart.showValueAxis(true);
-    barChart.setBarLabels(inputLabels);
     barChart.showCategoryAxis(true);
-    //barChart.setCategoryAxisLabel("Airports");
+    barChart.setBarLabels(labelDisplay);
+    barChart.setCategoryAxisLabel(title);
 
     //Colour
     barChart.setBarColour(#26B6E0); // Light Blue
@@ -28,49 +28,107 @@ class TheBarChart {
   void setData(float[] dataDisplay) {
     this.dataDisplay = dataDisplay;
   }
-  void setLabel(String[] labelDisplay) {
-    this.labelDisplay = labelDisplay;
-  }
   
-  void byDistanceFrom(String origin){
+  void byDistanceFrom(String origin) {
     ArrayList<Datapoint> flightsFrom = currentQuery.flightsFrom(origin);
+    
     Collections.sort(flightsFrom, (item2, item1) -> Integer.compare(item1.getDistance(), item2.getDistance()));
     Datapoint[] flights = flightsFrom.toArray(Datapoint[]::new);
-    
     float[] flightDistance = new float[flights.length];
-      for (int i = 0; i < flights.length; i++) {
-        flightDistance[i] = flights[i].distance;
-      }
+    for (int i = 0; i < flights.length; i++) {
+      flightDistance[i] = flights[i].distance;
+    }
     String[] flightDestination = new String[flights.length];
-      for (int i = 0; i < flights.length; i++) {
-        flightDestination[i] = flights[i].dest;
-      }
-      
+    for (int i = 0; i < flights.length; i++) {
+      flightDestination[i] = flights[i].dest;
+    }
     float[] topDistances = new float[datapoints.length];
-  String[] topDestinations = new String[datapoints.length];
-  int airportCounter = 0; //Counts airports passed through
+    String[] topDestinations = new String[datapoints.length];
+    int airportCounter = 0;
 
-  for (int i = 0; i < flightDistance.length && airportCounter < 5; i++) {
-    if (! inTopDestinations(flightDestination[i], topDestinations)) {
-      topDistances[airportCounter] = flightDistance[i];
-      topDestinations[airportCounter] = flightDestination[i];
-      airportCounter++;
+    for (int i = 0; i < flightDistance.length && airportCounter < 5; i++) {
+      if (! inTopDestinations(flightDestination[i], topDestinations)) {
+        topDistances[airportCounter] = flightDistance[i];
+        topDestinations[airportCounter] = flightDestination[i];
+        airportCounter++;
+      }
+    }
+    topDistances = Arrays.copyOf(topDistances, airportCounter);
+    topDestinations = Arrays.copyOf(topDestinations, airportCounter);
+    title = "Longest flights from " + origin;
+    barChart.setCategoryAxisLabel(title);
+    barChart.setData(topDistances);
+    barChart.setBarLabels(topDestinations);
+    barChart.setMaxValue(6000);
+  }
+
+  void byAirlines() {
+    HashMap<String, Integer> flightCountByAirline = new HashMap<>();
+    for (Entry<String, List<Datapoint>> entry : currentQuery.flightsByCarrier.entrySet()) {
+      flightCountByAirline.put(entry.getKey(), entry.getValue().size());
+    }
+    ArrayList<String> flightsByCarrier = new ArrayList<>(flightCountByAirline.keySet());
+    Collections.sort(flightsByCarrier, (item1, item2) -> flightCountByAirline.get(item2) - flightCountByAirline.get(item1));
+
+    int limit = 5;
+    float[] topFlightCount = new float[limit];
+    String[] topAirlines = new String[limit];
+
+    for (int i = 0; i < limit; i++) {
+      String flights = flightsByCarrier.get(i);
+      topAirlines[i] = flights;
+      topFlightCount[i] = flightCountByAirline.get(flights);
+    }
+    barChart.setData(topFlightCount);
+    barChart.setBarLabels(topAirlines);
+    title = "Top Airlines by Number of Flights";
+    barChart.setCategoryAxisLabel(title);
+
+    barChart.setMaxValue(topFlightCount[0]);
+  }
+
+
+  void byFlightFrom(String origin) {
+    HashMap<String, Integer> flightCount = new HashMap<>();
+    for (Entry<String, List<Datapoint>> entry : currentQuery.flightsByOrigin.entrySet()) {
+      flightCount.put(entry.getKey(), entry.getValue().size());
+    }
+    ArrayList<String> sortedFlights = new ArrayList<>(flightCount.keySet());
+    Collections.sort(sortedFlights, (item1, item2) -> flightCount.get(item2) - flightCount.get(item1));
+
+    int limit = 5;
+    float[] topFlightCount = new float[limit];
+    String[] topAirports = new String[limit];
+
+    for (int i = 0; i < limit; i++) {
+      String airport = sortedFlights.get(i);
+      topAirports[i] = airport;
+      topFlightCount[i] = flightCount.get(airport);
+    }
+
+    barChart.setData(topFlightCount);
+    barChart.setBarLabels(topAirports);
+    title = "Top Departures from " + origin;
+    barChart.setCategoryAxisLabel(title);
+
+    barChart.setMaxValue(topFlightCount[0]);
+  }
+  
+  boolean inTopDestinations(String airport, String[] topDestinations) {
+  for (String destination : topDestinations) {
+    if (airport.equals(destination)) {
+      return true;
     }
   }
-  topDistances = Arrays.copyOf(topDistances, airportCounter);
-  topDestinations = Arrays.copyOf(topDestinations, airportCounter);
-  
-  this.dataDisplay = topDistances;
-  this.labelDisplay = topDestinations;
-  }
-  
-  
-  void draw() {
-    barChart.draw(150, 50, width - 200, height - 200);
+  return false;
+}
 
+  void draw() {
+    if(button1Clicked == true ||  button2Clicked == true || button3Clicked == true) {
+    barChart.draw(300, 50, width - 700, height - 200);
+    }
     fill(#26B6E0);
-    textAlign(CENTER, TOP);
+   // textAlign(CENTER, TOP);
     textSize(15);
-    text("Airports", 415, 500);
   }
 }

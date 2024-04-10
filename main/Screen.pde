@@ -36,46 +36,49 @@ class Screen
   //  }
 
   // Drawing of screen
-  void draw()
-  {
+  void draw() {
+    horizontalButtons = (screenType == 4);
     switch(screenType)
     {
-    case 0: 
+    case 0:
       fill(SCREEN1);
       rect(startX, startY, screenX, screenY);
       fill(255);
       textSize(20);
-      textAlign(RIGHT);
-      text("This is Team 9, welcome to our program ! \nPlease press one of the side buttons to begin", startX, 100);
+     // textAlign(RIGHT);
+      text("This is Team 9, welcome to our program ! \nPlease press one of the side buttons to begin", (screenX/4) + 50, 100);
       // Zicheng: 4th April, addded the insights using query functions
-      textAlign(LEFT);
-      text("Insights: Among " + currentQuery.getArrayList().size() + " flights in the current query...", screenX/4, 200);
+      //textAlign(LEFT);
+      text("Insights: Among " + currentQuery.getArrayList().size() + " flights in the current query: " + currentQuery.name, screenX/4 - 50, 200);
       ArrayList<Datapoint> longestFlights = currentQuery.sortByDistance();
-      textAlign(LEFT);
-      text("* The longest flight goes from " + longestFlights.get(0).combinedOriginCityName 
-      + " to " + longestFlights.get(0).combinedDestCityName
-      + "\n its flight distance is " + longestFlights.get(0).distance + " miles.", screenX/4, 250); // y position = 250
-      
-      textAlign(LEFT);
+      //textAlign(LEFT);
+      text("* The longest flight goes from " + longestFlights.get(0).combinedOriginCityName
+        + " to " + longestFlights.get(0).combinedDestCityName
+        + "\n its flight distance is " + longestFlights.get(0).distance + " miles.", (screenX/4) - 50, 250); // y position = 250
+
+     // textAlign(LEFT);
       text("* The busiest carrier company is " + currentQuery.busiestAirline()
-      + " which operates " + currentQuery.flightsByCarrier.get(currentQuery.busiestAirline()).size() + " airlines .", screenX/4, 320); // y position = 320
-      
-      textAlign(LEFT);
+        + " which operates " + currentQuery.flightsByCarrier.get(currentQuery.busiestAirline()).size() + " airlines .", (screenX/4) - 50, 320); // y position = 320
+
+    //  textAlign(LEFT);
       text("* The busiest airport (by departure) is " + currentQuery.busiestDeptAirport()
-      + "\n from where " + currentQuery.flightsByOrigin.get(currentQuery.busiestDeptAirport()).size() + " flights depart.", screenX/4, 360); // y position = 360
-      
-       textAlign(LEFT);
-      text("* The busiest airport (by arrival) is " + currentQuery.busiestArrAirport()
-      + "\n where " + currentQuery.flightsByDestination.get(currentQuery.busiestArrAirport()).size() + " flights arrive.", screenX/4, 420); // y position = 400
-      
+        + "\n from where " + currentQuery.flightsByOrigin.get(currentQuery.busiestDeptAirport()).size() + " flights depart.", (screenX/4) - 50, 360); // y position = 360
+
+     // textAlign(LEFT);
+     // text("* The busiest airport (by arrival) is " + currentQuery.busiestArrAirport()
+     //   + "\n where " + currentQuery.flightsByDestination.get(currentQuery.busiestArrAirport()).size() + " flights arrive.", screenX/4, 420); // y position = 400
+
+     // textAlign(LEFT);
+      Date queryDate = new Date(122, 0, dateSlider.getUserInput());
+      text("* There are " 
+      + currentQuery.flightsAfterDate(queryDate)
+        + " flights \n  after the date "  + queryDate, (screenX/4) - 50, 420); // y position = 420
+
       break;
 
     case 1: //Reserved for Pie Chart
       fill(SCREEN2);
       rect(startX, startY, screenX, screenY);
-      //call on horizontal widget;
-      //if event == 5
-      //change data
       thePieChart.draw();
       break;
 
@@ -92,21 +95,22 @@ class Screen
       break;
 
     case 4: //Reserved for Bar chart
-      fill(SCREEN5);
+      fill(#F7C242);
+      rect(startX, startY, screenX, screenY);
       theBarChart.draw();
       break;
-      
-     default:
-     fill(SCREEN6);
-     rect(startX, startY, screenX, screenY);
-     fill(0);
-     textSize(20);
-     textAlign(CENTER);
-     text("Welcome to our program. \nPlease press one of the side buttons to begin", startX, 50);
+
+    default:
+      fill(SCREEN6);
+      rect(startX, startY, screenX, screenY);
+      fill(0);
+      textSize(20);
+      textAlign(CENTER);
+      text("Welcome to our program. \nPlease press one of the side buttons to begin", SCREENX / 2, 50);
     }
-    
-    fill(0);
-    rect(SCREENX-100, SCREENY-500, 200, SCREENY-200);
+
+    fill(#BC3D3D); // Redish
+    rect(SCREENX-100, SCREENY-500, 200, SCREENY-100);
     textSize(12);
   }
 }
