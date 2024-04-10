@@ -83,7 +83,8 @@ class TheBarChart {
     title = "Top Airlines by Number of Flights";
     barChart.setCategoryAxisLabel(title); // Sets title to x-axis
 
-    barChart.setMaxValue(topFlightCount[0]); // Max value on y-axis
+    barChart.setMaxValue(topFlightCount[0] + 50000);
+
   }
 
 
@@ -109,8 +110,8 @@ class TheBarChart {
     barChart.setBarLabels(topAirports);
     title = "Top Departures from " + origin;
     barChart.setCategoryAxisLabel(title); // Sets title to x-axis
+    barChart.setMaxValue(topFlightCount[0] + 10000);
 
-    barChart.setMaxValue(topFlightCount[0]); // Max value on y-axis
   }
   
   boolean inTopDestinations(String airport, String[] topDestinations) { // Checks if destination is in top 5

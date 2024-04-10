@@ -10,7 +10,8 @@ void mouseClicked() {
   if ((mouseX > (SCREENX / 4) - 50 && mouseX < (SCREENX / 4) + 50) && (mouseY > (SCREENY - 65) - 30 && mouseY < (SCREENY - 65) + 30)) { // 
     println("Button 1 clicked!");
     button1Clicked = true;
-    theBarChart.byAirlines(); // Displays flight by each airline if button clicked
+    theBarChart.byDistanceFrom("JFK");
+
   }
 
   if ((mouseX > (SCREENX / 2) - 50 && mouseX < (SCREENX / 2) + 50) && (mouseY > (SCREENY - 65) - 30 && mouseY < (SCREENY - 65) + 30)) {
@@ -22,6 +23,7 @@ void mouseClicked() {
   if ((mouseX > (SCREENX - (SCREENX / 4) - 10) - 50 && mouseX < (SCREENX - (SCREENX / 4) - 10) + 50) && (mouseY > (SCREENY - 65) - 30 && mouseY < (SCREENY - 65) + 30)) {
     println("Button 3 clicked!");
     button3Clicked = true;
-    theBarChart.byDistanceFrom("JFK"); // Displays flight distance from a specific airport if button clicked
+    theBarChart.byAirlines();
+
   }
 }

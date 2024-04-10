@@ -209,12 +209,21 @@ public void checkbox1_clicked(GCheckbox checkbox, GEvent event) { // Checks to s
   if (checkbox1.isSelected() == true) {
     currentQuery.setCancelled(true);
     currentQuery = new Query(currentQuery.filterQuery(), "Cancelled");
-    renewGraphs();
+
+    theBarChart.byDistanceFrom("JFK");
+    theBarChart.byFlightFrom("JFK");
+    theBarChart.byAirlines();
+
+    // renewGraphs();
     redraw();
   } else {
     currentQuery = new Query();
+
+    theBarChart.byDistanceFrom("JFK");
+    theBarChart.byFlightFrom("JFK");
+    theBarChart.byAirlines();
     //currentQuery.setCancelled(false);
-    renewGraphs();
+    // renewGraphs();
     redraw();
   }
 }
@@ -228,15 +237,6 @@ public void checkbox2_clicked(GCheckbox checkbox, GEvent event) { // Checks to s
     println("Checkbox 2 not clicked");
   }
 }
-
-/*public void checkbox3_clicked() {
- if (checkbox3.isSelected() == true) {
- println("Checkbox 3 clicked");
- } else {
- println("Checkbox 3 not clicked");
- }
- }*/
-
 
 public void createGUI() {
   checkbox1 = new GCheckbox(this, SCREENX - 180, 30, 200, 20); // Creates checkbox
@@ -258,5 +258,4 @@ public void createGUI() {
 public void renewGraphs() {
   //thePieChart.getAbnormalFlights();
   thePieChart.carrierCO(currentQuery);
-  theBarChart.byDistanceFrom("JFK");
 }
