@@ -1,11 +1,13 @@
 Table table;
-int fontSize = 8;
-int tableX = 340;
-int tableY = 50;
-int tableWidth = 200;
-int tableHeight = 200;
-int rowHeight = 20;
-int columnWidth = 100;
+
+int fontSize = 10; 
+int tableX = 340; 
+int tableY = 20; 
+int tableWidth = 200; 
+int tableHeight = 200; 
+int rowHeight = 20; 
+int columnWidth = 100; 
+
 float scrollY = 0;
 
 void displayTableData(int xcoordinate, int ycoordinate, int width, int height) {
