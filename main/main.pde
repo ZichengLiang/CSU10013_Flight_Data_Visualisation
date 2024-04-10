@@ -31,6 +31,7 @@ TheBarChart theBarChart;
 //Daniel 02/04/24 Checkbox initialized
 GCheckbox checkbox1, checkbox2;
 boolean horizontalButtons = false;
+boolean canceledPressed = false; // Checks to see if canceled checkbox pressed
 
 Slider dateSlider;
 
@@ -192,9 +193,9 @@ void initializeHorizontalButtons() {
     if (j == 0) {
       buttonsHorizontal[j] = new Widget(SCREENX / 4, SCREENY - 65, 100, 60, 20, "Flight distance", 255, body, j); // 0.25
     } else if (j == 1) {
-      buttonsHorizontal[j] = new Widget( SCREENX / 2, SCREENY - 65, 100, 60, 20, "Flight from", 255, body, j); // 0.5
+      buttonsHorizontal[j] = new Widget( SCREENX / 2, SCREENY - 65, 100, 60, 20, "Flights by \nAirline ", 255, body, j); // 0.5
     } else {
-      buttonsHorizontal[j] = new Widget(SCREENX - (SCREENX / 4) - 10, SCREENY - 65, 100, 60, 20, "Flights by \nAirline", 255, body, j); // 0.75
+      buttonsHorizontal[j] = new Widget(SCREENX - (SCREENX / 4) - 10, SCREENY - 65, 100, 60, 20, "Flight from", 255, body, j); // 0.75
     }
   }
 }
@@ -202,20 +203,34 @@ void initializeHorizontalButtons() {
 public void checkbox1_clicked(GCheckbox checkbox, GEvent event) {
   if (checkbox1.isSelected() == true) {
     currentQuery.setCancelled(true);
+    // canceledPressed = true;
     currentQuery = new Query(currentQuery.filterQuery(), "Cancelled");
 
-    theBarChart.byDistanceFrom("JFK");
-    theBarChart.byFlightFrom("JFK");
-    theBarChart.byAirlines();
+    if (button1Clicked == true) {
+      theBarChart.byDistanceFrom("JFK");
+    }
+    if (button2Clicked == true) {
+      theBarChart.byAirlines();
+    }
+    if (button3Clicked == true) {
+      theBarChart.byFlightFrom("JFK");
+    }
 
     // renewGraphs();
     redraw();
   } else {
     currentQuery = new Query();
+    // canceledPressed = false;
 
-    theBarChart.byDistanceFrom("JFK");
-    theBarChart.byFlightFrom("JFK");
-    theBarChart.byAirlines();
+    if (button1Clicked == true) {
+      theBarChart.byDistanceFrom("JFK");
+    }
+    if (button2Clicked == true) {
+      theBarChart.byAirlines();
+    }
+    if (button3Clicked == true) {
+      theBarChart.byFlightFrom("JFK");
+    }
     //currentQuery.setCancelled(false);
     // renewGraphs();
     redraw();
@@ -242,11 +257,6 @@ public void createGUI() {
   checkbox2.setText("Flights from");
   checkbox2.setOpaque(false);
   checkbox2.addEventHandler(this, "checkbox2_clicked");
-
-  /*checkbox3 = new GCheckbox(this, SCREENX - 300, 130, 200, 20);
-   checkbox3.setText("Flights to");
-   checkbox3.addEventHandler(this, "handleToggleControlEvents");
-   checkbox3.setOpaque(false);*/
 }
 
 public void renewGraphs() {

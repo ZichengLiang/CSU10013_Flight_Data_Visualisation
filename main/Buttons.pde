@@ -16,12 +16,12 @@ void mouseClicked() {
   if ((mouseX > (SCREENX / 2) - 50 && mouseX < (SCREENX / 2) + 50) && (mouseY > (SCREENY - 65) - 30 && mouseY < (SCREENY - 65) + 30)) {
     println("Button 2 clicked!");
     button2Clicked = true;
-    theBarChart.byFlightFrom("JFK");
+    theBarChart.byAirlines();
   }
 
   if ((mouseX > (SCREENX - (SCREENX / 4) - 10) - 50 && mouseX < (SCREENX - (SCREENX / 4) - 10) + 50) && (mouseY > (SCREENY - 65) - 30 && mouseY < (SCREENY - 65) + 30)) {
     println("Button 3 clicked!");
     button3Clicked = true;
-    theBarChart.byAirlines();
+    theBarChart.byFlightFrom("JFK");
   }
 }
