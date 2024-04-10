@@ -1,3 +1,5 @@
+//Oliver, March 26th - April10th: Work on the map
+
 class TheMap
 {
   PImage map;
@@ -14,6 +16,8 @@ class TheMap
     this.y=y;
     this.sizeX=sizeX;
     this.sizeY=sizeY;
+    
+    thread("renewMap");
 
     blue = 10000;
     //map.resize(100,100);
@@ -160,6 +164,7 @@ class TheMap
       for(int x=0; x<50; x++)
       {
         states[x].colourChange(color(findColour(data, states[x].stateName),0,blue));
+        delay(10);
       }
       colorMode(RGB,255);      
     }
