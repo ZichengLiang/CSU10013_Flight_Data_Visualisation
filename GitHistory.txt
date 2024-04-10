@@ -1,0 +1,1945 @@
+commit cb060895db82d26728b5be3b80d9cf8e43eaba93
+Merge: 3f8e6f8 df6faa1
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Wed Apr 10 19:10:55 2024 +0100
+
+    Merge pull request #90 from ZichengLiang/ZichengComments
+    
+    comments and moved date format's location
+
+commit df6faa18f2061d4d44055ca4d8150a43e8205edb
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Wed Apr 10 19:10:20 2024 +0100
+
+    little comments
+
+commit 3f8e6f83d8588d6032a2c562f247ea1bac99f9e5
+Merge: 71939a3 ae5f4ca
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Wed Apr 10 19:08:52 2024 +0100
+
+    Merge pull request #88 from ZichengLiang/ScrollWheel
+    
+    final changes - Neil Lawrence
+
+commit 71939a39dc64d444615d3d918f1b518be506b0a1
+Merge: 98cb286 cac7bc2
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Wed Apr 10 19:08:40 2024 +0100
+
+    Merge pull request #89 from ZichengLiang/Finishing-Pi+colors
+    
+    Finishing pi+colors
+
+commit cac7bc2edee73dc4f307ce30aac11f93711c5f20
+Merge: 3a149f5 98cb286
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Wed Apr 10 19:08:32 2024 +0100
+
+    Merge branch 'main' into Finishing-Pi+colors
+
+commit 3a149f51e25e784c4315b32e20a46d4a4bf7c3d9
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Wed Apr 10 19:02:24 2024 +0100
+
+    PieChart
+    
+    somehow got a PieChart showing. Its linked to the querys
+
+commit ae5f4cacac420ddf170f98f6a0d2fb908a0a81ab
+Author: Lawrencn0310 <162470996+Lawrencn0310@users.noreply.github.com>
+Date:   Wed Apr 10 18:45:59 2024 +0100
+
+    final
+
+commit 6b51f4e0f4973667a97b1a375186a0046844900a
+Merge: b75ce3e 4312c05
+Author: Lawrencn0310 <162470996+Lawrencn0310@users.noreply.github.com>
+Date:   Wed Apr 10 18:43:14 2024 +0100
+
+    Merge branch 'ScrollWheel' of https://github.com/ZichengLiang/CSU11013-GroupB-Team9 into ScrollWheel
+
+commit 4feab04181430e9908757b9063b05b0ee6797b76
+Merge: a4270fe 649ea0d
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Wed Apr 10 17:27:27 2024 +0100
+
+    Merge branch 'Finishing-Pi+colors' of https://github.com/ZichengLiang/CSU11013-GroupB-Team9 into Finishing-Pi+colors
+
+commit a4270fe9845b99fb0cd4a88909d55bc73634a929
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Wed Apr 10 17:27:14 2024 +0100
+
+    Map
+    
+    mapChange
+
+commit 98cb286622f375c163ab7c0d4e41f3038fcbde76
+Merge: 134c600 69ec192
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Wed Apr 10 15:42:31 2024 +0100
+
+    Merge pull request #77 from ZichengLiang/UserIneraction-Pi
+    
+    attempted to implement search box
+
+commit 69ec19255d8ab5e7b76a98e7baba93c28bc10632
+Merge: b118ee8 134c600
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Wed Apr 10 15:42:20 2024 +0100
+
+    Merge branch 'main' into UserIneraction-Pi
+
+commit 134c600e5bca2d08bb7b8cfd23cdeb8c9ab53944
+Merge: 4d4be7a 649ea0d
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Wed Apr 10 15:41:54 2024 +0100
+
+    Merge pull request #84 from ZichengLiang/Finishing-Pi+colors
+    
+    fixed pie chart
+
+commit 4d4be7adfb3d4f1402748236565ad8ce5e6b2be6
+Merge: 89d9196 6f8602d
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Wed Apr 10 15:41:35 2024 +0100
+
+    Merge pull request #85 from ZichengLiang/new-cancel
+    
+    Bar chart
+
+commit 6f8602d588d2e791ef7e6ba15f3fd9b913bd35f8
+Merge: 6cd8f90 89d9196
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Wed Apr 10 15:41:28 2024 +0100
+
+    Merge branch 'main' into new-cancel
+
+commit 6cd8f90d9b1b89334edcd32aecfcd0954ce19d76
+Author: dannyelx21 <162593250+dannyelx21@users.noreply.github.com>
+Date:   Wed Apr 10 14:58:04 2024 +0100
+
+    Bar chart
+    
+    Shows cancelled flight on bar charts
+
+commit 649ea0dcd4f291e40e3790aaab909ff3a36e98e7
+Author: Muireann <163150967+Pikacrazy@users.noreply.github.com>
+Date:   Wed Apr 10 14:56:59 2024 +0100
+
+    fixed pie chart
+    
+    made data display
+
+commit 89d91962f1f533a923868d2ef006862b41d9065c
+Merge: 7d681f7 840c713
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Wed Apr 10 14:54:41 2024 +0100
+
+    Merge pull request #83 from ZichengLiang/Fixes
+    
+    Fixes
+
+commit 840c713d2c56f7e738366c1abcc2673272cdcdc2
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Wed Apr 10 14:33:58 2024 +0100
+
+    named rest of widgets
+    
+    Named the remaining unamed widgets
+
+commit ce0537090b15e39fba042e1ed8dd560cecb91d68
+Merge: 8359f43 0f8547f
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Wed Apr 10 14:30:55 2024 +0100
+
+    Merge branch 'Fixes' of https://github.com/ZichengLiang/CSU11013-GroupB-Team9 into Fixes
+
+commit 8359f43b2f326047c1b27f6815feabc51dd429db
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Wed Apr 10 14:30:43 2024 +0100
+
+    Filter
+    
+    Created a title for Filter
+
+commit 7d681f7d7dfc08c90207f8cbd03cb24a06001e72
+Merge: 042fdc9 deeb43b
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Wed Apr 10 14:28:55 2024 +0100
+
+    Merge pull request #82 from ZichengLiang/adding-comments
+    
+    added some comments
+
+commit 042fdc9a9163a410b9bae0154fd23f600b5ede13
+Merge: a0976ad 0fb3830
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Wed Apr 10 14:28:41 2024 +0100
+
+    Merge pull request #76 from ZichengLiang/ScrollWheel
+    
+    Table browsing
+
+commit 0fb38301a630e9c1458336ab2ebc18891328f0f3
+Merge: 4312c05 a0976ad
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Wed Apr 10 14:28:34 2024 +0100
+
+    Merge branch 'main' into ScrollWheel
+
+commit deeb43b0e19d743bc2a5e063dce4e3fd06cbe2e7
+Author: Aryan Kapoor <163135611+kapoor-ar@users.noreply.github.com>
+Date:   Wed Apr 10 14:27:20 2024 +0100
+
+    added some comments
+
+commit a0976ad25edbe02f3abe168176e0bbdd1def603b
+Merge: d234741 8158fa9
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Wed Apr 10 14:07:03 2024 +0100
+
+    Merge pull request #79 from ZichengLiang/cancelled-into-bar
+    
+    Cancelled flights
+
+commit 8158fa9f9270ae5738fea9591e3d8ee872151970
+Merge: 4c2ff5e d234741
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Wed Apr 10 14:06:54 2024 +0100
+
+    Merge branch 'main' into cancelled-into-bar
+
+commit d234741a3afbb5ae2e613cda47a45d80fb29e595
+Merge: 534037b 0f8547f
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Wed Apr 10 14:05:17 2024 +0100
+
+    Merge pull request #81 from ZichengLiang/Fixes
+    
+    AlterMap
+
+commit 0f8547f479b1734eb124655fd7b0219a78cc6ec1
+Merge: 9178fab 534037b
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Wed Apr 10 14:05:10 2024 +0100
+
+    Merge branch 'main' into Fixes
+
+commit 534037bd164fd77b14e125690be85b5f00afbf1a
+Merge: 1fa42c1 500a87b
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Wed Apr 10 14:04:22 2024 +0100
+
+    Merge pull request #80 from ZichengLiang/LinkMap
+    
+    Link map
+
+commit 500a87be81416890bfc76dcfd1a1d4ee2ac6fa00
+Merge: 68c399f 1fa42c1
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Wed Apr 10 14:02:54 2024 +0100
+
+    Merge branch 'main' into LinkMap
+
+commit 9178fab4cd9b052b22286ca283069083882e2a1f
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Wed Apr 10 14:02:24 2024 +0100
+
+    AlterMap
+    
+    Changed the Map's position on the Screen
+
+commit 68c399ffe218a4868da7e0d3e4575f824b76fad7
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Wed Apr 10 13:56:58 2024 +0100
+
+    Legend
+    
+    Created a legend
+
+commit 4c2ff5e31909ed7572d15df905774960dfa136c0
+Author: dannyelx21 <162593250+dannyelx21@users.noreply.github.com>
+Date:   Wed Apr 10 13:48:57 2024 +0100
+
+    Cancelled flights
+    
+    Cancelled flight also shown on flights if checkbox pressed
+
+commit 1fa42c12bd8cd1a7b296d96b241c365ad8019217
+Merge: 137f752 2b8a910
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Wed Apr 10 13:40:38 2024 +0100
+
+    Merge pull request #78 from ZichengLiang/Daniel-Comments
+    
+    Comments for code
+
+commit b118ee841ed4fb1ef1747bd71919ca7fc2c8a7fb
+Merge: 325fb98 137f752
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Wed Apr 10 13:39:05 2024 +0100
+
+    Merge branch 'main' into UserIneraction-Pi
+
+commit 800f3fd6fff01b8a2165b9cc879f6d3ec017755d
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Wed Apr 10 13:14:30 2024 +0100
+
+    Update Map.pde
+
+commit 2b8a910cf77b6281e90cf4b208676955bdf16ee0
+Author: dannyelx21 <162593250+dannyelx21@users.noreply.github.com>
+Date:   Wed Apr 10 13:11:24 2024 +0100
+
+    Comments for code
+    
+    Comments for the code
+
+commit 325fb98de852090033a7156ee424167e6d893281
+Author: Muireann <163150967+Pikacrazy@users.noreply.github.com>
+Date:   Wed Apr 10 10:04:18 2024 +0100
+
+    attempted to implement search box
+    
+    basic changes added text box code not printing properly yet. need to do some touch ups elsewhere finishing pie chart
+
+commit b75ce3ef2e809dec28a7f4b729133cc9e41c7e58
+Author: Lawrencn0310 <162470996+Lawrencn0310@users.noreply.github.com>
+Date:   Wed Apr 10 02:09:09 2024 +0100
+
+    arrows adjusted
+
+commit 4312c0596a81427211ed37bb1fc9365bc4498e2f
+Merge: 4ea88e1 137f752
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Apr 9 20:15:21 2024 +0100
+
+    Merge branch 'main' into ScrollWheel
+
+commit f0caf4494b20269f0a898986a133f3fd788cd50a
+Author: Lawrencn0310 <162470996+Lawrencn0310@users.noreply.github.com>
+Date:   Tue Apr 9 19:29:05 2024 +0100
+
+    font
+    
+     change font of the text
+
+commit 4ea88e107e7bd18bd8ef1b975a6d28bc5381f024
+Author: Lawrencn0310 <162470996+Lawrencn0310@users.noreply.github.com>
+Date:   Tue Apr 9 19:17:36 2024 +0100
+
+    plus and minus
+    
+    added working plus and minus signs to modify the text
+
+commit b57c1c2d92b3d495c1cc2ef6db5c3490018aa5e5
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Tue Apr 9 12:58:41 2024 +0100
+
+    Loop
+    
+    Looped the changing link
+
+commit 4fd7379f4c671b6bde7faa2f95fd147724f40323
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Tue Apr 9 12:47:55 2024 +0100
+
+    Link
+    
+    Is linked working on improvement
+
+commit 137f75222306675c14c3b5125fe9db6aae3a9b20
+Merge: d1444ec 228ee3b
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Apr 9 12:40:45 2024 +0100
+
+    Merge pull request #74 from ZichengLiang/CHECKBOXES-NEW
+    
+    Text display
+
+commit 228ee3bde15241297ce905aaecb1ee32c9776805
+Merge: e546ac0 d1444ec
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Apr 9 12:40:37 2024 +0100
+
+    Merge branch 'main' into CHECKBOXES-NEW
+
+commit d1444ecc0a8dd55c78806c4ce135dfaa8e65303c
+Merge: 1092c87 73e927f
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Apr 9 12:39:55 2024 +0100
+
+    Merge pull request #75 from ZichengLiang/improvedBarChart
+    
+    improved the performance of BarChart
+
+commit e546ac016107ab05c1283c959d812f770db209c3
+Author: dannyelx21 <162593250+dannyelx21@users.noreply.github.com>
+Date:   Tue Apr 9 12:39:09 2024 +0100
+
+    Text display
+    
+    The labels now fit perfectly on the buttons and the text is aligned correctly.
+
+commit 73e927f8fa5bdc97125ab11edc5f7cd2572e7093
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Tue Apr 9 12:39:06 2024 +0100
+
+    improved the performance of BarChart
+
+commit 1092c8713a5804d7c640d918e7b83653e323a4e7
+Merge: d19bb74 d4f9e65
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Apr 9 11:17:25 2024 +0100
+
+    Merge pull request #70 from ZichengLiang/CHECKBOXES-NEW
+    
+    Bar Chart
+
+commit d4f9e65a1c032b80b67312c7feb4635adb3c0e30
+Merge: a8c0673 d19bb74
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Apr 9 11:17:16 2024 +0100
+
+    Merge branch 'main' into CHECKBOXES-NEW
+
+commit 7d1646462936b0921162ad005eef476ce1cd85a9
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Tue Apr 9 09:54:31 2024 +0100
+
+    Speed
+    
+    Trying to make it faster
+
+commit 7c5cb529c670a6db01966d0fd2d80f8dfaf5c53e
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Tue Apr 9 09:12:15 2024 +0100
+
+    Link
+    
+    Trying to link the map to query
+
+commit ef40a660c987a5d05a962a76263a93d8056b3a6e
+Author: Lawrencn0310 <162470996+Lawrencn0310@users.noreply.github.com>
+Date:   Mon Apr 8 21:33:58 2024 +0100
+
+    text increase and decrease
+
+commit d19bb74186d1522a04d28514e995954bfbe38a32
+Merge: 601bfbc f16d7e5
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Sun Apr 7 14:52:53 2024 +0100
+
+    Merge pull request #73 from ZichengLiang/DateTime
+    
+    Date update
+
+commit f16d7e53e2f5e840974eeb5c88385a601ebc88ec
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Sun Apr 7 14:52:27 2024 +0100
+
+    the current slide bar is called "dateSlider" with 31 levels
+
+commit 277ed2aa30f94cc75c09f74935bf9d35ce24020d
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Sun Apr 7 14:45:40 2024 +0100
+
+    flightsAfterDate performance optimized
+
+commit 6ec55ea5052f134f7898fb29203c9c90956ae704
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Sun Apr 7 12:04:30 2024 +0100
+
+    standarised Slider class
+
+commit a7c3d1dd246d46a98459682f55d702a4e20f9019
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Sun Apr 7 11:49:37 2024 +0100
+
+    Date is working, a new piece of info added on the text display
+
+commit 601bfbc8512cb37d4ba7b18632e3da5a570d116d
+Merge: 20f926b 43de85b
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Sun Apr 7 10:57:33 2024 +0100
+
+    Merge pull request #71 from ZichengLiang/SliderInteraction
+    
+    Slider interaction
+
+commit 43de85b980fbc843df2e60a000796d3e7c71f9f2
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Sun Apr 7 10:56:17 2024 +0100
+
+    bufferedReader to load csv file
+
+commit a8c0673d0ac8f607b9453aa7c12817d7f480040e
+Merge: 16bb906 20f926b
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Sat Apr 6 20:03:41 2024 +0100
+
+    Merge branch 'main' into CHECKBOXES-NEW
+
+commit 16bb9063a99b60acc8e1002caf71f3c8a63a6045
+Author: dannyelx21 <162593250+dannyelx21@users.noreply.github.com>
+Date:   Sat Apr 6 17:33:09 2024 +0100
+
+    Bar Chart
+
+commit f036ffbb3a5fe0ae627359afd2e7c63c26c77930
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Fri Apr 5 18:39:46 2024 +0100
+
+    Dataloading upgraded with BufferedReader
+
+commit 20f926bfccc9760eecdcc43f76a95e9316a59d06
+Merge: b3d91d3 c7d8c4e
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Thu Apr 4 17:26:47 2024 +0100
+
+    Merge pull request #68 from ZichengLiang/slider-final
+    
+    added event handler, wrapped code neatly in my own new class
+
+commit c7d8c4e9b9c40b263fdfd73620e75462c2304f8f
+Author: Aryan Kapoor <163135611+kapoor-ar@users.noreply.github.com>
+Date:   Thu Apr 4 17:24:47 2024 +0100
+
+    added event handler, wrapped code neatly in my own new class
+
+commit b3d91d39c44e3217273896e08cc5d3d61978fae6
+Merge: cba879f 9b2f183
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Thu Apr 4 16:51:57 2024 +0100
+
+    Merge pull request #66 from ZichengLiang/slider-new
+    
+    added a functional slider for filtering flights by dep. time
+
+commit 9b2f18324b243633b749ff9d61755f996d75203c
+Merge: bb03723 cba879f
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Thu Apr 4 16:51:50 2024 +0100
+
+    Merge branch 'main' into slider-new
+
+commit bb03723e2a67465c1b5ac4e7999aabf725ba624d
+Author: Aryan Kapoor <163135611+kapoor-ar@users.noreply.github.com>
+Date:   Thu Apr 4 16:37:47 2024 +0100
+
+    added a functional slider for filtering flights by dep. time
+
+commit cba879f62a7efff93dc1456f899e630e5401a3df
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Thu Apr 4 16:17:24 2024 +0100
+
+    Cancelled Working
+
+commit cb29a36279b77bfcb494884bbb15a09282f0daee
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Thu Apr 4 14:53:04 2024 +0100
+
+    "Cancelled" box to filter query
+
+commit 3bd50bddbbae12f78ba21905df825961e77112f2
+Author: Lawrencn0310 <162470996+Lawrencn0310@users.noreply.github.com>
+Date:   Thu Apr 4 12:51:17 2024 +0100
+
+    arrow buttons
+
+commit be642453a4fce2c299734b4896631e2577b8c05b
+Merge: f20a74f 1e59ae5
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Thu Apr 4 12:50:58 2024 +0100
+
+    Merge pull request #65 from ZichengLiang/UserInteraction
+    
+    User interaction
+
+commit 1e59ae544ec9f208eab6e913d018feeffac4a134
+Merge: eadc101 f20a74f
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Thu Apr 4 12:50:52 2024 +0100
+
+    Merge branch 'main' into UserInteraction
+
+commit eadc1010bb11318528cf56679ae728c776687467
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Thu Apr 4 12:46:03 2024 +0100
+
+    Wrapped barchart dataloading into its own class
+
+commit f20a74fb5a59942d18c2eec5442cce5f2fecabba
+Merge: 827c518 4320a31
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Thu Apr 4 12:45:28 2024 +0100
+
+    Merge pull request #64 from ZichengLiang/newBarChart
+    
+    CheckBoxes
+
+commit 4320a31d19c777024ffdd37c53730bc8e74404b2
+Merge: 933bb2e 827c518
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Thu Apr 4 12:45:19 2024 +0100
+
+    Merge branch 'main' into newBarChart
+
+commit 933bb2ed0aac1bf2397049db4880aa373b4521f7
+Author: dannyelx21 <162593250+dannyelx21@users.noreply.github.com>
+Date:   Thu Apr 4 12:42:15 2024 +0100
+
+    CheckBoxes
+    
+    Created checkboxes
+
+commit e7d24193c9b7bf047affcb529cc0c2ab4403a54d
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Thu Apr 4 10:10:14 2024 +0100
+
+    Compalibility updates
+    
+    - text display on the welcome page
+    - new functions in the query class
+    - hashMaps in the query class
+    - wrapped getAbnormalFlights inside the PieChart Class
+    - wrapping in progress for BarChart
+
+commit 827c51838a3ef3265c69a8fcb8c59814cf967fd8
+Merge: ddc5912 fa3a41b
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Wed Apr 3 22:28:36 2024 +0100
+
+    Merge pull request #63 from ZichengLiang/QueryHeavyInteraction
+    
+    Query heavy interaction
+
+commit fa3a41b09606e90acb2f7b38cb62ddc322e374de
+Merge: 3c3b78b ddc5912
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Wed Apr 3 22:28:28 2024 +0100
+
+    Merge branch 'main' into QueryHeavyInteraction
+
+commit ddc591283797adf3a3c5da7bc9233d163e922608
+Merge: c5174fe 8089826
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Wed Apr 3 22:26:01 2024 +0100
+
+    Merge pull request #61 from ZichengLiang/Map.2
+    
+    DataPoints
+
+commit 3c3b78b0d0b45ccdeee1fcba03634b646c09b3fe
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Wed Apr 3 22:24:46 2024 +0100
+
+    screentype initialise as 0 now
+
+commit cd94e250f2200d339b5ca6f52513c8231b552f26
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Wed Apr 3 22:04:08 2024 +0100
+
+    new ways to interact with Query
+    
+    - new function filterQuery
+       - with no parameters, controlled by class attributes (setters)
+      - with paramters
+
+commit 808982611e7dc1bab97cca46e5e6520bcd6972b3
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Tue Apr 2 12:18:04 2024 +0100
+
+    DataPoints
+
+commit c5174fed219b9d4d506cf9ab866a692ebe0acb1a
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Apr 2 12:15:23 2024 +0100
+
+    Fixed barchart sorting
+
+commit 5a6f86550f126e6de62f2722dce64ac5c792ff5f
+Merge: a730c98 ff30397
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Apr 2 12:13:45 2024 +0100
+
+    Filter area
+
+commit ff30397e61ff265a4b05728e06560c4fc62ec7e7
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Tue Apr 2 12:12:36 2024 +0100
+
+    Rect
+
+commit da0e9ea8dd5b323309952369859f9c3c0ff11c96
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Tue Apr 2 12:00:57 2024 +0100
+
+    changes
+
+commit a730c9805057a674e49d6c8d843dac3e499f96c1
+Merge: c357a52 a3fbd39
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Mon Apr 1 19:59:44 2024 +0100
+
+    Pie Chart cleanup & enhancement
+    
+    Moved all global values to the top, removed unnecessary notes,
+    
+    curved legend box and moved it top left.
+    
+    commented notes are for working on widget classes for changing data displayed
+
+commit a3fbd39fe6a80d816872fe14b15101ff200fc935
+Author: Muireann <163150967+Pikacrazy@users.noreply.github.com>
+Date:   Sat Mar 30 13:41:34 2024 +0000
+
+    issue #58 resolved
+    
+    Moved all global values to the top, removed unnecessary notes,
+    
+    curved legend box and moved it top left.
+    
+    commented notes are for working on widget classes for changing data displayed
+
+commit f14d62bbf57d12e3591b996a9bf573851e849e4b
+Author: Lawrencn0310 <162470996+Lawrencn0310@users.noreply.github.com>
+Date:   Thu Mar 28 16:54:04 2024 +0000
+
+    drawing ScrollBar
+
+commit 8db317d1d3bd0500942935559e6d2620d139b98d
+Merge: 64b479a 44736f8
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Thu Mar 28 16:45:48 2024 +0000
+
+    Merge branch 'Map.2' of https://github.com/ZichengLiang/CSU11013-GroupB-Team9 into Map.2
+
+commit 64b479ad1d6e52b257a5264742e63e47ee05b8d4
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Thu Mar 28 16:45:37 2024 +0000
+
+    slight alter
+    
+    slightly altered the number of points added
+
+commit c357a524281446efcec3c3e42daa2b74fdde2d49
+Merge: 6b955ca 44736f8
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Thu Mar 28 16:39:18 2024 +0000
+
+    Merge pull request #54 from ZichengLiang/Map.2
+    
+    Map.2
+
+commit 44736f8b45ce4aca0f5cc5494daf3685b055e4ff
+Merge: 7173ee6 6b955ca
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Thu Mar 28 16:39:11 2024 +0000
+
+    Merge branch 'main' into Map.2
+
+commit 7173ee69d290e76d6e0603c1b086b47c147cb5e9
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Thu Mar 28 16:38:07 2024 +0000
+
+    map
+
+commit 6b955ca13f486b3d55380109f90c0fb310eda80f
+Merge: aa35129 a75db7b
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Thu Mar 28 16:35:42 2024 +0000
+
+    Colour Scheme adjustment
+    
+    changed a few colors
+
+commit a75db7bd16804dcdff1aa8365a7513987a7b2744
+Author: Muireann <163150967+Pikacrazy@users.noreply.github.com>
+Date:   Thu Mar 28 16:35:08 2024 +0000
+
+    commiting
+    
+    commit to changes
+
+commit 0c3688012f2593914eedeaea5e1f192adf7bb66a
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Thu Mar 28 16:31:04 2024 +0000
+
+    Update Screen.pde
+
+commit 2fdda1711331426ee053794239787067f301fa00
+Merge: 2d2e611 c36bb64
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Thu Mar 28 16:30:59 2024 +0000
+
+    Merge branch 'Map.2' of https://github.com/ZichengLiang/CSU11013-GroupB-Team9 into Map.2
+
+commit 9ec6cb9b025666fb2d0058641e0146d8bfb36222
+Merge: f6d97b0 aa35129
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Thu Mar 28 16:27:35 2024 +0000
+
+    Merge branch 'main' into Pie_test
+
+commit aa351294a788b42a366f0c07ea6d8dee8c209074
+Merge: e54f706 070f726
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Thu Mar 28 16:26:49 2024 +0000
+
+    Time zone done
+    
+    Time zone usa
+
+commit 070f726a435260c06977670acc1bf10a610f8837
+Merge: af06311 e54f706
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Thu Mar 28 16:23:32 2024 +0000
+
+    Merge branch 'main' into TimeZone-USA
+
+commit 2d2e611e2f4f479482f35c32ece711b621cccde8
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Thu Mar 28 16:20:47 2024 +0000
+
+    few edits
+
+commit f6d97b0bd62a1651dd187b2d2cb1f9ac24dcef38
+Author: Muireann <163150967+Pikacrazy@users.noreply.github.com>
+Date:   Thu Mar 28 16:18:16 2024 +0000
+
+    changed a few colors
+    
+    changed colors, nicer buttons
+
+commit e54f70622d26b7818af66c65775fc300d947bc3f
+Merge: 06afcc6 c36bb64
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Thu Mar 28 16:15:54 2024 +0000
+
+    first version of map, unordered
+    
+    Map.2
+
+commit c36bb64bd30e5d0925805a00234b1a2e182fee62
+Merge: 3fc9580 06afcc6
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Thu Mar 28 16:15:23 2024 +0000
+
+    Merge branch 'main' into Map.2
+
+commit 3fc958027dde7bba9289a5b0eb35c848195bf29d
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Thu Mar 28 15:13:06 2024 +0000
+
+    Default page added
+
+commit 06afcc6e6e9a7be3de1a6a50d5ae0aac6f3fb985
+Merge: 776f4e4 7ded26a
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Thu Mar 28 14:39:32 2024 +0000
+
+    Tabledisplay in button2
+    
+    Tablescreendisplay
+
+commit 7ded26abec6fe626f3697ce5e13c49cf8563e4a0
+Author: Lawrencn0310 <162470996+Lawrencn0310@users.noreply.github.com>
+Date:   Thu Mar 28 14:31:54 2024 +0000
+
+    displaytabledata correction
+
+commit 6a33af943d286ea66f6db184452fd9ebb965b813
+Merge: f14d81a 776f4e4
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Thu Mar 28 14:28:14 2024 +0000
+
+    Merge branch 'main' into TABLESCREENDISPLAY
+
+commit f14d81a505cbf1586e5deb0d6a12215e9a5f4f59
+Author: Lawrencn0310 <162470996+Lawrencn0310@users.noreply.github.com>
+Date:   Thu Mar 28 14:06:20 2024 +0000
+
+    screen size adjusted
+
+commit 776f4e4ab5602544d14e392a637cbb7c2453891d
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Thu Mar 28 11:14:46 2024 +0000
+
+    added Collections and Generics for reference
+
+commit dd5dcd3a6d09ac5a8030aaf78066810e6d057166
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Wed Mar 27 16:41:15 2024 +0000
+
+    Revert "Revert "replaced button intialisation statements in setup() with functions""
+    
+    This reverts commit c79e4cbd9373b001e014858977a2b1b5ac86b326.
+
+commit 32d90eb68549f4b3762ed6e395f101a126fc2809
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Wed Mar 27 16:41:12 2024 +0000
+
+    Revert "table code"
+    
+    This reverts commit 58cbc826738f71faa0033e699c5d8f51fee160c1.
+
+commit a2e7018027ad9bc716dd14b7b0d5d7fe68265f4e
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Wed Mar 27 16:41:06 2024 +0000
+
+    Revert "screen adjusted"
+    
+    This reverts commit d6d9d1ced0d6f14a57c531ad7690ebbb34662ed2.
+
+commit c79e4cbd9373b001e014858977a2b1b5ac86b326
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Wed Mar 27 16:31:50 2024 +0000
+
+    Revert "replaced button intialisation statements in setup() with functions"
+    
+    This reverts commit 8b989c3004302d0246a0718b2f6408a27fce4aad, reversing
+    changes made to 931741f23a878679dbfb92d29e6669a9f3d6cb85.
+
+commit 53a02668f8064ed409f7f5a55afba152c883895b
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Wed Mar 27 14:56:34 2024 +0000
+
+    Working on map
+    
+    still working on it
+
+commit af06311c203d574508deb01bb710d56a80da3983
+Author: Aryan Kapoor <163135611+kapoor-ar@users.noreply.github.com>
+Date:   Wed Mar 27 14:49:21 2024 +0000
+
+    query for actual flight duration and planned flight duration
+    
+    accurately calculates the planned v/s actual flight duration whilst taking care of difference in time zones of arrival and destination city
+
+commit d80bfe379d780a49cdf1d6ad0298b2fb5c6b9394
+Author: Aryan Kapoor <163135611+kapoor-ar@users.noreply.github.com>
+Date:   Wed Mar 27 14:48:15 2024 +0000
+
+    added timezone feature
+    
+    this accurately calculates the timezone according to the arrival and destination cities
+
+commit 713dd59ae1d3a00bf9990d02c79e1446076d1300
+Author: Lawrencn0310 <162470996+Lawrencn0310@users.noreply.github.com>
+Date:   Wed Mar 27 14:45:37 2024 +0000
+
+    tabledisp
+
+commit d6d9d1ced0d6f14a57c531ad7690ebbb34662ed2
+Author: Lawrencn0310 <162470996+Lawrencn0310@users.noreply.github.com>
+Date:   Wed Mar 27 14:29:00 2024 +0000
+
+    screen adjusted
+
+commit 58cbc826738f71faa0033e699c5d8f51fee160c1
+Author: Lawrencn0310 <162470996+Lawrencn0310@users.noreply.github.com>
+Date:   Wed Mar 27 14:09:44 2024 +0000
+
+    table code
+
+commit c0b013bd3960884fbd4309f4bd268ff29b320a6b
+Author: Lawrencn0310 <162470996+Lawrencn0310@users.noreply.github.com>
+Date:   Wed Mar 27 13:57:01 2024 +0000
+
+    Update main.pde
+
+commit 9db552b5441f1c0f0411b342c626825965b3de83
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Wed Mar 27 12:42:31 2024 +0000
+
+    Check heatMap possibility
+
+commit 9381116e2b0acf9f38a527e618ea803d144e9d67
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Wed Mar 27 12:30:10 2024 +0000
+
+    Adding map
+
+commit 8b989c3004302d0246a0718b2f6408a27fce4aad
+Merge: 931741f dd3356b
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 26 15:34:23 2024 +0000
+
+    replaced button intialisation statements in setup() with functions
+    
+    replaced button intialisation statements in setup() with functions
+
+commit dd3356befc4f06c89e70b5e8a017811193883a75
+Merge: 38bd9b1 931741f
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Tue Mar 26 15:32:46 2024 +0000
+
+    resolved merge conflict by switching to the latest version
+
+commit 38bd9b1943335a95e49a291e58c7237bd17f9b68
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Tue Mar 26 15:20:43 2024 +0000
+
+    deleted unneccessary comments
+
+commit 931741f23a878679dbfb92d29e6669a9f3d6cb85
+Merge: b9684e9 61f38e0
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 26 15:17:33 2024 +0000
+
+    added legend box to pie chart, removed black outlines
+    
+    pi chart improvements + nostroke
+
+commit c7bc4176f507b46ce5798916732e95f60e747589
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Tue Mar 26 15:13:46 2024 +0000
+
+    packed the buttons initialisation into functions
+
+commit aeb82cdd1a353a5ae2d6f9272dbbb3acd6f0c331
+Author: Lawrencn0310 <162470996+Lawrencn0310@users.noreply.github.com>
+Date:   Tue Mar 26 14:44:17 2024 +0000
+
+    organising
+
+commit 0edbbeda364aa45fa808ade44e5937adf15aa54f
+Author: Lawrencn0310 <162470996+Lawrencn0310@users.noreply.github.com>
+Date:   Tue Mar 26 14:38:47 2024 +0000
+
+    dimensions adjusted
+
+commit 800cfcf20e293cf39c09f910a4f42ed6b2f46c33
+Author: Lawrencn0310 <162470996+Lawrencn0310@users.noreply.github.com>
+Date:   Tue Mar 26 14:32:14 2024 +0000
+
+    table moved
+
+commit 61f38e0d7ca337d2721114ba37382b05833d7267
+Author: Muireann <163150967+Pikacrazy@users.noreply.github.com>
+Date:   Tue Mar 26 14:17:50 2024 +0000
+
+    pi chart improvements + nostroke
+    
+    legend box added to pi-chart
+    and lines removed from progect (noStroke added to draw in main)
+
+commit ba9ad183e5c923b9f65e7653ff43c5965fa95a0d
+Author: Lawrencn0310 <162470996+Lawrencn0310@users.noreply.github.com>
+Date:   Tue Mar 26 12:45:49 2024 +0000
+
+    table
+
+commit b9684e97e22f032ce3f25b807ddd7ea64318931d
+Merge: 753af28 8ae4b2b
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Tue Mar 26 12:22:19 2024 +0000
+
+    Merge branch 'main' of https://github.com/ZichengLiang/CSU11013-GroupB-Team9
+
+commit 753af28e0ec2a0e764dd0712c2526bc2f2a962c2
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Tue Mar 26 12:22:17 2024 +0000
+
+    top5 sort
+
+commit 8ae4b2bc0b3cb2add693f722434d87eaf805f85d
+Merge: 7710ac4 c4d2b71
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 26 12:21:15 2024 +0000
+
+    Show top 5 distance instead of the bottom 5
+    
+    Top 5
+
+commit c4d2b71d48df51662016f8c307f3a9a06565b3e2
+Author: dannyelx21 <162593250+dannyelx21@users.noreply.github.com>
+Date:   Tue Mar 26 12:16:12 2024 +0000
+
+    Top 5
+    
+      Datapoint[] flights = sortedFlights.toArray(Datapoint[]::new); (Show top5 instead of bottom 5)
+
+commit 87687096a4dc1a3650481822e045d2a78f900b33
+Author: Aryan Kapoor <163135611+kapoor-ar@users.noreply.github.com>
+Date:   Tue Mar 26 12:15:07 2024 +0000
+
+    adding timezone packages
+
+commit 7710ac46e6b4d27d7d2871f5b869c2a971203eda
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 26 12:01:50 2024 +0000
+
+    deleted Duplicate diverted flights function
+
+commit 4a0f1dc9a1c8f11924ddcc8b1c2278d864dcd08c
+Merge: 28d56ac 73ea44f
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 26 11:59:03 2024 +0000
+
+    Pie Chart color changing feature!
+    
+    -New legends (accurate to arrays)
+    -percentage conversion feature in progress
+
+commit 73ea44ff71d6c6bdc799468e8f9f2768cd27b3f5
+Merge: 28f5a30 28d56ac
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 26 11:57:28 2024 +0000
+
+    Merge branch 'main' into Pie_test
+
+commit 28f5a30986f8af3c4f514691fdeb964750710406
+Author: Muireann <163150967+Pikacrazy@users.noreply.github.com>
+Date:   Tue Mar 26 11:51:06 2024 +0000
+
+    removed unwanted background
+    
+    background in void draw in pieChart is removed
+
+commit 28d56acb1de8b67ddea74ad3a3a634bb27fc51e6
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 26 11:42:40 2024 +0000
+
+    Update Week3
+
+commit f5962204a429422e01813c79941ab890fa5ee2d2
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Mon Mar 25 22:33:23 2024 +0000
+
+    Upgraded all queries function
+    
+    - upgraded all queries function with stream-filter-collector
+    - added a new query: flightRoute
+
+commit fd3f3d387fe9a9467a639b80876a17d71cf028a3
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Mon Mar 25 13:47:41 2024 +0000
+
+    deleted outdated query function lateFlights(ArrayList<Datapoint> lastQueryList)
+
+commit 98b2cffad8abcb42a66118059665351926513368
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Mon Mar 25 11:06:27 2024 +0000
+
+    Added LearningJava_DatesAndTimes.pdf
+
+commit e4faca54714b66fb93acd04307dd36b59f446711
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Mon Mar 25 11:05:33 2024 +0000
+
+    Create README in Reference Folder
+
+commit 69fa75b2521b1172af5a936da20483f1814955f6
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Mon Mar 25 10:05:09 2024 +0000
+
+    Update README.md
+
+commit bda7376522132b851f0ed4554b4cc8a59ca9737d
+Merge: 861d46a 941635e
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Mon Mar 25 09:41:04 2024 +0000
+
+    Upgraded Query filter functions
+    
+    - now the filter makes use of Java.util.Collectors to simply the code and improve the performance
+    - added getReport(Query, EVENT_CODE) function in Query class, which returns the full report, EVENT_CODEs are placed in CONSTANT class
+    - added all getAttribute() functions in Datapoint class
+
+commit 941635e3f18b62e748b3af96dfeaa8d165960806
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Mon Mar 25 09:39:35 2024 +0000
+
+    Upgraded Query filter functions
+    
+    - now the filter makes use of Java.util.Collectors to simply the code and improve the performance
+    - added getReport function in Query class, which returns the full report
+    - added all getAttribute() functions in Datapoint class
+
+commit 861d46a8af325882e5a2f77b126668ec5a7f20d4
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Sun Mar 24 13:51:23 2024 +0000
+
+    Delete main/main
+
+commit 3fda8237ba1721b4c5f29a4c548289182d994b9b
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Sun Mar 24 13:37:02 2024 +0000
+
+    added Max into the demonstrator zone
+
+commit bc5824b7118bc1eca00163ec43143fc85aa776d7
+Author: Muireann <163150967+Pikacrazy@users.noreply.github.com>
+Date:   Sat Mar 23 12:52:48 2024 +0000
+
+    New PieChart upgrades, accurate data input
+    
+    Color Changing mapping added
+    as well as a legend that changes based on data input-
+    
+    Data input is now accurate!
+
+commit b445f5363a56f0b2e169dd68062674acd609b70e
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Fri Mar 22 11:57:58 2024 +0000
+
+    Friday meeting-next week task assignments
+
+commit 3bf7a50ab247779071040e7eac5f8359f9bb1415
+Merge: 97c56d2 65c6b80
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Fri Mar 22 11:57:09 2024 +0000
+
+    Adjustment to make the interface more fliexible and user friendly
+    
+    Alter WidgetType2
+
+commit 65c6b804db4cf7d6bec5cb86f9914b0bf22ce62f
+Merge: 5f0fed2 97c56d2
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Fri Mar 22 11:55:03 2024 +0000
+
+    Merge branch 'main' into Screen
+
+commit 5f0fed2ee8ce32b5ee2e30a0d36bb6d29a5cee45
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Fri Mar 22 11:47:00 2024 +0000
+
+    fix
+
+commit 29980dfc53bb67d8955a174909eec2cf6bc5fcea
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Fri Mar 22 11:44:01 2024 +0000
+
+    Update PieChart.pde
+
+commit 106b6f199b68a37b16752895d2e07cc3455bc11a
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Fri Mar 22 11:38:24 2024 +0000
+
+    Requests
+    
+    Completed the requests to the best of my ability.
+    The overlapping may need more work but will most likely need the people form those branches to cooperate
+
+commit f38c40f689a14e6a20c3f3059c4700d5f8551aa8
+Author: Muireann <163150967+Pikacrazy@users.noreply.github.com>
+Date:   Thu Mar 21 17:16:04 2024 +0000
+
+    pi print
+    
+    with data
+
+commit 97c56d244d7fa49b5eb503a005af37aff51100b0
+Merge: 87e9717 1f82d53
+Author: Aryan Kapoor <163135611+kapoor-ar@users.noreply.github.com>
+Date:   Thu Mar 21 16:50:32 2024 +0000
+
+    Merge branch 'main' of https://github.com/ZichengLiang/CSU11013-GroupB-Team9
+
+commit 87e971749570f38b47be31fcd56efb973d7ff15d
+Author: Aryan Kapoor <163135611+kapoor-ar@users.noreply.github.com>
+Date:   Thu Mar 21 16:50:17 2024 +0000
+
+    added comments
+
+commit 1f82d5342000faa282c73c68efbea5a331eb37e8
+Author: Aryan Kapoor <163135611+kapoor-ar@users.noreply.github.com>
+Date:   Thu Mar 21 16:45:40 2024 +0000
+
+    Update Week2
+
+commit c76c74978e22f1d2072556ff4e156b7e23ab125d
+Merge: 987f210 4a1447f
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Thu Mar 21 16:43:25 2024 +0000
+
+    Merge pull request #37 from ZichengLiang/Query-extras
+    
+    fixed boolean diverted
+
+commit 4a1447fd899e6bdc728f9dec1ed7340df10e0fb0
+Author: Aryan Kapoor <163135611+kapoor-ar@users.noreply.github.com>
+Date:   Thu Mar 21 16:35:46 2024 +0000
+
+    fixed boolean diverted
+
+commit 987f210065fdd7ee7d7eb5d04390787b1d03c2a6
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Thu Mar 21 16:19:31 2024 +0000
+
+    We can an ordered bar chart
+
+commit c31c591c5f2b8255be87d46b2e68356befd6c709
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Thu Mar 21 16:14:56 2024 +0000
+
+    Alter WidgetType2
+    
+    Changed widgetType2 to be more flexible in data shown
+
+commit bc3a73c76a98fbc5850f421fd0fd61ad561d1297
+Merge: 97106da 423de6d
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Thu Mar 21 14:22:36 2024 +0000
+
+    Merge pull request #35 from ZichengLiang/barChartTest
+    
+    Bar chart data view
+
+commit 423de6d6aca5759647b8e65f797962cc7e33c56e
+Merge: 111ab1a 97106da
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Thu Mar 21 14:22:27 2024 +0000
+
+    Merge branch 'main' into barChartTest
+
+commit 111ab1a1665d0147c7e7937a9fef043e82126dc0
+Author: dannyelx21 <162593250+dannyelx21@users.noreply.github.com>
+Date:   Thu Mar 21 14:19:01 2024 +0000
+
+    Bar chart data view
+
+commit 97106da4029f5fa822f026df2d56e7efa4538208
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Wed Mar 20 15:05:06 2024 +0000
+
+    adjusted colour scheme
+
+commit abcb73243930b4acb98c8f3d90bd707e79f47f62
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Wed Mar 20 14:45:04 2024 +0000
+
+    modified the colour scheme
+
+commit 94b3f311b20d0bb7413b1ee7039bf0a796dcb5f0
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Wed Mar 20 14:24:02 2024 +0000
+
+    a little correction
+
+commit 02e592d4e23352818ba3f2cc08b47c553a4781b2
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Wed Mar 20 13:25:41 2024 +0000
+
+    Added divertedFlights() and cancelledFlights() in the Query Class
+
+commit 7842001e4e7994af99196c0afea3817e9f63bf66
+Merge: 5013ff7 a28ba8f
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Wed Mar 20 13:23:18 2024 +0000
+
+    Merge pull request #33 from ZichengLiang/Screen
+    
+    Screen updated
+
+commit a28ba8f07bfd98f5e2a7f4a044dfc22dbecd944e
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Wed Mar 20 13:13:58 2024 +0000
+
+    Colour
+
+commit 8022087a3741b3598af0bf2f9990f6e1413d3247
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Wed Mar 20 12:59:21 2024 +0000
+
+    bugFix
+
+commit 5013ff7a8d60ce0c5579a0aa554917e6b5940eee
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Wed Mar 20 12:55:07 2024 +0000
+
+    Create WidgetType2.pde
+
+commit 64a23996eada88d29a11464f6e65c2906f5ccb93
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Wed Mar 20 12:53:02 2024 +0000
+
+    Fix
+    
+    Fixed text problem
+
+commit 3568bee735fc0cf16ee1502f5de8658ceb03f566
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Wed Mar 20 12:48:37 2024 +0000
+
+    Created ScreenClass
+
+commit ef36aec3a18b1bcf6cf1d0f969d0e21643873f4b
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Wed Mar 20 12:36:37 2024 +0000
+
+    Create WidgetType2.pde
+
+commit 38c257c8d644b286e3c6248eb2381fc4b3bc9069
+Merge: 3d9d3fa 405d89a
+Author: dannyelx21 <162593250+dannyelx21@users.noreply.github.com>
+Date:   Tue Mar 19 23:53:27 2024 +0000
+
+    Merge pull request #32 from ZichengLiang/barchart
+    
+    Added BarChart class
+
+commit 405d89a466a03d7b1d9440929ef532ca38f87f8f
+Author: dannyelx21 <162593250+dannyelx21@users.noreply.github.com>
+Date:   Tue Mar 19 23:50:12 2024 +0000
+
+    Added BarChart class
+
+commit 3d9d3fa27319bd987a1c8f7bcf810e969ba7703b
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 19 16:14:53 2024 +0000
+
+    Week2 Tuesday individual contributions
+
+commit 50818b4358f9becac444e68400f3b86140f41836
+Merge: e184c35 d46f9d2
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 19 15:27:15 2024 +0000
+
+    Merge pull request #31 from ZichengLiang/pi-chart
+
+commit d46f9d28dd28633c04a4a52b542f621b5c7bfe7a
+Author: Muireann <163150967+Pikacrazy@users.noreply.github.com>
+Date:   Tue Mar 19 15:14:17 2024 +0000
+
+    Pi chart implemented
+    
+    Pi chart displays in accordance with widget 1
+
+commit e184c35c295ec2ec45b0f653dbcd0c16f952d8ce
+Merge: ae9c72f d053e90
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 19 14:36:48 2024 +0000
+
+    buttons
+    
+    the buttons can be clicked and will be later on linked to perform any specific actions
+
+commit d053e90a5bce18eeca811779528ca4e02e7ff0f9
+Author: Aryan Kapoor <163135611+kapoor-ar@users.noreply.github.com>
+Date:   Tue Mar 19 14:34:17 2024 +0000
+
+    finally fixed buttons
+    
+    can link the buttons to do any action
+
+commit ae9c72f62cf2fda154ed4fcb0fa8ec7032fa6d30
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 19 10:26:37 2024 +0000
+
+    Update Week2 Tuesday Meeting plans
+
+commit 07bdc563f34a945e58bb3a0ed45c28d1995e32c0
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 19 10:25:52 2024 +0000
+
+    Update Week2 Tuesday meeting plans
+
+commit 0682f93b4e78d99c84a887783cd08b51102d8c88
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Mon Mar 18 21:17:00 2024 +0000
+
+    Delete main14596435028619455811.autosave
+
+commit bb0c3f5b5c323dd74bbc02b8cabb4932e26c3a8f
+Merge: e35ee16 a95835a
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Mon Mar 18 21:14:34 2024 +0000
+
+    Query Class Update
+    
+    added a Query Class
+    - two constructors:
+      - default: take datapoints (the whole dataset) as lastQueryList;
+      - Query(ArrayList lastQueryList), pass the lastQueryList in
+    - one attribute: ArrayList lastQueryList;
+    - three methods: lateFlights, flightsFrom, flightsTo, they all return a new arraylist with and only with the query results
+
+commit a95835a1ae590053ff9ace662e5d0e113319c320
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Mon Mar 18 21:09:12 2024 +0000
+
+    added a query class, with all the query functions
+
+commit 9c8cbdd33aba891092194ff746cfb9c633c62943
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Mon Mar 18 17:19:16 2024 +0000
+
+    before wrapping loadDatapoint into a function
+
+commit e35ee16ca5879d7483a5284aa5c2d10d4564ec4b
+Merge: 87ebb20 6b6194b
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Mon Mar 18 15:16:21 2024 +0000
+
+    Fixed all dataloading problems
+    
+    Fix data loading problems, adjusted the screen size to 720 * 640
+
+commit 6b6194b217887048b049e72b0df317e75dd28918
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Mon Mar 18 15:15:27 2024 +0000
+
+    deleted comment-outs
+
+commit c3caebf2421844e9496c41130b43f9b19bfac372
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Mon Mar 18 15:14:06 2024 +0000
+
+    fixed all the dataloading problems
+
+commit 65228fcf65d632e36c2b649d200f66715510bb7e
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Mon Mar 18 14:15:12 2024 +0000
+
+    fixed data loading bugs, added a defensive method
+
+commit 87ebb201b332676fc4d6b348e08ce5e25a4ea17d
+Merge: d48cfff bf5722b
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Fri Mar 15 16:22:04 2024 +0000
+
+    Now it can display the main screen with 5 different buttons to redirect to according screens
+
+commit bf5722b51356d44c988df3cc1f71c7f44b00e5dc
+Merge: 22282e6 d48cfff
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Fri Mar 15 16:21:08 2024 +0000
+
+    Merge branch 'main' into MainScreen
+
+commit 22282e6a86bfc7242e26557c3463f733b18f49da
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Fri Mar 15 16:15:19 2024 +0000
+
+    deleted unneccessary comments
+
+commit 0499d0e6fef4ba63b3ba8cc00b717bc6f7028b97
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Fri Mar 15 11:51:31 2024 +0000
+
+    Created widgets
+    
+    added widgets onto my Screen
+
+commit d48cfffd4425a1fc56cab74c33deae6c59fa4c14
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Fri Mar 15 11:23:47 2024 +0000
+
+    deleted the extra file
+
+commit d05f314891934b9b482ed4b892a8014c1593f920
+Merge: f52e82f 4021c35
+Author: Aryan Kapoor <163135611+kapoor-ar@users.noreply.github.com>
+Date:   Fri Mar 15 11:14:25 2024 +0000
+
+    Merge branch 'main' of https://github.com/ZichengLiang/CSU11013-GroupB-Team9
+
+commit f52e82f95df23848dcfa7a12880b3f2745532c30
+Author: Aryan Kapoor <163135611+kapoor-ar@users.noreply.github.com>
+Date:   Fri Mar 15 11:14:23 2024 +0000
+
+    .
+
+commit 4021c358de3baaf4179c95a73d5dbaeb7e50937b
+Merge: e80fdf3 e9c0a11
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Fri Mar 15 11:07:39 2024 +0000
+
+    added originWac, destName
+    
+    added originWac, destName
+
+commit e80fdf36ace497b99a05ba7d66be8dd9c5b70ea0
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Fri Mar 15 09:10:21 2024 +0000
+
+    deleted useless auto-comments
+
+commit 2b005e2a2762f5091b3b0e22fe855fb326160af0
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Thu Mar 14 19:03:55 2024 +0000
+
+    Create Week2
+
+commit 036e5fe068d3f0f4a0c114dca1b5f7ea2c9cbb3f
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Thu Mar 14 17:07:39 2024 +0000
+
+    Create main14596435028619455811.autosave
+
+commit e9c0a11e8c8c20e3cc14ea03b53d2bf52b91205a
+Author: Aryan Kapoor <163135611+kapoor-ar@users.noreply.github.com>
+Date:   Thu Mar 14 16:59:14 2024 +0000
+
+    added originWac, destName
+
+commit ae017ed95167e130f99826f89a0f645e15c5b4f6
+Merge: d3e3348 00dc581
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Thu Mar 14 16:29:26 2024 +0000
+
+    Merge Datapoint pull req into main, now good to display
+    
+    Data point, pull request
+
+commit 00dc581af0a28dddb464f622e250dfcdc1f8d5e8
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Thu Mar 14 16:28:44 2024 +0000
+
+    Fix the order of attributes in Dp Class
+
+commit 50fe473e7fd3b827f4a88c9584580e3764f1bbe1
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Thu Mar 14 16:20:32 2024 +0000
+
+    New variables
+    
+    Added new Variables to data point class
+
+commit f75cb5af767502c12c68deefaf75e8a4d4e05ac1
+Author: Muireann <163150967+Pikacrazy@users.noreply.github.com>
+Date:   Thu Mar 14 10:58:29 2024 +0000
+
+    New widget file and start on widget  creation
+    
+    i
+
+commit f50bf624ed83bff2bc3699838b5d6c5411ee2878
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Wed Mar 13 20:34:04 2024 +0000
+
+    Display issues
+    
+    - adjusted text size to 12 for optimal visual effects
+    - line 57-58, now the program can display multiple pieces of info at one time
+
+commit 8cbb458c420540fe762505638ded701834e419c1
+Author: Muireann <163150967+Pikacrazy@users.noreply.github.com>
+Date:   Wed Mar 13 19:55:06 2024 +0000
+
+    fixed print  (:
+
+commit a171d4b87e6ae8f629d8f7bdcfa0cf5515853b06
+Merge: 053c073 d3e3348
+Author: Muireann <163150967+Pikacrazy@users.noreply.github.com>
+Date:   Wed Mar 13 19:37:16 2024 +0000
+
+    more sudocode- soft fix
+    
+    i made a few attempts to fix the problem- it has something to with how the for loop is calling on the data, i'm a bit stuck and need some more info
+
+commit 053c073f063d642c35cdcb5b4d1de0a7b09cff90
+Author: Muireann <163150967+Pikacrazy@users.noreply.github.com>
+Date:   Wed Mar 13 19:30:57 2024 +0000
+
+    previous changes i made
+    
+    previous sample changes to the program
+
+commit d3e334886e7804f6eab76b2f497cf84d4f3fb111
+Merge: d2588ff 72a268b
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Wed Mar 13 14:48:31 2024 +0000
+
+    Now it can display the airline company code on the screen, and each mouseclick will lead to the next page
+
+commit d2588ff36930dc5a3e759cdf2b6111f5705c6066
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Wed Mar 13 14:36:25 2024 +0000
+
+    the current program architecture
+
+commit 72a268be5a101d9fcd090c03e7bc2cbcd7789e06
+Author: Aryan Kapoor <163135611+kapoor-ar@users.noreply.github.com>
+Date:   Wed Mar 13 13:15:10 2024 +0000
+
+    removed unnecessary comment-outs
+
+commit 629ac7651e7c9ebc0dbacde22ece2ed12dc456d1
+Merge: 0319a2d 5d77116
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Wed Mar 13 13:08:46 2024 +0000
+
+    Merge branch 'DataPoint' of https://github.com/ZichengLiang/CSU11013-GroupB-Team9 into DataPoint
+
+commit 0319a2d70edf1f905899c71ac9767dcdc146a465
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Wed Mar 13 13:08:40 2024 +0000
+
+    Constants
+    
+    Created constant variables to more easily follow what's going on
+
+commit 5d771167947a815786f8f2682db84e2fd3434a3c
+Author: Muireann <163150967+Pikacrazy@users.noreply.github.com>
+Date:   Wed Mar 13 12:49:39 2024 +0000
+
+    printing problem comment
+
+commit c0f6654325fa3ce3d0d31649b5412e89e20276d6
+Merge: b556f1f b58c8cd
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Wed Mar 13 12:26:20 2024 +0000
+
+    Merge pull request #8 from Pikacrazy/patch-2
+    
+    Update README.md
+
+commit b58c8cd246665b9ab09bc2de1bda4c90857376b7
+Author: Muireann <163150967+Pikacrazy@users.noreply.github.com>
+Date:   Wed Mar 13 12:25:43 2024 +0000
+
+    Update README.md
+
+commit b556f1f7c3849e17cb6af8fd0068b20fffae44ea
+Author: Aryan Kapoor <163135611+kapoor-ar@users.noreply.github.com>
+Date:   Wed Mar 13 12:11:50 2024 +0000
+
+    Update .DS_Store
+
+commit 9a97d0a7316bb11ffce6c4fd4a2238a1027a29e9
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 12 21:47:14 2024 +0000
+
+    Discussion zone
+
+commit 2a3cb04014ca9480a76aa2c24a75fe1c4df18ae0
+Merge: 87da1f2 c0deafb
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 12 21:42:02 2024 +0000
+
+    Merge pull request #5 from ZichengLiang/test
+    
+    Deleted DataReading.pde
+
+commit c0deafb993b6411e7ff8cba5a5464ff814fc6503
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Tue Mar 12 21:41:07 2024 +0000
+
+    Deleted DataReading.pde
+
+commit 87da1f2d88897a65f70ad56685e0873df1bfbe0e
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 12 21:39:19 2024 +0000
+
+    corrected a typo
+
+commit 51656f4599a9ae4bd006ce2cb9e67b992a3a10a8
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 12 21:38:57 2024 +0000
+
+    punctuations
+
+commit f14b700315535f41e6db7471822c704e0f8a9c7d
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 12 21:38:10 2024 +0000
+
+    Week1 2nd meetings' agenda
+
+commit df6a8c195dbd9cdeb3258f0ea6ad741cc68d74c3
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Tue Mar 12 21:29:48 2024 +0000
+
+    Model program
+    
+    I have found the sample program on https://processing.org/examples/loadfile2.html, and modified it to our dataset, however, it still has some problems. We need understand the codes and fix the problems!
+
+commit cba022a18e244134a3ab7e96e95dc5fed3553ca8
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 12 18:36:46 2024 +0000
+
+    Delete minutes/rename
+
+commit e841184b9aa5b823fdc6467ddd571cea57194abc
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 12 18:36:06 2024 +0000
+
+    Create rename
+
+commit 1aa76e429dd3847965db81bdc20115fd56496cca
+Merge: f47482c e06feaf
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 12 18:18:28 2024 +0000
+
+    Merge pull request #2 from ZichengLiang/test
+    
+    modified DataReading class
+
+commit e06feaff832f8141d9fe783f26d5e5dfae275b90
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Tue Mar 12 18:17:44 2024 +0000
+
+    modified DataReading class
+    
+    -added the skeleton codes
+    -renamed
+
+commit f47482cad8ed9529ddbef67b8417c8c0ac1aca41
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Tue Mar 12 18:14:17 2024 +0000
+
+    created an empty main
+
+commit da42b55be858b562c9262ae38648f1baa5794e48
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 12 18:03:16 2024 +0000
+
+    Modified comments
+
+commit b868eb8873bc8883c30dddc2d257751bae5d3339
+Author: Zicheng_Liang <liangzicheng02@gmail.com>
+Date:   Tue Mar 12 17:59:46 2024 +0000
+
+    Created Datapoint Class
+    
+    -added all the variables based on .csv files
+    -built a constructor with all parameters
+
+commit 2ddac8e2a4ad6fa1b9c0548edc255e929f8e7a73
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 12 17:19:32 2024 +0000
+
+    Modified the description
+
+commit d1ff498ac890e91202cde9b72ed5b9693d92d78d
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 12 17:18:26 2024 +0000
+
+    Muireann and Neil added
+
+commit dc8479735259aea2929d4e0653db2f416284b8d8
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 12 17:15:39 2024 +0000
+
+    Delete Meeting minutes
+
+commit 0487ca52b999bd04532fcc3ad7f0de4ba6634956
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 12 17:15:24 2024 +0000
+
+    Rename main.pde to main/main.pde
+
+commit 0628aa2022f3d24ca74983231ced3fa144f71a17
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 12 17:15:10 2024 +0000
+
+    Update and rename flights2k.csv to flights2k.csv
+
+commit b397e06a0d40d1d0bc6114d901852e54c3202b4d
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 12 17:14:47 2024 +0000
+
+    Update and rename flights2k.csv to mian/flights2k.csv
+
+commit 28fadfc237fd404eb0c6a7ee75bd0b85b6b56484
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 12 17:14:31 2024 +0000
+
+    Update and rename flights10k.csv to main/flights10k.csv
+
+commit 7b3c4add71237cffe217d1767bd9e399b8c9e04d
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 12 17:14:10 2024 +0000
+
+    Rename flights100k.csv to main/flights100k.csv
+
+commit dbd3f3460e4f1c207afee1d2429aa5c923b6f597
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 12 17:13:55 2024 +0000
+
+    Delete main/Datapoint
+
+commit 15fefe35423c64910746cf8c0590408f191e7242
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 12 17:13:34 2024 +0000
+
+    Rename Data_Reading.pde to main/Data_Reading.pde
+
+commit 911ed7a8daca744e22830a4e6f1edff42b8e3dc2
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 12 17:12:46 2024 +0000
+
+    Create Datapoint
+
+commit 022799febed9ea4d6d6577b1a91a4a7ba40c50b2
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 12 17:11:16 2024 +0000
+
+    1st Meeting minutes included
+
+commit ff917208126a8128b3b5e28da75487a284a52a7c
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 12 17:10:05 2024 +0000
+
+    Created Minutes directory and Week1 Minutes.txt
+
+commit 219ee21d873c1474f7ec2ca0f477a6d5ec7584de
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 12 17:07:34 2024 +0000
+
+    1st team meeting minutes
+
+commit 00c28eae14c97557dadd6c2b7af26751d4028796
+Author: Brigandus <162377443+Brigandus@users.noreply.github.com>
+Date:   Tue Mar 12 14:55:47 2024 +0000
+
+    Have i changed read me
+
+commit e70343e7965c584d2b3e7f4798639b4c24ac0004
+Author: Aryan Kapoor <163135611+kapoor-ar@users.noreply.github.com>
+Date:   Tue Mar 12 14:54:56 2024 +0000
+
+    Update README.md
+
+commit a8f23edbe8445d090c138b1fe67327eec8e49144
+Author: dannyelx21 <162593250+dannyelx21@users.noreply.github.com>
+Date:   Tue Mar 12 14:53:55 2024 +0000
+
+    Update README.md
+
+commit 81a37d725c08dfe6e9a9a53a37fdb4f5b8bce17f
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 12 14:51:30 2024 +0000
+
+    Data reading
+
+commit 98b171c4fb4c3b5ea3ff1c91f981bb4197c83e1e
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 12 14:43:44 2024 +0000
+
+    Add files via upload
+
+commit 40f60de771de58e1e543de299756ea1ff38582ad
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 12 14:28:08 2024 +0000
+
+    Create Meeting minutes
+
+commit 97f6cc59472da1ced8d139e23562f680f7f1004a
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 12 13:49:01 2024 +0000
+
+    Team member & demonstrator sections added
+
+commit f7692c62222afb1a6f886567c566ebadee8d11bd
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 5 17:23:23 2024 +0000
+
+    Add the flights data of 2k, 10k, 100k
+
+commit 9b3cb89b7744d5b1906802eb24a567e251d314b3
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 5 17:18:50 2024 +0000
+
+    Add the project specification from the professor
+
+commit d27034e26cafff48d11a2603d619975888e03440
+Author: Zicheng Liang <116967748+ZichengLiang@users.noreply.github.com>
+Date:   Tue Mar 5 17:17:47 2024 +0000
+
+    Initial commit
