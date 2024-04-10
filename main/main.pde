@@ -76,7 +76,7 @@ void setup() {
   // Daniel  2nd April: Checkboxes
   createGUI();
   // Oliver 26th March: Map work
-  map = new Map(SCREENX/5, SCREENY/3, 700, 450, datapoints);
+  map = new Map(SCREENX/6, SCREENY/3, 700, 450, datapoints);
   // Aryan: 4th April
   // Create an instance of SliderClass
 
