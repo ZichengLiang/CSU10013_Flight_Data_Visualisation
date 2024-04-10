@@ -1,0 +1,4 @@
+class Airports
+{
+  float x;
+}
