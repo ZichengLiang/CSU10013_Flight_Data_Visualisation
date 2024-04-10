@@ -282,11 +282,38 @@ public void checkbox1_clicked(GCheckbox checkbox, GEvent event) { // Checks to s
 
 public void checkbox2_clicked(GCheckbox checkbox, GEvent event) { // Checks to see if a checkbox is clicked
   if (checkbox2.isSelected() == true) {
-    //theBarChart.byAirlines();
-    println("Checkbox 2 clicked");
+    currentQuery.setDiverted(true);
+    // canceledPressed = true;
+    currentQuery = new Query(currentQuery.filterQuery(), "Diverted");
+
+    if (button1Clicked == true) {
+      theBarChart.byDistanceFrom("JFK");
+    }
+    if (button2Clicked == true) {
+      theBarChart.byAirlines();
+    }
+    if (button3Clicked == true) {
+      theBarChart.byFlightFrom("JFK");
+    }
+
+    // renewGraphs();
+    redraw();
   } else {
-    //theBarChart.byDistanceFrom("JFK");
-    println("Checkbox 2 not clicked");
+    currentQuery = new Query();
+    // canceledPressed = false;
+
+    if (button1Clicked == true) {
+      theBarChart.byDistanceFrom("JFK");
+    }
+    if (button2Clicked == true) {
+      theBarChart.byAirlines();
+    }
+    if (button3Clicked == true) {
+      theBarChart.byFlightFrom("JFK");
+    }
+    //currentQuery.setCancelled(false);
+    // renewGraphs();
+    redraw();
   }
 }
 
@@ -297,7 +324,7 @@ public void createGUI() {
   checkbox1.addEventHandler(this, "checkbox1_clicked");
 
   checkbox2 = new GCheckbox(this, SCREENX - 180, 80, 200, 20);
-  checkbox2.setText("Flights from");
+  checkbox2.setText("diverted");
   checkbox2.setOpaque(false);
   checkbox2.addEventHandler(this, "checkbox2_clicked");
 
