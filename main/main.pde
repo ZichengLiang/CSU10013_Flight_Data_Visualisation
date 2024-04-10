@@ -121,12 +121,12 @@ void mousePressed() {
   }
 
   if (mouseX > arrowX && mouseX < arrowX + buttonWidth && mouseY > arrowMargin && mouseY < arrowMargin + buttonHeight) {
-    scrollY += 20; // Move text down
+    scrollY1 += 20; // Move text down
   }
   
   // Check if click is within the down arrow area
   if (mouseX > arrowX && mouseX < arrowX + buttonWidth && mouseY > downArrowY && mouseY < downArrowY + buttonHeight) {
-    scrollY -= 20; // Move text up
+    scrollY1  -= 20; // Move text up
   }
   if (mouseX > leftArrowX && mouseX < leftArrowX + buttonWidth && mouseY > horizontalArrowsY && mouseY < horizontalArrowsY + buttonHeight) {
     tableX += 20; // Move text left
@@ -139,7 +139,7 @@ void mousePressed() {
    
   int event;
 
-  scrollY -= 20;
+  //scrollY -= 20;
   event = showCase.pressed(mouseX, mouseY);
  
   if (event>-1)

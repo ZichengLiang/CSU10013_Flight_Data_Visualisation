@@ -99,18 +99,17 @@ class Screen
       fill(200);
       rect(0, 0, screenX/2.9 + 3, 2500);
       fill(200);
-      rect(buttonX + (plusMinusButtonSize - plusMinusButtonSize / 3) / 2+ 1830, plusButtonY + (plusMinusButtonSize / 3) + 80, plusMinusButtonSize / 3+50, plusMinusButtonSize / 3);
-      rect(buttonX + (plusMinusButtonSize / 3)+ 1830, plusButtonY + (plusMinusButtonSize - plusMinusButtonSize / 3) / 2 + 80, plusMinusButtonSize / 3, plusMinusButtonSize / 3 + 50);
+      rect(buttonX + (plusMinusButtonSize - plusMinusButtonSize / 3) / 2+ 1830 - 1200, plusButtonY + (plusMinusButtonSize / 3) + 80 + 480, plusMinusButtonSize / 3+50, plusMinusButtonSize / 3);
+      rect(buttonX + (plusMinusButtonSize / 3)+ 1830 - 1200, plusButtonY + (plusMinusButtonSize - plusMinusButtonSize / 3) / 2 + 80 + 480, plusMinusButtonSize / 3, plusMinusButtonSize / 3 + 50);
       fill(200);
       rect(buttonX + (plusMinusButtonSize - plusMinusButtonSize / 3) + 3650 / 2, minusButtonY + plusMinusButtonSize / 3 + 120, plusMinusButtonSize / 3 + 50, plusMinusButtonSize / 3);
-      fill(200);
-      triangle(arrowX, arrowMargin + buttonHeight, arrowX + buttonWidth / 2, arrowMargin, arrowX + buttonWidth, arrowMargin + buttonHeight);
-      fill(200);
+      fill(204, 102, 0);
+      triangle(arrowX , arrowMargin + buttonHeight , arrowX + buttonWidth / 2, arrowMargin, arrowX + buttonWidth, arrowMargin + buttonHeight);
+      fill(204, 102, 0);
       triangle(arrowX, downArrowY, arrowX + buttonWidth / 2, downArrowY + buttonHeight, arrowX + buttonWidth, downArrowY);
-      fill(0);
-      fill(200);
+      fill(204, 102, 0);
       triangle(leftArrowX + buttonWidth , horizontalArrowsY , leftArrowX + buttonWidth / 2 , horizontalArrowsY + buttonHeight / 2 , leftArrowX + buttonWidth , horizontalArrowsY + buttonHeight);
-      fill(200);
+      fill(204, 102, 0);
       triangle(rightArrowX, horizontalArrowsY, rightArrowX + buttonWidth / 2, horizontalArrowsY + buttonHeight / 2, rightArrowX, horizontalArrowsY + buttonHeight);
       if (mouse == true){
       } 
