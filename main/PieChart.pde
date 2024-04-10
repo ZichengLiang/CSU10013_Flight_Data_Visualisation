@@ -22,13 +22,7 @@ class PieChart {
     fill(255);
     rect(650,40,160,60*data.length,20);
     pieChart(300);
-  //   for (int j = 0; j < DataToggle.length; j++) {
-  //  if (j == 1) {
-  //    DataToggle[j] = new Widget( (SCREENX / buttons.length) * j + 60,60, 100, 60, 20, "Pie Chart", 255, body, j);
-  //  } else if (j == 4) {
-  //    DataToggle[j] = new Widget( (SCREENX / buttons.length) * j + 60,60, 100, 60, 20, "Bar Chart", 255, body, j);
-  //  }
-  //}
+
   }
   
   void getAbnormalFlights(Query query){
@@ -40,6 +34,14 @@ class PieChart {
    originalData = abnormalFlights;
    this.data = piConverter(abnormalFlights);
   }
+  
+//size of carrier companies
+ void CarrierCO(Query query){
+   this.dataLables = new String[]{};
+   
+ }
+//number of 
+
 
   void pieChart(float diameter) {
     float lastAngle = 0;

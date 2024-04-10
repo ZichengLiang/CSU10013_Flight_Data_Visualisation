@@ -43,7 +43,6 @@ class Screen
     case 0: 
       fill(SCREEN1);
       rect(startX, startY, screenX, screenY);
-      
       fill(255);
       textSize(20);
       textAlign(RIGHT);
@@ -74,7 +73,9 @@ class Screen
     case 1: //Reserved for Pie Chart
       fill(SCREEN2);
       rect(startX, startY, screenX, screenY);
-
+      //call on horizontal widget;
+      //if event == 5
+      //change data
       thePieChart.draw();
       break;
 

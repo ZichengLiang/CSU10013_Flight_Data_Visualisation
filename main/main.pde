@@ -3,7 +3,7 @@ import java.util.*;
 
 Datapoint[] datapoints;
 String[] lines;
-
+String Search;
 int datapointCount = 0;
 PFont body;
 int displayNum = 10; // Display this many entries on each screen;
@@ -12,7 +12,7 @@ int sideBarButtonsNum = 5;
 int horizontalButtonsNum = 3;
 boolean drawBarChart = false; // Used to check if bar chart is used
 Query currentQuery;
-
+SearchBox txt;
 // Oliver, 15th March: creation of widgets to switch between screens
 
 Screen Screens;
@@ -45,13 +45,16 @@ void setup() {
   // Query functions test cases:
   Query fromWholeDataSet = new Query();
   currentQuery = fromWholeDataSet;
+  
  //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
+  txt = new SearchBox(200, 200, 180, 40);
   thePieChart = new PieChart();
   thePieChart.getAbnormalFlights(currentQuery);
+  
   // Zicheng  20/03/24 Initialised flight distances to bar chart
   ArrayList<Datapoint> testFlights = currentQuery.flightsFrom("JFK");
   ArrayList<Datapoint> sortedFlights = sortByDistance(testFlights);
-
+  
   Datapoint[] flights = sortedFlights.toArray(Datapoint[]::new);
 
   float[] flightDistance = new float[flights.length];
@@ -89,8 +92,7 @@ void setup() {
   // Oliver, 22nd March: Working on horix=zontal buttons
      showCase = new Text(SCREENX-100, SCREENY-100, 200, 200,
   255, body);
-   
-
+ 
    //Query for flights by a specific carrier (e.g., American Airlines with carrier code "AA")
     Query carrierQuery = new Query();
     ArrayList<Datapoint> bySpecificCarrier = carrierQuery.flightsByCarrier("AA");
@@ -112,9 +114,11 @@ void setup() {
 void draw() {
   noStroke();
   background(BACKGROUND_COLOUR);
-
+ 
   textSize(12);
+  
   Screens.draw();
+  
   for (int i=0; i<buttons.length; i++)
   {
     buttons[i].draw();
