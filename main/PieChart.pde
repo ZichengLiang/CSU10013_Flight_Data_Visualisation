@@ -25,7 +25,8 @@ class PieChart {
     originalData = abnormalFlights;
     this.data = piConverter(abnormalFlights);
   }
-
+  
+  
   void carrierCO(Query query) {
     HashMap<String, List<Datapoint>> flightsByCarrier = query.flightsByCarrier;
     if (flightsByCarrier.isEmpty()) {
@@ -40,6 +41,8 @@ class PieChart {
       flights.add(carrier.getValue().size());
     }
 
+    
+    
     int[] intFlights = flights.stream()
     .mapToInt(Integer::intValue)
     .toArray();
@@ -58,7 +61,7 @@ class PieChart {
       arc(width/2, height/2, diameter, diameter, lastAngle, lastAngle+radians(data[i]));//creates an arc in the piechart using data
       if (i < dataLables.length) {
         textSize(15);
-        //text( dataLables[i] +" = "+ originalData[i], 700, 40+30*i);
+        text( dataLables[i] +" = "+ originalData[i], 700, 40+30*i);
       }
       lastAngle += radians(data[i]);
     }
@@ -77,7 +80,7 @@ class PieChart {
       convertedData[i] = dataPointDecFin;
       //println(convertedData[i]);
     }
-    Conversion = 0;
+    //Conversion = 0;
 
     return(convertedData);
   }
