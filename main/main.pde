@@ -54,10 +54,6 @@ void setup() {
   Screens = new Screen();
   Query fromWholeDataSet = new Query();
   currentQuery = fromWholeDataSet;
-
-
- //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
-  txt = new SearchBox(200, 200, 180, 40);
   thePieChart = new PieChart();
   thePieChart.getAbnormalFlights();
   thePieChart.carrierCO(currentQuery);
