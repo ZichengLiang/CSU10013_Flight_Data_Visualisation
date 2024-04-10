@@ -1,3 +1,6 @@
+// Aryan: created a brand new timezone class for handling timezones in USA according to departure and arrival airport cities
+// important part as it forms the basis of all time-related queries and tables
+
 static class AirportTimezones {
   // Define a map to store airport codes and their corresponding timezones
   static final HashMap<String, String> airportTimezones = new HashMap<>();

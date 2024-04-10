@@ -15,6 +15,9 @@ int displayNum = 10; // Display this many entries on each screen;
 int startingEntry = 0; // Display from this entry number;
 int sideBarButtonsNum = 5;
 int horizontalButtonsNum = 3;
+
+boolean mouse = false;
+
 Query currentQuery;
 SearchBox txt;
 // Oliver, 15th March: creation of widgets to switch between screens
@@ -23,7 +26,7 @@ Widget[] buttons;
 Widget[] buttonsHorizontal;
 Text showCase;
 
-Map map;
+TheMap map;
 //Muireann O'Neill 15/03/24 11:12 declaring Charts here;
 PieChart thePieChart;
 //Daniel 15/03/24 initialized BarCharts here
@@ -31,6 +34,8 @@ TheBarChart theBarChart;
 //Daniel 02/04/24 Checkbox initialized
 GCheckbox checkbox1, checkbox2;
 boolean horizontalButtons = false;
+boolean canceledPressed = false; // Checks to see if canceled checkbox pressed
+
 
 Slider dateSlider;
 
@@ -50,9 +55,9 @@ void setup() {
   Query fromWholeDataSet = new Query();
   currentQuery = fromWholeDataSet;
 
+
  //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
   txt = new SearchBox(200, 200, 180, 40);
-
   thePieChart = new PieChart();
   thePieChart.getAbnormalFlights();
   thePieChart.carrierCO(currentQuery);
@@ -60,7 +65,7 @@ void setup() {
   // Zicheng  20/03/24 Initialised flight distances to bar chart
   //Daniel 15/03/24 initialized BarCharts here
   BarChart barChart = new BarChart(this); // Create a new BarChart instance
-  theBarChart = new TheBarChart(barChart);
+  theBarChart = new TheBarChart(barChart); 
 
   // Buttons
   Screens = new Screen();
@@ -73,11 +78,15 @@ void setup() {
   // Daniel  2nd April: Checkboxes
   createGUI();
   // Oliver 26th March: Map work
-  map = new Map(SCREENX/5, SCREENY/3, 700, 450, datapoints);
+
+  map = new TheMap(SCREENX/6, SCREENY/3, 700, 450, currentQuery.getArrayList());
+
   // Aryan: 4th April
   // Create an instance of SliderClass
 
   dateSlider = new Slider(this, 31);
+  
+  thread("map.renewMap");
 }
 
 //displaynum = 10
@@ -93,7 +102,7 @@ void draw() {
   {
     buttons[i].draw();
   }
-  if ( horizontalButtons == true) {
+  if ( horizontalButtons == true) {   // If BarChart button pressed then draw horizontal buttons
     for (int i=0; i<buttonsHorizontal.length; i++)
     {
       buttonsHorizontal[i].draw();
@@ -103,11 +112,39 @@ void draw() {
 }
 
 void mousePressed() {
-  int event;
+
+  float distToPlus = dist(mouseX, mouseY, 1877, 197);
+  if (distToPlus < 30) {
+    fontSize += 1;
+  }
+  
+  float distToMinus = dist(mouseX, mouseY, 1878, 267);
+  if (distToMinus < 30) {
+     fontSize -= 1;
+  }
+
+  if (mouseX > arrowX && mouseX < arrowX + buttonWidth && mouseY > arrowMargin && mouseY < arrowMargin + buttonHeight) {
+    scrollY += 20; // Move text down
+  }
+  
+  // Check if click is within the down arrow area
+  if (mouseX > arrowX && mouseX < arrowX + buttonWidth && mouseY > downArrowY && mouseY < downArrowY + buttonHeight) {
+    scrollY -= 20; // Move text up
+  }
+  if (mouseX > leftArrowX && mouseX < leftArrowX + buttonWidth && mouseY > horizontalArrowsY && mouseY < horizontalArrowsY + buttonHeight) {
+    tableX -= 10; // Move text left
+  }
+
+  // Right Arrow
+  if (mouseX > rightArrowX && mouseX < rightArrowX + buttonWidth && mouseY > horizontalArrowsY && mouseY < horizontalArrowsY + buttonHeight) {
+    tableX += 10; // Move text right
+  }
+
+  int event = -1;
+
   scrollY -= 20;
   event = showCase.pressed(mouseX, mouseY);
-  //scrollY -= 20;
-  System.out.println(event);
+ 
   if (event>-1)
   {
     startingEntry += displayNum;
@@ -179,7 +216,16 @@ void initializeSidebarButtons() {
       buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "Map", 255, body, j);
     } else if (j == 4) {
       buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "Bar Chart", 255, body, j);
-    } else {
+    }
+    else if(j==0)
+    {
+      buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "Main Screen", 255, body, j);
+    }
+    else if(j==3)
+    {
+      buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "Table", 255, body, j);
+    }
+      else {
       buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "button " + j, 255, body, j);
     }
   }
@@ -191,28 +237,51 @@ void initializeHorizontalButtons() {
     if (j == 0) {
       buttonsHorizontal[j] = new Widget(SCREENX / 4, SCREENY - 65, 100, 60, 20, "Flight distance", 255, body, j); // 0.25
     } else if (j == 1) {
-      buttonsHorizontal[j] = new Widget( SCREENX / 2, SCREENY - 65, 100, 60, 20, "Flight from", 255, body, j); // 0.5
+      buttonsHorizontal[j] = new Widget( SCREENX / 2, SCREENY - 65, 100, 60, 20, "Flights by \nAirline ", 255, body, j); // 0.5
     } else {
-      buttonsHorizontal[j] = new Widget(SCREENX - (SCREENX / 4) - 10, SCREENY - 65, 100, 60, 20, "Flights by \nAirline", 255, body, j); // 0.75
+      buttonsHorizontal[j] = new Widget(SCREENX - (SCREENX / 4) - 10, SCREENY - 65, 100, 60, 20, "Flight from", 255, body, j); // 0.75
     }
   }
 }
 //CheckBoxes
-public void checkbox1_clicked(GCheckbox checkbox, GEvent event) {
+public void checkbox1_clicked(GCheckbox checkbox, GEvent event) { // Checks to see if a checkbox is clicked
   if (checkbox1.isSelected() == true) {
     currentQuery.setCancelled(true);
+    // canceledPressed = true;
     currentQuery = new Query(currentQuery.filterQuery(), "Cancelled");
-    renewGraphs();
+
+    if (button1Clicked == true) {
+      theBarChart.byDistanceFrom("JFK");
+    }
+    if (button2Clicked == true) {
+      theBarChart.byAirlines();
+    }
+    if (button3Clicked == true) {
+      theBarChart.byFlightFrom("JFK");
+    }
+
+    // renewGraphs();
     redraw();
   } else {
     currentQuery = new Query();
+    // canceledPressed = false;
+
+    if (button1Clicked == true) {
+      theBarChart.byDistanceFrom("JFK");
+    }
+    if (button2Clicked == true) {
+      theBarChart.byAirlines();
+    }
+    if (button3Clicked == true) {
+      theBarChart.byFlightFrom("JFK");
+    }
     //currentQuery.setCancelled(false);
-    renewGraphs();
+    // renewGraphs();
     redraw();
   }
 }
 
-public void checkbox2_clicked(GCheckbox checkbox, GEvent event) {
+public void checkbox2_clicked(GCheckbox checkbox, GEvent event) { // Checks to see if a checkbox is clicked
   if (checkbox2.isSelected() == true) {
     //theBarChart.byAirlines();
     println("Checkbox 2 clicked");
@@ -221,15 +290,6 @@ public void checkbox2_clicked(GCheckbox checkbox, GEvent event) {
     println("Checkbox 2 not clicked");
   }
 }
-
-/*public void checkbox3_clicked() {
- if (checkbox3.isSelected() == true) {
- println("Checkbox 3 clicked");
- } else {
- println("Checkbox 3 not clicked");
- }
- }*/
-
 
 public void createGUI() {
   checkbox1 = new GCheckbox(this, SCREENX - 180, 30, 200, 20);
@@ -242,14 +302,9 @@ public void createGUI() {
   checkbox2.setOpaque(false);
   checkbox2.addEventHandler(this, "checkbox2_clicked");
 
-  /*checkbox3 = new GCheckbox(this, SCREENX - 300, 130, 200, 20);
-   checkbox3.setText("Flights to");
-   checkbox3.addEventHandler(this, "handleToggleControlEvents");
-   checkbox3.setOpaque(false);*/
 }
 
 public void renewGraphs() {
   //thePieChart.getAbnormalFlights();
   thePieChart.carrierCO(currentQuery);
-  theBarChart.byDistanceFrom("JFK");
 }

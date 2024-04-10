@@ -1,4 +1,0 @@
-class Airports
-{
-  float x;
-}
