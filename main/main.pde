@@ -15,6 +15,9 @@ int displayNum = 10; // Display this many entries on each screen;
 int startingEntry = 0; // Display from this entry number;
 int sideBarButtonsNum = 5;
 int horizontalButtonsNum = 3;
+
+boolean mouse = false;
+
 Query currentQuery;
 
 // Oliver, 15th March: creation of widgets to switch between screens
@@ -105,11 +108,39 @@ void draw() {
 }
 
 void mousePressed() {
+
+  float distToPlus = dist(mouseX, mouseY, 1877, 197);
+  if (distToPlus < 30) {
+    fontSize += 1;
+  }
+  
+  float distToMinus = dist(mouseX, mouseY, 1878, 267);
+  if (distToMinus < 30) {
+     fontSize -= 1;
+  }
+
+  if (mouseX > arrowX && mouseX < arrowX + buttonWidth && mouseY > arrowMargin && mouseY < arrowMargin + buttonHeight) {
+    scrollY += 20; // Move text down
+  }
+  
+  // Check if click is within the down arrow area
+  if (mouseX > arrowX && mouseX < arrowX + buttonWidth && mouseY > downArrowY && mouseY < downArrowY + buttonHeight) {
+    scrollY -= 20; // Move text up
+  }
+  if (mouseX > leftArrowX && mouseX < leftArrowX + buttonWidth && mouseY > horizontalArrowsY && mouseY < horizontalArrowsY + buttonHeight) {
+    tableX -= 10; // Move text left
+  }
+
+  // Right Arrow
+  if (mouseX > rightArrowX && mouseX < rightArrowX + buttonWidth && mouseY > horizontalArrowsY && mouseY < horizontalArrowsY + buttonHeight) {
+    tableX += 10; // Move text right
+  }
+
   int event = -1;
+
   scrollY -= 20;
   event = showCase.pressed(mouseX, mouseY);
-  //scrollY -= 20;
-  System.out.println(event);
+ 
   if (event>-1)
   {
     startingEntry += displayNum;
