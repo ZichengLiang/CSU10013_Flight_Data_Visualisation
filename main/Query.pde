@@ -30,7 +30,7 @@ class Query {
   public HashMap<String, List<Datapoint>> flightsByOrigin;
   public HashMap<String, List<Datapoint>> flightsByDestination;
   public HashMap<Date, List<Datapoint>>  flightsByDate;
-  public HashMap<String, List<Datapoint>> flightsByCarrier;
+  public HashMap<String, List<Datapoint>> flightsByCarrier; //get  key comes from here
 
   String name;
 
