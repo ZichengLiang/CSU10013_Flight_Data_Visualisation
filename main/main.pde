@@ -74,7 +74,7 @@ void setup() {
   createGUI();
   // Oliver 26th March: Map work
 
-  map = new Map(SCREENX/6, SCREENY/3, 700, 450, currentQuery.getArrayList());
+  map = new TheMap(SCREENX/6, SCREENY/3, 700, 450, currentQuery.getArrayList());
 
   // Aryan: 4th April
   // Create an instance of SliderClass
@@ -185,6 +185,10 @@ void initializeSidebarButtons() {
     else if(j==0)
     {
       buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "Main Screen", 255, body, j);
+    }
+    else if(j==3)
+    {
+      buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "Table", 255, body, j);
     }
       else {
       buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "button " + j, 255, body, j);
