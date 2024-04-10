@@ -23,14 +23,14 @@ Widget[] buttons;
 Widget[] buttonsHorizontal;
 Text showCase;
 
-Map map;
+TheMap map;
 //Muireann O'Neill 15/03/24 11:12 declaring Charts here;
 PieChart thePieChart;
 //Daniel 15/03/24 initialized BarCharts here
 TheBarChart theBarChart;
 //Daniel 02/04/24 Checkbox initialized
 GCheckbox checkbox1, checkbox2;
-boolean horizontalButtons = false;
+boolean horizontalButtons = false; // Checks to see if BarChart button pressed
 
 Slider dateSlider;
 
@@ -49,9 +49,6 @@ void setup() {
   Screens = new Screen();
   Query fromWholeDataSet = new Query();
   currentQuery = fromWholeDataSet;
-  // Oliver 26th March: Map work
-  map = new Map(SCREENX/5, SCREENY/3, 700, 450, datapoints);
-
   //Muireann O'Neill 14/03/24 17:12 initializing Charts here;
   thePieChart = new PieChart();
   thePieChart.getAbnormalFlights();
@@ -61,7 +58,7 @@ void setup() {
   // Zicheng  20/03/24 Initialised flight distances to bar chart
   //Daniel 15/03/24 initialized BarCharts here
   BarChart barChart = new BarChart(this); // Create a new BarChart instance
-  theBarChart = new TheBarChart(barChart);
+  theBarChart = new TheBarChart(barChart); 
 
 
   // Buttons
@@ -76,11 +73,15 @@ void setup() {
   // Daniel  2nd April: Checkboxes
   createGUI();
   // Oliver 26th March: Map work
-  map = new Map(SCREENX/5, SCREENY/3, 700, 450, datapoints);
+
+  map = new Map(SCREENX/6, SCREENY/3, 700, 450, currentQuery.getArrayList());
+
   // Aryan: 4th April
   // Create an instance of SliderClass
 
   dateSlider = new Slider(this, 31);
+  
+  thread("map.renewMap");
 }
 
 //displaynum = 10
@@ -94,7 +95,7 @@ void draw() {
   {
     buttons[i].draw();
   }
-  if ( horizontalButtons == true) {
+  if ( horizontalButtons == true) {   // If BarChart button pressed then draw horizontal buttons
     for (int i=0; i<buttonsHorizontal.length; i++)
     {
       buttonsHorizontal[i].draw();
@@ -104,7 +105,7 @@ void draw() {
 }
 
 void mousePressed() {
-  int event;
+  int event = -1;
   scrollY -= 20;
   event = showCase.pressed(mouseX, mouseY);
   //scrollY -= 20;
@@ -180,7 +181,12 @@ void initializeSidebarButtons() {
       buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "Map", 255, body, j);
     } else if (j == 4) {
       buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "Bar Chart", 255, body, j);
-    } else {
+    }
+    else if(j==0)
+    {
+      buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "Main Screen", 255, body, j);
+    }
+      else {
       buttons[j] = new Widget(60, (SCREENY / buttons.length) * j + 60, 100, 60, 20, "button " + j, 255, body, j);
     }
   }
@@ -199,7 +205,7 @@ void initializeHorizontalButtons() {
   }
 }
 //CheckBoxes
-public void checkbox1_clicked(GCheckbox checkbox, GEvent event) {
+public void checkbox1_clicked(GCheckbox checkbox, GEvent event) { // Checks to see if a checkbox is clicked
   if (checkbox1.isSelected() == true) {
     currentQuery.setCancelled(true);
     currentQuery = new Query(currentQuery.filterQuery(), "Cancelled");
@@ -222,7 +228,7 @@ public void checkbox1_clicked(GCheckbox checkbox, GEvent event) {
   }
 }
 
-public void checkbox2_clicked(GCheckbox checkbox, GEvent event) {
+public void checkbox2_clicked(GCheckbox checkbox, GEvent event) { // Checks to see if a checkbox is clicked
   if (checkbox2.isSelected() == true) {
     //theBarChart.byAirlines();
     println("Checkbox 2 clicked");
@@ -233,15 +239,15 @@ public void checkbox2_clicked(GCheckbox checkbox, GEvent event) {
 }
 
 public void createGUI() {
-  checkbox1 = new GCheckbox(this, SCREENX - 180, 30, 200, 20);
-  checkbox1.setText("cancelled");
-  checkbox1.setOpaque(false);
-  checkbox1.addEventHandler(this, "checkbox1_clicked");
+  checkbox1 = new GCheckbox(this, SCREENX - 180, 30, 200, 20); // Creates checkbox
+  checkbox1.setText("cancelled");                              // Text beside checkbox
+  checkbox1.setOpaque(false);                                  // Makes checkbox transparent to its background
+  checkbox1.addEventHandler(this, "checkbox1_clicked");        // Calls method checkbox1_clicked
 
-  checkbox2 = new GCheckbox(this, SCREENX - 180, 80, 200, 20);
-  checkbox2.setText("Flights from");
-  checkbox2.setOpaque(false);
-  checkbox2.addEventHandler(this, "checkbox2_clicked");
+  checkbox2 = new GCheckbox(this, SCREENX - 180, 80, 200, 20); // Creates checkbox
+  checkbox2.setText("Flights from");                           // Text beside checkbox
+  checkbox2.setOpaque(false);                                  // Makes checkbox transparent to its background
+  checkbox2.addEventHandler(this, "checkbox2_clicked");        // Calls method checkbox2_clicked
 
   /*checkbox3 = new GCheckbox(this, SCREENX - 300, 130, 200, 20);
    checkbox3.setText("Flights to");
