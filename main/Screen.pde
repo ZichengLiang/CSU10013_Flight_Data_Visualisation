@@ -12,8 +12,9 @@ class Screen
   //Screen location
   float startX;
   float startY;
+  
+  MapLegend[] mapLegend;
 
-  boolean screenChange; // to help tell if the screen should need to change for Map class
 
   // Main Screen
   Screen()
@@ -28,8 +29,10 @@ class Screen
 
     screenType=0;
     borders = 15;
-
-    screenChange=false;
+    
+    //Oliver April 10th: Creation of Legend for map
+    mapLegend = new MapLegend[5];
+    init_legend(mapLegend);
   }
 
   // Graph Screen Type A
@@ -88,13 +91,18 @@ class Screen
       break;
 
     case 2: // reserved for table
-      if (screenChange)
-      {
-        map.renewMap(currentQuery.getArrayList());
-        screenChange=false;
-      }
+      map.renewMap(currentQuery.getArrayList());
+      //Create background
       fill(SCREEN3);
       rect(startX, startY, screenX, screenY);
+      
+      //Create Legend
+      fill(255);
+      rect(startX, SCREENY/8, screenX, SCREENY/4);
+      for(int i=0; i<mapLegend.length;i++)
+      {
+        mapLegend[i].draw();
+      }
       map.draw();
       break;
 
@@ -123,4 +131,18 @@ class Screen
     rect(SCREENX-100, SCREENY-500, 200, SCREENY-100);
     textSize(12);
   }
+  
+  void init_legend(MapLegend[] array)
+{
+  colorMode(RGB, 10000);
+  
+  for(int i=0; i<array.length; i++)
+  {
+    array[i] = new MapLegend((startX-(screenX/2))+i*(startX/array.length)+20,
+    color(i*(10000/array.length),0,2500), i*(10000/array.length)+"+");
+  }
+  
+  colorMode(RGB, 255);
+}
+
 }

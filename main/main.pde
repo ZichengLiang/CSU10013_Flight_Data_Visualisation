@@ -72,6 +72,8 @@ void setup() {
   // Aryan: 4th April
   // Create an instance of SliderClass
   dateSlider = new Slider(this, 31);
+  
+  thread("map.renewMap");
 }
 
 
@@ -124,7 +126,6 @@ void mousePressed() {
       Screens.screenType=event;
     }
   }
-  Screens.screenChange=true;
 
   redraw();
 }

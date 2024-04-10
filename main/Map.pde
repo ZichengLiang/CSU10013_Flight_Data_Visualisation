@@ -17,9 +17,9 @@ class TheMap
     this.sizeX=sizeX;
     this.sizeY=sizeY;
     
-    thread("renewMap");
+   // thread("renewMap");
 
-    blue = 10000;
+    blue = 2500;
     //map.resize(100,100);
 
     america = loadShape("us.svg");
@@ -81,6 +81,7 @@ class TheMap
       color(findColour(data, "MN"), 0, blue)) ;
     states[25] = new MapStates("MS", america, x, y, sizeX, sizeY,
       color(findColour(data, "MS"), 0, blue)) ;
+      delay(2000);
     states[26] = new MapStates("MO", america, x, y, sizeX, sizeY,
       color(findColour(data, "MO"), 0, blue)) ;
     states[27] = new MapStates("MT", america, x, y, sizeX, sizeY,
@@ -135,7 +136,6 @@ class TheMap
 
   void draw()
   {
-    colorMode(RGB, 100000);
 
     fill(255, 0, 0);
     noStroke();
@@ -146,8 +146,6 @@ class TheMap
       states[i].draw();
     }
 
-
-    colorMode(RGB, 255);
   }
 
   void renewMap(ArrayList<Datapoint> list)
@@ -160,7 +158,7 @@ class TheMap
       //changes it
       pastQuery = (ArrayList<Datapoint>)data.clone();
       
-      colorMode(RGB,100000);
+      colorMode(RGB,10000);
       for(int x=0; x<50; x++)
       {
         states[x].colourChange(color(findColour(data, states[x].stateName),0,blue));
@@ -182,7 +180,7 @@ int findColour(ArrayList <Datapoint> data, String state)
       if (data.get(x).originState.equals(state))
       {
         data.remove(x);
-        point+=3;
+        point+=1;
       }
     }
   }
